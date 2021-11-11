@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OmoriSkills : Skills
+public class HeroSkills : Skills
 {
     public override void SetStartingStats()
     {
@@ -17,12 +17,12 @@ public class OmoriSkills : Skills
         skillTargets.Add(Target.ANY);
 
         user.friend = true;
-        user.startingHealth = 52;
-        user.startingJuice = 35;
+        user.startingHealth = 48;
+        user.startingJuice = 41;
         user.startingAttack = 13;
-        user.startingDefense = 8;
-        user.startingSpeed = 12;
-        user.startingLuck = 5;
+        user.startingDefense = 6;
+        user.startingSpeed = 15;
+        user.startingLuck = 7;
     }
 
     public override void UseSkillOne()

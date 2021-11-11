@@ -7,10 +7,11 @@ public class BattleCharacter : MonoBehaviour
     public enum Emotion { NEUTRAL, HAPPY, ECSTATIC, ANGRY, ENRAGED, SAD, DEPRESSED };
     public Emotion currEmote = Emotion.NEUTRAL;
     public bool toast = false;
+    public bool friend;
 
     public enum Move { NONE, ATTACK, SKILL1, SKILL2, SKILl3, SKILL4 };
     public Move currMove = Move.NONE;
-    public Skills userSkills;
+    private Skills userSkills;
 
     public int startingHealth;
     public int startingJuice;
@@ -19,26 +20,38 @@ public class BattleCharacter : MonoBehaviour
     public int startingSpeed;
     public int startingLuck;
 
-    public float attackStat = 0;
-    public float defenseStat = 0;
-    public float speedStat = 0;
-    public float luckStat = 0;
-    public float accuracyStat = 0;
+    public float attackStat = 1;
+    public float defenseStat = 1;
+    public float speedStat = 1;
+    public float luckStat = 1;
+    public float accuracyStat = 1;
 
-    public float currHealth;
-    public float currJuice;
-    public float currAttack;
-    public float currDefense;
+    int currHealth;
+    int currJuice;
+    float currAttack;
+    float currDefense;
     public float currSpeed;
-    public float currLuck;
-    public float currAccuracy;
+    float currLuck;
+    float currAccuracy;
 
     private void Start()
     {
+        userSkills = gameObject.GetComponent<Skills>();
+        currEmote = Emotion.NEUTRAL;
+        userSkills.SetStartingStats();
+
         currHealth = startingHealth;
         currJuice = startingJuice;
         ResetStats();
-        currEmote = Emotion.NEUTRAL;
+    }
+
+    public void TakeDamage(int n)
+    {
+        currHealth -= n;
+        if (currHealth > startingHealth)
+            currHealth = startingHealth;
+        else if (currHealth <= 0)
+            toast = true;
     }
 
     void ResetStats()
@@ -48,28 +61,6 @@ public class BattleCharacter : MonoBehaviour
         currSpeed = startingSpeed * speedStat;
         currLuck = startingLuck * luckStat;
         currAccuracy = 1.0f * accuracyStat;
-    }
-
-    public void UseMove()
-    {
-        if (toast)
-            return;
-        else
-        {
-            switch (currMove)
-            {
-                case Move.ATTACK:
-                    break;
-                case Move.SKILL1:
-                    break;
-                case Move.SKILL2:
-                    break;
-                case Move.SKILl3:
-                    break;
-                case Move.SKILL4:
-                    break;
-            }
-        }
     }
 
     public void NewEmotion(Emotion newEmote)

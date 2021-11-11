@@ -4,12 +4,50 @@ using UnityEngine;
 
 public class Skills : MonoBehaviour
 {
+    public BattleCharacter user;
+    public List<int> juiceCost = new List<int>();
+    public enum Target { NONE, FRIEND, FOE, ANY };
+    public List<Target> skillTargets = new List<Target>();
+
+    private void Start()
+    {
+        user = gameObject.GetComponent<BattleCharacter>();
+    }
+
     public bool RollDice(float value)
     {
         return (Random.Range(0, 1) <= value);
     }
 
-    public float IsEffective (BattleCharacter user, BattleCharacter target)
+    public virtual void SetStartingStats()
+    {
+    }
+    public virtual void UseSkillOne()
+    {
+    }
+    public virtual void UseSkillTwo()
+    {
+    }
+    public virtual void UseSkillThree()
+    {
+    }
+    public virtual void UseSkillFour()
+    {
+    }
+    public virtual void UseSkillOne(BattleCharacter target)
+    {
+    }
+    public virtual void UseSkillTwo(BattleCharacter target)
+    {
+    }
+    public virtual void UseSkillThree(BattleCharacter target)
+    {
+    }
+    public virtual void UseSkillFour(BattleCharacter target)
+    {
+    }
+
+    public float IsEffective (BattleCharacter target)
     {
         if (user.currEmote == BattleCharacter.Emotion.HAPPY)
             switch (target.currEmote)
