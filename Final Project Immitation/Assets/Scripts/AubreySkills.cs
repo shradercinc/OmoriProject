@@ -14,7 +14,7 @@ public class AubreySkills : Skills
         skillTargets.Add(Target.NONE);
         skillTargets.Add(Target.FRIEND);
         skillTargets.Add(Target.FOE);
-        skillTargets.Add(Target.ANY);
+        skillTargets.Add(Target.ANYONE);
 
         user.friend = true;
         user.startingHealth = 69;

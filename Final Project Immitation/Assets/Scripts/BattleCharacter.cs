@@ -26,13 +26,44 @@ public class BattleCharacter : MonoBehaviour
     public float luckStat = 1;
     public float accuracyStat = 1;
 
-    int currHealth;
-    int currJuice;
-    float currAttack;
-    float currDefense;
+    public int currHealth;
+    public int currJuice;
+    public float currAttack;
+    public float currDefense;
     public float currSpeed;
-    float currLuck;
-    float currAccuracy;
+    public float currLuck;
+    public float currAccuracy;
+
+    public void UseMove()
+    {
+        if (!toast)
+        {
+            switch (currMove)
+            {
+                case Move.ATTACK:
+                    //userSkills.BasicAttack();
+                    break;
+                case Move.SKILL1:
+                    currJuice -= userSkills.juiceCost[0];
+                    userSkills.UseSkillOne();
+                    break;
+                case Move.SKILL2:
+                    currJuice -= userSkills.juiceCost[1];
+                    userSkills.UseSkillTwo();
+                    break;
+                case Move.SKILl3:
+                    currJuice -= userSkills.juiceCost[2];
+                    userSkills.UseSkillThree();
+                    break;
+                case Move.SKILL4:
+                    currJuice -= userSkills.juiceCost[3];
+                    userSkills.UseSkillFour();
+                    break;
+                case Move.NONE:
+                    break;
+            }
+        }
+    }
 
     private void Start()
     {

@@ -6,7 +6,7 @@ public class Skills : MonoBehaviour
 {
     public BattleCharacter user;
     public List<int> juiceCost = new List<int>();
-    public enum Target { NONE, FRIEND, FOE, ANY };
+    public enum Target { NONE, FRIEND, FOE, ANYONE, ALLFRIENDS, ALLFOES };
     public List<Target> skillTargets = new List<Target>();
 
     private void Start()
@@ -21,6 +21,15 @@ public class Skills : MonoBehaviour
 
     public virtual void SetStartingStats()
     {
+    }
+
+    public void BasicAttack(BattleCharacter target)
+    {
+        if (RollDice(user.currAccuracy))
+        {
+            int critical = RollDice(user.currLuck) ? 2 : 1;
+            target.currHealth -= (int) (critical * IsEffective(target) * (user.currAttack - target.currDefense));
+        }
     }
     public virtual void UseSkillOne()
     {
