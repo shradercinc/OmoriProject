@@ -34,6 +34,26 @@ public class BattleCharacter : MonoBehaviour
     public float currLuck;
     public float currAccuracy;
 
+    private void Awake()
+    {
+        userSkills = gameObject.GetComponent<Skills>();
+        currEmote = Emotion.NEUTRAL;
+        userSkills.SetStartingStats();
+
+        currHealth = startingHealth;
+        currJuice = startingJuice;
+        ResetStats();
+    }
+
+    void ResetStats()
+    {
+        currAttack = startingAttack * attackStat;
+        currDefense = startingDefense * defenseStat;
+        currSpeed = startingSpeed * speedStat;
+        currLuck = startingLuck * luckStat;
+        currAccuracy = 1.0f * accuracyStat;
+    }
+
     public void UseMove()
     {
         if (!toast)
@@ -65,17 +85,6 @@ public class BattleCharacter : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        userSkills = gameObject.GetComponent<Skills>();
-        currEmote = Emotion.NEUTRAL;
-        userSkills.SetStartingStats();
-
-        currHealth = startingHealth;
-        currJuice = startingJuice;
-        ResetStats();
-    }
-
     public void TakeDamage(int n)
     {
         currHealth -= n;
@@ -83,15 +92,6 @@ public class BattleCharacter : MonoBehaviour
             currHealth = startingHealth;
         else if (currHealth <= 0)
             toast = true;
-    }
-
-    void ResetStats()
-    {
-        currAttack = startingAttack * attackStat;
-        currDefense = startingDefense * defenseStat;
-        currSpeed = startingSpeed * speedStat;
-        currLuck = startingLuck * luckStat;
-        currAccuracy = 1.0f * accuracyStat;
     }
 
     public void NewEmotion(Emotion newEmote)

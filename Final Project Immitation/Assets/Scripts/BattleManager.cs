@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using TMPro;
 
 public class BattleManager : MonoBehaviour
 {
     public List<BattleCharacter> friends = new List<BattleCharacter>();
     public List<BattleCharacter> foes = new List<BattleCharacter>();
+    public TMP_Text battleLog;
+
     List<BattleCharacter> SpeedQueue = new List<BattleCharacter>();
     BattleCharacter[] characterArray;
 
@@ -14,7 +17,7 @@ public class BattleManager : MonoBehaviour
     {
         characterArray = FindObjectsOfType(typeof(BattleCharacter)) as BattleCharacter[];
 
-        for (int i = 0; i<characterArray.Length; i++)
+        for (int i = characterArray.Length-1; i>=0; i--)
         {
             if (characterArray[i].friend)
                 friends.Add(characterArray[i]);
@@ -25,9 +28,9 @@ public class BattleManager : MonoBehaviour
         NewRound();
     }
 
-    void SortSpeed()
+    public void ChangeText(string logLine)
     {
-        SpeedQueue = SpeedQueue.OrderByDescending(o => o.currSpeed).ToList();
+        battleLog.text = logLine;
     }
 
     void NewRound()
@@ -48,7 +51,7 @@ public class BattleManager : MonoBehaviour
     {
         while (SpeedQueue.Count > 0)
         {
-            SortSpeed();
+            SpeedQueue = SpeedQueue.OrderByDescending(o => o.currSpeed).ToList();
             SpeedQueue[0].UseMove();
             SpeedQueue.Remove(SpeedQueue[0]);
         }

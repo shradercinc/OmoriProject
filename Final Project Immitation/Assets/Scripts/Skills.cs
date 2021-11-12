@@ -9,7 +9,7 @@ public class Skills : MonoBehaviour
     public enum Target { NONE, FRIEND, FOE, ANYONE, ALLFRIENDS, ALLFOES };
     public List<Target> skillTargets = new List<Target>();
 
-    private void Start()
+    private void Awake()
     {
         user = gameObject.GetComponent<BattleCharacter>();
     }
@@ -19,44 +19,17 @@ public class Skills : MonoBehaviour
         return (Random.Range(0, 1) <= value);
     }
 
-    public virtual void SetStartingStats()
-    {
-    }
-
     public void BasicAttack(BattleCharacter target)
     {
         if (RollDice(user.currAccuracy))
         {
             int critical = RollDice(user.currLuck) ? 2 : 1;
-            target.currHealth -= (int) (critical * IsEffective(target) * (user.currAttack - target.currDefense));
+            int damage = (int)(critical * IsEffective(target) * (user.currAttack - target.currDefense));
+            target.TakeDamage(damage);
         }
     }
-    public virtual void UseSkillOne()
-    {
-    }
-    public virtual void UseSkillTwo()
-    {
-    }
-    public virtual void UseSkillThree()
-    {
-    }
-    public virtual void UseSkillFour()
-    {
-    }
-    public virtual void UseSkillOne(BattleCharacter target)
-    {
-    }
-    public virtual void UseSkillTwo(BattleCharacter target)
-    {
-    }
-    public virtual void UseSkillThree(BattleCharacter target)
-    {
-    }
-    public virtual void UseSkillFour(BattleCharacter target)
-    {
-    }
 
-    public float IsEffective (BattleCharacter target)
+    public float IsEffective(BattleCharacter target)
     {
         if (user.currEmote == BattleCharacter.Emotion.HAPPY)
             switch (target.currEmote)
@@ -143,5 +116,33 @@ public class Skills : MonoBehaviour
                     return 1.0f;
             }
         return 1.0f;
+    }
+
+    public virtual void SetStartingStats()
+    {
+    }
+    public virtual void UseSkillOne()
+    {
+    }
+    public virtual void UseSkillTwo()
+    {
+    }
+    public virtual void UseSkillThree()
+    {
+    }
+    public virtual void UseSkillFour()
+    {
+    }
+    public virtual void UseSkillOne(BattleCharacter target)
+    {
+    }
+    public virtual void UseSkillTwo(BattleCharacter target)
+    {
+    }
+    public virtual void UseSkillThree(BattleCharacter target)
+    {
+    }
+    public virtual void UseSkillFour(BattleCharacter target)
+    {
     }
 }
