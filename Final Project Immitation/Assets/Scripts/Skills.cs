@@ -24,6 +24,8 @@ public class Skills : MonoBehaviour
 
     public void BasicAttack(BattleCharacter target)
     {
+        target = RedirectTarget(target, 0);
+
         if (RollDice(user.currAccuracy))
         {
             int critical = RollDice(user.currLuck) ? 2 : 1;
@@ -119,6 +121,25 @@ public class Skills : MonoBehaviour
                     return 1.0f;
             }
         return 1.0f;
+    }
+
+    public BattleCharacter RedirectTarget(BattleCharacter target, int n)
+    {
+        if (target.toast)
+        {
+            List<BattleCharacter> possibleTargets = new List<BattleCharacter>();
+
+            if (skillTargets[n] == Target.ANYONE)
+                possibleTargets = manager.GetAllTargets();
+            else if (skillTargets[n] == Target.FRIEND)
+                possibleTargets = manager.friends;
+            else if (skillTargets[n] == Target.FOE)
+                possibleTargets = manager.foes;
+
+            return possibleTargets[Random.Range(0, possibleTargets.Count-1)];
+        }
+        else
+            return target;
     }
 
     public virtual void SetStartingStats()

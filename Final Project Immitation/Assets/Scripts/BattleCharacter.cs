@@ -9,10 +9,12 @@ public class BattleCharacter : MonoBehaviour
     public bool toast = false;
     public bool friend;
 
-    public enum Move { NONE, ATTACK, SKILL1, SKILL2, SKILL3, SKILL4 };
-    public Move currMove = Move.NONE;
     Skills userSkills;
     BattleCharacter nextTarget;
+    BattleManager manager;
+
+    public enum Move { NONE, ATTACK, SKILL1, SKILL2, SKILL3, SKILL4 };
+    public Move currMove = Move.NONE;
 
     public int startingHealth;
     public int startingJuice;
@@ -91,13 +93,13 @@ public class BattleCharacter : MonoBehaviour
             {
                 case Move.ATTACK:
                 {
-                    //userSkills.BasicAttack();
+                    userSkills.BasicAttack(nextTarget);
                     break;
                 }
                 case Move.SKILL1:
                 {
                     currJuice -= userSkills.juiceCost[0];
-                    if (CheckIfNeedTarget(0))
+                    if (nextTarget != null)
                         userSkills.UseSkillOne(nextTarget);
                     else
                         userSkills.UseSkillOne();
@@ -106,7 +108,7 @@ public class BattleCharacter : MonoBehaviour
                 case Move.SKILL2:
                 {
                     currJuice -= userSkills.juiceCost[1];
-                    if (CheckIfNeedTarget(1))
+                    if (nextTarget != null)
                         userSkills.UseSkillTwo(nextTarget);
                     else
                         userSkills.UseSkillTwo();
@@ -115,7 +117,7 @@ public class BattleCharacter : MonoBehaviour
                 case Move.SKILL3:
                 {
                     currJuice -= userSkills.juiceCost[2];
-                    if (CheckIfNeedTarget(2))
+                    if (nextTarget != null)
                         userSkills.UseSkillThree(nextTarget);
                     else
                         userSkills.UseSkillThree();
@@ -124,7 +126,7 @@ public class BattleCharacter : MonoBehaviour
                 case Move.SKILL4:
                 {
                     currJuice -= userSkills.juiceCost[3];
-                    if (CheckIfNeedTarget(3))
+                    if (nextTarget != null)
                         userSkills.UseSkillThree(nextTarget);
                     else
                         userSkills.UseSkillThree();
@@ -143,7 +145,10 @@ public class BattleCharacter : MonoBehaviour
         if (currHealth > startingHealth)
             currHealth = startingHealth;
         else if (currHealth <= 0)
+        {
             toast = true;
+            manager.RemoveFromList(this);
+        }
     }
 
     public void NewEmotion(Emotion newEmote)

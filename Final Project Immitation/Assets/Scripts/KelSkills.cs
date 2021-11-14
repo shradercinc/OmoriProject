@@ -44,6 +44,8 @@ public class KelSkills : Skills
     }
     public override void UseSkillOne(BattleCharacter target)
     {
+        target = RedirectTarget(target, 1);
+
         if (target.currEmote == BattleCharacter.Emotion.SAD || target.currEmote == BattleCharacter.Emotion.DEPRESSED)
         {
             target.defenseStat -= 0.15f;
@@ -58,6 +60,8 @@ public class KelSkills : Skills
     }
     public override void UseSkillTwo(BattleCharacter target)
     {
+        target = RedirectTarget(target, 2);
+
         if (user.currEmote == BattleCharacter.Emotion.ANGRY || target.currEmote == BattleCharacter.Emotion.ENRAGED)
         {
             user.luckStat += 0.15f;
@@ -72,10 +76,13 @@ public class KelSkills : Skills
     }
     public override void UseSkillThree(BattleCharacter target)
     {
+        target = RedirectTarget(target, 3);
         target.NewEmotion(BattleCharacter.Emotion.ANGRY);
     }
     public override void UseSkillFour(BattleCharacter target)
     {
+        target = RedirectTarget(target, 4);
+
         if (RollDice(user.currAccuracy))
         {
             int critical = RollDice(user.currLuck) ? 2 : 1;

@@ -8,7 +8,6 @@ public class BattleManager : MonoBehaviour
 {
     public List<BattleCharacter> friends = new List<BattleCharacter>();
     public List<BattleCharacter> foes = new List<BattleCharacter>();
-    public TMP_Text battleLog;
 
     List<BattleCharacter> SpeedQueue = new List<BattleCharacter>();
     BattleCharacter[] characterArray;
@@ -28,22 +27,22 @@ public class BattleManager : MonoBehaviour
         NewRound();
     }
 
-    public void ChangeText(string logLine)
-    {
-        battleLog.text = logLine;
-    }
-
     void NewRound()
     {
         for (int i = 0; i < friends.Count; i++)
         {
-            SpeedQueue.Add(friends[i]);
-            friends[i].currMove = BattleCharacter.Move.NONE;
+            if (!friends[i].toast)
+            {
+                SpeedQueue.Add(friends[i]);
+            }
         }
         for (int i = 0; i < foes.Count; i++)
         {
-            SpeedQueue.Add(foes[i]);
-            foes[i].currMove = BattleCharacter.Move.NONE;
+            if (!foes[i].toast)
+            {
+                SpeedQueue.Add(foes[i]);
+                foes[i].currMove = BattleCharacter.Move.NONE;
+            }
         }
     }
 
@@ -55,14 +54,34 @@ public class BattleManager : MonoBehaviour
             SpeedQueue[0].UseMove();
             SpeedQueue.Remove(SpeedQueue[0]);
         }
-        NewRound();
     }
 
-    public bool AllFoesDead()
+    public void ReturnToList(BattleCharacter target)
     {
-        for (int i = 0; i < foes.Count; i++)
-            if (!foes[i].toast)
-                return false;
-        return true;
+        if (target.friend)
+            friends.Add(target);
+        else
+            foes.Add(target);
     }
+
+    public void RemoveFromList(BattleCharacter target)
+    {
+        if (target.friend)
+            friends.Remove(target);
+        else
+            foes.Remove(target);
+    }
+
+    public List<BattleCharacter> GetAllTargets()
+    {
+        List<BattleCharacter> allTargets = new List<BattleCharacter>();
+
+        for (int i = 0; i < friends.Count; i++)
+            allTargets.Add(friends[i]);
+        for (int i = 0; i < foes.Count; i++)
+            allTargets.Add(foes[i]);
+
+        return allTargets;
+    }
+
 }

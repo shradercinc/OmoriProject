@@ -49,12 +49,15 @@ public class HeroSkills : Skills
     }
     public override void UseSkillOne(BattleCharacter target)
     {
+        target = RedirectTarget(target, 1);
+
         target.currJuice += (int)(target.startingJuice / 2);
         if (target.currJuice >= target.startingJuice)
             target.currJuice = target.startingJuice;
     }
     public override void UseSkillTwo(BattleCharacter target)
     {
+        target = RedirectTarget(target, 2);
         int recover = (int) (target.startingHealth * 0.7);
         target.TakeDamage(recover);
     }
@@ -64,6 +67,7 @@ public class HeroSkills : Skills
         {
             target.toast = false;
             target.currHealth = (int)(target.startingHealth * 0.4);
+            manager.ReturnToList(target);
         }
     }
     public override void UseSkillFour(BattleCharacter target)

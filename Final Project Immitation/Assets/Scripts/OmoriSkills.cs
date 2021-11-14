@@ -11,11 +11,13 @@ public class OmoriSkills : Skills
 
     public override void SetStartingStats()
     {
+        juiceCost.Add(0);
         juiceCost.Add(15);
         juiceCost.Add(15);
         juiceCost.Add(5);
         juiceCost.Add(25);
 
+        skillTargets.Add(Target.FOE);
         skillTargets.Add(Target.FOE);
         skillTargets.Add(Target.FOE);
         skillTargets.Add(Target.ANYONE);
@@ -44,6 +46,8 @@ public class OmoriSkills : Skills
     }
     public override void UseSkillOne(BattleCharacter target)
     {
+        target = RedirectTarget(target, 1);
+
         if (target.currEmote == BattleCharacter.Emotion.HAPPY || target.currEmote == BattleCharacter.Emotion.ECSTATIC)
         {
             target.speedStat -= 0.15f;
@@ -58,6 +62,8 @@ public class OmoriSkills : Skills
     }
     public override void UseSkillTwo(BattleCharacter target)
     {
+        target = RedirectTarget(target, 2);
+
         if (user.currEmote == BattleCharacter.Emotion.SAD || target.currEmote == BattleCharacter.Emotion.DEPRESSED)
         {
             user.attackStat += 0.15f;
@@ -72,10 +78,13 @@ public class OmoriSkills : Skills
     }
     public override void UseSkillThree(BattleCharacter target)
     {
+        target = RedirectTarget(target, 3);
         target.NewEmotion(BattleCharacter.Emotion.SAD);
     }
     public override void UseSkillFour(BattleCharacter target)
     {
+        target = RedirectTarget(target, 4);
+
         target.attackStat -= 0.1f;
         target.defenseStat -= 0.1f;
         target.speedStat -= 0.1f;
