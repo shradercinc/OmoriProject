@@ -5,6 +5,8 @@ using UnityEngine;
 public class Skills : MonoBehaviour
 {
     public BattleCharacter user;
+    public BattleManager manager;
+
     public List<int> juiceCost = new List<int>();
     public enum Target { NONE, FRIEND, FOE, ANYONE, ALLFRIENDS, ALLFOES };
     public List<Target> skillTargets = new List<Target>();
@@ -12,6 +14,7 @@ public class Skills : MonoBehaviour
     private void Awake()
     {
         user = gameObject.GetComponent<BattleCharacter>();
+        manager = FindObjectOfType<BattleManager>().GetComponent<BattleManager>();
     }
 
     public bool RollDice(float value)
@@ -25,7 +28,7 @@ public class Skills : MonoBehaviour
         {
             int critical = RollDice(user.currLuck) ? 2 : 1;
             int damage = (int)(critical * IsEffective(target) * (user.currAttack - target.currDefense));
-            target.TakeDamage(damage);
+            target.TakeDamage(-damage);
         }
     }
 

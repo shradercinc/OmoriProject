@@ -4,25 +4,30 @@ using UnityEngine;
 
 public class HeroSkills : Skills
 {
+    //Skill 1: Refresh: Restore 50% of a friend's juice.
+    //Skill 2: Cook: Restore 70% of a friend's health.
+    //Skill 3: Homemade Jam: Bring back a friend who's toast. Restore 40% of their health.
+    //Skill 4: Snack Time: Resotre 40% of all friend's health.
+
     public override void SetStartingStats()
     {
-        juiceCost.Add(5);
-        juiceCost.Add(10);
         juiceCost.Add(15);
+        juiceCost.Add(10);
+        juiceCost.Add(20);
         juiceCost.Add(20);
 
-        skillTargets.Add(Target.NONE);
         skillTargets.Add(Target.FRIEND);
-        skillTargets.Add(Target.FOE);
-        skillTargets.Add(Target.ANYONE);
+        skillTargets.Add(Target.FRIEND);
+        skillTargets.Add(Target.FRIEND);
+        skillTargets.Add(Target.ALLFRIENDS);
 
         user.friend = true;
-        user.startingHealth = 48;
-        user.startingJuice = 41;
-        user.startingAttack = 13;
-        user.startingDefense = 6;
-        user.startingSpeed = 15;
-        user.startingLuck = 7;
+        user.startingHealth = 56;
+        user.startingJuice = 35;
+        user.startingAttack = 10;
+        user.startingDefense = 8;
+        user.startingSpeed = 6;
+        user.startingLuck = 3;
     }
 
     public override void UseSkillOne()
@@ -36,15 +41,30 @@ public class HeroSkills : Skills
     }
     public override void UseSkillFour()
     {
+        for (int i = 0; i<manager.friends.Count; i++)
+        {
+            int recover = (int) (manager.friends[i].startingHealth * 0.4);
+            manager.friends[i].TakeDamage(recover);
+        }
     }
     public override void UseSkillOne(BattleCharacter target)
     {
+        target.currJuice += (int)(target.startingJuice / 2);
+        if (target.currJuice >= target.startingJuice)
+            target.currJuice = target.startingJuice;
     }
     public override void UseSkillTwo(BattleCharacter target)
     {
+        int recover = (int) (target.startingHealth * 0.7);
+        target.TakeDamage(recover);
     }
     public override void UseSkillThree(BattleCharacter target)
     {
+        if (target.toast)
+        {
+            target.toast = false;
+            target.currHealth = (int)(target.startingHealth * 0.4);
+        }
     }
     public override void UseSkillFour(BattleCharacter target)
     {
