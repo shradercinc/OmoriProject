@@ -70,6 +70,10 @@ public class BattleCharacter : MonoBehaviour
             accuracyStat = 0.7f;
         else if (accuracyStat > 1.3f)
             accuracyStat = 1.3f;
+        if (currJuice <= 0)
+            currJuice = 0;
+        else if (currJuice > startingJuice)
+            currJuice = startingJuice;
 
         currAttack = startingAttack * attackStat;
         currDefense = startingDefense * defenseStat;
@@ -143,7 +147,9 @@ public class BattleCharacter : MonoBehaviour
     {
         currHealth += n;
         if (currHealth > startingHealth)
+        {
             currHealth = startingHealth;
+        }
         else if (currHealth <= 0)
         {
             toast = true;

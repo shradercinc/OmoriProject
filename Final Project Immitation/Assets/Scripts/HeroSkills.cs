@@ -7,7 +7,7 @@ public class HeroSkills : Skills
     //Skill 1: Refresh: Restore 50% of a friend's juice.
     //Skill 2: Cook: Restore 70% of a friend's health.
     //Skill 3: Homemade Jam: Bring back a friend who's toast. Restore 40% of their health.
-    //Skill 4: Snack Time: Resotre 40% of all friend's health.
+    //Skill 4: Snack Time: Resotre 40% of all friends' health.
 
     public override void SetStartingStats()
     {
@@ -52,8 +52,7 @@ public class HeroSkills : Skills
         target = RedirectTarget(target, 1);
 
         target.currJuice += (int)(target.startingJuice / 2);
-        if (target.currJuice >= target.startingJuice)
-            target.currJuice = target.startingJuice;
+        target.ResetStats();
     }
     public override void UseSkillTwo(BattleCharacter target)
     {
