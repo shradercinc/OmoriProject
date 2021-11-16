@@ -11,14 +11,24 @@ public class KelSkills : Skills
 
     public override void SetStartingStats()
     {
-        juiceCost.Add(15);
-        juiceCost.Add(15);
-        juiceCost.Add(5);
-        juiceCost.Add(10);
+        //Attack:
+        juiceCost.Add(0);
+        skillTargets.Add(Target.FOE);
 
+        //Skill 1:
+        juiceCost.Add(15);
         skillTargets.Add(Target.FOE);
+
+        //Skill 2:
+        juiceCost.Add(15);
         skillTargets.Add(Target.FOE);
+
+        //Skill 3:
+        juiceCost.Add(5);
         skillTargets.Add(Target.ANYONE);
+
+        //Skill 4:
+        juiceCost.Add(10);
         skillTargets.Add(Target.FOE);
 
         user.friend = true;
@@ -28,22 +38,12 @@ public class KelSkills : Skills
         user.startingDefense = 6;
         user.startingSpeed = 15;
         user.startingLuck = 7;
+        user.startingAccuracy = 1;
     }
 
-    public override void UseSkillOne()
-    {
-    }
-    public override void UseSkillTwo()
-    {
-    }
-    public override void UseSkillThree()
-    {
-    }
-    public override void UseSkillFour()
-    {
-    }
     public override void UseSkillOne(BattleCharacter target)
     {
+        user.currJuice -= juiceCost[1];
         target = RedirectTarget(target, 1);
 
         if (target.currEmote == BattleCharacter.Emotion.SAD || target.currEmote == BattleCharacter.Emotion.DEPRESSED)
@@ -60,6 +60,7 @@ public class KelSkills : Skills
     }
     public override void UseSkillTwo(BattleCharacter target)
     {
+        user.currJuice -= juiceCost[2];
         target = RedirectTarget(target, 2);
 
         if (user.currEmote == BattleCharacter.Emotion.ANGRY || target.currEmote == BattleCharacter.Emotion.ENRAGED)
@@ -76,11 +77,13 @@ public class KelSkills : Skills
     }
     public override void UseSkillThree(BattleCharacter target)
     {
+        user.currJuice -= juiceCost[3];
         target = RedirectTarget(target, 3);
         target.NewEmotion(BattleCharacter.Emotion.ANGRY);
     }
     public override void UseSkillFour(BattleCharacter target)
     {
+        user.currJuice -= juiceCost[4];
         target = RedirectTarget(target, 4);
 
         if (RollDice(user.currAccuracy))

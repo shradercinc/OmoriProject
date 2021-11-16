@@ -31,18 +31,13 @@ public class BattleManager : MonoBehaviour
     {
         for (int i = 0; i < friends.Count; i++)
         {
-            if (!friends[i].toast)
-            {
-                SpeedQueue.Add(friends[i]);
-            }
+            SpeedQueue.Add(friends[i]);
+            friends[i].ChooseSkill();
         }
         for (int i = 0; i < foes.Count; i++)
         {
-            if (!foes[i].toast)
-            {
-                SpeedQueue.Add(foes[i]);
-                foes[i].currMove = BattleCharacter.Move.NONE;
-            }
+            SpeedQueue.Add(foes[i]);
+            foes[i].ChooseRandomSkill();
         }
     }
 

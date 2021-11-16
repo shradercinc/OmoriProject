@@ -11,16 +11,24 @@ public class OmoriSkills : Skills
 
     public override void SetStartingStats()
     {
+        //Attack:
         juiceCost.Add(0);
-        juiceCost.Add(15);
-        juiceCost.Add(15);
-        juiceCost.Add(5);
-        juiceCost.Add(25);
+        skillTargets.Add(Target.FOE);
 
+        //Skill 1:
+        juiceCost.Add(15);
         skillTargets.Add(Target.FOE);
+
+        //Skill 2:
+        juiceCost.Add(15);
         skillTargets.Add(Target.FOE);
-        skillTargets.Add(Target.FOE);
+
+        //Skill 3:
+        juiceCost.Add(5);
         skillTargets.Add(Target.ANYONE);
+
+        //Skill 4:
+        juiceCost.Add(25);
         skillTargets.Add(Target.FOE);
 
         user.friend = true;
@@ -30,22 +38,12 @@ public class OmoriSkills : Skills
         user.startingDefense = 8;
         user.startingSpeed = 12;
         user.startingLuck = 5;
+        user.startingAccuracy = 1;
     }
 
-    public override void UseSkillOne()
-    {
-    }
-    public override void UseSkillTwo()
-    {
-    }
-    public override void UseSkillThree()
-    {
-    }
-    public override void UseSkillFour()
-    {
-    }
     public override void UseSkillOne(BattleCharacter target)
     {
+        user.currJuice -= juiceCost[1];
         target = RedirectTarget(target, 1);
 
         if (target.currEmote == BattleCharacter.Emotion.HAPPY || target.currEmote == BattleCharacter.Emotion.ECSTATIC)
@@ -62,6 +60,7 @@ public class OmoriSkills : Skills
     }
     public override void UseSkillTwo(BattleCharacter target)
     {
+        user.currJuice -= juiceCost[2];
         target = RedirectTarget(target, 2);
 
         if (user.currEmote == BattleCharacter.Emotion.SAD || target.currEmote == BattleCharacter.Emotion.DEPRESSED)
@@ -78,11 +77,13 @@ public class OmoriSkills : Skills
     }
     public override void UseSkillThree(BattleCharacter target)
     {
+        user.currJuice -= juiceCost[3];
         target = RedirectTarget(target, 3);
         target.NewEmotion(BattleCharacter.Emotion.SAD);
     }
     public override void UseSkillFour(BattleCharacter target)
     {
+        user.currJuice -= juiceCost[4];
         target = RedirectTarget(target, 4);
 
         target.attackStat -= 0.1f;

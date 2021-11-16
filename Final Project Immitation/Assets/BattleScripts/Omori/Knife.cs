@@ -6,6 +6,7 @@ public class Knife : Weapon
 {
     public override void AffectUser()
     {
+        user = gameObject.GetComponent<BattleCharacter>();
         user.startingAttack += 5;
         user.startingSpeed += 2;
     }
