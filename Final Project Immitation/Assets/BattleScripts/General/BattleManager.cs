@@ -46,6 +46,10 @@ public class BattleManager : MonoBehaviour
         while (SpeedQueue.Count > 0)
         {
             SpeedQueue = SpeedQueue.OrderByDescending(o => o.currSpeed).ToList();
+
+            if (SpeedQueue[0].weapon != null)
+                SpeedQueue[0].weapon.StartOfTurn();
+
             SpeedQueue[0].UseMove();
             SpeedQueue.Remove(SpeedQueue[0]);
         }

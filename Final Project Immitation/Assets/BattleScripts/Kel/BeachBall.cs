@@ -10,4 +10,7 @@ public class BeachBall : Weapon
         user.startingLuck += 10;
         user.currEmote = BattleCharacter.Emotion.HAPPY;
     }
+    public override void StartOfTurn()
+    {
+    }
 }

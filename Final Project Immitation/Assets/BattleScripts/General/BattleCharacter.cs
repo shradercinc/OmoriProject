@@ -38,7 +38,7 @@ public class BattleCharacter : MonoBehaviour
 
     Skills userSkills;
     BattleManager manager;
-    Weapon weapon;
+    public Weapon weapon;
 
     private void Awake()
     {
@@ -89,6 +89,26 @@ public class BattleCharacter : MonoBehaviour
         currSpeed = startingSpeed * speedStat;
         currLuck = startingLuck * luckStat;
         currAccuracy = startingAccuracy * accuracyStat;
+
+        if (currHealth <= 0)
+            nowToast();
+        else if (currHealth > startingHealth)
+            currHealth = startingHealth;
+        if (currJuice < 0)
+            currJuice = 0;
+        else if (currJuice > startingJuice)
+            currJuice = startingJuice;
+
+        if (currAttack < 0)
+            currAttack = 0;
+        if (currDefense < 0)
+            currDefense = 0;
+        if (currSpeed < 0)
+            currSpeed = 0;
+        if (currLuck < 0)
+            currLuck = 0;
+        if (currAccuracy < 0)
+            currAccuracy = 0;
     }
 
     public void ChooseSkill()
@@ -170,15 +190,21 @@ public class BattleCharacter : MonoBehaviour
     public void TakeDamage(int n)
     {
         currHealth += n;
-        if (currHealth > startingHealth)
-        {
-            currHealth = startingHealth;
-        }
-        else if (currHealth <= 0)
-        {
-            toast = true;
-            manager.RemoveFromList(this);
-        }
+        ResetStats();
+    }
+
+    void nowToast()
+    {
+        currHealth = 0;
+        toast = true;
+        manager.RemoveFromList(this);
+
+        currEmote = Emotion.NEUTRAL;
+        attackStat = 1;
+        defenseStat = 1;
+        speedStat = 1;
+        luckStat = 1;
+        accuracyStat = 1;
     }
 
     public void NewEmotion(Emotion newEmote)

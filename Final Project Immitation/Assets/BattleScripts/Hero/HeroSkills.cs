@@ -63,6 +63,7 @@ public class HeroSkills : Skills
         {
             target.toast = false;
             target.currHealth = (int)(target.startingHealth * 0.4);
+            target.ResetStats();
             manager.ReturnToList(target);
         }
     }

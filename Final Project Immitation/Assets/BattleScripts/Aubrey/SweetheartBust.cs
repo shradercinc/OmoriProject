@@ -11,4 +11,7 @@ public class SweetheartBust : Weapon
         user.startingSpeed -= 10;
         user.startingAccuracy -= 0.1f;
     }
+    public override void StartOfTurn()
+    {
+    }
 }

@@ -10,4 +10,7 @@ public class BakingPan : Weapon
         user.startingHealth += 10;
         user.startingAttack += 6;
     }
+    public override void StartOfTurn()
+    {
+    }
 }

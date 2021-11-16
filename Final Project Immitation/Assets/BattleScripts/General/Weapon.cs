@@ -9,4 +9,7 @@ public class Weapon : MonoBehaviour
     public virtual void AffectUser()
     {
     }
+    public virtual void StartOfTurn()
+    {
+    }
 }
