@@ -8,6 +8,7 @@ public class BattleManager : MonoBehaviour
 {
     public List<BattleCharacter> friends = new List<BattleCharacter>();
     public List<BattleCharacter> foes = new List<BattleCharacter>();
+    public TMP_Text battleLog;
 
     List<BattleCharacter> SpeedQueue = new List<BattleCharacter>();
     BattleCharacter[] characterArray;
@@ -25,6 +26,11 @@ public class BattleManager : MonoBehaviour
         }
 
         NewRound();
+    }
+
+    public void NewText(string x)
+    {
+        battleLog.text = x;
     }
 
     void NewRound()

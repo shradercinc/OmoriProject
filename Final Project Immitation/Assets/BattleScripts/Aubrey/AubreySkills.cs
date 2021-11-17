@@ -53,7 +53,7 @@ public class AubreySkills : Skills
         {
             int critical = RollDice(user.currLuck) ? 2 : 1;
             int damage = (int)(critical * IsEffective(target) * (2 * user.currAttack - target.currDefense));
-            target.TakeDamage(-damage);
+            target.TakeDamage(damage);
         }
     }
     public override void UseSkillTwo(BattleCharacter target)
@@ -68,7 +68,7 @@ public class AubreySkills : Skills
         {
             int critical = RollDice(user.currLuck) ? 2 : 1;
             int damage = (int)(critical * IsEffective(target) * (2 * user.currAttack - target.currDefense));
-            target.TakeDamage(-damage);
+            target.TakeDamage(damage);
         }
     }
     public override void UseSkillThree(BattleCharacter target)
@@ -83,8 +83,8 @@ public class AubreySkills : Skills
         {
             int critical = RollDice(user.currLuck) ? 2 : 1;
             int damage = (int)(critical * IsEffective(target) * (4 * user.currHealth - target.currDefense));
-            target.TakeDamage(-damage);
-            user.TakeDamage(-100);
+            target.TakeDamage(damage);
+            user.TakeDamage(100);
         }
     }
 }

@@ -32,7 +32,7 @@ public class Skills : MonoBehaviour
         {
             int critical = RollDice(user.currLuck) ? 2 : 1;
             int damage = (int)(critical * IsEffective(target) * (user.currAttack - target.currDefense));
-            target.TakeDamage(-damage);
+            target.TakeDamage(damage);
         }
     }
 

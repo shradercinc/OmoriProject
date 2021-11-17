@@ -57,60 +57,6 @@ public class BattleCharacter : MonoBehaviour
         ResetStats();
     }
 
-    public void ResetStats()
-    {
-        if (attackStat < 0.7f)
-            attackStat = 0.7f;
-        else if (attackStat > 1.3f)
-            attackStat = 1.3f;
-        if (defenseStat < 0.7f)
-            defenseStat = 0.7f;
-        else if (defenseStat > 1.3f)
-            defenseStat = 1.3f;
-        if (speedStat < 0.7f)
-            speedStat = 0.7f;
-        else if (speedStat > 1.3f)
-            speedStat = 1.3f;
-        if (luckStat < 0.7f)
-            luckStat = 0.7f;
-        else if (luckStat > 1.3f)
-            luckStat = 1.3f;
-        if (accuracyStat < 0.7f)
-            accuracyStat = 0.7f;
-        else if (accuracyStat > 1.3f)
-            accuracyStat = 1.3f;
-        if (currJuice <= 0)
-            currJuice = 0;
-        else if (currJuice > startingJuice)
-            currJuice = startingJuice;
-
-        currAttack = startingAttack * attackStat;
-        currDefense = startingDefense * defenseStat;
-        currSpeed = startingSpeed * speedStat;
-        currLuck = startingLuck * luckStat;
-        currAccuracy = startingAccuracy * accuracyStat;
-
-        if (currHealth <= 0)
-            nowToast();
-        else if (currHealth > startingHealth)
-            currHealth = startingHealth;
-        if (currJuice < 0)
-            currJuice = 0;
-        else if (currJuice > startingJuice)
-            currJuice = startingJuice;
-
-        if (currAttack < 0)
-            currAttack = 0;
-        if (currDefense < 0)
-            currDefense = 0;
-        if (currSpeed < 0)
-            currSpeed = 0;
-        if (currLuck < 0)
-            currLuck = 0;
-        if (currAccuracy < 0)
-            currAccuracy = 0;
-    }
-
     public void ChooseSkill()
     {
     }
@@ -189,7 +135,17 @@ public class BattleCharacter : MonoBehaviour
 
     public void TakeDamage(int n)
     {
-        currHealth += n;
+        if (n > 0)
+            currHealth -= n;
+        ResetStats();
+    }
+
+    public void TakeHealing(int health, int juice)
+    {
+        if (health > 0)
+            currHealth += health;
+        if (juice > 0)
+            currJuice += juice;
         ResetStats();
     }
 
@@ -222,6 +178,36 @@ public class BattleCharacter : MonoBehaviour
             currEmote = newEmote;
 
         ResetStats();
+    }
+
+    public void ResetStats()
+    {
+        if (attackStat < 0.7f)
+            attackStat = 0.7f;
+        else if (attackStat > 1.3f)
+            attackStat = 1.3f;
+        if (defenseStat < 0.7f)
+            defenseStat = 0.7f;
+        else if (defenseStat > 1.3f)
+            defenseStat = 1.3f;
+        if (speedStat < 0.7f)
+            speedStat = 0.7f;
+        else if (speedStat > 1.3f)
+            speedStat = 1.3f;
+        if (luckStat < 0.7f)
+            luckStat = 0.7f;
+        else if (luckStat > 1.3f)
+            luckStat = 1.3f;
+        if (accuracyStat < 0.7f)
+            accuracyStat = 0.7f;
+        else if (accuracyStat > 1.3f)
+            accuracyStat = 1.3f;
+
+        currAttack = startingAttack * attackStat;
+        currDefense = startingDefense * defenseStat;
+        currSpeed = startingSpeed * speedStat;
+        currLuck = startingLuck * luckStat;
+        currAccuracy = startingAccuracy * accuracyStat;
 
         switch (currEmote)
         {
@@ -254,5 +240,25 @@ public class BattleCharacter : MonoBehaviour
                 currSpeed = startingSpeed * 0.5f * speedStat;
                 break;
         }
+
+        if (currHealth <= 0)
+            nowToast();
+        else if (currHealth > startingHealth)
+            currHealth = startingHealth;
+        if (currJuice < 0)
+            currJuice = 0;
+        else if (currJuice > startingJuice)
+            currJuice = startingJuice;
+
+        if (currAttack < 0)
+            currAttack = 0;
+        if (currDefense < 0)
+            currDefense = 0;
+        if (currSpeed < 0)
+            currSpeed = 0;
+        if (currLuck < 0)
+            currLuck = 0;
+        if (currAccuracy < 0)
+            currAccuracy = 0;
     }
 }

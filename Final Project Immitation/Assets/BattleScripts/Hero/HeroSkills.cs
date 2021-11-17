@@ -45,16 +45,15 @@ public class HeroSkills : Skills
     {
         user.currJuice -= juiceCost[1];
         target = RedirectTarget(target, 1);
-
-        target.currJuice += (int)(target.startingJuice / 2);
-        target.ResetStats();
+        int juice = (int)(target.startingJuice / 2);
+        target.TakeHealing(0, juice);
     }
     public override void UseSkillTwo(BattleCharacter target)
     {
         user.currJuice -= juiceCost[2];
         target = RedirectTarget(target, 2);
-        int recover = (int) (target.startingHealth * 0.7);
-        target.TakeDamage(recover);
+        int health = (int) (target.startingHealth * 0.7);
+        target.TakeHealing(health, 0);
     }
     public override void UseSkillThree(BattleCharacter target)
     {
@@ -73,7 +72,7 @@ public class HeroSkills : Skills
         for (int i = 0; i < manager.friends.Count; i++)
         {
             int recover = (int)(manager.friends[i].startingHealth * 0.4);
-            manager.friends[i].TakeDamage(recover);
+            manager.friends[i].TakeHealing(recover, 0);
         }
     }
 }
