@@ -25,12 +25,13 @@ public class BattleManager : MonoBehaviour
                 foes.Add(characterArray[i]);
         }
 
-        NewRound();
+        //NewRound();
     }
 
-    public void NewText(string x)
+    public void AddText(string x)
     {
-        battleLog.text = x;
+        battleLog.text += "\n";
+        battleLog.text += x;
     }
 
     void NewRound()
@@ -45,12 +46,14 @@ public class BattleManager : MonoBehaviour
             SpeedQueue.Add(foes[i]);
             foes[i].ChooseRandomSkill();
         }
+        StartCoroutine(PlayRound());
     }
 
-    void PlayRound()
+    IEnumerator PlayRound()
     {
         while (SpeedQueue.Count > 0)
         {
+            battleLog.text = "";
             SpeedQueue = SpeedQueue.OrderByDescending(o => o.currSpeed).ToList();
 
             if (SpeedQueue[0].weapon != null)
@@ -58,7 +61,10 @@ public class BattleManager : MonoBehaviour
 
             SpeedQueue[0].UseMove();
             SpeedQueue.Remove(SpeedQueue[0]);
+            yield return new WaitForSeconds(1.5f);
         }
+
+        NewRound();
     }
 
     public void ReturnToList(BattleCharacter target)

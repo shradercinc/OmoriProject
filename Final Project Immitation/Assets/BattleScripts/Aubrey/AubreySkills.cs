@@ -7,7 +7,7 @@ public class AubreySkills : Skills
     //Skill 1: Positive Spirit: If the targetted Foe is Angry or Enraged, lower their attack. Then deal damage to them.
     //Skill 2: Home Run: If Aubrey is Happy or Ecstatic, raise their accuracy. Then deal damage to a foe.
     //Skill 3: Pep Talk: Makes anyone Happy. If they're already Happy, they become Ecstatic.
-    //Skill 4: Sacrifice: Deal a lot of damage to a foe. Aubrey becomes toats.
+    //Skill 4: Sacrifice: Deal a lot of damage to a Foe. Aubrey becomes toats.
 
     public override void SetStartingStats()
     {

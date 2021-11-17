@@ -133,19 +133,32 @@ public class BattleCharacter : MonoBehaviour
             }
     }
 
-    public void TakeDamage(int n)
+    public void TakeDamage(int damage)
     {
-        if (n > 0)
-            currHealth -= n;
+        if (damage > 0)
+        {
+            currHealth -= damage;
+            manager.AddText(gameObject.name + " takes " + damage + " damage.");
+        }
+        else
+        {
+            manager.AddText(gameObject.name + " didn't take any damage.");
+        }
         ResetStats();
     }
 
     public void TakeHealing(int health, int juice)
     {
         if (health > 0)
+        {
             currHealth += health;
+            manager.AddText(gameObject.name + " recovers " + health + " health.");
+        }
         if (juice > 0)
+        {
             currJuice += juice;
+            manager.AddText(gameObject.name + " recovers " + juice + " juice.");
+        }
         ResetStats();
     }
 
@@ -154,6 +167,7 @@ public class BattleCharacter : MonoBehaviour
         currHealth = 0;
         toast = true;
         manager.RemoveFromList(this);
+        manager.AddText(gameObject.name + " is now toast.");
 
         currEmote = Emotion.NEUTRAL;
         attackStat = 1;
@@ -176,6 +190,28 @@ public class BattleCharacter : MonoBehaviour
 
         else
             currEmote = newEmote;
+
+        switch (currEmote)
+        {
+            case Emotion.HAPPY:
+                manager.AddText(gameObject.name + " became Happy.");
+                break;
+            case Emotion.ECSTATIC:
+                manager.AddText(gameObject.name + " became Ecstatic.");
+                break;
+            case Emotion.ANGRY:
+                manager.AddText(gameObject.name + " became Angry.");
+                break;
+            case Emotion.ENRAGED:
+                manager.AddText(gameObject.name + " became Enraged.");
+                break;
+            case Emotion.SAD:
+                manager.AddText(gameObject.name + " became Sad.");
+                break;
+            case Emotion.DEPRESSED:
+                manager.AddText(gameObject.name + " became Depressed.");
+                break;
+        }
 
         ResetStats();
     }
