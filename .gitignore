@@ -6,3 +6,4 @@
 !Packages/
 !.gitignore
 !.gitattributes
+*.log
