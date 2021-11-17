@@ -31,18 +31,13 @@ public class BattleManager : MonoBehaviour
     {
         for (int i = 0; i < friends.Count; i++)
         {
-            if (!friends[i].toast)
-            {
-                SpeedQueue.Add(friends[i]);
-            }
+            SpeedQueue.Add(friends[i]);
+            friends[i].ChooseSkill();
         }
         for (int i = 0; i < foes.Count; i++)
         {
-            if (!foes[i].toast)
-            {
-                SpeedQueue.Add(foes[i]);
-                foes[i].currMove = BattleCharacter.Move.NONE;
-            }
+            SpeedQueue.Add(foes[i]);
+            foes[i].ChooseRandomSkill();
         }
     }
 
@@ -51,6 +46,10 @@ public class BattleManager : MonoBehaviour
         while (SpeedQueue.Count > 0)
         {
             SpeedQueue = SpeedQueue.OrderByDescending(o => o.currSpeed).ToList();
+
+            if (SpeedQueue[0].weapon != null)
+                SpeedQueue[0].weapon.StartOfTurn();
+
             SpeedQueue[0].UseMove();
             SpeedQueue.Remove(SpeedQueue[0]);
         }

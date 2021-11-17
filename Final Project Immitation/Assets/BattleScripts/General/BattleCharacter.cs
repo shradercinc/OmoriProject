@@ -4,26 +4,13 @@ using UnityEngine;
 
 public class BattleCharacter : MonoBehaviour
 {
-    public enum Emotion { NEUTRAL, HAPPY, ECSTATIC, ANGRY, ENRAGED, SAD, DEPRESSED };
-    public Emotion currEmote = Emotion.NEUTRAL;
-    public bool toast = false;
-    public bool friend;
-
-    Skills userSkills;
-    BattleCharacter nextTarget;
-    BattleManager manager;
-    Weapon weapon;
-
-    public enum Move { NONE, ATTACK, SKILL1, SKILL2, SKILL3, SKILL4 };
-    public Move currMove = Move.NONE;
-
     public int startingHealth;
     public int startingJuice;
     public int startingAttack;
     public int startingDefense;
     public int startingSpeed;
     public int startingLuck;
-    public int startingAccuracy;
+    public float startingAccuracy;
 
     public float attackStat = 1;
     public float defenseStat = 1;
@@ -39,8 +26,24 @@ public class BattleCharacter : MonoBehaviour
     public float currLuck;
     public float currAccuracy;
 
+    enum Move { NONE, ATTACK, SKILL1, SKILL2, SKILL3, SKILL4 };
+    Move currMove = Move.NONE;
+    BattleCharacter nextTarget;
+
+    public enum Emotion { NEUTRAL, HAPPY, ECSTATIC, ANGRY, ENRAGED, SAD, DEPRESSED };
+    public Emotion currEmote = Emotion.NEUTRAL;
+
+    public bool toast = false;
+    public bool friend;
+
+    Skills userSkills;
+    BattleManager manager;
+    public Weapon weapon;
+
     private void Awake()
     {
+        manager = FindObjectOfType<BattleManager>().GetComponent<BattleManager>();
+
         currEmote = Emotion.NEUTRAL;
         userSkills = gameObject.GetComponent<Skills>();
         userSkills.SetStartingStats();
@@ -86,20 +89,71 @@ public class BattleCharacter : MonoBehaviour
         currSpeed = startingSpeed * speedStat;
         currLuck = startingLuck * luckStat;
         currAccuracy = startingAccuracy * accuracyStat;
+
+        if (currHealth <= 0)
+            nowToast();
+        else if (currHealth > startingHealth)
+            currHealth = startingHealth;
+        if (currJuice < 0)
+            currJuice = 0;
+        else if (currJuice > startingJuice)
+            currJuice = startingJuice;
+
+        if (currAttack < 0)
+            currAttack = 0;
+        if (currDefense < 0)
+            currDefense = 0;
+        if (currSpeed < 0)
+            currSpeed = 0;
+        if (currLuck < 0)
+            currLuck = 0;
+        if (currAccuracy < 0)
+            currAccuracy = 0;
     }
 
-    private bool CheckIfNeedTarget(int n)
+    public void ChooseSkill()
     {
-        return (userSkills.skillTargets[n] == Skills.Target.FRIEND ||
-            userSkills.skillTargets[n] == Skills.Target.FOE ||
-            userSkills.skillTargets[n] == Skills.Target.ANYONE);
+    }
+
+    public void ChooseRandomSkill()
+    {
+        int n = Random.Range(0, 5);
+
+        if (n == 0)
+            currMove = Move.ATTACK;
+        else if (n == 1)
+            currMove = Move.SKILL1;
+        else if (n == 2)
+            currMove = Move.SKILL2;
+        else if (n == 3)
+            currMove = Move.SKILL3;
+        else if (n == 4)
+            currMove = Move.SKILL4;
+
+        switch (userSkills.skillTargets[n])
+        {
+            case Skills.Target.FRIEND:
+                nextTarget = manager.friends[Random.Range(0, manager.friends.Count)];
+                break;
+            case Skills.Target.FOE:
+                nextTarget = manager.foes[Random.Range(0, manager.foes.Count)];
+                break;
+            case Skills.Target.ANYONE:
+                List<BattleCharacter> allTargets = manager.GetAllTargets();
+                nextTarget = allTargets[Random.Range(0, allTargets.Count)];
+                break;
+            default:
+                nextTarget = null;
+                break;
+        }
     }
 
     public void UseMove()
     {
         if (toast)
             return;
-        switch (currMove)
+
+            switch (currMove)
             {
                 case Move.ATTACK:
                 {
@@ -108,38 +162,22 @@ public class BattleCharacter : MonoBehaviour
                 }
                 case Move.SKILL1:
                 {
-                    currJuice -= userSkills.juiceCost[1];
-                    if (nextTarget != null)
-                        userSkills.UseSkillOne(nextTarget);
-                    else
-                        userSkills.UseSkillOne();
+                    userSkills.UseSkillOne(nextTarget);
                     break;
                 }
                 case Move.SKILL2:
                 {
-                    currJuice -= userSkills.juiceCost[2];
-                    if (nextTarget != null)
-                        userSkills.UseSkillTwo(nextTarget);
-                    else
-                        userSkills.UseSkillTwo();
+                    userSkills.UseSkillTwo(nextTarget);
                     break;
                 }
                 case Move.SKILL3:
                 {
-                    currJuice -= userSkills.juiceCost[3];
-                    if (nextTarget != null)
-                        userSkills.UseSkillThree(nextTarget);
-                    else
-                        userSkills.UseSkillThree();
+                    userSkills.UseSkillThree(nextTarget);
                     break;
                 }
                 case Move.SKILL4:
                 {
-                    currJuice -= userSkills.juiceCost[4];
-                    if (nextTarget != null)
-                        userSkills.UseSkillThree(nextTarget);
-                    else
-                        userSkills.UseSkillThree();
+                    userSkills.UseSkillThree(nextTarget);
                     break;
                 }
                 case Move.NONE:
@@ -152,15 +190,21 @@ public class BattleCharacter : MonoBehaviour
     public void TakeDamage(int n)
     {
         currHealth += n;
-        if (currHealth > startingHealth)
-        {
-            currHealth = startingHealth;
-        }
-        else if (currHealth <= 0)
-        {
-            toast = true;
-            manager.RemoveFromList(this);
-        }
+        ResetStats();
+    }
+
+    void nowToast()
+    {
+        currHealth = 0;
+        toast = true;
+        manager.RemoveFromList(this);
+
+        currEmote = Emotion.NEUTRAL;
+        attackStat = 1;
+        defenseStat = 1;
+        speedStat = 1;
+        luckStat = 1;
+        accuracyStat = 1;
     }
 
     public void NewEmotion(Emotion newEmote)
@@ -210,6 +254,5 @@ public class BattleCharacter : MonoBehaviour
                 currSpeed = startingSpeed * 0.5f * speedStat;
                 break;
         }
-
     }
 }

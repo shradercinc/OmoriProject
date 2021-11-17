@@ -16,7 +16,7 @@ public class Skills : MonoBehaviour
     {
         user = gameObject.GetComponent<BattleCharacter>();
         manager = FindObjectOfType<BattleManager>().GetComponent<BattleManager>();
-        weapon = FindObjectOfType<Weapon>().GetComponent<Weapon>();
+        weapon = gameObject.GetComponent<Weapon>();
     }
 
     public bool RollDice(float value)
@@ -145,18 +145,6 @@ public class Skills : MonoBehaviour
     }
 
     public virtual void SetStartingStats()
-    {
-    }
-    public virtual void UseSkillOne()
-    {
-    }
-    public virtual void UseSkillTwo()
-    {
-    }
-    public virtual void UseSkillThree()
-    {
-    }
-    public virtual void UseSkillFour()
     {
     }
     public virtual void UseSkillOne(BattleCharacter target)
