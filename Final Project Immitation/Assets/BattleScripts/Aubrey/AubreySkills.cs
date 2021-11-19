@@ -48,10 +48,11 @@ public class AubreySkills : Skills
         {
             target.attackStat -= 0.15f;
             target.ResetStats();
+            manager.AddText(target.name + "'s attack decreases.");
         }
-        if (RollDice(user.currAccuracy))
+        if (RollAccuracy(user.currAccuracy))
         {
-            int critical = RollDice(user.currLuck) ? 2 : 1;
+            int critical = RollCritical(user.currLuck);
             int damage = (int)(critical * IsEffective(target) * (2 * user.currAttack - target.currDefense));
             target.TakeDamage(damage);
         }
@@ -63,10 +64,11 @@ public class AubreySkills : Skills
         {
             user.accuracyStat += 0.15f;
             user.ResetStats();
+            manager.AddText(user.name + "'s accuracy increases.");
         }
-        if (RollDice(user.currAccuracy))
+        if (RollAccuracy(user.currAccuracy))
         {
-            int critical = RollDice(user.currLuck) ? 2 : 1;
+            int critical = RollCritical(user.currLuck);
             int damage = (int)(critical * IsEffective(target) * (2 * user.currAttack - target.currDefense));
             target.TakeDamage(damage);
         }
@@ -79,9 +81,9 @@ public class AubreySkills : Skills
     public override void UseSkillFour(BattleCharacter target)
     {
         user.currJuice -= juiceCost[4];
-        if (RollDice(user.currAccuracy))
+        if (RollAccuracy(user.currAccuracy))
         {
-            int critical = RollDice(user.currLuck) ? 2 : 1;
+            int critical = RollCritical(user.currLuck);
             int damage = (int)(critical * IsEffective(target) * (4 * user.currHealth - target.currDefense));
             target.TakeDamage(damage);
             user.TakeDamage(100);

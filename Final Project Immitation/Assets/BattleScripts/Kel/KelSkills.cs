@@ -45,15 +45,17 @@ public class KelSkills : Skills
     {
         user.currJuice -= juiceCost[1];
         target = RedirectTarget(target, 1);
+        manager.AddText("Kel starts a snowball fight against " + target.name + ".");
 
         if (target.currEmote == BattleCharacter.Emotion.SAD || target.currEmote == BattleCharacter.Emotion.DEPRESSED)
         {
             target.defenseStat -= 0.15f;
             target.ResetStats();
+            manager.AddText(target.name + "'s defense decreases.");
         }
-        if (RollDice(user.currAccuracy))
+        if (RollAccuracy(user.currAccuracy))
         {
-            int critical = RollDice(user.currLuck) ? 2 : 1;
+            int critical = RollCritical(user.currLuck);
             int damage = (int)(critical * IsEffective(target) * (2 * user.currAttack - target.currDefense));
             target.TakeDamage(damage);
         }
@@ -62,15 +64,17 @@ public class KelSkills : Skills
     {
         user.currJuice -= juiceCost[2];
         target = RedirectTarget(target, 2);
+        manager.AddText("Kel headbutts " + target.name + ".");
 
         if (user.currEmote == BattleCharacter.Emotion.ANGRY || target.currEmote == BattleCharacter.Emotion.ENRAGED)
         {
             user.luckStat += 0.15f;
             user.ResetStats();
+            manager.AddText(user.name + "'s luck increases.");
         }
-        if (RollDice(user.currAccuracy))
+        if (RollAccuracy(user.currAccuracy))
         {
-            int critical = RollDice(user.currLuck) ? 2 : 1;
+            int critical = RollCritical(user.currLuck);
             int damage = (int)(critical * IsEffective(target) * (2 * user.currAttack - target.currDefense));
             target.TakeDamage(damage);
         }
@@ -79,16 +83,18 @@ public class KelSkills : Skills
     {
         user.currJuice -= juiceCost[3];
         target = RedirectTarget(target, 3);
+        manager.AddText("Kel annoys " + target.name + ".");
         target.NewEmotion(BattleCharacter.Emotion.ANGRY);
     }
     public override void UseSkillFour(BattleCharacter target)
     {
         user.currJuice -= juiceCost[4];
         target = RedirectTarget(target, 4);
+        manager.AddText("Kel throws a quick shot at " + target.name + ".");
 
-        if (RollDice(user.currAccuracy))
+        if (RollAccuracy(user.currAccuracy))
         {
-            int critical = RollDice(user.currLuck) ? 2 : 1;
+            int critical = RollCritical(user.currLuck);
             int damage = (int)(critical * IsEffective(target) * (1.5*user.currSpeed - target.currDefense));
             target.TakeDamage(damage);
         }

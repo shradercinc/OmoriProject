@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HeroSkills : Skills
 {
-    //Skill 1: Refresh: Restore 50% of a friend's juice.
+    //Skill 1: Refreshments: Restore 50% of a friend's juice.
     //Skill 2: Cook: Restore 70% of a friend's health.
     //Skill 3: Homemade Jam: Bring back a friend who's toast. Restore 40% of their health.
     //Skill 4: Snack Time: Resotre 40% of all friends' health.
@@ -46,6 +46,7 @@ public class HeroSkills : Skills
         user.currJuice -= juiceCost[1];
         target = RedirectTarget(target, 1);
         int juice = (int)(target.startingJuice / 2);
+        manager.AddText("Hero makes some refreshments for " + target.name + ".");
         target.TakeHealing(0, juice);
     }
     public override void UseSkillTwo(BattleCharacter target)
@@ -53,6 +54,7 @@ public class HeroSkills : Skills
         user.currJuice -= juiceCost[2];
         target = RedirectTarget(target, 2);
         int health = (int) (target.startingHealth * 0.7);
+        manager.AddText("Hero prepares a meal for " + target.name + ".");
         target.TakeHealing(health, 0);
     }
     public override void UseSkillThree(BattleCharacter target)
@@ -63,12 +65,15 @@ public class HeroSkills : Skills
             target.toast = false;
             target.currHealth = (int)(target.startingHealth * 0.4);
             target.ResetStats();
+            manager.AddText("Hero brings back " + target.name + ".");
             manager.ReturnToList(target);
         }
     }
     public override void UseSkillFour(BattleCharacter target)
     {
         user.currJuice -= juiceCost[4];
+        manager.AddText("Hero brings snacks for everyone.");
+
         for (int i = 0; i < manager.friends.Count; i++)
         {
             int recover = (int)(manager.friends[i].startingHealth * 0.4);

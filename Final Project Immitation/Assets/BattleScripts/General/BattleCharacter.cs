@@ -57,40 +57,99 @@ public class BattleCharacter : MonoBehaviour
         ResetStats();
     }
 
-    public void ChooseSkill()
+    public IEnumerator ChooseSkill()
     {
+        currMove = Move.NONE;
+        int n = 0;
+
+        if (!toast)
+        {
+            manager.AddText("What will " + gameObject.name + " do this turn?");
+
+            while (currMove == Move.NONE)
+            {
+                if (Input.GetKeyDown(KeyCode.Q))
+                {
+                    currMove = Move.ATTACK;
+                    n = 0;
+                }
+                else if (Input.GetKeyDown(KeyCode.W) && currJuice >= userSkills.juiceCost[1])
+                {
+                    currMove = Move.SKILL1;
+                    n = 1;
+                }
+                else if (Input.GetKeyDown(KeyCode.E) && currJuice >= userSkills.juiceCost[2])
+                {
+                    currMove = Move.SKILL2;
+                    n = 2;
+                }
+                else if (Input.GetKeyDown(KeyCode.R) && currJuice >= userSkills.juiceCost[3])
+                {
+                    currMove = Move.SKILL3;
+                    n = 3;
+                }
+                else if (Input.GetKeyDown(KeyCode.T) && currJuice >= userSkills.juiceCost[4])
+                {
+                    currMove = Move.SKILL4;
+                    n = 4;
+                }
+
+                yield return null;
+            }
+
+            switch (userSkills.skillTargets[n])
+            {
+                case Skills.Target.FRIEND:
+                    nextTarget = manager.friends[Random.Range(0, manager.friends.Count)];
+                    break;
+                case Skills.Target.FOE:
+                    nextTarget = manager.foes[Random.Range(0, manager.foes.Count)];
+                    break;
+                case Skills.Target.ANYONE:
+                    List<BattleCharacter> allTargets = manager.GetAllTargets();
+                    nextTarget = allTargets[Random.Range(0, allTargets.Count)];
+                    break;
+                default:
+                    nextTarget = null;
+                    break;
+            }
+        }
     }
 
     public void ChooseRandomSkill()
     {
-        int n = Random.Range(0, 5);
-
-        if (n == 0)
-            currMove = Move.ATTACK;
-        else if (n == 1)
-            currMove = Move.SKILL1;
-        else if (n == 2)
-            currMove = Move.SKILL2;
-        else if (n == 3)
-            currMove = Move.SKILL3;
-        else if (n == 4)
-            currMove = Move.SKILL4;
-
-        switch (userSkills.skillTargets[n])
+        currMove = Move.NONE;
+        if (!toast)
         {
-            case Skills.Target.FRIEND:
-                nextTarget = manager.friends[Random.Range(0, manager.friends.Count)];
-                break;
-            case Skills.Target.FOE:
-                nextTarget = manager.foes[Random.Range(0, manager.foes.Count)];
-                break;
-            case Skills.Target.ANYONE:
-                List<BattleCharacter> allTargets = manager.GetAllTargets();
-                nextTarget = allTargets[Random.Range(0, allTargets.Count)];
-                break;
-            default:
-                nextTarget = null;
-                break;
+            int n = Random.Range(0, 5);
+
+            if (n == 0)
+                currMove = Move.ATTACK;
+            else if (n == 1)
+                currMove = Move.SKILL1;
+            else if (n == 2)
+                currMove = Move.SKILL2;
+            else if (n == 3)
+                currMove = Move.SKILL3;
+            else if (n == 4)
+                currMove = Move.SKILL4;
+
+            switch (userSkills.skillTargets[n])
+            {
+                case Skills.Target.FRIEND:
+                    nextTarget = manager.friends[Random.Range(0, manager.friends.Count)];
+                    break;
+                case Skills.Target.FOE:
+                    nextTarget = manager.foes[Random.Range(0, manager.foes.Count)];
+                    break;
+                case Skills.Target.ANYONE:
+                    List<BattleCharacter> allTargets = manager.GetAllTargets();
+                    nextTarget = allTargets[Random.Range(0, allTargets.Count)];
+                    break;
+                default:
+                    nextTarget = null;
+                    break;
+            }
         }
     }
 

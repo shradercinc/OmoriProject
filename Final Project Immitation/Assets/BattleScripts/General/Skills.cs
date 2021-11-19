@@ -19,18 +19,33 @@ public class Skills : MonoBehaviour
         weapon = gameObject.GetComponent<Weapon>();
     }
 
-    public bool RollDice(float value)
+    public bool RollAccuracy(float value)
     {
-        return (Random.Range(0, 1) <= value);
+        bool result = (Random.Range(0, 1) <= value);
+        if (!result)
+            manager.AddText(gameObject.name + "'s attack misses.");
+        return result;
+    }
+
+    public int RollCritical(float value)
+    {
+        bool result = (Random.Range(0, 1) <= value);
+        if (result)
+        {
+            manager.AddText("The attack hits right in the heart!");
+            return 2;
+        }
+        return 1;
     }
 
     public void BasicAttack(BattleCharacter target)
     {
         target = RedirectTarget(target, 0);
+        manager.AddText(user.name + " attacks.");
 
-        if (RollDice(user.currAccuracy))
+        if (RollAccuracy(user.currAccuracy))
         {
-            int critical = RollDice(user.currLuck) ? 2 : 1;
+            int critical = RollCritical(user.currLuck);
             int damage = (int)(critical * IsEffective(target) * (user.currAttack - target.currDefense));
             target.TakeDamage(damage);
         }
@@ -38,91 +53,128 @@ public class Skills : MonoBehaviour
 
     public float IsEffective(BattleCharacter target)
     {
+        float answer = 1.0f;
         if (user.currEmote == BattleCharacter.Emotion.HAPPY)
             switch (target.currEmote)
             {
                 case (BattleCharacter.Emotion.ANGRY):
-                    return 1.25f;
+                    answer = 1.25f;
+                    break;
                 case (BattleCharacter.Emotion.ENRAGED):
-                    return 1.25f;
+                    answer = 1.25f;
+                    break;
                 case (BattleCharacter.Emotion.SAD):
-                    return 0.75f;
+                    answer = 0.75f;
+                    break;
                 case (BattleCharacter.Emotion.DEPRESSED):
-                    return 0.75f;
+                    answer = 0.75f;
+                    break;
                 default:
-                    return 1.0f;
+                    answer = 1.0f;
+                    break;
             }
         else if (user.currEmote == BattleCharacter.Emotion.ECSTATIC)
             switch (target.currEmote)
             {
                 case (BattleCharacter.Emotion.ANGRY):
-                    return 1.5f;
+                    answer = 1.5f;
+                    break;
                 case (BattleCharacter.Emotion.ENRAGED):
-                    return 1.5f;
+                    answer = 1.5f;
+                    break;
                 case (BattleCharacter.Emotion.SAD):
-                    return 0.5f;
+                    answer = 0.5f;
+                    break;
                 case (BattleCharacter.Emotion.DEPRESSED):
-                    return 0.5f;
+                    answer = 0.5f;
+                    break;
                 default:
-                    return 1.0f;
+                    answer = 1.0f;
+                    break;
             }
         else if (user.currEmote == BattleCharacter.Emotion.ANGRY)
             switch (target.currEmote)
             {
                 case (BattleCharacter.Emotion.SAD):
-                    return 1.25f;
+                    answer = 1.25f;
+                    break;
                 case (BattleCharacter.Emotion.DEPRESSED):
-                    return 1.25f;
+                    answer = 1.25f;
+                    break;
                 case (BattleCharacter.Emotion.HAPPY):
-                    return 0.75f;
+                    answer = 0.75f;
+                    break;
                 case (BattleCharacter.Emotion.ECSTATIC):
-                    return 0.75f;
+                    answer = 0.75f;
+                    break;
                 default:
-                    return 1.0f;
+                    answer = 1.0f;
+                    break;
             }
         else if (user.currEmote == BattleCharacter.Emotion.ENRAGED)
             switch (target.currEmote)
             {
                 case (BattleCharacter.Emotion.SAD):
-                    return 1.5f;
+                    answer = 1.5f;
+                    break;
                 case (BattleCharacter.Emotion.DEPRESSED):
-                    return 1.5f;
+                    answer = 1.5f;
+                    break;
                 case (BattleCharacter.Emotion.HAPPY):
-                    return 0.5f;
+                    answer = 0.5f;
+                    break;
                 case (BattleCharacter.Emotion.ECSTATIC):
-                    return 0.5f;
+                    answer = 0.5f;
+                    break;
                 default:
-                    return 1.0f;
+                    answer = 1.0f;
+                    break;
             }
         else if (user.currEmote == BattleCharacter.Emotion.SAD)
             switch (target.currEmote)
             {
                 case (BattleCharacter.Emotion.HAPPY):
-                    return 1.25f;
+                    answer = 1.25f;
+                    break;
                 case (BattleCharacter.Emotion.ECSTATIC):
-                    return 1.25f;
+                    answer = 1.25f;
+                    break;
                 case (BattleCharacter.Emotion.ANGRY):
-                    return 0.75f;
+                    answer = 0.75f;
+                    break;
                 case (BattleCharacter.Emotion.ENRAGED):
-                    return 0.75f;
+                    answer = 0.75f;
+                    break;
                 default:
-                    return 1.0f;
+                    answer = 1.0f;
+                    break;
             }
         else if (user.currEmote == BattleCharacter.Emotion.DEPRESSED)
             switch (target.currEmote)
             {
                 case (BattleCharacter.Emotion.HAPPY):
-                    return 1.5f;
+                    answer = 1.5f;
+                    break;
                 case (BattleCharacter.Emotion.ECSTATIC):
-                    return 1.5f;
+                    answer = 1.5f;
+                    break;
                 case (BattleCharacter.Emotion.ANGRY):
-                    return 0.5f;
+                    answer = 0.5f;
+                    break;
                 case (BattleCharacter.Emotion.ENRAGED):
-                    return 0.5f;
+                    answer = 0.5f;
+                    break;
                 default:
-                    return 1.0f;
+                    answer = 1.0f;
+                    break;
             }
-        return 1.0f;
+
+        if (answer < 1)
+            manager.AddText("It was a dull attack.");
+        else if (answer > 1)
+            manager.AddText("It was a moving attack.");
+
+        return answer;
     }
 
     public BattleCharacter RedirectTarget(BattleCharacter target, int n)
