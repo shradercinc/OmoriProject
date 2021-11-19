@@ -8,12 +8,12 @@ public class Knife : Weapon
     {
         user = gameObject.GetComponent<BattleCharacter>();
         user.startingAttack += 12;
-        user.startingAccuracy += 12;
+        user.startingAccuracy += 0.12f;
     }
     public override void StartOfTurn()
     {
-        user.startingAttack -= 2;
-        user.startingAccuracy -= 2;
+        user.attackStat -= 0.05f;
+        user.accuracyStat -= 0.05f;
         user.ResetStats();
     }
 }

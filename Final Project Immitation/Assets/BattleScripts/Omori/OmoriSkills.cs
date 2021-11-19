@@ -37,7 +37,7 @@ public class OmoriSkills : Skills
         user.startingAttack = 13;
         user.startingDefense = 8;
         user.startingSpeed = 12;
-        user.startingLuck = 5;
+        user.startingLuck = 0.05f;
         user.startingAccuracy = 1;
     }
 

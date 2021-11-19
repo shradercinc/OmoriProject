@@ -9,7 +9,7 @@ public class BattleCharacter : MonoBehaviour
     public int startingAttack;
     public int startingDefense;
     public int startingSpeed;
-    public int startingLuck;
+    public float startingLuck;
     public float startingAccuracy;
 
     public float attackStat = 1;
@@ -223,7 +223,6 @@ public class BattleCharacter : MonoBehaviour
 
     void nowToast()
     {
-        currHealth = 0;
         toast = true;
         manager.RemoveFromList(this);
         manager.AddText(gameObject.name + " is now toast.");
@@ -336,6 +335,7 @@ public class BattleCharacter : MonoBehaviour
                 break;
         }
 
+        toast = false;
         if (currHealth <= 0)
             nowToast();
         else if (currHealth > startingHealth)

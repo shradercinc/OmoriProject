@@ -37,7 +37,7 @@ public class HeroSkills : Skills
         user.startingAttack = 10;
         user.startingDefense = 8;
         user.startingSpeed = 6;
-        user.startingLuck = 3;
+        user.startingLuck = 0.03f;
         user.startingAccuracy = 1;
     }
 
@@ -62,7 +62,6 @@ public class HeroSkills : Skills
         user.currJuice -= juiceCost[3];
         if (target.toast)
         {
-            target.toast = false;
             target.currHealth = (int)(target.startingHealth * 0.4);
             target.ResetStats();
             manager.AddText("Hero brings back " + target.name + ".");

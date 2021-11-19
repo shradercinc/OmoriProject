@@ -37,7 +37,7 @@ public class AubreySkills : Skills
         user.startingAttack = 16;
         user.startingDefense = 6;
         user.startingSpeed = 8;
-        user.startingLuck = 3;
+        user.startingLuck = 0.03f;
         user.startingAccuracy = 1;
     }
 

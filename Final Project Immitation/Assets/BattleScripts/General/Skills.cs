@@ -21,7 +21,8 @@ public class Skills : MonoBehaviour
 
     public bool RollAccuracy(float value)
     {
-        bool result = (Random.Range(0, 1) <= value);
+        float n = (Random.Range(0.0f, 1f));
+        bool result = (n <= value);
         if (!result)
             manager.AddText(gameObject.name + "'s attack misses.");
         return result;
@@ -29,7 +30,8 @@ public class Skills : MonoBehaviour
 
     public int RollCritical(float value)
     {
-        bool result = (Random.Range(0, 1) <= value);
+        float n = (Random.Range(0.0f, 1f));
+        bool result = (n <= value);
         if (result)
         {
             manager.AddText("The attack hits right in the heart!");

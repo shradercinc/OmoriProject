@@ -9,6 +9,7 @@ public class BattleManager : MonoBehaviour
     public List<BattleCharacter> friends = new List<BattleCharacter>();
     public List<BattleCharacter> foes = new List<BattleCharacter>();
     public TMP_Text battleLog;
+    bool battleContinue = true;
 
     List<BattleCharacter> SpeedQueue = new List<BattleCharacter>();
     BattleCharacter[] characterArray;
@@ -52,7 +53,7 @@ public class BattleManager : MonoBehaviour
 
     IEnumerator PlayRound()
     {
-        while (SpeedQueue.Count > 0)
+        while (battleContinue && SpeedQueue.Count > 0)
         {
             battleLog.text = "";
             SpeedQueue = SpeedQueue.OrderByDescending(o => o.currSpeed).ToList();
@@ -67,17 +68,26 @@ public class BattleManager : MonoBehaviour
                 nextInLine.UseMove();
                 yield return new WaitForSeconds(1.5f);
             }
+
+            battleContinue = (friends.Count > 0 && foes.Count > 0);
         }
 
-        StartCoroutine(NewRound());
+        if (battleContinue)
+            StartCoroutine(NewRound());
+        else
+            AddText("The battle is over.");
     }
 
     public void ReturnToList(BattleCharacter target)
     {
-        if (target.friend)
-            friends.Add(target);
-        else
-            foes.Add(target);
+        if (target.name == "Omori")
+            friends.Insert(0, target);
+        if (target.name == "Aubrey")
+            friends.Insert(1, target);
+        if (target.name == "Kel")
+            friends.Insert(2, target);
+        if (target.name == "Hero")
+            friends.Insert(3, target);
     }
 
     public void RemoveFromList(BattleCharacter target)

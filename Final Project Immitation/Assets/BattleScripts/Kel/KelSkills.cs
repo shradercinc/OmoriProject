@@ -37,7 +37,7 @@ public class KelSkills : Skills
         user.startingAttack = 13;
         user.startingDefense = 6;
         user.startingSpeed = 15;
-        user.startingLuck = 7;
+        user.startingLuck = 0.07f;
         user.startingAccuracy = 1;
     }
 
