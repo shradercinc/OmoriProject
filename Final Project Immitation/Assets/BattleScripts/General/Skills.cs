@@ -9,6 +9,8 @@ public class Skills : MonoBehaviour
     Weapon weapon;
 
     public List<int> juiceCost = new List<int>();
+    public List<int> energyCost = new List<int>();
+    public List<BattleCharacter> followUpRequire = new List<BattleCharacter>();
     public enum Target { NONE, FRIEND, FOE, ANYONE, ALLFRIENDS, ALLFOES };
     public List<Target> skillTargets = new List<Target>();
 
@@ -211,6 +213,15 @@ public class Skills : MonoBehaviour
     {
     }
     public virtual void UseSkillFour(BattleCharacter target)
+    {
+    }
+    public virtual void FollowUpOne()
+    {
+    }
+    public virtual void FollowUpTwo()
+    {
+    }
+    public virtual void FollowUpThree()
     {
     }
 }

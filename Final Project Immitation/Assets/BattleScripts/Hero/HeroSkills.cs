@@ -7,7 +7,11 @@ public class HeroSkills : Skills
     //Skill 1: Refreshments: Restore 50% of a friend's juice.
     //Skill 2: Cook: Restore 70% of a friend's health.
     //Skill 3: Homemade Jam: Bring back a friend who's toast. Restore 40% of their health.
-    //Skill 4: Snack Time: Resotre 40% of all friends' health.
+    //Skill 4: Snack Time: Restore 40% of all friends' health.
+
+    //Skill 1: Call Omori: Omori restores 40% of his health, 25% of his juice, and attacks again.
+    //Skill 2: Call Aubrey: Aubreu restores 40% of his health, 25% of his juice, and attacks again.
+    //Skill 3: Call Kel: Kel restores 40% of her health, 25% of her juice, and attacks again.
 
     public override void SetStartingStats()
     {
@@ -25,11 +29,23 @@ public class HeroSkills : Skills
 
         //Skill 3:
         juiceCost.Add(20);
-        skillTargets.Add(Target.FRIEND);
+        skillTargets.Add(Target.NONE);
 
         //Skill 4:
         juiceCost.Add(20);
         skillTargets.Add(Target.ALLFRIENDS);
+
+        //Follow Up 1:
+        energyCost.Add(3);
+        followUpRequire.Add(GameObject.Find("Omori").GetComponent<BattleCharacter>());
+
+        //Follow Up 2:
+        energyCost.Add(3);
+        followUpRequire.Add(GameObject.Find("Aubrey").GetComponent<BattleCharacter>());
+
+        //Follow Up 3:
+        energyCost.Add(3);
+        followUpRequire.Add(GameObject.Find("Kel").GetComponent<BattleCharacter>());
 
         user.friend = true;
         user.startingHealth = 56;
@@ -60,8 +76,10 @@ public class HeroSkills : Skills
     public override void UseSkillThree(BattleCharacter target)
     {
         user.currJuice -= juiceCost[3];
-        if (target.toast)
+
+        if (manager.toast.Count > 0)
         {
+            target = manager.toast[Random.Range(0, manager.toast.Count - 1)];
             target.currHealth = (int)(target.startingHealth * 0.4);
             target.ResetStats();
             manager.AddText("Hero brings back " + target.name + ".");
@@ -78,5 +96,41 @@ public class HeroSkills : Skills
             int recover = (int)(manager.friends[i].startingHealth * 0.4);
             manager.friends[i].TakeHealing(recover, 0);
         }
+    }
+    public override void FollowUpOne()
+    {
+        manager.energy -= energyCost[0];
+        BattleCharacter omori = followUpRequire[0];
+        manager.AddText("Hero calls out to Omori.");
+
+        int healing = (int)(omori.startingHealth * 0.4f);
+        int juicing = (int)(omori.startingJuice * 0.25f);
+
+        omori.TakeHealing(healing, juicing);
+        omori.userSkills.BasicAttack(omori.nextTarget);
+    }
+    public override void FollowUpTwo()
+    {
+        manager.energy -= energyCost[1];
+        BattleCharacter aubrey = followUpRequire[1];
+        manager.AddText("Hero calls out to Aubrey.");
+
+        int healing = (int)(aubrey.startingHealth * 0.4f);
+        int juicing = (int)(aubrey.startingJuice * 0.25f);
+
+        aubrey.TakeHealing(healing, juicing);
+        aubrey.userSkills.BasicAttack(aubrey.nextTarget);
+    }
+    public override void FollowUpThree()
+    {
+        manager.energy -= energyCost[2];
+        BattleCharacter kel = followUpRequire[2];
+        manager.AddText("Hero calls out to Kel.");
+
+        int healing = (int)(kel.startingHealth * 0.4f);
+        int juicing = (int)(kel.startingJuice * 0.25f);
+
+        kel.TakeHealing(healing, juicing);
+        kel.userSkills.BasicAttack(kel.nextTarget);
     }
 }

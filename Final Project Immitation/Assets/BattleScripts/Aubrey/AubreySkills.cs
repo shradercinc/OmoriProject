@@ -6,8 +6,12 @@ public class AubreySkills : Skills
 {
     //Skill 1: Positive Spirit: If the targetted Foe is Angry or Enraged, lower their attack. Then deal damage to them.
     //Skill 2: Home Run: If Aubrey is Happy or Ecstatic, raise their accuracy. Then deal damage to a foe.
-    //Skill 3: Pep Talk: Makes anyone Happy. If they're already Happy, they become Ecstatic.
+    //Skill 3: Cheer: Makes anyone Happy. If they're already Happy, they become Ecstatic.
     //Skill 4: Sacrifice: Deal a lot of damage to a Foe. Aubrey becomes toats.
+
+    //Follow Up 1: Look at Omori: Deal a lot of damage to a foe.
+    //Follow Up 2: Look at Kel: Kel and Aubrey become Angry. Raise their attacks.
+    //Follow Up 3: Look at Hero: Aubrey restores 50% of her health, increases her defense, and becomes Happy.
 
     public override void SetStartingStats()
     {
@@ -31,6 +35,18 @@ public class AubreySkills : Skills
         juiceCost.Add(25);
         skillTargets.Add(Target.FOE);
 
+        //Follow Up 1:
+        energyCost.Add(3);
+        followUpRequire.Add(GameObject.Find("Omori").GetComponent<BattleCharacter>());
+
+        //Follow Up 2:
+        energyCost.Add(3);
+        followUpRequire.Add(GameObject.Find("Kel").GetComponent<BattleCharacter>());
+
+        //Follow Up 3:
+        energyCost.Add(3);
+        followUpRequire.Add(GameObject.Find("Hero").GetComponent<BattleCharacter>());
+
         user.friend = true;
         user.startingHealth = 69;
         user.startingJuice = 25;
@@ -44,6 +60,7 @@ public class AubreySkills : Skills
     public override void UseSkillOne(BattleCharacter target)
     {
         user.currJuice -= juiceCost[1];
+        manager.AddText("Aubrey shows off her positive spirit.");
         if (target.currEmote == BattleCharacter.Emotion.ANGRY || target.currEmote == BattleCharacter.Emotion.ENRAGED)
         {
             target.attackStat -= 0.15f;
@@ -60,6 +77,7 @@ public class AubreySkills : Skills
     public override void UseSkillTwo(BattleCharacter target)
     {
         user.currJuice -= juiceCost[2];
+        manager.AddText("Aubrey hits a home run.");
         if (user.currEmote == BattleCharacter.Emotion.HAPPY || target.currEmote == BattleCharacter.Emotion.ECSTATIC)
         {
             user.accuracyStat += 0.15f;
@@ -76,11 +94,13 @@ public class AubreySkills : Skills
     public override void UseSkillThree(BattleCharacter target)
     {
         user.currJuice -= juiceCost[3];
+        manager.AddText("Aubrey encourages " + target.name + ".");
         target.NewEmotion(BattleCharacter.Emotion.HAPPY);
     }
     public override void UseSkillFour(BattleCharacter target)
     {
         user.currJuice -= juiceCost[4];
+        manager.AddText("Aubrey gives it everything she's got.");
         if (RollAccuracy(user.currAccuracy))
         {
             int critical = RollCritical(user.currLuck);
@@ -88,5 +108,40 @@ public class AubreySkills : Skills
             target.TakeDamage(damage);
             user.TakeDamage(100);
         }
+    }
+    public override void FollowUpOne()
+    {
+        manager.energy -= energyCost[0];
+        BattleCharacter target = manager.foes[Random.Range(0, manager.foes.Count - 1)];
+        manager.AddText("Omori didn't notice Aubrey, so she attacks harder.");
+
+        int critical = RollCritical(user.currLuck);
+        int damage = (int)(critical * IsEffective(target) * (3 * user.currAttack));
+        target.TakeDamage(damage);
+    }
+    public override void FollowUpTwo()
+    {
+        manager.energy -= energyCost[1];
+        BattleCharacter kel = followUpRequire[1];
+        manager.AddText("Kel eggs on Aubrey.");
+
+        user.attackStat += 0.15f;
+        manager.AddText(user.name + "'s attack increases.");
+        user.NewEmotion(BattleCharacter.Emotion.ANGRY);
+
+        kel.attackStat += 0.15f;
+        manager.AddText(kel.name + "'s attack increases.");
+        kel.NewEmotion(BattleCharacter.Emotion.ANGRY);
+    }
+    public override void FollowUpThree()
+    {
+        manager.energy -= energyCost[2];
+        manager.AddText("Hero cheers on Aubrey.");
+        user.defenseStat += 0.15f;
+        manager.AddText(user.name + "'s defense increases.");
+
+        int healing = (int) (user.startingHealth * 0.5f);
+        user.TakeHealing(healing, 0);
+        user.NewEmotion(BattleCharacter.Emotion.HAPPY);
     }
 }

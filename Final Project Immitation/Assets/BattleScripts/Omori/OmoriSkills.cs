@@ -9,6 +9,10 @@ public class OmoriSkills : Skills
     //Skill 3: Sad Poem: Makes anyone Sad. If they're already Sad, they become Depressed.
     //Skill 4: Glare: Reduce the stats of a foe.
 
+    //Skill 1: Chain Attack: Omori attacks 2 more times.
+    //Skill 2: Trip: Deal damage to a foe. Lower their speed, and they become Sad.
+    //Skill 3: Release Energy: Deal a lot of damage to all enemies.
+
     public override void SetStartingStats()
     {
         //Attack:
@@ -30,6 +34,17 @@ public class OmoriSkills : Skills
         //Skill 4:
         juiceCost.Add(25);
         skillTargets.Add(Target.FOE);
+
+        //Follow Up 1:
+        energyCost.Add(3);
+        followUpRequire.Add(GameObject.Find("Omori").GetComponent<BattleCharacter>());
+
+        //Follow Up 2:
+        energyCost.Add(3);
+        followUpRequire.Add(GameObject.Find("Omori").GetComponent<BattleCharacter>());
+
+        //Follow Up 3:
+        energyCost.Add(10);
 
         user.friend = true;
         user.startingHealth = 52;
@@ -99,5 +114,40 @@ public class OmoriSkills : Skills
         target.accuracyStat -= 0.1f;
         manager.AddText("All of " + target.name + "'s stats decrease.");
         target.ResetStats();
+    }
+    public override void FollowUpOne()
+    {
+        manager.energy -= energyCost[0];
+        manager.AddText("Omori attacks two more times.");
+
+        user.userSkills.BasicAttack(user.nextTarget);
+        user.userSkills.BasicAttack(user.nextTarget);
+    }
+    public override void FollowUpTwo()
+    {
+        manager.energy -= energyCost[1];
+        BattleCharacter target = manager.foes[Random.Range(0, manager.foes.Count - 1)];
+        manager.AddText("Omori makes " + target.name + " trip and fall over.");
+
+        target.speedStat -= 0.15f;
+        manager.AddText(target.name + "'s speed decreases.");
+        target.NewEmotion(BattleCharacter.Emotion.SAD);
+
+        int critical = RollCritical(user.currLuck);
+        int damage = (int)(critical * IsEffective(target) * (user.currAttack + user.currLuck - target.currDefense));
+        target.TakeDamage(damage);
+    }
+    public override void FollowUpThree()
+    {
+        manager.energy -= energyCost[2];
+        manager.AddText("Omori and friends come together and use their ultimate attack.");
+
+        for (int i = 0; i < manager.foes.Count; i++)
+        {
+            BattleCharacter target = manager.foes[i];
+            int critical = RollCritical(user.currLuck);
+            int damage = (int)(critical * IsEffective(target) * (4.5 * user.currAttack));
+            target.TakeDamage(damage);
+        }
     }
 }

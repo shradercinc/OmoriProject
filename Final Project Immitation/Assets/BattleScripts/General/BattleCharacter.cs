@@ -26,9 +26,9 @@ public class BattleCharacter : MonoBehaviour
     public float currLuck;
     public float currAccuracy;
 
-    enum Move { NONE, ATTACK, SKILL1, SKILL2, SKILL3, SKILL4 };
-    Move currMove = Move.NONE;
-    BattleCharacter nextTarget;
+    public enum Move { NONE, ATTACK, SKILL1, SKILL2, SKILL3, SKILL4 };
+    public Move currMove = Move.NONE;
+    public BattleCharacter nextTarget;
 
     public enum Emotion { NEUTRAL, HAPPY, ECSTATIC, ANGRY, ENRAGED, SAD, DEPRESSED };
     public Emotion currEmote = Emotion.NEUTRAL;
@@ -36,7 +36,7 @@ public class BattleCharacter : MonoBehaviour
     public bool toast = false;
     public bool friend;
 
-    Skills userSkills;
+    public Skills userSkills;
     BattleManager manager;
     public Weapon weapon;
 
@@ -198,11 +198,15 @@ public class BattleCharacter : MonoBehaviour
         {
             currHealth -= damage;
             manager.AddText(gameObject.name + " takes " + damage + " damage.");
+
+            if (friend)
+                manager.AddEnergy();
         }
         else
         {
             manager.AddText(gameObject.name + " didn't take any damage.");
         }
+
         ResetStats();
     }
 

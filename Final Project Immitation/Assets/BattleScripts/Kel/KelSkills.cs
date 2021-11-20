@@ -9,6 +9,10 @@ public class KelSkills : Skills
     //SKILL 3: Annoy: Makes anyone Angry. If they're already Angry, they become Enraged.
     //SKILL 4: Run N' Gun; Deal damage to a foe, based on your Speed instead of your Attack.
 
+    //Follow Up 1: Pass to Omori: Omori becomes happy and deals damage to a foe.
+    //Follow Up 2: Pass to Aubrey: Aubrey deals extra damage to a foe.
+    //Follow Up 3: Pass to Hero: Kel deals damage to all foes.
+
     public override void SetStartingStats()
     {
         //Attack:
@@ -30,6 +34,18 @@ public class KelSkills : Skills
         //Skill 4:
         juiceCost.Add(10);
         skillTargets.Add(Target.FOE);
+
+        //Follow Up 1:
+        energyCost.Add(3);
+        followUpRequire.Add(GameObject.Find("Omori").GetComponent<BattleCharacter>());
+
+        //Follow Up 2:
+        energyCost.Add(3);
+        followUpRequire.Add(GameObject.Find("Aubrey").GetComponent<BattleCharacter>());
+
+        //Follow Up 3:
+        energyCost.Add(3);
+        followUpRequire.Add(GameObject.Find("Hero").GetComponent<BattleCharacter>());
 
         user.friend = true;
         user.startingHealth = 48;
@@ -96,6 +112,40 @@ public class KelSkills : Skills
         {
             int critical = RollCritical(user.currLuck);
             int damage = (int)(critical * IsEffective(target) * (1.5*user.currSpeed - target.currDefense));
+            target.TakeDamage(damage);
+        }
+    }
+    public override void FollowUpOne()
+    {
+        BattleCharacter omori = followUpRequire[0];
+        manager.AddText("Kel passes the ball to Omori, who then throws it.");
+        omori.NewEmotion(BattleCharacter.Emotion.HAPPY);
+
+        BattleCharacter target = manager.foes[Random.Range(0, manager.foes.Count - 1)];
+        int critical = RollCritical(omori.currLuck);
+        int damage = (int)(critical * IsEffective(target) * (1.5 * user.currAttack + 1.5 * omori.currAttack - target.currDefense));
+        target.TakeDamage(damage);
+    }
+    public override void FollowUpTwo()
+    {
+        BattleCharacter aubrey = followUpRequire[1];
+        BattleCharacter target = manager.foes[Random.Range(0, manager.foes.Count - 1)];
+        manager.AddText("Kel passes the ball to Aubrey, who knocks it out of the park.");
+
+        int critical = RollCritical(aubrey.currLuck);
+        int damage = (int)(critical * IsEffective(target) * (2 * user.currAttack + 2 * aubrey.currAttack - target.currDefense));
+        target.TakeDamage(damage);
+    }
+    public override void FollowUpThree()
+    {
+        BattleCharacter hero = followUpRequire[2];
+        manager.AddText("Kel passes the ball to Hero, who throws it high up to let Kel do a slam dunk.");
+
+        for (int i = 0; i < manager.foes.Count; i++)
+        {
+            BattleCharacter target = manager.foes[i];
+            int critical = RollCritical(hero.currLuck);
+            int damage = (int)(critical * IsEffective(target) * (user.currAttack + hero.currAttack - target.currDefense));
             target.TakeDamage(damage);
         }
     }
