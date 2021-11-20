@@ -16,38 +16,48 @@ public class AubreySkills : Skills
     public override void SetStartingStats()
     {
         //Attack:
+        skillNames.Add("Attack");
         juiceCost.Add(0);
         skillTargets.Add(Target.FOE);
 
         //Skill 1:
+        skillNames.Add("Positive Spirit");
         juiceCost.Add(15);
         skillTargets.Add(Target.FOE);
 
         //Skill 2:
+        skillNames.Add("Home Run");
         juiceCost.Add(15);
         skillTargets.Add(Target.FOE);
 
         //Skill 3:
+        skillNames.Add("Cheer");
         juiceCost.Add(5);
         skillTargets.Add(Target.ANYONE);
 
         //Skill 4:
+        skillNames.Add("Sacrifice");
         juiceCost.Add(25);
         skillTargets.Add(Target.FOE);
 
         //Follow Up 1:
+        skillNames.Add("Look at Omori");
         energyCost.Add(3);
         followUpRequire.Add(GameObject.Find("Omori").GetComponent<BattleCharacter>());
 
         //Follow Up 2:
+        skillNames.Add("Look at Kel");
         energyCost.Add(3);
         followUpRequire.Add(GameObject.Find("Kel").GetComponent<BattleCharacter>());
 
         //Follow Up 3:
+        skillNames.Add("Look at Hero");
         energyCost.Add(3);
         followUpRequire.Add(GameObject.Find("Hero").GetComponent<BattleCharacter>());
 
         user.friend = true;
+        user.order = 1;
+
         user.startingHealth = 69;
         user.startingJuice = 25;
         user.startingAttack = 16;

@@ -9,7 +9,7 @@ public class SweetheartBust : Weapon
         user = gameObject.GetComponent<BattleCharacter>();
         user.startingAttack += 20;
         user.startingSpeed -= 10;
-        user.startingAccuracy -= 0.1f;
+        user.startingAccuracy -= 0.15f;
     }
     public override void StartOfTurn()
     {

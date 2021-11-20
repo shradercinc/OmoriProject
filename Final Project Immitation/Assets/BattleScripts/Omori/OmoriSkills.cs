@@ -16,37 +16,47 @@ public class OmoriSkills : Skills
     public override void SetStartingStats()
     {
         //Attack:
+        skillNames.Add("Attack");
         juiceCost.Add(0);
         skillTargets.Add(Target.FOE);
 
         //Skill 1:
+        skillNames.Add("Exploit");
         juiceCost.Add(15);
         skillTargets.Add(Target.FOE);
 
         //Skill 2:
+        skillNames.Add("Stab");
         juiceCost.Add(15);
         skillTargets.Add(Target.FOE);
 
         //Skill 3:
+        skillNames.Add("Sad Poem");
         juiceCost.Add(5);
         skillTargets.Add(Target.ANYONE);
 
         //Skill 4:
+        skillNames.Add("Stare");
         juiceCost.Add(25);
         skillTargets.Add(Target.FOE);
 
         //Follow Up 1:
+        skillNames.Add("Chain Attack");
         energyCost.Add(3);
         followUpRequire.Add(GameObject.Find("Omori").GetComponent<BattleCharacter>());
 
         //Follow Up 2:
+        skillNames.Add("Trip");
         energyCost.Add(3);
         followUpRequire.Add(GameObject.Find("Omori").GetComponent<BattleCharacter>());
 
         //Follow Up 3:
+        skillNames.Add("Release Energy");
         energyCost.Add(10);
 
         user.friend = true;
+        user.order = 0;
+
         user.startingHealth = 52;
         user.startingJuice = 35;
         user.startingAttack = 13;

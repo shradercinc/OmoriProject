@@ -35,6 +35,7 @@ public class BattleCharacter : MonoBehaviour
 
     public bool toast = false;
     public bool friend;
+    public int order;
 
     public Skills userSkills;
     BattleManager manager;
@@ -65,6 +66,27 @@ public class BattleCharacter : MonoBehaviour
         if (!toast)
         {
             manager.AddText("What will " + gameObject.name + " do this turn?");
+            manager.AddText("Q: Basic Attack");
+
+            if (currJuice >= userSkills.juiceCost[1])
+                manager.AddText("W: " + userSkills.skillNames[1] + " - " + userSkills.juiceCost[1] + " juice");
+            else
+                manager.AddText("W: " + userSkills.skillNames[1] + " - Not Enough Juice");
+
+            if (currJuice >= userSkills.juiceCost[2])
+                manager.AddText("E: " + userSkills.skillNames[2] + " - " + userSkills.juiceCost[2] + " juice");
+            else
+                manager.AddText("E: " + userSkills.skillNames[2] + " - Not Enough Juice");
+
+            if (currJuice >= userSkills.juiceCost[3])
+                manager.AddText("R: " + userSkills.skillNames[3] + " - " + userSkills.juiceCost[3] + " juice");
+            else
+                manager.AddText("R: " + userSkills.skillNames[3] + " - Not Enough Juice");
+
+            if (currJuice >= userSkills.juiceCost[4])
+                manager.AddText("T: " + userSkills.skillNames[4] + " - " + userSkills.juiceCost[4] + " juice");
+            else
+                manager.AddText("T: " + userSkills.skillNames[4] + " - Not Enough Juice");
 
             while (currMove == Move.NONE)
             {
@@ -182,7 +204,7 @@ public class BattleCharacter : MonoBehaviour
                 }
                 case Move.SKILL4:
                 {
-                    userSkills.UseSkillThree(nextTarget);
+                    userSkills.UseSkillFour(nextTarget);
                     break;
                 }
                 case Move.NONE:
@@ -194,6 +216,8 @@ public class BattleCharacter : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        damage = (int)(damage * Random.Range(0.8f, 1.2f));
+
         if (damage > 0)
         {
             currHealth -= damage;
@@ -312,14 +336,14 @@ public class BattleCharacter : MonoBehaviour
             case (Emotion.NEUTRAL):
                 break;
             case (Emotion.HAPPY):
-                currSpeed = startingSpeed * 1.5f * speedStat;
-                currLuck = startingLuck * 1.5f * luckStat;
-                currAccuracy = 0.8f * accuracyStat;
-                break;
-            case (Emotion.ECSTATIC):
                 currSpeed = startingSpeed * 2 * speedStat;
                 currLuck = startingLuck * 2 * luckStat;
-                currAccuracy = 0.6f * accuracyStat;
+                currAccuracy = startingAccuracy * 0.85f * accuracyStat;
+                break;
+            case (Emotion.ECSTATIC):
+                currSpeed = startingSpeed * 3 * speedStat;
+                currLuck = startingLuck * 3 * luckStat;
+                currAccuracy = startingAccuracy * 0.7f * accuracyStat;
                 break;
             case (Emotion.ANGRY):
                 currAttack = startingAttack * 1.25f * attackStat;
@@ -330,11 +354,11 @@ public class BattleCharacter : MonoBehaviour
                 currDefense = startingDefense * 0.5f * defenseStat;
                 break;
             case (Emotion.SAD):
-                currDefense = startingDefense * 1.5f * defenseStat;
+                currDefense = startingDefense * 1.25f * defenseStat;
                 currSpeed = startingSpeed * 0.75f * speedStat;
                 break;
             case (Emotion.DEPRESSED):
-                currDefense = startingDefense * 2f * defenseStat;
+                currDefense = startingDefense * 1.5f * defenseStat;
                 currSpeed = startingSpeed * 0.5f * speedStat;
                 break;
         }

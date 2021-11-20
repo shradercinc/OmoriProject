@@ -222,6 +222,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   user: {fileID: 0}
+  manager: {fileID: 0}
 --- !u!114 &429836975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -253,9 +254,13 @@ MonoBehaviour:
   currSpeed: 0
   currLuck: 0
   currAccuracy: 0
+  currMove: 0
+  nextTarget: {fileID: 0}
   currEmote: 0
   toast: 0
   friend: 0
+  order: 0
+  userSkills: {fileID: 0}
   weapon: {fileID: 0}
 --- !u!212 &429836976
 SpriteRenderer:
@@ -337,7 +342,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   user: {fileID: 0}
   manager: {fileID: 0}
+  skillNames: []
   juiceCost: 
+  energyCost: 
+  followUpRequire: []
   skillTargets: 
 --- !u!1 &519420028
 GameObject:
@@ -456,7 +464,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   user: {fileID: 0}
   manager: {fileID: 0}
+  skillNames: []
   juiceCost: 
+  energyCost: 
+  followUpRequire: []
   skillTargets: 
 --- !u!114 &562436628
 MonoBehaviour:
@@ -489,9 +500,13 @@ MonoBehaviour:
   currSpeed: 0
   currLuck: 0
   currAccuracy: 0
+  currMove: 0
+  nextTarget: {fileID: 0}
   currEmote: 0
   toast: 0
   friend: 0
+  order: 0
+  userSkills: {fileID: 0}
   weapon: {fileID: 0}
 --- !u!212 &562436629
 SpriteRenderer:
@@ -572,6 +587,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   user: {fileID: 0}
+  manager: {fileID: 0}
 --- !u!1 &693764988
 GameObject:
   m_ObjectHideFlags: 0
@@ -606,7 +622,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   user: {fileID: 0}
   manager: {fileID: 0}
+  skillNames: []
   juiceCost: 
+  energyCost: 
+  followUpRequire: []
   skillTargets: 
 --- !u!114 &693764990
 MonoBehaviour:
@@ -639,9 +658,13 @@ MonoBehaviour:
   currSpeed: 0
   currLuck: 0
   currAccuracy: 0
+  currMove: 0
+  nextTarget: {fileID: 0}
   currEmote: 0
   toast: 0
   friend: 0
+  order: 0
+  userSkills: {fileID: 0}
   weapon: {fileID: 0}
 --- !u!212 &693764991
 SpriteRenderer:
@@ -722,6 +745,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   user: {fileID: 0}
+  manager: {fileID: 0}
 --- !u!1 &836425251
 GameObject:
   m_ObjectHideFlags: 0
@@ -856,7 +880,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   user: {fileID: 0}
   manager: {fileID: 0}
+  skillNames: []
   juiceCost: 
+  energyCost: 
+  followUpRequire: []
   skillTargets: 
 --- !u!114 &1041850022
 MonoBehaviour:
@@ -889,9 +916,13 @@ MonoBehaviour:
   currSpeed: 0
   currLuck: 0
   currAccuracy: 0
+  currMove: 0
+  nextTarget: {fileID: 0}
   currEmote: 0
   toast: 0
   friend: 0
+  order: 0
+  userSkills: {fileID: 0}
   weapon: {fileID: 0}
 --- !u!212 &1041850023
 SpriteRenderer:
@@ -972,6 +1003,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   user: {fileID: 0}
+  manager: {fileID: 0}
 --- !u!1 &1094495167
 GameObject:
   m_ObjectHideFlags: 0
@@ -1006,8 +1038,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -25}
-  m_SizeDelta: {x: 500, y: 50}
+  m_AnchoredPosition: {x: 0, y: -250}
+  m_SizeDelta: {x: 500, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1094495169
 MonoBehaviour:
@@ -1140,7 +1172,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   user: {fileID: 0}
   manager: {fileID: 0}
+  skillNames: []
   juiceCost: 
+  energyCost: 
+  followUpRequire: []
   skillTargets: 
 --- !u!114 &1183961375
 MonoBehaviour:
@@ -1173,9 +1208,13 @@ MonoBehaviour:
   currSpeed: 0
   currLuck: 0
   currAccuracy: 0
+  currMove: 0
+  nextTarget: {fileID: 0}
   currEmote: 0
   toast: 0
   friend: 0
+  order: 0
+  userSkills: {fileID: 0}
   weapon: {fileID: 0}
 --- !u!212 &1183961376
 SpriteRenderer:
@@ -1256,6 +1295,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   user: {fileID: 0}
+  manager: {fileID: 0}
 --- !u!1 &1244838732
 GameObject:
   m_ObjectHideFlags: 0
@@ -1289,7 +1329,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   user: {fileID: 0}
   manager: {fileID: 0}
+  skillNames: []
   juiceCost: 
+  energyCost: 
+  followUpRequire: []
   skillTargets: 
 --- !u!114 &1244838734
 MonoBehaviour:
@@ -1322,9 +1365,13 @@ MonoBehaviour:
   currSpeed: 0
   currLuck: 0
   currAccuracy: 0
+  currMove: 0
+  nextTarget: {fileID: 0}
   currEmote: 0
   toast: 0
   friend: 0
+  order: 0
+  userSkills: {fileID: 0}
   weapon: {fileID: 0}
 --- !u!212 &1244838735
 SpriteRenderer:
@@ -1423,7 +1470,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   friends: []
   foes: []
+  toast: []
   battleLog: {fileID: 1094495169}
+  energy: 3
 --- !u!4 &1743236161
 Transform:
   m_ObjectHideFlags: 0

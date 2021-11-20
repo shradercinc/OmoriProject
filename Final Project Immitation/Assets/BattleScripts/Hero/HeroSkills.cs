@@ -16,38 +16,48 @@ public class HeroSkills : Skills
     public override void SetStartingStats()
     {
         //Attack:
+        skillNames.Add("Attack");
         juiceCost.Add(0);
         skillTargets.Add(Target.FOE);
 
         //Skill 1:
+        skillNames.Add("Refreshments");
         juiceCost.Add(15);
         skillTargets.Add(Target.FRIEND);
 
         //Skill 2:
+        skillNames.Add("Cook");
         juiceCost.Add(10);
         skillTargets.Add(Target.FRIEND);
 
         //Skill 3:
+        skillNames.Add("Homemade Jam");
         juiceCost.Add(20);
         skillTargets.Add(Target.NONE);
 
         //Skill 4:
+        skillNames.Add("Snack Time");
         juiceCost.Add(20);
         skillTargets.Add(Target.ALLFRIENDS);
 
         //Follow Up 1:
+        skillNames.Add("Call Omori");
         energyCost.Add(3);
         followUpRequire.Add(GameObject.Find("Omori").GetComponent<BattleCharacter>());
 
         //Follow Up 2:
+        skillNames.Add("Call Aubrey");
         energyCost.Add(3);
         followUpRequire.Add(GameObject.Find("Aubrey").GetComponent<BattleCharacter>());
 
         //Follow Up 3:
+        skillNames.Add("Call Kel");
         energyCost.Add(3);
         followUpRequire.Add(GameObject.Find("Kel").GetComponent<BattleCharacter>());
 
         user.friend = true;
+        user.order = 3;
+
         user.startingHealth = 56;
         user.startingJuice = 35;
         user.startingAttack = 10;

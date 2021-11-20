@@ -41,12 +41,14 @@ public class BattleManager : MonoBehaviour
 
     public void AddText(string x)
     {
-        battleLog.text += "\n";
+        if (battleLog.text != "")
+            battleLog.text += "\n";
         battleLog.text += x;
     }
 
     IEnumerator NewRound()
     {
+        friends = friends.OrderBy(o => o.order).ToList();
         for (int i = 0; i < friends.Count; i++)
         {
             battleLog.text = "";
@@ -77,7 +79,7 @@ public class BattleManager : MonoBehaviour
 
                 nextInLine.UseMove();
 
-                if (nextInLine.friend && nextInLine.currMove == BattleCharacter.Move.ATTACK)
+                if (energy >= 3 && nextInLine.friend && nextInLine.currMove == BattleCharacter.Move.ATTACK)
                     yield return FollowUp(nextInLine);
                 else
                     yield return new WaitForSeconds(1.5f);
@@ -89,68 +91,73 @@ public class BattleManager : MonoBehaviour
         if (battleContinue)
             StartCoroutine(NewRound());
         else
+        {
+            battleLog.text = "";
             AddText("The battle is over.");
+        }
     }
 
     IEnumerator FollowUp(BattleCharacter user)
     {
-            yield return new WaitForSeconds(1.5f);
-            battleLog.text = "Follow up?";
-            bool decision = true;
-            Skills userSkills = user.userSkills;
+        yield return new WaitForSeconds(1.5f);
+        bool decision = true;
+        Skills userSkills = user.userSkills;
 
-            while (decision)
+        battleLog.text = "Follow up?";
+        AddText("Q: Skip");
+
+        bool skillOne = (energy >= userSkills.energyCost[0] && !userSkills.followUpRequire[0].toast);
+        if (skillOne)
+            AddText("W: " + userSkills.skillNames[5]);
+        else
+            AddText("Cannot " + userSkills.skillNames[5]);
+
+        bool skillTwo = (energy >= userSkills.energyCost[1] && !userSkills.followUpRequire[1].toast);
+        if (skillTwo)
+            AddText("E: " + userSkills.skillNames[6]);
+        else
+            AddText("Cannot " + userSkills.skillNames[6]);
+
+        bool skillThree = (energy >= userSkills.energyCost[2] &&
+        (friends.Count == 4 || !userSkills.followUpRequire[2].toast));
+        if (skillThree)
+            AddText("R: " + userSkills.skillNames[7]);
+        else
+            AddText("Cannot " + userSkills.skillNames[7]);
+
+        while (decision)
+        {
+            if (Input.GetKeyDown(KeyCode.W) && skillOne)
             {
-                if (Input.GetKeyDown(KeyCode.W) && energy >= userSkills.energyCost[0] && !userSkills.followUpRequire[0].toast)
-                {
-                    user.userSkills.FollowUpOne();
-                    decision = false;
-                    yield return new WaitForSeconds(1.5f);
-                }
-                else if (Input.GetKeyDown(KeyCode.E) && energy >= userSkills.energyCost[1] && !userSkills.followUpRequire[1].toast)
-                {
-                    user.userSkills.FollowUpTwo();
-                    decision = false;
-                    yield return new WaitForSeconds(1.5f);
-                }
-                else if (Input.GetKeyDown(KeyCode.R) && energy >= userSkills.energyCost[2] &&
-                    (friends.Count == 4 || !userSkills.followUpRequire[2].toast))
-                {
-                    user.userSkills.FollowUpThree();
-                    decision = false;
-                    yield return new WaitForSeconds(1.5f);
-                }
-                else if (Input.GetKeyDown(KeyCode.Q))
-                {
-                    decision = false;
-                }
-                yield return null;
+                user.userSkills.FollowUpOne();
+                decision = false;
+                yield return new WaitForSeconds(1.5f);
             }
+            else if (Input.GetKeyDown(KeyCode.E) && skillTwo)
+            {
+                user.userSkills.FollowUpTwo();
+                decision = false;
+                yield return new WaitForSeconds(1.5f);
+            }
+            else if (Input.GetKeyDown(KeyCode.R) && skillThree)
+            {
+                user.userSkills.FollowUpThree();
+                decision = false;
+                yield return new WaitForSeconds(1.5f);
+            }
+            else if (Input.GetKeyDown(KeyCode.Q))
+            {
+                decision = false;
+            }
+            yield return null;
+        }
         
     }
 
     public void ReturnToList(BattleCharacter target)
     {
-        if (target.name == "Omori")
-        {
-            friends.Insert(0, target);
-            toast.Remove(target);
-        }
-        if (target.name == "Aubrey")
-        {
-            friends.Insert(1, target);
-            toast.Remove(target);
-        }
-        if (target.name == "Kel")
-        {
-            friends.Insert(2, target);
-            toast.Remove(target);
-        }
-        if (target.name == "Hero")
-        {
-            friends.Insert(3, target);
-            toast.Remove(target);
-        }
+        friends.Add(target);
+        toast.Remove(target);
     }
 
     public void RemoveFromList(BattleCharacter target)

@@ -7,10 +7,14 @@ public class BakingPan : Weapon
     public override void AffectUser()
     {
         user = gameObject.GetComponent<BattleCharacter>();
-        user.startingHealth += 10;
-        user.startingAttack += 6;
     }
     public override void StartOfTurn()
     {
+        user.attackStat += (0.05f * manager.energy);
+        user.defenseStat += (0.05f * manager.energy);
+        user.speedStat += (0.05f * manager.energy);
+        user.luckStat += (0.05f * manager.energy);
+        user.accuracyStat += (0.05f * manager.energy);
+        user.ResetStats();
     }
 }

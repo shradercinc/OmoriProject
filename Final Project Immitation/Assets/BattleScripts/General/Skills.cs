@@ -8,6 +8,7 @@ public class Skills : MonoBehaviour
     public BattleManager manager;
     Weapon weapon;
 
+    public List<string> skillNames = new List<string>();
     public List<int> juiceCost = new List<int>();
     public List<int> energyCost = new List<int>();
     public List<BattleCharacter> followUpRequire = new List<BattleCharacter>();

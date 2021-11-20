@@ -16,38 +16,48 @@ public class KelSkills : Skills
     public override void SetStartingStats()
     {
         //Attack:
+        skillNames.Add("Attack");
         juiceCost.Add(0);
         skillTargets.Add(Target.FOE);
 
         //Skill 1:
+        skillNames.Add("Snowball Fight");
         juiceCost.Add(15);
         skillTargets.Add(Target.FOE);
 
         //Skill 2:
+        skillNames.Add("Headbutt");
         juiceCost.Add(15);
         skillTargets.Add(Target.FOE);
 
         //Skill 3:
+        skillNames.Add("Annoy");
         juiceCost.Add(5);
         skillTargets.Add(Target.ANYONE);
 
         //Skill 4:
+        skillNames.Add("Run N' Gun");
         juiceCost.Add(10);
         skillTargets.Add(Target.FOE);
 
         //Follow Up 1:
+        skillNames.Add("Pass to Omori");
         energyCost.Add(3);
         followUpRequire.Add(GameObject.Find("Omori").GetComponent<BattleCharacter>());
 
         //Follow Up 2:
+        skillNames.Add("Pass to Aubrey");
         energyCost.Add(3);
         followUpRequire.Add(GameObject.Find("Aubrey").GetComponent<BattleCharacter>());
 
         //Follow Up 3:
+        skillNames.Add("Pass to Hero");
         energyCost.Add(3);
         followUpRequire.Add(GameObject.Find("Hero").GetComponent<BattleCharacter>());
 
         user.friend = true;
+        user.order = 2;
+
         user.startingHealth = 48;
         user.startingJuice = 41;
         user.startingAttack = 13;
