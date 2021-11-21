@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class KelSkills : Skills
 {
-    //SKILL 1: Snowball Fight: If the targetted foe is Sad or Depressed, lower their defense. Then deal damage to them.
+    //SKILL 1: Snowball Fight: If the targetted Foe is Happy or Ecstatic, lower their speed. Then deal damage to them.
     //SKILL 2: Headbutt: If Kel is Angry or Enraged, increase their luck. Then deal damage to a foe.
     //SKILL 3: Annoy: Makes anyone Angry. If they're already Angry, they become Enraged.
     //SKILL 4: Run N' Gun; Deal damage to a foe, based on your Speed instead of your Attack.
@@ -73,11 +73,11 @@ public class KelSkills : Skills
         target = RedirectTarget(target, 1);
         manager.AddText("Kel starts a snowball fight against " + target.name + ".");
 
-        if (target.currEmote == BattleCharacter.Emotion.SAD || target.currEmote == BattleCharacter.Emotion.DEPRESSED)
+        if (target.currEmote == BattleCharacter.Emotion.HAPPY || target.currEmote == BattleCharacter.Emotion.ECSTATIC)
         {
-            target.defenseStat -= 0.15f;
+            target.speedStat -= 0.15f;
             target.ResetStats();
-            manager.AddText(target.name + "'s defense decreases.");
+            manager.AddText(target.name + "'s speed decreases.");
         }
         if (RollAccuracy(user.currAccuracy))
         {

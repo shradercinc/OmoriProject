@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AubreySkills : Skills
 {
-    //Skill 1: Positive Spirit: If the targetted Foe is Angry or Enraged, lower their attack. Then deal damage to them.
+    //Skill 1: Positive Spirit: If the targetted foe is Sad or Depressed, lower their defense.Then deal damage to them.
     //Skill 2: Home Run: If Aubrey is Happy or Ecstatic, raise their accuracy. Then deal damage to a foe.
     //Skill 3: Cheer: Makes anyone Happy. If they're already Happy, they become Ecstatic.
     //Skill 4: Sacrifice: Deal a lot of damage to a Foe. Aubrey becomes toats.
@@ -71,11 +71,11 @@ public class AubreySkills : Skills
     {
         user.currJuice -= juiceCost[1];
         manager.AddText("Aubrey shows off her positive spirit.");
-        if (target.currEmote == BattleCharacter.Emotion.ANGRY || target.currEmote == BattleCharacter.Emotion.ENRAGED)
+        if (target.currEmote == BattleCharacter.Emotion.SAD || target.currEmote == BattleCharacter.Emotion.DEPRESSED)
         {
-            target.attackStat -= 0.15f;
+            target.defenseStat -= 0.15f;
             target.ResetStats();
-            manager.AddText(target.name + "'s attack decreases.");
+            manager.AddText(target.name + "'s defense decreases.");
         }
         if (RollAccuracy(user.currAccuracy))
         {

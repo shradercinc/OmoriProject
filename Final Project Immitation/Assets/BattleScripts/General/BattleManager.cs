@@ -6,29 +6,33 @@ using TMPro;
 
 public class BattleManager : MonoBehaviour
 {
+    Transform friendGroup;
+    Transform foeGroup;
+
     public List<BattleCharacter> friends = new List<BattleCharacter>();
     public List<BattleCharacter> foes = new List<BattleCharacter>();
     public List<BattleCharacter> toast = new List<BattleCharacter>();
+    List<BattleCharacter> SpeedQueue = new List<BattleCharacter>();
 
     public TMP_Text battleLog;
+    public TMP_Text energyLog;
+
     public int energy = 3;
     bool battleContinue = true;
 
-    List<BattleCharacter> SpeedQueue = new List<BattleCharacter>();
-    BattleCharacter[] characterArray;
-
-    void Start()
+    void Awake()
     {
-        characterArray = FindObjectsOfType(typeof(BattleCharacter)) as BattleCharacter[];
+        friendGroup = GameObject.Find("FriendGroup").GetComponent<Transform>();
+        foeGroup = GameObject.Find("FoeGroup").GetComponent<Transform>();
 
-        for (int i = characterArray.Length-1; i>=0; i--)
+        foreach (Transform child in friendGroup)
         {
-            if (characterArray[i].friend)
-                friends.Add(characterArray[i]);
-            else
-                foes.Add(characterArray[i]);
+            friends.Add(child.GetComponent<BattleCharacter>());
         }
-
+        foreach (Transform child in foeGroup)
+        {
+            foes.Add(child.GetComponent<BattleCharacter>());
+        }
         StartCoroutine(NewRound());
     }
 
@@ -49,6 +53,8 @@ public class BattleManager : MonoBehaviour
     IEnumerator NewRound()
     {
         friends = friends.OrderBy(o => o.order).ToList();
+        energyLog.text = "Energy: " + energy;
+
         for (int i = 0; i < friends.Count; i++)
         {
             battleLog.text = "";
@@ -85,6 +91,7 @@ public class BattleManager : MonoBehaviour
                     yield return new WaitForSeconds(1.5f);
             }
 
+            energyLog.text = "Energy: " + energy;
             battleContinue = (friends.Count > 0 && foes.Count > 0);
         }
 
@@ -129,18 +136,21 @@ public class BattleManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.W) && skillOne)
             {
+                battleLog.text = "";
                 user.userSkills.FollowUpOne();
                 decision = false;
                 yield return new WaitForSeconds(1.5f);
             }
             else if (Input.GetKeyDown(KeyCode.E) && skillTwo)
             {
+                battleLog.text = "";
                 user.userSkills.FollowUpTwo();
                 decision = false;
                 yield return new WaitForSeconds(1.5f);
             }
             else if (Input.GetKeyDown(KeyCode.R) && skillThree)
             {
+                battleLog.text = "";
                 user.userSkills.FollowUpThree();
                 decision = false;
                 yield return new WaitForSeconds(1.5f);
@@ -151,7 +161,6 @@ public class BattleManager : MonoBehaviour
             }
             yield return null;
         }
-        
     }
 
     public void ReturnToList(BattleCharacter target)

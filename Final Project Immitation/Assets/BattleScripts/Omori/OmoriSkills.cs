@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class OmoriSkills : Skills
 {
-    //Skill 1: Exploit: If the targetted Foe is Happy or Ecstatic, lower their speed. Then deal damage to them.
+    //Skill 1: Mock: If the targetted Foe is Angry or Enraged, lower their attack. Then deal damage to them..
     //Skill 2: Stab: If Omori is Sad or Depressed, raise their attack. Then deal damage to a foe.
     //Skill 3: Sad Poem: Makes anyone Sad. If they're already Sad, they become Depressed.
     //Skill 4: Glare: Reduce the stats of a foe.
 
     //Skill 1: Chain Attack: Omori attacks 2 more times.
-    //Skill 2: Trip: Deal damage to a foe. Lower their speed, and they become Sad.
+    //Skill 2: Trip Foe: Deal damage to a foe. Lower their speed, and they become Sad.
     //Skill 3: Release Energy: Deal a lot of damage to all enemies.
 
     public override void SetStartingStats()
@@ -21,7 +21,7 @@ public class OmoriSkills : Skills
         skillTargets.Add(Target.FOE);
 
         //Skill 1:
-        skillNames.Add("Exploit");
+        skillNames.Add("Mock");
         juiceCost.Add(15);
         skillTargets.Add(Target.FOE);
 
@@ -46,7 +46,7 @@ public class OmoriSkills : Skills
         followUpRequire.Add(GameObject.Find("Omori").GetComponent<BattleCharacter>());
 
         //Follow Up 2:
-        skillNames.Add("Trip");
+        skillNames.Add("Trip Foe");
         energyCost.Add(3);
         followUpRequire.Add(GameObject.Find("Omori").GetComponent<BattleCharacter>());
 
@@ -70,13 +70,13 @@ public class OmoriSkills : Skills
     {
         user.currJuice -= juiceCost[1];
         target = RedirectTarget(target, 1);
-        manager.AddText("Omori exploits " + target.name + "'s emotions.");
+        manager.AddText("Omori mocks " + target.name + ".");
 
-        if (target.currEmote == BattleCharacter.Emotion.HAPPY || target.currEmote == BattleCharacter.Emotion.ECSTATIC)
+        if (target.currEmote == BattleCharacter.Emotion.ANGRY || target.currEmote == BattleCharacter.Emotion.ENRAGED)
         {
-            target.speedStat -= 0.15f;
+            target.attackStat -= 0.15f;
             target.ResetStats();
-            manager.AddText(target.name + "'s speed decreases.");
+            manager.AddText(target.name + "'s attack decreases.");
         }
         if (RollAccuracy(user.currAccuracy))
         {

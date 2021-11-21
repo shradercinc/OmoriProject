@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class BattleCharacter : MonoBehaviour
 {
@@ -32,6 +33,9 @@ public class BattleCharacter : MonoBehaviour
 
     public enum Emotion { NEUTRAL, HAPPY, ECSTATIC, ANGRY, ENRAGED, SAD, DEPRESSED };
     public Emotion currEmote = Emotion.NEUTRAL;
+
+    public TMP_Text uiText;
+    public TMP_Text emoteText;
 
     public bool toast = false;
     public bool friend;
@@ -180,38 +184,40 @@ public class BattleCharacter : MonoBehaviour
         if (toast)
             return;
 
-            switch (currMove)
+        switch (currMove)
+        {
+            case Move.ATTACK:
             {
-                case Move.ATTACK:
-                {
-                    userSkills.BasicAttack(nextTarget);
-                    break;
-                }
-                case Move.SKILL1:
-                {
-                    userSkills.UseSkillOne(nextTarget);
-                    break;
-                }
-                case Move.SKILL2:
-                {
-                    userSkills.UseSkillTwo(nextTarget);
-                    break;
-                }
-                case Move.SKILL3:
-                {
-                    userSkills.UseSkillThree(nextTarget);
-                    break;
-                }
-                case Move.SKILL4:
-                {
-                    userSkills.UseSkillFour(nextTarget);
-                    break;
-                }
-                case Move.NONE:
-                {
-                    break;
-                }
+                userSkills.BasicAttack(nextTarget);
+                break;
             }
+            case Move.SKILL1:
+            {
+                userSkills.UseSkillOne(nextTarget);
+                break;
+            }
+            case Move.SKILL2:
+            {
+                userSkills.UseSkillTwo(nextTarget);
+                break;
+            }
+            case Move.SKILL3:
+            {
+                userSkills.UseSkillThree(nextTarget);
+                break;
+            }
+            case Move.SKILL4:
+            {
+                userSkills.UseSkillFour(nextTarget);
+                break;
+            }
+            case Move.NONE:
+            {
+                break;
+            }
+        }
+
+        ResetStats();
     }
 
     public void TakeDamage(int damage)
@@ -252,8 +258,10 @@ public class BattleCharacter : MonoBehaviour
     void nowToast()
     {
         toast = true;
+        currHealth = 0;
         manager.RemoveFromList(this);
         manager.AddText(gameObject.name + " is now toast.");
+        emoteText.text = "TOAST";
 
         currEmote = Emotion.NEUTRAL;
         attackStat = 1;
@@ -304,26 +312,26 @@ public class BattleCharacter : MonoBehaviour
 
     public void ResetStats()
     {
-        if (attackStat < 0.7f)
-            attackStat = 0.7f;
-        else if (attackStat > 1.3f)
-            attackStat = 1.3f;
-        if (defenseStat < 0.7f)
-            defenseStat = 0.7f;
-        else if (defenseStat > 1.3f)
-            defenseStat = 1.3f;
-        if (speedStat < 0.7f)
-            speedStat = 0.7f;
-        else if (speedStat > 1.3f)
-            speedStat = 1.3f;
-        if (luckStat < 0.7f)
-            luckStat = 0.7f;
-        else if (luckStat > 1.3f)
-            luckStat = 1.3f;
-        if (accuracyStat < 0.7f)
-            accuracyStat = 0.7f;
-        else if (accuracyStat > 1.3f)
-            accuracyStat = 1.3f;
+        if (attackStat < 0.5f)
+            attackStat = 0.5f;
+        else if (attackStat > 1.5f)
+            attackStat = 1.5f;
+        if (defenseStat < 0.5f)
+            defenseStat = 0.5f;
+        else if (defenseStat > 1.5f)
+            defenseStat = 1.5f;
+        if (speedStat < 0.5f)
+            speedStat = 0.5f;
+        else if (speedStat > 1.5f)
+            speedStat = 1.5f;
+        if (luckStat < 0.5f)
+            luckStat = 0.5f;
+        else if (luckStat > 1.5f)
+            luckStat = 1.5f;
+        if (accuracyStat < 0.5f)
+            accuracyStat = 0.5f;
+        else if (accuracyStat > 1.5f)
+            accuracyStat = 1.5f;
 
         currAttack = startingAttack * attackStat;
         currDefense = startingDefense * defenseStat;
@@ -334,32 +342,39 @@ public class BattleCharacter : MonoBehaviour
         switch (currEmote)
         {
             case (Emotion.NEUTRAL):
+                emoteText.text = "NEUTRAL";
                 break;
             case (Emotion.HAPPY):
                 currSpeed = startingSpeed * 2 * speedStat;
                 currLuck = startingLuck * 2 * luckStat;
                 currAccuracy = startingAccuracy * 0.85f * accuracyStat;
+                emoteText.text = "HAPPY";
                 break;
             case (Emotion.ECSTATIC):
                 currSpeed = startingSpeed * 3 * speedStat;
                 currLuck = startingLuck * 3 * luckStat;
                 currAccuracy = startingAccuracy * 0.7f * accuracyStat;
+                emoteText.text = "ECSTATIC";
                 break;
             case (Emotion.ANGRY):
                 currAttack = startingAttack * 1.25f * attackStat;
                 currDefense = startingDefense * 0.75f * defenseStat;
+                emoteText.text = "ANGRY";
                 break;
             case (Emotion.ENRAGED):
                 currAttack = startingAttack * 1.5f * attackStat;
                 currDefense = startingDefense * 0.5f * defenseStat;
+                emoteText.text = "ENRAGED";
                 break;
             case (Emotion.SAD):
                 currDefense = startingDefense * 1.25f * defenseStat;
                 currSpeed = startingSpeed * 0.75f * speedStat;
+                emoteText.text = "SAD";
                 break;
             case (Emotion.DEPRESSED):
                 currDefense = startingDefense * 1.5f * defenseStat;
                 currSpeed = startingSpeed * 0.5f * speedStat;
+                emoteText.text = "DEPRESSED";
                 break;
         }
 
@@ -383,5 +398,15 @@ public class BattleCharacter : MonoBehaviour
             currLuck = 0;
         if (currAccuracy < 0)
             currAccuracy = 0;
+
+        if (friend)
+        {
+            uiText.text = gameObject.name + "\nHealth: " + currHealth + " / " + startingHealth + "\nJuice: " + currJuice + " / " + startingJuice;
+        }
+        else
+        {
+            uiText.text = gameObject.name + "\nHealth: " + currHealth;
+        }
+
     }
 }
