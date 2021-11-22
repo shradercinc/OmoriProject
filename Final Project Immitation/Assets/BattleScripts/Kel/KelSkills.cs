@@ -7,7 +7,7 @@ public class KelSkills : Skills
     //SKILL 1: Snowball Fight: If the targetted Foe is Happy or Ecstatic, lower their speed. Then deal damage to them.
     //SKILL 2: Headbutt: If Kel is Angry or Enraged, increase their luck. Then deal damage to a foe.
     //SKILL 3: Annoy: Makes anyone Angry. If they're already Angry, they become Enraged.
-    //SKILL 4: Run N' Gun; Deal damage to a foe, based on your Speed instead of your Attack.
+    //SKILL 4: Rebound: Deal damage to all Foes.
 
     //Follow Up 1: Pass to Omori: Omori becomes happy and deals damage to a foe.
     //Follow Up 2: Pass to Aubrey: Aubrey deals extra damage to a foe.
@@ -36,9 +36,9 @@ public class KelSkills : Skills
         skillTargets.Add(Target.ANYONE);
 
         //Skill 4:
-        skillNames.Add("Run N' Gun");
+        skillNames.Add("Rebound");
         juiceCost.Add(10);
-        skillTargets.Add(Target.FOE);
+        skillTargets.Add(Target.ALLFOES);
 
         //Follow Up 1:
         skillNames.Add("Pass to Omori");
@@ -115,19 +115,30 @@ public class KelSkills : Skills
     public override void UseSkillFour(BattleCharacter target)
     {
         user.currJuice -= juiceCost[4];
-        target = RedirectTarget(target, 4);
-        manager.AddText("Kel throws a quick shot at " + target.name + ".", true);
+        StartCoroutine(FourthSkill());
+    }
 
-        if (RollAccuracy(user.currAccuracy))
+    IEnumerator FourthSkill()
+    {
+        for (int i = 0; i < manager.foes.Count; i++)
         {
-            int critical = RollCritical(user.currLuck);
-            int damage = (int)(critical * IsEffective(target) * (1.5*user.currSpeed - target.currDefense));
-            target.TakeDamage(damage);
+            manager.AddText("Kel's ball bounces everywhere.", true);
+            BattleCharacter target = manager.foes[i];
+
+            if (RollAccuracy(user.currAccuracy))
+            {
+                int critical = RollCritical(user.currLuck);
+                int damage = (int)(critical * IsEffective(target) * (2.5 * user.currSpeed - target.currDefense));
+                target.TakeDamage(damage);
+            }
+            yield return new WaitForSeconds(1.5f);
         }
     }
+
     public override void FollowUpOne()
     {
         BattleCharacter omori = followUpRequire[0];
+        manager.energy -= energyCost[0];
         manager.AddText("Kel passes the ball to Omori, who then throws it.", true);
         omori.NewEmotion(BattleCharacter.Emotion.HAPPY);
 
@@ -140,6 +151,7 @@ public class KelSkills : Skills
     {
         BattleCharacter aubrey = followUpRequire[1];
         BattleCharacter target = manager.foes[Random.Range(0, manager.foes.Count - 1)];
+        manager.energy -= energyCost[1];
         manager.AddText("Kel passes the ball to Aubrey, who knocks it out of the park.", true);
 
         int critical = RollCritical(aubrey.currLuck);
@@ -148,15 +160,22 @@ public class KelSkills : Skills
     }
     public override void FollowUpThree()
     {
+        manager.energy -= energyCost[2];
+        StartCoroutine(ThirdFollow());
+    }
+    IEnumerator ThirdFollow()
+    { 
         BattleCharacter hero = followUpRequire[2];
-        manager.AddText("Kel passes the ball to Hero, who throws it high up to let Kel do a slam dunk.", true);
 
         for (int i = 0; i < manager.foes.Count; i++)
         {
+            manager.AddText("Kel passes the ball to Hero, who throws it high up to let Kel do a slam dunk.", true);
             BattleCharacter target = manager.foes[i];
+
             int critical = RollCritical(hero.currLuck);
             int damage = (int)(critical * IsEffective(target) * (user.currAttack + hero.currAttack - target.currDefense));
             target.TakeDamage(damage);
         }
+        yield return new WaitForSeconds(1.5f);
     }
 }

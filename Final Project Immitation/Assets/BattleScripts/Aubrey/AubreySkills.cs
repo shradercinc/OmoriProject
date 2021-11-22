@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class AubreySkills : Skills
 {
-    //Skill 1: Positive Spirit: If the targetted foe is Sad or Depressed, lower their defense.Then deal damage to them.
+    //Skill 1: Positive Spirit: If the targetted Foe is Sad or Depressed, lower their defense.Then deal damage to them.
     //Skill 2: Home Run: If Aubrey is Happy or Ecstatic, raise their accuracy. Then deal damage to a foe.
-    //Skill 3: Cheer: Makes anyone Happy. If they're already Happy, they become Ecstatic.
-    //Skill 4: Sacrifice: Deal a lot of damage to a Foe. Aubrey becomes toats.
+    //Skill 3: Cheer: Targetted Foe or Friend becomes Happy.
+    //Skill 4: Sacrifice: Deal a lot of damage to a Foe. Aubrey becomes toast.
 
     //Follow Up 1: Look at Omori: Deal a lot of damage to a foe.
     //Follow Up 2: Look at Kel: Kel and Aubrey become Angry. Raise their attacks.
@@ -58,8 +58,8 @@ public class AubreySkills : Skills
         user.friend = true;
         user.order = 1;
 
-        user.startingHealth = 69;
-        user.startingJuice = 25;
+        user.startingHealth = 70;
+        user.startingJuice = 30;
         user.startingAttack = 16;
         user.startingDefense = 6;
         user.startingSpeed = 8;
@@ -104,7 +104,7 @@ public class AubreySkills : Skills
     public override void UseSkillThree(BattleCharacter target)
     {
         user.currJuice -= juiceCost[3];
-        manager.AddText("Aubrey encourages " + target.name + ".", true);
+        manager.AddText("Aubrey cheers on " + target.name + ".", true);
         target.NewEmotion(BattleCharacter.Emotion.HAPPY);
     }
     public override void UseSkillFour(BattleCharacter target)
