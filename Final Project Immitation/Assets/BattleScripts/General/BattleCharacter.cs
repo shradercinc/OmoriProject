@@ -69,52 +69,52 @@ public class BattleCharacter : MonoBehaviour
 
         if (!toast)
         {
-            manager.AddText("What will " + gameObject.name + " do this turn?");
-            manager.AddText("Q: Basic Attack");
+            manager.AddText("What will " + gameObject.name + " do this turn?", true);
+            manager.AddText("1: Basic Attack");
 
             if (currJuice >= userSkills.juiceCost[1])
-                manager.AddText("W: " + userSkills.skillNames[1] + " - " + userSkills.juiceCost[1] + " juice");
+                manager.AddText("2: " + userSkills.skillNames[1] + " - " + userSkills.juiceCost[1] + " juice");
             else
-                manager.AddText("W: " + userSkills.skillNames[1] + " - Not Enough Juice");
+                manager.AddText("2: " + userSkills.skillNames[1] + " - Not Enough Juice", false);
 
             if (currJuice >= userSkills.juiceCost[2])
-                manager.AddText("E: " + userSkills.skillNames[2] + " - " + userSkills.juiceCost[2] + " juice");
+                manager.AddText("3: " + userSkills.skillNames[2] + " - " + userSkills.juiceCost[2] + " juice");
             else
-                manager.AddText("E: " + userSkills.skillNames[2] + " - Not Enough Juice");
+                manager.AddText("3: " + userSkills.skillNames[2] + " - Not Enough Juice", false);
 
             if (currJuice >= userSkills.juiceCost[3])
-                manager.AddText("R: " + userSkills.skillNames[3] + " - " + userSkills.juiceCost[3] + " juice");
+                manager.AddText("4: " + userSkills.skillNames[3] + " - " + userSkills.juiceCost[3] + " juice");
             else
-                manager.AddText("R: " + userSkills.skillNames[3] + " - Not Enough Juice");
+                manager.AddText("4: " + userSkills.skillNames[3] + " - Not Enough Juice");
 
             if (currJuice >= userSkills.juiceCost[4])
-                manager.AddText("T: " + userSkills.skillNames[4] + " - " + userSkills.juiceCost[4] + " juice");
+                manager.AddText("5: " + userSkills.skillNames[4] + " - " + userSkills.juiceCost[4] + " juice");
             else
-                manager.AddText("T: " + userSkills.skillNames[4] + " - Not Enough Juice");
+                manager.AddText("5: " + userSkills.skillNames[4] + " - Not Enough Juice");
 
             while (currMove == Move.NONE)
             {
-                if (Input.GetKeyDown(KeyCode.Q))
+                if (Input.GetKeyDown(KeyCode.Alpha1))
                 {
                     currMove = Move.ATTACK;
                     n = 0;
                 }
-                else if (Input.GetKeyDown(KeyCode.W) && currJuice >= userSkills.juiceCost[1])
+                else if (Input.GetKeyDown(KeyCode.Alpha2) && currJuice >= userSkills.juiceCost[1])
                 {
                     currMove = Move.SKILL1;
                     n = 1;
                 }
-                else if (Input.GetKeyDown(KeyCode.E) && currJuice >= userSkills.juiceCost[2])
+                else if (Input.GetKeyDown(KeyCode.Alpha3) && currJuice >= userSkills.juiceCost[2])
                 {
                     currMove = Move.SKILL2;
                     n = 2;
                 }
-                else if (Input.GetKeyDown(KeyCode.R) && currJuice >= userSkills.juiceCost[3])
+                else if (Input.GetKeyDown(KeyCode.Alpha4) && currJuice >= userSkills.juiceCost[3])
                 {
                     currMove = Move.SKILL3;
                     n = 3;
                 }
-                else if (Input.GetKeyDown(KeyCode.T) && currJuice >= userSkills.juiceCost[4])
+                else if (Input.GetKeyDown(KeyCode.Alpha5) && currJuice >= userSkills.juiceCost[4])
                 {
                     currMove = Move.SKILL4;
                     n = 4;
@@ -126,19 +126,51 @@ public class BattleCharacter : MonoBehaviour
             switch (userSkills.skillTargets[n])
             {
                 case Skills.Target.FRIEND:
-                    nextTarget = manager.friends[Random.Range(0, manager.friends.Count)];
+                    yield return ChooseTarget(manager.friends);
                     break;
                 case Skills.Target.FOE:
-                    nextTarget = manager.foes[Random.Range(0, manager.foes.Count)];
+                    yield return ChooseTarget(manager.foes);
                     break;
                 case Skills.Target.ANYONE:
-                    List<BattleCharacter> allTargets = manager.GetAllTargets();
-                    nextTarget = allTargets[Random.Range(0, allTargets.Count)];
+                    yield return ChooseTarget(manager.GetAllTargets());
                     break;
                 default:
                     nextTarget = null;
                     break;
             }
+        }
+    }
+
+    private IEnumerator ChooseTarget(List<BattleCharacter> possibleTargets)
+    {
+        manager.AddText("Who will " + gameObject.name + " target?", true);
+        nextTarget = null;
+
+        for (int i = 0; i<possibleTargets.Count; i++)
+            manager.AddText((i+1).ToString() + ": " + possibleTargets[i].name);
+
+        while (nextTarget == null)
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha1) && possibleTargets.Count >= 0)
+                nextTarget = possibleTargets[0];
+            else if (Input.GetKeyDown(KeyCode.Alpha2) && possibleTargets.Count >= 1)
+                nextTarget = possibleTargets[1];
+            else if (Input.GetKeyDown(KeyCode.Alpha3) && possibleTargets.Count >= 2)
+                nextTarget = possibleTargets[2];
+            else if (Input.GetKeyDown(KeyCode.Alpha4) && possibleTargets.Count >= 3)
+                nextTarget = possibleTargets[3];
+            else if (Input.GetKeyDown(KeyCode.Alpha5) && possibleTargets.Count >= 4)
+                nextTarget = possibleTargets[4];
+            else if (Input.GetKeyDown(KeyCode.Alpha6) && possibleTargets.Count >= 5)
+                nextTarget = possibleTargets[5];
+            else if (Input.GetKeyDown(KeyCode.Alpha7) && possibleTargets.Count >= 6)
+                nextTarget = possibleTargets[6];
+            else if (Input.GetKeyDown(KeyCode.Alpha8) && possibleTargets.Count >= 7)
+                nextTarget = possibleTargets[7];
+            else if (Input.GetKeyDown(KeyCode.Alpha9) && possibleTargets.Count >= 8)
+                nextTarget = possibleTargets[8];
+
+            yield return null;
         }
     }
 

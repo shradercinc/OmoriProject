@@ -43,11 +43,20 @@ public class BattleManager : MonoBehaviour
             energy = 10;
     }
 
+    public void AddText(string x, bool reset)
+    {
+        if (reset)
+            battleLog.text = x;
+        else
+        {
+            battleLog.text += "\n";
+            battleLog.text += x;
+        }
+    }
+
     public void AddText(string x)
     {
-        if (battleLog.text != "")
-            battleLog.text += "\n";
-        battleLog.text += x;
+        AddText(x, false);
     }
 
     IEnumerator NewRound()
@@ -57,7 +66,6 @@ public class BattleManager : MonoBehaviour
 
         for (int i = 0; i < friends.Count; i++)
         {
-            battleLog.text = "";
             SpeedQueue.Add(friends[i]);
             yield return friends[i].ChooseSkill();
         }
@@ -73,7 +81,6 @@ public class BattleManager : MonoBehaviour
     {
         while (battleContinue && SpeedQueue.Count > 0)
         {
-            battleLog.text = "";
             SpeedQueue = SpeedQueue.OrderByDescending(o => o.currSpeed).ToList();
             BattleCharacter nextInLine = SpeedQueue[0];
             SpeedQueue.Remove(nextInLine);
@@ -82,7 +89,6 @@ public class BattleManager : MonoBehaviour
             {
                 if (nextInLine.weapon != null)
                     nextInLine.weapon.StartOfTurn();
-
                 nextInLine.UseMove();
 
                 if (energy >= 3 && nextInLine.friend && nextInLine.currMove == BattleCharacter.Move.ATTACK)
@@ -99,8 +105,7 @@ public class BattleManager : MonoBehaviour
             StartCoroutine(NewRound());
         else
         {
-            battleLog.text = "";
-            AddText("The battle is over.");
+            AddText("The battle is over.", true);
         }
     }
 
@@ -110,52 +115,49 @@ public class BattleManager : MonoBehaviour
         bool decision = true;
         Skills userSkills = user.userSkills;
 
-        battleLog.text = "Follow up?";
-        AddText("Q: Skip");
+        AddText("Follow up?", true);
+        AddText("1: Skip");
 
         bool skillOne = (energy >= userSkills.energyCost[0] && !userSkills.followUpRequire[0].toast);
         if (skillOne)
-            AddText("W: " + userSkills.skillNames[5]);
+            AddText("2: " + userSkills.skillNames[5]);
         else
             AddText("Cannot " + userSkills.skillNames[5]);
 
         bool skillTwo = (energy >= userSkills.energyCost[1] && !userSkills.followUpRequire[1].toast);
         if (skillTwo)
-            AddText("E: " + userSkills.skillNames[6]);
+            AddText("3: " + userSkills.skillNames[6]);
         else
             AddText("Cannot " + userSkills.skillNames[6]);
 
         bool skillThree = (energy >= userSkills.energyCost[2] &&
         (friends.Count == 4 || !userSkills.followUpRequire[2].toast));
         if (skillThree)
-            AddText("R: " + userSkills.skillNames[7]);
+            AddText("4: " + userSkills.skillNames[7]);
         else
             AddText("Cannot " + userSkills.skillNames[7]);
 
         while (decision)
         {
-            if (Input.GetKeyDown(KeyCode.W) && skillOne)
+            if (Input.GetKeyDown(KeyCode.Alpha2) && skillOne)
             {
-                battleLog.text = "";
                 user.userSkills.FollowUpOne();
                 decision = false;
                 yield return new WaitForSeconds(1.5f);
             }
-            else if (Input.GetKeyDown(KeyCode.E) && skillTwo)
+            else if (Input.GetKeyDown(KeyCode.Alpha3) && skillTwo)
             {
-                battleLog.text = "";
                 user.userSkills.FollowUpTwo();
                 decision = false;
                 yield return new WaitForSeconds(1.5f);
             }
-            else if (Input.GetKeyDown(KeyCode.R) && skillThree)
+            else if (Input.GetKeyDown(KeyCode.Alpha4) && skillThree)
             {
-                battleLog.text = "";
                 user.userSkills.FollowUpThree();
                 decision = false;
                 yield return new WaitForSeconds(1.5f);
             }
-            else if (Input.GetKeyDown(KeyCode.Q))
+            else if (Input.GetKeyDown(KeyCode.Alpha1))
             {
                 decision = false;
             }

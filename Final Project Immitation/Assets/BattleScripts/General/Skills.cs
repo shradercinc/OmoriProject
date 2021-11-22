@@ -46,7 +46,7 @@ public class Skills : MonoBehaviour
     public void BasicAttack(BattleCharacter target)
     {
         target = RedirectTarget(target, 0);
-        manager.AddText(user.name + " attacks.");
+        manager.AddText(user.name + " attacks.", true);
 
         if (RollAccuracy(user.currAccuracy))
         {

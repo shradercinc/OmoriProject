@@ -70,7 +70,7 @@ public class AubreySkills : Skills
     public override void UseSkillOne(BattleCharacter target)
     {
         user.currJuice -= juiceCost[1];
-        manager.AddText("Aubrey shows off her positive spirit.");
+        manager.AddText("Aubrey shows off her positive spirit.", true);
         if (target.currEmote == BattleCharacter.Emotion.SAD || target.currEmote == BattleCharacter.Emotion.DEPRESSED)
         {
             target.defenseStat -= 0.15f;
@@ -87,7 +87,7 @@ public class AubreySkills : Skills
     public override void UseSkillTwo(BattleCharacter target)
     {
         user.currJuice -= juiceCost[2];
-        manager.AddText("Aubrey hits a home run.");
+        manager.AddText("Aubrey hits a home run.", true);
         if (user.currEmote == BattleCharacter.Emotion.HAPPY || target.currEmote == BattleCharacter.Emotion.ECSTATIC)
         {
             user.accuracyStat += 0.15f;
@@ -104,13 +104,13 @@ public class AubreySkills : Skills
     public override void UseSkillThree(BattleCharacter target)
     {
         user.currJuice -= juiceCost[3];
-        manager.AddText("Aubrey encourages " + target.name + ".");
+        manager.AddText("Aubrey encourages " + target.name + ".", true);
         target.NewEmotion(BattleCharacter.Emotion.HAPPY);
     }
     public override void UseSkillFour(BattleCharacter target)
     {
         user.currJuice -= juiceCost[4];
-        manager.AddText("Aubrey gives it everything she's got.");
+        manager.AddText("Aubrey gives it everything she's got.", true);
         if (RollAccuracy(user.currAccuracy))
         {
             int critical = RollCritical(user.currLuck);
@@ -123,7 +123,7 @@ public class AubreySkills : Skills
     {
         manager.energy -= energyCost[0];
         BattleCharacter target = manager.foes[Random.Range(0, manager.foes.Count - 1)];
-        manager.AddText("Omori didn't notice Aubrey, so she attacks harder.");
+        manager.AddText("Omori didn't notice Aubrey, so she attacks harder.", true);
 
         int critical = RollCritical(user.currLuck);
         int damage = (int)(critical * IsEffective(target) * (3 * user.currAttack));
@@ -133,7 +133,7 @@ public class AubreySkills : Skills
     {
         manager.energy -= energyCost[1];
         BattleCharacter kel = followUpRequire[1];
-        manager.AddText("Kel eggs on Aubrey.");
+        manager.AddText("Kel eggs on Aubrey.", true);
 
         user.attackStat += 0.15f;
         manager.AddText(user.name + "'s attack increases.");
@@ -146,7 +146,7 @@ public class AubreySkills : Skills
     public override void FollowUpThree()
     {
         manager.energy -= energyCost[2];
-        manager.AddText("Hero cheers on Aubrey.");
+        manager.AddText("Hero cheers on Aubrey.", true);
         user.defenseStat += 0.15f;
         manager.AddText(user.name + "'s defense increases.");
 

@@ -70,7 +70,7 @@ public class OmoriSkills : Skills
     {
         user.currJuice -= juiceCost[1];
         target = RedirectTarget(target, 1);
-        manager.AddText("Omori mocks " + target.name + ".");
+        manager.AddText("Omori mocks " + target.name + ".", true);
 
         if (target.currEmote == BattleCharacter.Emotion.ANGRY || target.currEmote == BattleCharacter.Emotion.ENRAGED)
         {
@@ -89,7 +89,7 @@ public class OmoriSkills : Skills
     {
         user.currJuice -= juiceCost[2];
         target = RedirectTarget(target, 2);
-        manager.AddText("Omori stabs " + target.name + ".");
+        manager.AddText("Omori stabs " + target.name + ".", true);
 
         if (user.currEmote == BattleCharacter.Emotion.SAD || target.currEmote == BattleCharacter.Emotion.DEPRESSED)
         {
@@ -108,14 +108,14 @@ public class OmoriSkills : Skills
     {
         user.currJuice -= juiceCost[3];
         target = RedirectTarget(target, 3);
-        manager.AddText("Omori reads " + target.name + " a poem.");
+        manager.AddText("Omori reads " + target.name + " a poem.", true);
         target.NewEmotion(BattleCharacter.Emotion.SAD);
     }
     public override void UseSkillFour(BattleCharacter target)
     {
         user.currJuice -= juiceCost[4];
         target = RedirectTarget(target, 4);
-        manager.AddText("Omori glares at " + target.name + ".");
+        manager.AddText("Omori glares at " + target.name + ".", true);
 
         target.attackStat -= 0.1f;
         target.defenseStat -= 0.1f;
@@ -128,7 +128,7 @@ public class OmoriSkills : Skills
     public override void FollowUpOne()
     {
         manager.energy -= energyCost[0];
-        manager.AddText("Omori attacks two more times.");
+        manager.AddText("Omori attacks two more times.", true);
 
         user.userSkills.BasicAttack(user.nextTarget);
         user.userSkills.BasicAttack(user.nextTarget);
@@ -137,7 +137,7 @@ public class OmoriSkills : Skills
     {
         manager.energy -= energyCost[1];
         BattleCharacter target = manager.foes[Random.Range(0, manager.foes.Count - 1)];
-        manager.AddText("Omori makes " + target.name + " trip and fall over.");
+        manager.AddText("Omori makes " + target.name + " trip and fall over.", true);
 
         target.speedStat -= 0.15f;
         manager.AddText(target.name + "'s speed decreases.");
@@ -150,7 +150,7 @@ public class OmoriSkills : Skills
     public override void FollowUpThree()
     {
         manager.energy -= energyCost[2];
-        manager.AddText("Omori and friends come together and use their ultimate attack.");
+        manager.AddText("Omori and friends come together and use their ultimate attack.", true);
 
         for (int i = 0; i < manager.foes.Count; i++)
         {

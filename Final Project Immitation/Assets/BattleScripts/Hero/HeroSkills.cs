@@ -71,16 +71,18 @@ public class HeroSkills : Skills
     {
         user.currJuice -= juiceCost[1];
         target = RedirectTarget(target, 1);
+        manager.AddText("Hero makes some refreshments for " + target.name + ".", true);
+
         int juice = (int)(target.startingJuice / 2);
-        manager.AddText("Hero makes some refreshments for " + target.name + ".");
         target.TakeHealing(0, juice);
     }
     public override void UseSkillTwo(BattleCharacter target)
     {
         user.currJuice -= juiceCost[2];
         target = RedirectTarget(target, 2);
+        manager.AddText("Hero prepares a meal for " + target.name + ".", true);
+
         int health = (int) (target.startingHealth * 0.7);
-        manager.AddText("Hero prepares a meal for " + target.name + ".");
         target.TakeHealing(health, 0);
     }
     public override void UseSkillThree(BattleCharacter target)
@@ -90,16 +92,17 @@ public class HeroSkills : Skills
         if (manager.toast.Count > 0)
         {
             target = manager.toast[Random.Range(0, manager.toast.Count - 1)];
+            manager.AddText("Hero brings back " + target.name + ".", true);
+
             target.currHealth = (int)(target.startingHealth * 0.4);
             target.ResetStats();
-            manager.AddText("Hero brings back " + target.name + ".");
             manager.ReturnToList(target);
         }
     }
     public override void UseSkillFour(BattleCharacter target)
     {
         user.currJuice -= juiceCost[4];
-        manager.AddText("Hero brings snacks for everyone.");
+        manager.AddText("Hero brings snacks for everyone.", true);
 
         for (int i = 0; i < manager.friends.Count; i++)
         {
@@ -111,7 +114,7 @@ public class HeroSkills : Skills
     {
         manager.energy -= energyCost[0];
         BattleCharacter omori = followUpRequire[0];
-        manager.AddText("Hero calls out to Omori.");
+        manager.AddText("Hero calls out to Omori.", true);
 
         int healing = (int)(omori.startingHealth * 0.4f);
         int juicing = (int)(omori.startingJuice * 0.25f);
@@ -123,7 +126,7 @@ public class HeroSkills : Skills
     {
         manager.energy -= energyCost[1];
         BattleCharacter aubrey = followUpRequire[1];
-        manager.AddText("Hero calls out to Aubrey.");
+        manager.AddText("Hero calls out to Aubrey.", true);
 
         int healing = (int)(aubrey.startingHealth * 0.4f);
         int juicing = (int)(aubrey.startingJuice * 0.25f);
@@ -135,7 +138,7 @@ public class HeroSkills : Skills
     {
         manager.energy -= energyCost[2];
         BattleCharacter kel = followUpRequire[2];
-        manager.AddText("Hero calls out to Kel.");
+        manager.AddText("Hero calls out to Kel.", true);
 
         int healing = (int)(kel.startingHealth * 0.4f);
         int juicing = (int)(kel.startingJuice * 0.25f);

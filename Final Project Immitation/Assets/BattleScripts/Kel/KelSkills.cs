@@ -71,7 +71,7 @@ public class KelSkills : Skills
     {
         user.currJuice -= juiceCost[1];
         target = RedirectTarget(target, 1);
-        manager.AddText("Kel starts a snowball fight against " + target.name + ".");
+        manager.AddText("Kel starts a snowball fight against " + target.name + ".", true);
 
         if (target.currEmote == BattleCharacter.Emotion.HAPPY || target.currEmote == BattleCharacter.Emotion.ECSTATIC)
         {
@@ -90,7 +90,7 @@ public class KelSkills : Skills
     {
         user.currJuice -= juiceCost[2];
         target = RedirectTarget(target, 2);
-        manager.AddText("Kel headbutts " + target.name + ".");
+        manager.AddText("Kel headbutts " + target.name + ".", true);
 
         if (user.currEmote == BattleCharacter.Emotion.ANGRY || target.currEmote == BattleCharacter.Emotion.ENRAGED)
         {
@@ -109,14 +109,14 @@ public class KelSkills : Skills
     {
         user.currJuice -= juiceCost[3];
         target = RedirectTarget(target, 3);
-        manager.AddText("Kel annoys " + target.name + ".");
+        manager.AddText("Kel annoys " + target.name + ".", true);
         target.NewEmotion(BattleCharacter.Emotion.ANGRY);
     }
     public override void UseSkillFour(BattleCharacter target)
     {
         user.currJuice -= juiceCost[4];
         target = RedirectTarget(target, 4);
-        manager.AddText("Kel throws a quick shot at " + target.name + ".");
+        manager.AddText("Kel throws a quick shot at " + target.name + ".", true);
 
         if (RollAccuracy(user.currAccuracy))
         {
@@ -128,7 +128,7 @@ public class KelSkills : Skills
     public override void FollowUpOne()
     {
         BattleCharacter omori = followUpRequire[0];
-        manager.AddText("Kel passes the ball to Omori, who then throws it.");
+        manager.AddText("Kel passes the ball to Omori, who then throws it.", true);
         omori.NewEmotion(BattleCharacter.Emotion.HAPPY);
 
         BattleCharacter target = manager.foes[Random.Range(0, manager.foes.Count - 1)];
@@ -140,7 +140,7 @@ public class KelSkills : Skills
     {
         BattleCharacter aubrey = followUpRequire[1];
         BattleCharacter target = manager.foes[Random.Range(0, manager.foes.Count - 1)];
-        manager.AddText("Kel passes the ball to Aubrey, who knocks it out of the park.");
+        manager.AddText("Kel passes the ball to Aubrey, who knocks it out of the park.", true);
 
         int critical = RollCritical(aubrey.currLuck);
         int damage = (int)(critical * IsEffective(target) * (2 * user.currAttack + 2 * aubrey.currAttack - target.currDefense));
@@ -149,7 +149,7 @@ public class KelSkills : Skills
     public override void FollowUpThree()
     {
         BattleCharacter hero = followUpRequire[2];
-        manager.AddText("Kel passes the ball to Hero, who throws it high up to let Kel do a slam dunk.");
+        manager.AddText("Kel passes the ball to Hero, who throws it high up to let Kel do a slam dunk.", true);
 
         for (int i = 0; i < manager.foes.Count; i++)
         {
