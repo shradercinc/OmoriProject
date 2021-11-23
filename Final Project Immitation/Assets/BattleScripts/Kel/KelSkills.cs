@@ -84,10 +84,9 @@ public class KelSkills : Skills
             {
                 int critical = RollCritical(user.currLuck);
                 int damage = (int)(critical * IsEffective(target) * (2 * user.currAttack - target.currDefense));
-                target.TakeDamage(damage);
+                yield return target.TakeDamage(damage);
             }
         }
-        yield return null;
     }
     public override IEnumerator UseSkillTwo(BattleCharacter target)
     {
@@ -106,10 +105,9 @@ public class KelSkills : Skills
             {
                 int critical = RollCritical(user.currLuck);
                 int damage = (int)(critical * IsEffective(target) * (2 * user.currAttack - target.currDefense));
-                target.TakeDamage(damage);
+                yield return target.TakeDamage(damage);
             }
         }
-        yield return null;
     }
     public override IEnumerator UseSkillThree(BattleCharacter target)
     {
@@ -136,7 +134,7 @@ public class KelSkills : Skills
                 {
                     int critical = RollCritical(user.currLuck);
                     int damage = (int)(critical * IsEffective(target) * (1.5 * user.currSpeed - target.currDefense));
-                    target.TakeDamage(damage);
+                    yield return target.TakeDamage(damage);
                 }
                 yield return new WaitForSeconds(1);
             }
@@ -153,9 +151,7 @@ public class KelSkills : Skills
         BattleCharacter target = manager.foes[Random.Range(0, manager.foes.Count - 1)];
         int critical = RollCritical(omori.currLuck);
         int damage = (int)(critical * IsEffective(target) * (1.5 * user.currAttack + 1.5 * omori.currAttack - target.currDefense));
-
-        target.TakeDamage(damage);
-        yield return null;
+        yield return target.TakeDamage(damage);
     }
     public override IEnumerator FollowUpTwo()
     {
@@ -166,8 +162,7 @@ public class KelSkills : Skills
 
         int critical = RollCritical(aubrey.currLuck);
         int damage = (int)(critical * IsEffective(target) * (2 * user.currAttack + 2 * aubrey.currAttack - target.currDefense));
-        target.TakeDamage(damage);
-        yield return null;
+        yield return target.TakeDamage(damage);
     }
     public override IEnumerator FollowUpThree()
     {
@@ -183,7 +178,7 @@ public class KelSkills : Skills
             int critical = RollCritical(hero.currLuck);
             int damage = (int)(critical * IsEffective(target) * (user.currAttack + hero.currAttack - target.currDefense));
 
-            target.TakeDamage(damage);
+            yield return target.TakeDamage(damage);
             yield return new WaitForSeconds(1);
         }
     }

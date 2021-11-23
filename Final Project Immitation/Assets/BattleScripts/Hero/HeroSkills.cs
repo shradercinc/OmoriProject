@@ -131,8 +131,7 @@ public class HeroSkills : Skills
         int juicing = (int)(omori.startingJuice * 0.25f);
 
         omori.TakeHealing(healing, juicing);
-        omori.userSkills.BasicAttack(omori.nextTarget);
-        yield return null;
+        yield return omori.userSkills.BasicAttack(omori.nextTarget);
     }
     public override IEnumerator FollowUpTwo()
     {
@@ -144,8 +143,7 @@ public class HeroSkills : Skills
         int juicing = (int)(aubrey.startingJuice * 0.25f);
 
         aubrey.TakeHealing(healing, juicing);
-        aubrey.userSkills.BasicAttack(aubrey.nextTarget);
-        yield return null;
+        yield return aubrey.userSkills.BasicAttack(aubrey.nextTarget);
     }
     public override IEnumerator FollowUpThree()
     {
@@ -157,7 +155,6 @@ public class HeroSkills : Skills
         int juicing = (int)(kel.startingJuice * 0.25f);
 
         kel.TakeHealing(healing, juicing);
-        kel.userSkills.BasicAttack(kel.nextTarget);
-        yield return null;
+        yield return kel.userSkills.BasicAttack(kel.nextTarget);
     }
 }

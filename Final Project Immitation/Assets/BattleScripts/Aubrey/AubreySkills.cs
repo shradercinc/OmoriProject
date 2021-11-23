@@ -82,10 +82,9 @@ public class AubreySkills : Skills
             {
                 int critical = RollCritical(user.currLuck);
                 int damage = (int)(critical * IsEffective(target) * (2 * user.currAttack - target.currDefense));
-                target.TakeDamage(damage);
+                yield return target.TakeDamage(damage);
             }
         }
-        yield return null;
     }
     public override IEnumerator UseSkillTwo(BattleCharacter target)
     {
@@ -102,10 +101,9 @@ public class AubreySkills : Skills
             {
                 int critical = RollCritical(user.currLuck);
                 int damage = (int)(critical * IsEffective(target) * (2 * user.currAttack - target.currDefense));
-                target.TakeDamage(damage);
+                yield return target.TakeDamage(damage);
             }
         }
-        yield return null;
     }
     public override IEnumerator UseSkillThree(BattleCharacter target)
     {
@@ -126,11 +124,10 @@ public class AubreySkills : Skills
             {
                 int critical = RollCritical(user.currLuck);
                 int damage = (int)(critical * IsEffective(target) * (4 * user.currHealth - target.currDefense));
-                target.TakeDamage(damage);
-                user.TakeDamage(100);
+                yield return target.TakeDamage(damage);
+                yield return user.TakeDamage(100);
             }
         }
-        yield return null;
     }
     public override IEnumerator FollowUpOne()
     {
@@ -140,8 +137,7 @@ public class AubreySkills : Skills
 
         int critical = RollCritical(user.currLuck);
         int damage = (int)(critical * IsEffective(target) * (3 * user.currAttack));
-        target.TakeDamage(damage);
-        yield return null;
+        yield return target.TakeDamage(damage);
     }
     public override IEnumerator FollowUpTwo()
     {

@@ -252,7 +252,7 @@ public class BattleCharacter : MonoBehaviour
         ResetStats();
     }
 
-    public void TakeDamage(int damage)
+    public IEnumerator TakeDamage(int damage)
     {
         damage = (int)(damage * Random.Range(0.8f, 1.2f));
 
@@ -269,7 +269,7 @@ public class BattleCharacter : MonoBehaviour
             manager.AddText(gameObject.name + " didn't take any damage.");
         }
 
-        ResetStats();
+        yield return ResetStats();
     }
 
     public bool DrainJuice(int juice)
@@ -301,7 +301,7 @@ public class BattleCharacter : MonoBehaviour
         ResetStats();
     }
 
-    void nowToast()
+    IEnumerator nowToast()
     {
         toast = true;
         currHealth = 0;
@@ -315,6 +315,9 @@ public class BattleCharacter : MonoBehaviour
         speedStat = 1;
         luckStat = 1;
         accuracyStat = 1;
+
+        if (weapon != null)
+            yield return weapon.OnToast();
     }
 
     public void NewEmotion(Emotion newEmote)
@@ -356,7 +359,7 @@ public class BattleCharacter : MonoBehaviour
         ResetStats();
     }
 
-    public void ResetStats()
+    public IEnumerator ResetStats()
     {
         if (attackStat < 0.5f)
             attackStat = 0.5f;
@@ -426,7 +429,7 @@ public class BattleCharacter : MonoBehaviour
 
         toast = false;
         if (currHealth <= 0)
-            nowToast();
+            yield return nowToast();
         else if (currHealth > startingHealth)
             currHealth = startingHealth;
         if (currJuice < 0)

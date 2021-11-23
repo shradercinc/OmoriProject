@@ -83,10 +83,9 @@ public class OmoriSkills : Skills
             {
                 int critical = RollCritical(user.currLuck);
                 int damage = (int)(critical * IsEffective(target) * (2 * user.currAttack - target.currDefense));
-                target.TakeDamage(damage);
+                yield return target.TakeDamage(damage);
             }
         }
-        yield return null;
     }
     public override IEnumerator UseSkillTwo(BattleCharacter target)
     {
@@ -105,10 +104,9 @@ public class OmoriSkills : Skills
             {
                 int critical = RollCritical(user.currLuck);
                 int damage = (int)(critical * IsEffective(target) * (2 * user.currAttack - target.currDefense));
-                target.TakeDamage(damage);
+                yield return target.TakeDamage(damage);
             }
         }
-        yield return null;
     }
     public override IEnumerator UseSkillThree(BattleCharacter target)
     {
@@ -141,11 +139,8 @@ public class OmoriSkills : Skills
     public override IEnumerator FollowUpOne()
     {
         manager.energy -= energyCost[0];
-        manager.AddText("Omori attacks two more times.", true);
-
-        user.userSkills.BasicAttack(user.nextTarget);
-        user.userSkills.BasicAttack(user.nextTarget);
-        yield return null;
+        yield return user.userSkills.BasicAttack(user.nextTarget);
+        yield return user.userSkills.BasicAttack(user.nextTarget);
     }
     public override IEnumerator FollowUpTwo()
     {
@@ -159,8 +154,7 @@ public class OmoriSkills : Skills
 
         int critical = RollCritical(user.currLuck);
         int damage = (int)(critical * IsEffective(target) * (user.currAttack + user.currLuck - target.currDefense));
-        target.TakeDamage(damage);
-        yield return null;
+        yield return target.TakeDamage(damage);
     }
     public override IEnumerator FollowUpThree()
     {
@@ -174,10 +168,8 @@ public class OmoriSkills : Skills
 
             int critical = RollCritical(user.currLuck);
             int damage = (int)(critical * IsEffective(target) * (4.5 * user.currAttack));
-            target.TakeDamage(damage);
-
+            yield return target.TakeDamage(damage);
             yield return new WaitForSeconds(1);
         }
-        yield return null;
     }
 }

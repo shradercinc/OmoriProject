@@ -19,4 +19,8 @@ public class Weapon : MonoBehaviour
     {
         yield return null;
     }
+    public virtual IEnumerator OnToast()
+    {
+        yield return null;
+    }
 }
