@@ -66,7 +66,7 @@ public class OmoriSkills : Skills
         user.startingAccuracy = 1;
     }
 
-    public override void UseSkillOne(BattleCharacter target)
+    public override IEnumerator UseSkillOne(BattleCharacter target)
     {
         user.currJuice -= juiceCost[1];
         target = RedirectTarget(target, 1);
@@ -84,8 +84,9 @@ public class OmoriSkills : Skills
             int damage = (int)(critical * IsEffective(target) * (2 * user.currAttack - target.currDefense));
             target.TakeDamage(damage);
         }
+        yield return null;
     }
-    public override void UseSkillTwo(BattleCharacter target)
+    public override IEnumerator UseSkillTwo(BattleCharacter target)
     {
         user.currJuice -= juiceCost[2];
         target = RedirectTarget(target, 2);
@@ -103,15 +104,18 @@ public class OmoriSkills : Skills
             int damage = (int)(critical * IsEffective(target) * (2 * user.currAttack - target.currDefense));
             target.TakeDamage(damage);
         }
+        yield return null;
     }
-    public override void UseSkillThree(BattleCharacter target)
+    public override IEnumerator UseSkillThree(BattleCharacter target)
     {
         user.currJuice -= juiceCost[3];
         target = RedirectTarget(target, 3);
         manager.AddText("Omori reads " + target.name + " a poem.", true);
+
         target.NewEmotion(BattleCharacter.Emotion.SAD);
+        yield return null;
     }
-    public override void UseSkillFour(BattleCharacter target)
+    public override IEnumerator UseSkillFour(BattleCharacter target)
     {
         user.currJuice -= juiceCost[4];
         target = RedirectTarget(target, 4);
@@ -123,17 +127,20 @@ public class OmoriSkills : Skills
         target.luckStat -= 0.1f;
         target.accuracyStat -= 0.1f;
         manager.AddText("All of " + target.name + "'s stats decrease.");
+
         target.ResetStats();
+        yield return null;
     }
-    public override void FollowUpOne()
+    public override IEnumerator FollowUpOne()
     {
         manager.energy -= energyCost[0];
         manager.AddText("Omori attacks two more times.", true);
 
         user.userSkills.BasicAttack(user.nextTarget);
         user.userSkills.BasicAttack(user.nextTarget);
+        yield return null;
     }
-    public override void FollowUpTwo()
+    public override IEnumerator FollowUpTwo()
     {
         manager.energy -= energyCost[1];
         BattleCharacter target = manager.foes[Random.Range(0, manager.foes.Count - 1)];
@@ -146,18 +153,24 @@ public class OmoriSkills : Skills
         int critical = RollCritical(user.currLuck);
         int damage = (int)(critical * IsEffective(target) * (user.currAttack + user.currLuck - target.currDefense));
         target.TakeDamage(damage);
+        yield return null;
     }
-    public override void FollowUpThree()
+    public override IEnumerator FollowUpThree()
     {
         manager.energy -= energyCost[2];
         manager.AddText("Omori and friends come together and use their ultimate attack.", true);
 
         for (int i = 0; i < manager.foes.Count; i++)
         {
+            manager.AddText("Omori and friends come together and use their ultimate attack.", true);
             BattleCharacter target = manager.foes[i];
+
             int critical = RollCritical(user.currLuck);
             int damage = (int)(critical * IsEffective(target) * (4.5 * user.currAttack));
             target.TakeDamage(damage);
+
+            yield return new WaitForSeconds(1);
         }
+        yield return null;
     }
 }

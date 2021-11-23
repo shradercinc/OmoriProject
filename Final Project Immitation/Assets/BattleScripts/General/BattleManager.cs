@@ -88,8 +88,8 @@ public class BattleManager : MonoBehaviour
             if (!nextInLine.toast)
             {
                 if (nextInLine.weapon != null)
-                    nextInLine.weapon.StartOfTurn();
-                nextInLine.UseMove();
+                    yield return nextInLine.weapon.StartOfTurn();
+                yield return nextInLine.UseMove();
 
                 if (energy >= 3 && nextInLine.friend && nextInLine.currMove == BattleCharacter.Move.ATTACK)
                     yield return FollowUp(nextInLine);
@@ -141,19 +141,19 @@ public class BattleManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Alpha2) && skillOne)
             {
-                user.userSkills.FollowUpOne();
+                yield return user.userSkills.FollowUpOne();
                 decision = false;
                 yield return new WaitForSeconds(1.5f);
             }
             else if (Input.GetKeyDown(KeyCode.Alpha3) && skillTwo)
             {
-                user.userSkills.FollowUpTwo();
+                yield return user.userSkills.FollowUpTwo();
                 decision = false;
                 yield return new WaitForSeconds(1.5f);
             }
             else if (Input.GetKeyDown(KeyCode.Alpha4) && skillThree)
             {
-                user.userSkills.FollowUpThree();
+                yield return user.userSkills.FollowUpThree();
                 decision = false;
                 yield return new WaitForSeconds(1.5f);
             }

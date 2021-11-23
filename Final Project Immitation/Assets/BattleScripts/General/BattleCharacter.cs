@@ -211,41 +211,41 @@ public class BattleCharacter : MonoBehaviour
         }
     }
 
-    public void UseMove()
+    public IEnumerator UseMove()
     {
-        if (toast)
-            return;
-
-        switch (currMove)
+        if (!toast)
         {
-            case Move.ATTACK:
+            switch (currMove)
             {
-                userSkills.BasicAttack(nextTarget);
-                break;
-            }
-            case Move.SKILL1:
-            {
-                userSkills.UseSkillOne(nextTarget);
-                break;
-            }
-            case Move.SKILL2:
-            {
-                userSkills.UseSkillTwo(nextTarget);
-                break;
-            }
-            case Move.SKILL3:
-            {
-                userSkills.UseSkillThree(nextTarget);
-                break;
-            }
-            case Move.SKILL4:
-            {
-                userSkills.UseSkillFour(nextTarget);
-                break;
-            }
-            case Move.NONE:
-            {
-                break;
+                case Move.ATTACK:
+                    {
+                        yield return userSkills.BasicAttack(nextTarget);
+                        break;
+                    }
+                case Move.SKILL1:
+                    {
+                        yield return userSkills.UseSkillOne(nextTarget);
+                        break;
+                    }
+                case Move.SKILL2:
+                    {
+                        yield return userSkills.UseSkillTwo(nextTarget);
+                        break;
+                    }
+                case Move.SKILL3:
+                    {
+                        yield return userSkills.UseSkillThree(nextTarget);
+                        break;
+                    }
+                case Move.SKILL4:
+                    {
+                        yield return userSkills.UseSkillFour(nextTarget);
+                        break;
+                    }
+                case Move.NONE:
+                    {
+                        break;
+                    }
             }
         }
 

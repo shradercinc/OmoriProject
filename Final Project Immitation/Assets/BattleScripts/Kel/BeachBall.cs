@@ -7,10 +7,11 @@ public class BeachBall : Weapon
     public override void AffectUser()
     {
         user = gameObject.GetComponent<BattleCharacter>();
-        user.startingLuck += 0.15f;
+        user.startingAccuracy += 0.2f;
         user.currEmote = BattleCharacter.Emotion.HAPPY;
     }
-    public override void StartOfTurn()
+    public override IEnumerator StartOfTurn()
     {
+        yield return null;
     }
 }

@@ -67,7 +67,7 @@ public class HeroSkills : Skills
         user.startingAccuracy = 1;
     }
 
-    public override void UseSkillOne(BattleCharacter target)
+    public override IEnumerator UseSkillOne(BattleCharacter target)
     {
         user.currJuice -= juiceCost[1];
         target = RedirectTarget(target, 1);
@@ -75,8 +75,9 @@ public class HeroSkills : Skills
 
         int juice = (int)(target.startingJuice / 2);
         target.TakeHealing(0, juice);
+        yield return null;
     }
-    public override void UseSkillTwo(BattleCharacter target)
+    public override IEnumerator UseSkillTwo(BattleCharacter target)
     {
         user.currJuice -= juiceCost[2];
         target = RedirectTarget(target, 2);
@@ -84,8 +85,9 @@ public class HeroSkills : Skills
 
         int health = (int) (target.startingHealth * 0.7);
         target.TakeHealing(health, 0);
+        yield return null;
     }
-    public override void UseSkillThree(BattleCharacter target)
+    public override IEnumerator UseSkillThree(BattleCharacter target)
     {
         user.currJuice -= juiceCost[3];
 
@@ -98,8 +100,9 @@ public class HeroSkills : Skills
             target.ResetStats();
             manager.ReturnToList(target);
         }
+        yield return null;
     }
-    public override void UseSkillFour(BattleCharacter target)
+    public override IEnumerator UseSkillFour(BattleCharacter target)
     {
         user.currJuice -= juiceCost[4];
         manager.AddText("Hero brings snacks for everyone.", true);
@@ -109,8 +112,9 @@ public class HeroSkills : Skills
             int recover = (int)(manager.friends[i].startingHealth * 0.4);
             manager.friends[i].TakeHealing(recover, 0);
         }
+        yield return null;
     }
-    public override void FollowUpOne()
+    public override IEnumerator FollowUpOne()
     {
         manager.energy -= energyCost[0];
         BattleCharacter omori = followUpRequire[0];
@@ -121,8 +125,9 @@ public class HeroSkills : Skills
 
         omori.TakeHealing(healing, juicing);
         omori.userSkills.BasicAttack(omori.nextTarget);
+        yield return null;
     }
-    public override void FollowUpTwo()
+    public override IEnumerator FollowUpTwo()
     {
         manager.energy -= energyCost[1];
         BattleCharacter aubrey = followUpRequire[1];
@@ -133,8 +138,9 @@ public class HeroSkills : Skills
 
         aubrey.TakeHealing(healing, juicing);
         aubrey.userSkills.BasicAttack(aubrey.nextTarget);
+        yield return null;
     }
-    public override void FollowUpThree()
+    public override IEnumerator FollowUpThree()
     {
         manager.energy -= energyCost[2];
         BattleCharacter kel = followUpRequire[2];
@@ -145,5 +151,6 @@ public class HeroSkills : Skills
 
         kel.TakeHealing(healing, juicing);
         kel.userSkills.BasicAttack(kel.nextTarget);
+        yield return null;
     }
 }

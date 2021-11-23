@@ -43,7 +43,7 @@ public class Skills : MonoBehaviour
         return 1;
     }
 
-    public void BasicAttack(BattleCharacter target)
+    public IEnumerator BasicAttack(BattleCharacter target)
     {
         target = RedirectTarget(target, 0);
         manager.AddText(user.name + " attacks.", true);
@@ -54,6 +54,7 @@ public class Skills : MonoBehaviour
             int damage = (int)(critical * IsEffective(target) * (user.currAttack - target.currDefense));
             target.TakeDamage(damage);
         }
+        yield return null;
     }
 
     public float IsEffective(BattleCharacter target)
@@ -204,25 +205,32 @@ public class Skills : MonoBehaviour
     public virtual void SetStartingStats()
     {
     }
-    public virtual void UseSkillOne(BattleCharacter target)
+    public virtual IEnumerator UseSkillOne(BattleCharacter target)
     {
+        yield return null;
     }
-    public virtual void UseSkillTwo(BattleCharacter target)
+    public virtual IEnumerator UseSkillTwo(BattleCharacter target)
     {
+        yield return null;
     }
-    public virtual void UseSkillThree(BattleCharacter target)
+    public virtual IEnumerator UseSkillThree(BattleCharacter target)
     {
+        yield return null;
     }
-    public virtual void UseSkillFour(BattleCharacter target)
+    public virtual IEnumerator UseSkillFour(BattleCharacter target)
     {
+        yield return null;
     }
-    public virtual void FollowUpOne()
+    public virtual IEnumerator FollowUpOne()
     {
+        yield return null;
     }
-    public virtual void FollowUpTwo()
+    public virtual IEnumerator FollowUpTwo()
     {
+        yield return null;
     }
-    public virtual void FollowUpThree()
+    public virtual IEnumerator FollowUpThree()
     {
+        yield return null;
     }
 }

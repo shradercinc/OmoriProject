@@ -67,7 +67,7 @@ public class AubreySkills : Skills
         user.startingAccuracy = 1;
     }
 
-    public override void UseSkillOne(BattleCharacter target)
+    public override IEnumerator UseSkillOne(BattleCharacter target)
     {
         user.currJuice -= juiceCost[1];
         manager.AddText("Aubrey shows off her positive spirit.", true);
@@ -83,8 +83,9 @@ public class AubreySkills : Skills
             int damage = (int)(critical * IsEffective(target) * (2 * user.currAttack - target.currDefense));
             target.TakeDamage(damage);
         }
+        yield return null;
     }
-    public override void UseSkillTwo(BattleCharacter target)
+    public override IEnumerator UseSkillTwo(BattleCharacter target)
     {
         user.currJuice -= juiceCost[2];
         manager.AddText("Aubrey hits a home run.", true);
@@ -100,17 +101,20 @@ public class AubreySkills : Skills
             int damage = (int)(critical * IsEffective(target) * (2 * user.currAttack - target.currDefense));
             target.TakeDamage(damage);
         }
+        yield return null;
     }
-    public override void UseSkillThree(BattleCharacter target)
+    public override IEnumerator UseSkillThree(BattleCharacter target)
     {
         user.currJuice -= juiceCost[3];
         manager.AddText("Aubrey cheers on " + target.name + ".", true);
         target.NewEmotion(BattleCharacter.Emotion.HAPPY);
+        yield return null;
     }
-    public override void UseSkillFour(BattleCharacter target)
+    public override IEnumerator UseSkillFour(BattleCharacter target)
     {
         user.currJuice -= juiceCost[4];
         manager.AddText("Aubrey gives it everything she's got.", true);
+
         if (RollAccuracy(user.currAccuracy))
         {
             int critical = RollCritical(user.currLuck);
@@ -118,8 +122,9 @@ public class AubreySkills : Skills
             target.TakeDamage(damage);
             user.TakeDamage(100);
         }
+        yield return null;
     }
-    public override void FollowUpOne()
+    public override IEnumerator FollowUpOne()
     {
         manager.energy -= energyCost[0];
         BattleCharacter target = manager.foes[Random.Range(0, manager.foes.Count - 1)];
@@ -128,8 +133,9 @@ public class AubreySkills : Skills
         int critical = RollCritical(user.currLuck);
         int damage = (int)(critical * IsEffective(target) * (3 * user.currAttack));
         target.TakeDamage(damage);
+        yield return null;
     }
-    public override void FollowUpTwo()
+    public override IEnumerator FollowUpTwo()
     {
         manager.energy -= energyCost[1];
         BattleCharacter kel = followUpRequire[1];
@@ -142,8 +148,10 @@ public class AubreySkills : Skills
         kel.attackStat += 0.15f;
         manager.AddText(kel.name + "'s attack increases.");
         kel.NewEmotion(BattleCharacter.Emotion.ANGRY);
+
+        yield return null;
     }
-    public override void FollowUpThree()
+    public override IEnumerator FollowUpThree()
     {
         manager.energy -= energyCost[2];
         manager.AddText("Hero cheers on Aubrey.", true);
@@ -153,5 +161,6 @@ public class AubreySkills : Skills
         int healing = (int) (user.startingHealth * 0.5f);
         user.TakeHealing(healing, 0);
         user.NewEmotion(BattleCharacter.Emotion.HAPPY);
+        yield return null;
     }
 }

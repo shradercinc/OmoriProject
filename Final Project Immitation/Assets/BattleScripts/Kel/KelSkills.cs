@@ -67,7 +67,7 @@ public class KelSkills : Skills
         user.startingAccuracy = 1;
     }
 
-    public override void UseSkillOne(BattleCharacter target)
+    public override IEnumerator UseSkillOne(BattleCharacter target)
     {
         user.currJuice -= juiceCost[1];
         target = RedirectTarget(target, 1);
@@ -85,8 +85,9 @@ public class KelSkills : Skills
             int damage = (int)(critical * IsEffective(target) * (2 * user.currAttack - target.currDefense));
             target.TakeDamage(damage);
         }
+        yield return null;
     }
-    public override void UseSkillTwo(BattleCharacter target)
+    public override IEnumerator UseSkillTwo(BattleCharacter target)
     {
         user.currJuice -= juiceCost[2];
         target = RedirectTarget(target, 2);
@@ -104,38 +105,39 @@ public class KelSkills : Skills
             int damage = (int)(critical * IsEffective(target) * (2 * user.currAttack - target.currDefense));
             target.TakeDamage(damage);
         }
+        yield return null;
     }
-    public override void UseSkillThree(BattleCharacter target)
+    public override IEnumerator UseSkillThree(BattleCharacter target)
     {
         user.currJuice -= juiceCost[3];
         target = RedirectTarget(target, 3);
         manager.AddText("Kel annoys " + target.name + ".", true);
+
         target.NewEmotion(BattleCharacter.Emotion.ANGRY);
-    }
-    public override void UseSkillFour(BattleCharacter target)
-    {
-        user.currJuice -= juiceCost[4];
-        StartCoroutine(FourthSkill());
+        yield return null;
     }
 
-    IEnumerator FourthSkill()
+    public override IEnumerator UseSkillFour(BattleCharacter target)
     {
-        for (int i = 0; i < manager.foes.Count; i++)
+        user.currJuice -= juiceCost[4];
+        List<BattleCharacter> allEnemies = manager.foes;
+
+        for (int i = 0; i < allEnemies.Count; i++)
         {
             manager.AddText("Kel's ball bounces everywhere.", true);
-            BattleCharacter target = manager.foes[i];
+            target = allEnemies[i];
 
             if (RollAccuracy(user.currAccuracy))
             {
                 int critical = RollCritical(user.currLuck);
-                int damage = (int)(critical * IsEffective(target) * (2.5 * user.currSpeed - target.currDefense));
+                int damage = (int)(critical * IsEffective(target) * (1.5 * user.currSpeed - target.currDefense));
                 target.TakeDamage(damage);
             }
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(1);
         }
     }
 
-    public override void FollowUpOne()
+    public override IEnumerator FollowUpOne()
     {
         BattleCharacter omori = followUpRequire[0];
         manager.energy -= energyCost[0];
@@ -145,9 +147,11 @@ public class KelSkills : Skills
         BattleCharacter target = manager.foes[Random.Range(0, manager.foes.Count - 1)];
         int critical = RollCritical(omori.currLuck);
         int damage = (int)(critical * IsEffective(target) * (1.5 * user.currAttack + 1.5 * omori.currAttack - target.currDefense));
+
         target.TakeDamage(damage);
+        yield return null;
     }
-    public override void FollowUpTwo()
+    public override IEnumerator FollowUpTwo()
     {
         BattleCharacter aubrey = followUpRequire[1];
         BattleCharacter target = manager.foes[Random.Range(0, manager.foes.Count - 1)];
@@ -157,25 +161,24 @@ public class KelSkills : Skills
         int critical = RollCritical(aubrey.currLuck);
         int damage = (int)(critical * IsEffective(target) * (2 * user.currAttack + 2 * aubrey.currAttack - target.currDefense));
         target.TakeDamage(damage);
+        yield return null;
     }
-    public override void FollowUpThree()
+    public override IEnumerator FollowUpThree()
     {
         manager.energy -= energyCost[2];
-        StartCoroutine(ThirdFollow());
-    }
-    IEnumerator ThirdFollow()
-    { 
         BattleCharacter hero = followUpRequire[2];
+        List<BattleCharacter> allEnemies = manager.foes;
 
-        for (int i = 0; i < manager.foes.Count; i++)
+        for (int i = 0; i < allEnemies.Count; i++)
         {
             manager.AddText("Kel passes the ball to Hero, who throws it high up to let Kel do a slam dunk.", true);
-            BattleCharacter target = manager.foes[i];
+            BattleCharacter target = allEnemies[i];
 
             int critical = RollCritical(hero.currLuck);
             int damage = (int)(critical * IsEffective(target) * (user.currAttack + hero.currAttack - target.currDefense));
+
             target.TakeDamage(damage);
+            yield return new WaitForSeconds(1);
         }
-        yield return new WaitForSeconds(1.5f);
     }
 }

@@ -4,14 +4,27 @@ using UnityEngine;
 
 public class SweetheartBust : Weapon
 {
+    int unalteredAttack;
+    int unalteredDefense;
+    int unalteredSpeed;
+
     public override void AffectUser()
     {
         user = gameObject.GetComponent<BattleCharacter>();
-        user.startingAttack += 20;
-        user.startingSpeed -= 10;
-        user.startingAccuracy -= 0.15f;
+        unalteredAttack = user.startingAttack;
+        unalteredDefense = user.startingDefense;
+        unalteredSpeed = user.startingSpeed;
     }
-    public override void StartOfTurn()
+    public override IEnumerator StartOfTurn()
     {
+        if ((float)user.currHealth / user.startingHealth < 0.5f)
+        {
+            user.startingAttack = unalteredAttack + 5;
+            user.startingDefense = unalteredDefense + 5;
+            user.startingSpeed = unalteredSpeed + 5;
+
+            user.ResetStats();
+            yield return null;
+        }
     }
 }
