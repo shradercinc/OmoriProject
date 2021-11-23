@@ -69,58 +69,66 @@ public class AubreySkills : Skills
 
     public override IEnumerator UseSkillOne(BattleCharacter target)
     {
-        user.currJuice -= juiceCost[1];
-        manager.AddText("Aubrey shows off her positive spirit.", true);
-        if (target.currEmote == BattleCharacter.Emotion.SAD || target.currEmote == BattleCharacter.Emotion.DEPRESSED)
+        if (user.DrainJuice(juiceCost[1]))
         {
-            target.defenseStat -= 0.15f;
-            target.ResetStats();
-            manager.AddText(target.name + "'s defense decreases.");
-        }
-        if (RollAccuracy(user.currAccuracy))
-        {
-            int critical = RollCritical(user.currLuck);
-            int damage = (int)(critical * IsEffective(target) * (2 * user.currAttack - target.currDefense));
-            target.TakeDamage(damage);
+            manager.AddText("Aubrey shows off her positive spirit.", true);
+            if (target.currEmote == BattleCharacter.Emotion.SAD || target.currEmote == BattleCharacter.Emotion.DEPRESSED)
+            {
+                target.defenseStat -= 0.15f;
+                target.ResetStats();
+                manager.AddText(target.name + "'s defense decreases.");
+            }
+            if (RollAccuracy(user.currAccuracy))
+            {
+                int critical = RollCritical(user.currLuck);
+                int damage = (int)(critical * IsEffective(target) * (2 * user.currAttack - target.currDefense));
+                target.TakeDamage(damage);
+            }
         }
         yield return null;
     }
     public override IEnumerator UseSkillTwo(BattleCharacter target)
     {
-        user.currJuice -= juiceCost[2];
-        manager.AddText("Aubrey hits a home run.", true);
-        if (user.currEmote == BattleCharacter.Emotion.HAPPY || target.currEmote == BattleCharacter.Emotion.ECSTATIC)
+        if (user.DrainJuice(juiceCost[2]))
         {
-            user.accuracyStat += 0.15f;
-            user.ResetStats();
-            manager.AddText(user.name + "'s accuracy increases.");
-        }
-        if (RollAccuracy(user.currAccuracy))
-        {
-            int critical = RollCritical(user.currLuck);
-            int damage = (int)(critical * IsEffective(target) * (2 * user.currAttack - target.currDefense));
-            target.TakeDamage(damage);
+            manager.AddText("Aubrey hits a home run.", true);
+            if (user.currEmote == BattleCharacter.Emotion.HAPPY || target.currEmote == BattleCharacter.Emotion.ECSTATIC)
+            {
+                user.accuracyStat += 0.15f;
+                user.ResetStats();
+                manager.AddText(user.name + "'s accuracy increases.");
+            }
+            if (RollAccuracy(user.currAccuracy))
+            {
+                int critical = RollCritical(user.currLuck);
+                int damage = (int)(critical * IsEffective(target) * (2 * user.currAttack - target.currDefense));
+                target.TakeDamage(damage);
+            }
         }
         yield return null;
     }
     public override IEnumerator UseSkillThree(BattleCharacter target)
     {
-        user.currJuice -= juiceCost[3];
-        manager.AddText("Aubrey cheers on " + target.name + ".", true);
-        target.NewEmotion(BattleCharacter.Emotion.HAPPY);
+        if (user.DrainJuice(juiceCost[3]))
+        {
+            manager.AddText("Aubrey cheers on " + target.name + ".", true);
+            target.NewEmotion(BattleCharacter.Emotion.HAPPY);
+        }
         yield return null;
     }
     public override IEnumerator UseSkillFour(BattleCharacter target)
     {
-        user.currJuice -= juiceCost[4];
-        manager.AddText("Aubrey gives it everything she's got.", true);
-
-        if (RollAccuracy(user.currAccuracy))
+        if (user.DrainJuice(juiceCost[4]))
         {
-            int critical = RollCritical(user.currLuck);
-            int damage = (int)(critical * IsEffective(target) * (4 * user.currHealth - target.currDefense));
-            target.TakeDamage(damage);
-            user.TakeDamage(100);
+            manager.AddText("Aubrey gives it everything she's got.", true);
+
+            if (RollAccuracy(user.currAccuracy))
+            {
+                int critical = RollCritical(user.currLuck);
+                int damage = (int)(critical * IsEffective(target) * (4 * user.currHealth - target.currDefense));
+                target.TakeDamage(damage);
+                user.TakeDamage(100);
+            }
         }
         yield return null;
     }

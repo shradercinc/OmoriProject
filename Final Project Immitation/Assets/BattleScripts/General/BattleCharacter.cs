@@ -272,6 +272,20 @@ public class BattleCharacter : MonoBehaviour
         ResetStats();
     }
 
+    public bool DrainJuice(int juice)
+    {
+        if (currJuice >= juice)
+        {
+            currJuice -= juice;
+            return true;
+        }
+        else
+        {
+            manager.AddText(gameObject.name + " doesn't have enough juice.");
+            return false;
+        }
+    }
+
     public void TakeHealing(int health, int juice)
     {
         if (health > 0)

@@ -68,67 +68,74 @@ public class OmoriSkills : Skills
 
     public override IEnumerator UseSkillOne(BattleCharacter target)
     {
-        user.currJuice -= juiceCost[1];
-        target = RedirectTarget(target, 1);
-        manager.AddText("Omori mocks " + target.name + ".", true);
+        if (user.DrainJuice(juiceCost[1]))
+        {
+            target = RedirectTarget(target, 1);
+            manager.AddText("Omori mocks " + target.name + ".", true);
 
-        if (target.currEmote == BattleCharacter.Emotion.ANGRY || target.currEmote == BattleCharacter.Emotion.ENRAGED)
-        {
-            target.attackStat -= 0.15f;
-            target.ResetStats();
-            manager.AddText(target.name + "'s attack decreases.");
-        }
-        if (RollAccuracy(user.currAccuracy))
-        {
-            int critical = RollCritical(user.currLuck);
-            int damage = (int)(critical * IsEffective(target) * (2 * user.currAttack - target.currDefense));
-            target.TakeDamage(damage);
+            if (target.currEmote == BattleCharacter.Emotion.ANGRY || target.currEmote == BattleCharacter.Emotion.ENRAGED)
+            {
+                target.attackStat -= 0.15f;
+                target.ResetStats();
+                manager.AddText(target.name + "'s attack decreases.");
+            }
+            if (RollAccuracy(user.currAccuracy))
+            {
+                int critical = RollCritical(user.currLuck);
+                int damage = (int)(critical * IsEffective(target) * (2 * user.currAttack - target.currDefense));
+                target.TakeDamage(damage);
+            }
         }
         yield return null;
     }
     public override IEnumerator UseSkillTwo(BattleCharacter target)
     {
-        user.currJuice -= juiceCost[2];
-        target = RedirectTarget(target, 2);
-        manager.AddText("Omori stabs " + target.name + ".", true);
+        if (user.DrainJuice(juiceCost[2]))
+        {
+            target = RedirectTarget(target, 2);
+            manager.AddText("Omori stabs " + target.name + ".", true);
 
-        if (user.currEmote == BattleCharacter.Emotion.SAD || target.currEmote == BattleCharacter.Emotion.DEPRESSED)
-        {
-            user.attackStat += 0.15f;
-            user.ResetStats();
-            manager.AddText(user.name + "'s attack increases.");
-        }
-        if (RollAccuracy(user.currAccuracy))
-        {
-            int critical = RollCritical(user.currLuck);
-            int damage = (int)(critical * IsEffective(target) * (2 * user.currAttack - target.currDefense));
-            target.TakeDamage(damage);
+            if (user.currEmote == BattleCharacter.Emotion.SAD || target.currEmote == BattleCharacter.Emotion.DEPRESSED)
+            {
+                user.attackStat += 0.15f;
+                user.ResetStats();
+                manager.AddText(user.name + "'s attack increases.");
+            }
+            if (RollAccuracy(user.currAccuracy))
+            {
+                int critical = RollCritical(user.currLuck);
+                int damage = (int)(critical * IsEffective(target) * (2 * user.currAttack - target.currDefense));
+                target.TakeDamage(damage);
+            }
         }
         yield return null;
     }
     public override IEnumerator UseSkillThree(BattleCharacter target)
     {
-        user.currJuice -= juiceCost[3];
-        target = RedirectTarget(target, 3);
-        manager.AddText("Omori reads " + target.name + " a poem.", true);
-
-        target.NewEmotion(BattleCharacter.Emotion.SAD);
+        if (user.DrainJuice(juiceCost[3]))
+        {
+            target = RedirectTarget(target, 3);
+            manager.AddText("Omori reads " + target.name + " a poem.", true);
+            target.NewEmotion(BattleCharacter.Emotion.SAD);
+        }
         yield return null;
     }
     public override IEnumerator UseSkillFour(BattleCharacter target)
     {
-        user.currJuice -= juiceCost[4];
-        target = RedirectTarget(target, 4);
-        manager.AddText("Omori glares at " + target.name + ".", true);
+        if (user.DrainJuice(juiceCost[4]))
+        {
+            target = RedirectTarget(target, 4);
+            manager.AddText("Omori glares at " + target.name + ".", true);
 
-        target.attackStat -= 0.1f;
-        target.defenseStat -= 0.1f;
-        target.speedStat -= 0.1f;
-        target.luckStat -= 0.1f;
-        target.accuracyStat -= 0.1f;
-        manager.AddText("All of " + target.name + "'s stats decrease.");
+            target.attackStat -= 0.1f;
+            target.defenseStat -= 0.1f;
+            target.speedStat -= 0.1f;
+            target.luckStat -= 0.1f;
+            target.accuracyStat -= 0.1f;
 
-        target.ResetStats();
+            manager.AddText("All of " + target.name + "'s stats decrease.");
+            target.ResetStats();
+        }
         yield return null;
     }
     public override IEnumerator FollowUpOne()

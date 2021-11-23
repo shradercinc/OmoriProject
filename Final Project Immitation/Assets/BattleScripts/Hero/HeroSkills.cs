@@ -69,48 +69,55 @@ public class HeroSkills : Skills
 
     public override IEnumerator UseSkillOne(BattleCharacter target)
     {
-        user.currJuice -= juiceCost[1];
-        target = RedirectTarget(target, 1);
-        manager.AddText("Hero makes some refreshments for " + target.name + ".", true);
+        if (user.DrainJuice(juiceCost[1]))
+        {
+            target = RedirectTarget(target, 1);
+            manager.AddText("Hero makes some refreshments for " + target.name + ".", true);
 
-        int juice = (int)(target.startingJuice / 2);
-        target.TakeHealing(0, juice);
+            int juice = (int)(target.startingJuice / 2);
+            target.TakeHealing(0, juice);
+        }
         yield return null;
     }
     public override IEnumerator UseSkillTwo(BattleCharacter target)
     {
-        user.currJuice -= juiceCost[2];
-        target = RedirectTarget(target, 2);
-        manager.AddText("Hero prepares a meal for " + target.name + ".", true);
+        if (user.DrainJuice(juiceCost[2]))
+        {
+            target = RedirectTarget(target, 2);
+            manager.AddText("Hero prepares a meal for " + target.name + ".", true);
 
-        int health = (int) (target.startingHealth * 0.7);
-        target.TakeHealing(health, 0);
+            int health = (int)(target.startingHealth * 0.7);
+            target.TakeHealing(health, 0);
+        }
         yield return null;
     }
     public override IEnumerator UseSkillThree(BattleCharacter target)
     {
-        user.currJuice -= juiceCost[3];
-
-        if (manager.toast.Count > 0)
+        if (user.DrainJuice(juiceCost[3]))
         {
-            target = manager.toast[Random.Range(0, manager.toast.Count - 1)];
-            manager.AddText("Hero brings back " + target.name + ".", true);
+            if (manager.toast.Count > 0)
+            {
+                target = manager.toast[Random.Range(0, manager.toast.Count - 1)];
+                manager.AddText("Hero brings back " + target.name + ".", true);
 
-            target.currHealth = (int)(target.startingHealth * 0.4);
-            target.ResetStats();
-            manager.ReturnToList(target);
+                target.currHealth = (int)(target.startingHealth * 0.4);
+                target.ResetStats();
+                manager.ReturnToList(target);
+            }
         }
         yield return null;
     }
     public override IEnumerator UseSkillFour(BattleCharacter target)
     {
-        user.currJuice -= juiceCost[4];
-        manager.AddText("Hero brings snacks for everyone.", true);
-
-        for (int i = 0; i < manager.friends.Count; i++)
+        if (user.DrainJuice(juiceCost[4]))
         {
-            int recover = (int)(manager.friends[i].startingHealth * 0.4);
-            manager.friends[i].TakeHealing(recover, 0);
+            manager.AddText("Hero brings snacks for everyone.", true);
+
+            for (int i = 0; i < manager.friends.Count; i++)
+            {
+                int recover = (int)(manager.friends[i].startingHealth * 0.4);
+                manager.friends[i].TakeHealing(recover, 0);
+            }
         }
         yield return null;
     }

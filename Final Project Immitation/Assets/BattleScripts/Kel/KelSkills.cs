@@ -69,71 +69,77 @@ public class KelSkills : Skills
 
     public override IEnumerator UseSkillOne(BattleCharacter target)
     {
-        user.currJuice -= juiceCost[1];
-        target = RedirectTarget(target, 1);
-        manager.AddText("Kel starts a snowball fight against " + target.name + ".", true);
+        if (user.DrainJuice(juiceCost[1]))
+        {
+            target = RedirectTarget(target, 1);
+            manager.AddText("Kel starts a snowball fight against " + target.name + ".", true);
 
-        if (target.currEmote == BattleCharacter.Emotion.HAPPY || target.currEmote == BattleCharacter.Emotion.ECSTATIC)
-        {
-            target.speedStat -= 0.15f;
-            target.ResetStats();
-            manager.AddText(target.name + "'s speed decreases.");
-        }
-        if (RollAccuracy(user.currAccuracy))
-        {
-            int critical = RollCritical(user.currLuck);
-            int damage = (int)(critical * IsEffective(target) * (2 * user.currAttack - target.currDefense));
-            target.TakeDamage(damage);
+            if (target.currEmote == BattleCharacter.Emotion.HAPPY || target.currEmote == BattleCharacter.Emotion.ECSTATIC)
+            {
+                target.speedStat -= 0.15f;
+                target.ResetStats();
+                manager.AddText(target.name + "'s speed decreases.");
+            }
+            if (RollAccuracy(user.currAccuracy))
+            {
+                int critical = RollCritical(user.currLuck);
+                int damage = (int)(critical * IsEffective(target) * (2 * user.currAttack - target.currDefense));
+                target.TakeDamage(damage);
+            }
         }
         yield return null;
     }
     public override IEnumerator UseSkillTwo(BattleCharacter target)
     {
-        user.currJuice -= juiceCost[2];
-        target = RedirectTarget(target, 2);
-        manager.AddText("Kel headbutts " + target.name + ".", true);
+        if (user.DrainJuice(juiceCost[2]))
+        {
+            target = RedirectTarget(target, 2);
+            manager.AddText("Kel headbutts " + target.name + ".", true);
 
-        if (user.currEmote == BattleCharacter.Emotion.ANGRY || target.currEmote == BattleCharacter.Emotion.ENRAGED)
-        {
-            user.luckStat += 0.15f;
-            user.ResetStats();
-            manager.AddText(user.name + "'s luck increases.");
-        }
-        if (RollAccuracy(user.currAccuracy))
-        {
-            int critical = RollCritical(user.currLuck);
-            int damage = (int)(critical * IsEffective(target) * (2 * user.currAttack - target.currDefense));
-            target.TakeDamage(damage);
+            if (user.currEmote == BattleCharacter.Emotion.ANGRY || target.currEmote == BattleCharacter.Emotion.ENRAGED)
+            {
+                user.luckStat += 0.15f;
+                user.ResetStats();
+                manager.AddText(user.name + "'s luck increases.");
+            }
+            if (RollAccuracy(user.currAccuracy))
+            {
+                int critical = RollCritical(user.currLuck);
+                int damage = (int)(critical * IsEffective(target) * (2 * user.currAttack - target.currDefense));
+                target.TakeDamage(damage);
+            }
         }
         yield return null;
     }
     public override IEnumerator UseSkillThree(BattleCharacter target)
     {
-        user.currJuice -= juiceCost[3];
-        target = RedirectTarget(target, 3);
-        manager.AddText("Kel annoys " + target.name + ".", true);
-
-        target.NewEmotion(BattleCharacter.Emotion.ANGRY);
+        if (user.DrainJuice(juiceCost[3]))
+        {
+            target = RedirectTarget(target, 3);
+            manager.AddText("Kel annoys " + target.name + ".", true);
+            target.NewEmotion(BattleCharacter.Emotion.ANGRY);
+        }
         yield return null;
     }
 
     public override IEnumerator UseSkillFour(BattleCharacter target)
     {
-        user.currJuice -= juiceCost[4];
-        List<BattleCharacter> allEnemies = manager.foes;
-
-        for (int i = 0; i < allEnemies.Count; i++)
+        if (user.DrainJuice(juiceCost[4]))
         {
-            manager.AddText("Kel's ball bounces everywhere.", true);
-            target = allEnemies[i];
-
-            if (RollAccuracy(user.currAccuracy))
+            List<BattleCharacter> allEnemies = manager.foes;
+            for (int i = 0; i < allEnemies.Count; i++)
             {
-                int critical = RollCritical(user.currLuck);
-                int damage = (int)(critical * IsEffective(target) * (1.5 * user.currSpeed - target.currDefense));
-                target.TakeDamage(damage);
+                manager.AddText("Kel's ball bounces everywhere.", true);
+                target = allEnemies[i];
+
+                if (RollAccuracy(user.currAccuracy))
+                {
+                    int critical = RollCritical(user.currLuck);
+                    int damage = (int)(critical * IsEffective(target) * (1.5 * user.currSpeed - target.currDefense));
+                    target.TakeDamage(damage);
+                }
+                yield return new WaitForSeconds(1);
             }
-            yield return new WaitForSeconds(1);
         }
     }
 
