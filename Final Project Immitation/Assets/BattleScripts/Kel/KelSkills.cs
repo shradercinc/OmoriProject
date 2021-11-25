@@ -69,7 +69,10 @@ public class KelSkills : Skills
 
     public override IEnumerator UseSkillOne(BattleCharacter target)
     {
-        if (user.DrainJuice(juiceCost[1]))
+        bool check = juiceCost[1] <= user.currJuice;
+        yield return user.DrainJuice(juiceCost[1]);
+
+        if (check)
         {
             target = RedirectTarget(target, 1);
             manager.AddText("Kel starts a snowball fight against " + target.name + ".", true);
@@ -90,7 +93,10 @@ public class KelSkills : Skills
     }
     public override IEnumerator UseSkillTwo(BattleCharacter target)
     {
-        if (user.DrainJuice(juiceCost[2]))
+        bool check = juiceCost[2] <= user.currJuice;
+        yield return user.DrainJuice(juiceCost[2]);
+
+        if (check)
         {
             target = RedirectTarget(target, 2);
             manager.AddText("Kel headbutts " + target.name + ".", true);
@@ -111,18 +117,23 @@ public class KelSkills : Skills
     }
     public override IEnumerator UseSkillThree(BattleCharacter target)
     {
-        if (user.DrainJuice(juiceCost[3]))
+        bool check = juiceCost[3] <= user.currJuice;
+        yield return user.DrainJuice(juiceCost[3]);
+
+        if (check)
         {
             target = RedirectTarget(target, 3);
             manager.AddText("Kel annoys " + target.name + ".", true);
             yield return target.NewEmotion(BattleCharacter.Emotion.ANGRY);
         }
-        yield return null;
     }
 
     public override IEnumerator UseSkillFour(BattleCharacter target)
     {
-        if (user.DrainJuice(juiceCost[4]))
+        bool check = juiceCost[4] <= user.currJuice;
+        yield return user.DrainJuice(juiceCost[4]);
+
+        if (check)
         {
             List<BattleCharacter> allEnemies = manager.foes;
             for (int i = 0; i < allEnemies.Count; i++)
@@ -144,7 +155,7 @@ public class KelSkills : Skills
     public override IEnumerator FollowUpOne()
     {
         BattleCharacter omori = followUpRequire[0];
-        manager.energy -= energyCost[0];
+        yield return manager.AddEnergy(-energyCost[0]);
         manager.AddText("Kel passes the ball to Omori, who then throws it.", true);
         yield return omori.NewEmotion(BattleCharacter.Emotion.HAPPY);
 
@@ -157,7 +168,7 @@ public class KelSkills : Skills
     {
         BattleCharacter aubrey = followUpRequire[1];
         BattleCharacter target = manager.foes[Random.Range(0, manager.foes.Count - 1)];
-        manager.energy -= energyCost[1];
+        yield return manager.AddEnergy(-energyCost[1]);
         manager.AddText("Kel passes the ball to Aubrey, who knocks it out of the park.", true);
 
         int critical = RollCritical(aubrey.currLuck);
@@ -166,7 +177,7 @@ public class KelSkills : Skills
     }
     public override IEnumerator FollowUpThree()
     {
-        manager.energy -= energyCost[2];
+        yield return manager.AddEnergy(-energyCost[2]);
         BattleCharacter hero = followUpRequire[2];
         List<BattleCharacter> allEnemies = manager.foes;
 

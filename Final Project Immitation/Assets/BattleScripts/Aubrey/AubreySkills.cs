@@ -69,7 +69,10 @@ public class AubreySkills : Skills
 
     public override IEnumerator UseSkillOne(BattleCharacter target)
     {
-        if (user.DrainJuice(juiceCost[1]))
+        bool check = juiceCost[1] <= user.currJuice;
+        yield return user.DrainJuice(juiceCost[1]);
+
+        if (check)
         {
             manager.AddText("Aubrey shows off her positive spirit.", true);
             if (target.currEmote == BattleCharacter.Emotion.SAD || target.currEmote == BattleCharacter.Emotion.DEPRESSED)
@@ -88,7 +91,10 @@ public class AubreySkills : Skills
     }
     public override IEnumerator UseSkillTwo(BattleCharacter target)
     {
-        if (user.DrainJuice(juiceCost[2]))
+        bool check = juiceCost[2] <= user.currJuice;
+        yield return user.DrainJuice(juiceCost[2]);
+
+        if (check)
         {
             manager.AddText("Aubrey hits a home run.", true);
             if (user.currEmote == BattleCharacter.Emotion.HAPPY || target.currEmote == BattleCharacter.Emotion.ECSTATIC)
@@ -107,7 +113,10 @@ public class AubreySkills : Skills
     }
     public override IEnumerator UseSkillThree(BattleCharacter target)
     {
-        if (user.DrainJuice(juiceCost[3]))
+        bool check = juiceCost[3] <= user.currJuice;
+        yield return user.DrainJuice(juiceCost[3]);
+
+        if (check)
         {
             manager.AddText("Aubrey cheers on " + target.name + ".", true);
             yield return target.NewEmotion(BattleCharacter.Emotion.HAPPY);
@@ -116,7 +125,10 @@ public class AubreySkills : Skills
     }
     public override IEnumerator UseSkillFour(BattleCharacter target)
     {
-        if (user.DrainJuice(juiceCost[4]))
+        bool check = juiceCost[4] <= user.currJuice;
+        yield return user.DrainJuice(juiceCost[4]);
+
+        if (check)
         {
             manager.AddText("Aubrey gives it everything she's got.", true);
 
@@ -131,7 +143,7 @@ public class AubreySkills : Skills
     }
     public override IEnumerator FollowUpOne()
     {
-        manager.energy -= energyCost[0];
+        yield return manager.AddEnergy(-energyCost[0]);
         BattleCharacter target = manager.foes[Random.Range(0, manager.foes.Count - 1)];
         manager.AddText("Omori didn't notice Aubrey, so she attacks harder.", true);
 
@@ -141,7 +153,7 @@ public class AubreySkills : Skills
     }
     public override IEnumerator FollowUpTwo()
     {
-        manager.energy -= energyCost[1];
+        yield return manager.AddEnergy(-energyCost[1]);
         BattleCharacter kel = followUpRequire[1];
         manager.AddText("Kel eggs on Aubrey.", true);
 
@@ -157,7 +169,7 @@ public class AubreySkills : Skills
     }
     public override IEnumerator FollowUpThree()
     {
-        manager.energy -= energyCost[2];
+        yield return manager.AddEnergy(-energyCost[2]);
         manager.AddText("Hero cheers on Aubrey.", true);
         user.defenseStat += 0.15f;
         manager.AddText(user.name + "'s defense increases.");

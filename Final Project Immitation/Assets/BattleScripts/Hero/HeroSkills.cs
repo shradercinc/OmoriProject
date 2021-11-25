@@ -69,7 +69,10 @@ public class HeroSkills : Skills
 
     public override IEnumerator UseSkillOne(BattleCharacter target)
     {
-        if (user.DrainJuice(juiceCost[1]))
+        bool check = juiceCost[1] <= user.currJuice;
+        yield return user.DrainJuice(juiceCost[1]);
+
+        if (check)
         {
             target = RedirectTarget(target, 1);
             manager.AddText("Hero makes some refreshments for " + target.name + ".", true);
@@ -77,11 +80,13 @@ public class HeroSkills : Skills
             int juice = (int)(target.startingJuice / 2);
             yield return target.TakeHealing(0, juice);
         }
-        yield return null;
     }
     public override IEnumerator UseSkillTwo(BattleCharacter target)
     {
-        if (user.DrainJuice(juiceCost[2]))
+        bool check = juiceCost[2] <= user.currJuice;
+        yield return user.DrainJuice(juiceCost[2]);
+
+        if (check)
         {
             target = RedirectTarget(target, 2);
             manager.AddText("Hero prepares a meal for " + target.name + ".", true);
@@ -89,11 +94,13 @@ public class HeroSkills : Skills
             int health = (int)(target.startingHealth * 0.7);
             yield return target.TakeHealing(health, 0);
         }
-        yield return null;
     }
     public override IEnumerator UseSkillThree(BattleCharacter target)
     {
-        if (user.DrainJuice(juiceCost[3]))
+        bool check = juiceCost[3] <= user.currJuice;
+        yield return user.DrainJuice(juiceCost[3]);
+
+        if (check)
         {
             if (manager.toast.Count > 0)
             {
@@ -105,11 +112,13 @@ public class HeroSkills : Skills
                 manager.ReturnToList(target);
             }
         }
-        yield return null;
     }
     public override IEnumerator UseSkillFour(BattleCharacter target)
     {
-        if (user.DrainJuice(juiceCost[4]))
+        bool check = juiceCost[4] <= user.currJuice;
+        yield return user.DrainJuice(juiceCost[4]);
+
+        if (check)
         {
             manager.AddText("Hero brings snacks for everyone.", true);
 
@@ -119,11 +128,10 @@ public class HeroSkills : Skills
                 yield return manager.friends[i].TakeHealing(recover, 0);
             }
         }
-        yield return null;
     }
     public override IEnumerator FollowUpOne()
     {
-        manager.energy -= energyCost[0];
+        yield return manager.AddEnergy(-energyCost[0]);
         BattleCharacter omori = followUpRequire[0];
         manager.AddText("Hero calls out to Omori.", true);
 
@@ -135,7 +143,7 @@ public class HeroSkills : Skills
     }
     public override IEnumerator FollowUpTwo()
     {
-        manager.energy -= energyCost[1];
+        yield return manager.AddEnergy(-energyCost[1]);
         BattleCharacter aubrey = followUpRequire[1];
         manager.AddText("Hero calls out to Aubrey.", true);
 
@@ -147,7 +155,7 @@ public class HeroSkills : Skills
     }
     public override IEnumerator FollowUpThree()
     {
-        manager.energy -= energyCost[2];
+        yield return manager.AddEnergy(-energyCost[2]);
         BattleCharacter kel = followUpRequire[2];
         manager.AddText("Hero calls out to Kel.", true);
 

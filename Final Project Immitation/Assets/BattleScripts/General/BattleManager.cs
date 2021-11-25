@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class BattleManager : MonoBehaviour
 {
@@ -13,30 +14,50 @@ public class BattleManager : MonoBehaviour
     List<BattleCharacter> SpeedQueue = new List<BattleCharacter>();
 
     TMP_Text battleLog;
+    TMP_Text energyText;
     GameObject energySlider;
-
-    public int energy = 3;
-    bool battleContinue = true;
+    public double energy = 3;
 
     void Awake()
     {
         battleLog = GameObject.Find("Battle Log").GetComponent<TextMeshProUGUI>();
         energySlider = GameObject.Find("Energy Slider");
+        energyText = energySlider.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
+
+        energySlider.GetComponent<Slider>().value = (float)(energy / 10);
+        energyText.text = $"Energy: {energy}";
         StartCoroutine(NewRound());
     }
 
-    public void AddEnergy()
+    public IEnumerator AddEnergy(int n)
     {
-        energy++;
-        if (energy > 10)
-            energy = 10;
-        UpdateEnergy();
-    }
+        double counter = 0;
+        if (n > 0)
+        {
+            while (counter < n && energy < 10)
+            {
+                energy+=0.1f;
+                counter+=0.1f;
 
-    public void UpdateEnergy()
-    {
-        energySlider.GetComponent<Slider>().value = (float)energy / 10;
-        energySlider.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = $"Energy: {energy}";
+                energySlider.GetComponent<Slider>().value = (float)(energy/10);
+                energyText.text = $"Energy: {(int)energy}";
+
+                yield return new WaitForSeconds(0.01f);
+            }
+        }
+        else
+        {
+            while (counter > n && energy > 0)
+            {
+                energy-=0.1f;
+                counter-=0.1f;
+
+                energySlider.GetComponent<Slider>().value = (float)(energy / 10);
+                energyText.text = $"Energy: {energy}";
+
+                yield return new WaitForSeconds(0.01f);
+            }
+        }
     }
 
     public void AddText(string x, bool reset)
@@ -58,7 +79,6 @@ public class BattleManager : MonoBehaviour
     IEnumerator NewRound()
     {
         friends = friends.OrderBy(o => o.order).ToList();
-        UpdateEnergy();
 
         for (int i = 0; i < friends.Count; i++)
         {
@@ -73,9 +93,26 @@ public class BattleManager : MonoBehaviour
         StartCoroutine(PlayRound());
     }
 
+    bool BattleEnd()
+    {
+        return (friends.Count > 0 && foes.Count > 0);
+    }
+
+    IEnumerator ReloadScene()
+    {
+        bool decision = true;
+        while (decision)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            else
+                yield return null;
+        }
+    }
+
     IEnumerator PlayRound()
     {
-        while (battleContinue && SpeedQueue.Count > 0)
+        while (BattleEnd() && SpeedQueue.Count > 0)
         {
             SpeedQueue = SpeedQueue.OrderByDescending(o => o.currSpeed).ToList();
             BattleCharacter nextInLine = SpeedQueue[0];
@@ -87,22 +124,33 @@ public class BattleManager : MonoBehaviour
                     yield return nextInLine.weapon.StartOfTurn();
                 yield return nextInLine.UseMove();
 
-                if (energy >= 3 && nextInLine.friend && nextInLine.currMove == BattleCharacter.Move.ATTACK)
+                if (BattleEnd() && energy >= 3 && nextInLine.friend && nextInLine.currMove == BattleCharacter.Move.ATTACK)
                     yield return FollowUp(nextInLine);
                 else
                     yield return new WaitForSeconds(1.5f);
             }
-
-            UpdateEnergy();
-            battleContinue = (friends.Count > 0 && foes.Count > 0);
         }
 
-        if (battleContinue)
-            StartCoroutine(NewRound());
-        else
+        if (BattleEnd())
         {
             StopAllCoroutines();
             AddText("The battle is over.", true);
+
+            if (friends.Count == 0)
+            {
+                AddText("GAME OVER.");
+                AddText("Press space to retry.");
+                yield return ReloadScene();
+            }
+            if (foes.Count == 0)
+            {
+                AddText("Omori and friends celebrate their victory!");
+            }
+        }
+        else
+        {
+            StopAllCoroutines();
+            StartCoroutine(NewRound());
         }
     }
 

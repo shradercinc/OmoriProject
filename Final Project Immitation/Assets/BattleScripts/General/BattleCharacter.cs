@@ -111,22 +111,22 @@ public class BattleCharacter : MonoBehaviour
             if (currJuice >= userSkills.juiceCost[1])
                 manager.AddText("2: " + userSkills.skillNames[1] + " - " + userSkills.juiceCost[1] + " juice");
             else
-                manager.AddText("2: " + userSkills.skillNames[1] + " - Not Enough Juice", false);
+                manager.AddText("2: " + userSkills.skillNames[1] + " - Not enough juice", false);
 
             if (currJuice >= userSkills.juiceCost[2])
                 manager.AddText("3: " + userSkills.skillNames[2] + " - " + userSkills.juiceCost[2] + " juice");
             else
-                manager.AddText("3: " + userSkills.skillNames[2] + " - Not Enough Juice", false);
+                manager.AddText("3: " + userSkills.skillNames[2] + " - Not enough juice", false);
 
             if (currJuice >= userSkills.juiceCost[3])
                 manager.AddText("4: " + userSkills.skillNames[3] + " - " + userSkills.juiceCost[3] + " juice");
             else
-                manager.AddText("4: " + userSkills.skillNames[3] + " - Not Enough Juice");
+                manager.AddText("4: " + userSkills.skillNames[3] + " - Not enough juice");
 
             if (currJuice >= userSkills.juiceCost[4])
                 manager.AddText("5: " + userSkills.skillNames[4] + " - " + userSkills.juiceCost[4] + " juice");
             else
-                manager.AddText("5: " + userSkills.skillNames[4] + " - Not Enough Juice");
+                manager.AddText("5: " + userSkills.skillNames[4] + " - Not enough juice");
 
             while (currMove == Move.NONE)
             {
@@ -254,51 +254,64 @@ public class BattleCharacter : MonoBehaviour
             switch (currMove)
             {
                 case Move.ATTACK:
-                    {
-                        yield return userSkills.BasicAttack(nextTarget);
-                        break;
-                    }
+                {
+                    yield return userSkills.BasicAttack(nextTarget);
+                    break;
+                }
                 case Move.SKILL1:
-                    {
-                        yield return userSkills.UseSkillOne(nextTarget);
-                        break;
-                    }
+                {
+                    yield return userSkills.UseSkillOne(nextTarget);
+                    break;
+                }
                 case Move.SKILL2:
-                    {
-                        yield return userSkills.UseSkillTwo(nextTarget);
-                        break;
-                    }
+                {
+                    yield return userSkills.UseSkillTwo(nextTarget);
+                    break;
+                }
                 case Move.SKILL3:
-                    {
-                        yield return userSkills.UseSkillThree(nextTarget);
-                        break;
-                    }
+                {
+                    yield return userSkills.UseSkillThree(nextTarget);
+                    break;
+                }
                 case Move.SKILL4:
-                    {
-                        yield return userSkills.UseSkillFour(nextTarget);
-                        break;
-                    }
+                {
+                    yield return userSkills.UseSkillFour(nextTarget);
+                    break;
+                }
                 case Move.NONE:
-                    {
-                        break;
-                    }
+                {
+                    break;
+                }
             }
         }
 
-        ResetStats();
+        yield return ResetStats();
     }
 
     public IEnumerator TakeDamage(int damage)
     {
         damage = (int)(damage * Random.Range(0.8f, 1.2f));
+        manager.AddText(gameObject.name + " takes " + damage + " damage.");
 
         if (damage > 0)
         {
-            currHealth -= damage;
-            manager.AddText(gameObject.name + " takes " + damage + " damage.");
-
             if (friend)
-                manager.AddEnergy();
+            { 
+                yield return manager.AddEnergy(1);
+                int counter = 0;
+                while (counter < damage && currHealth > 0)
+                {
+                    currHealth--;
+                    counter++;
+
+                    healthSlider.value = (float)currHealth / startingHealth;
+                    healthText.text = $"{currHealth} / {startingHealth}";
+
+                    yield return new WaitForSeconds(0.01f);
+                }
+            }
+            else
+                currHealth -= damage;
         }
         else if (!toast)
         {
@@ -308,17 +321,26 @@ public class BattleCharacter : MonoBehaviour
         yield return ResetStats();
     }
 
-    public bool DrainJuice(int juice)
+    public IEnumerator DrainJuice(int juice)
     {
         if (currJuice >= juice)
         {
-            currJuice -= juice;
-            return true;
+            int counter = 0;
+
+            while (counter < juice && currJuice > 0)
+            {
+                currJuice--;
+                counter++;
+
+                juiceSlider.value = (float)currJuice / startingJuice;
+                healthText.text = $"{currJuice} / {startingJuice}";
+
+                yield return new WaitForSeconds(0.01f);
+            }
         }
         else
         {
-            manager.AddText(gameObject.name + " doesn't have enough juice.");
-            return false;
+            manager.AddText(gameObject.name + " doesn't have enough juice.", true);
         }
     }
 
@@ -326,13 +348,45 @@ public class BattleCharacter : MonoBehaviour
     {
         if (health > 0)
         {
-            currHealth += health;
             manager.AddText(gameObject.name + " recovers " + health + " health.");
+            int counter = 0;
+
+            if (friend)
+            {
+                while (counter < health && currHealth < startingHealth)
+                {
+                    currHealth++;
+                    counter++;
+
+                    healthSlider.value = (float)currHealth / startingHealth;
+                    healthText.text = $"{currHealth} / {startingHealth}";
+
+                    yield return new WaitForSeconds(0.01f);
+                }
+            }
+            else
+                currHealth += health;
         }
         if (juice > 0)
         {
-            currJuice += juice;
             manager.AddText(gameObject.name + " recovers " + juice + " juice.");
+            int counter = 0;
+
+            if (friend)
+            {
+                while (counter < juice && currJuice < startingJuice)
+                {
+                    currJuice++;
+                    counter++;
+
+                    juiceSlider.value = (float)currJuice / startingJuice;
+                    juiceText.text = $"{currJuice} / {startingJuice}";
+
+                    yield return new WaitForSeconds(0.01f);
+                }
+            }
+            else
+                currJuice += juice;
         }
         yield return ResetStats();
     }
@@ -501,8 +555,8 @@ public class BattleCharacter : MonoBehaviour
 
         if (friend)
         {
-        healthSlider.value = (float)currHealth / startingHealth;
-        healthText.text = $"{currHealth} / {startingHealth}";
+            healthSlider.value = (float)currHealth / startingHealth;
+            healthText.text = $"{currHealth} / {startingHealth}";
             juiceSlider.value = (float)currJuice / startingJuice;
             juiceText.text = $"{currJuice} / {startingJuice}";
         }

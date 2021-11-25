@@ -68,7 +68,10 @@ public class OmoriSkills : Skills
 
     public override IEnumerator UseSkillOne(BattleCharacter target)
     {
-        if (user.DrainJuice(juiceCost[1]))
+        bool check = juiceCost[1] <= user.currJuice;
+        yield return user.DrainJuice(juiceCost[1]);
+
+        if (check)
         {
             target = RedirectTarget(target, 1);
             manager.AddText("Omori mocks " + target.name + ".", true);
@@ -89,7 +92,10 @@ public class OmoriSkills : Skills
     }
     public override IEnumerator UseSkillTwo(BattleCharacter target)
     {
-        if (user.DrainJuice(juiceCost[2]))
+        bool check = juiceCost[2] <= user.currJuice;
+        yield return user.DrainJuice(juiceCost[2]);
+
+        if (check)
         {
             target = RedirectTarget(target, 2);
             manager.AddText("Omori stabs " + target.name + ".", true);
@@ -110,7 +116,10 @@ public class OmoriSkills : Skills
     }
     public override IEnumerator UseSkillThree(BattleCharacter target)
     {
-        if (user.DrainJuice(juiceCost[3]))
+        bool check = juiceCost[3] <= user.currJuice;
+        yield return user.DrainJuice(juiceCost[3]);
+
+        if (check)
         {
             target = RedirectTarget(target, 3);
             manager.AddText("Omori reads " + target.name + " a poem.", true);
@@ -119,7 +128,10 @@ public class OmoriSkills : Skills
     }
     public override IEnumerator UseSkillFour(BattleCharacter target)
     {
-        if (user.DrainJuice(juiceCost[4]))
+        bool check = juiceCost[4] <= user.currJuice;
+        yield return user.DrainJuice(juiceCost[4]);
+
+        if (check)
         {
             target = RedirectTarget(target, 4);
             manager.AddText("Omori glares at " + target.name + ".", true);
@@ -136,13 +148,13 @@ public class OmoriSkills : Skills
     }
     public override IEnumerator FollowUpOne()
     {
-        manager.energy -= energyCost[0];
+        yield return manager.AddEnergy(-energyCost[0]);
         yield return user.userSkills.BasicAttack(user.nextTarget);
         yield return user.userSkills.BasicAttack(user.nextTarget);
     }
     public override IEnumerator FollowUpTwo()
     {
-        manager.energy -= energyCost[1];
+        yield return manager.AddEnergy(-energyCost[1]);
         BattleCharacter target = manager.foes[Random.Range(0, manager.foes.Count - 1)];
         manager.AddText("Omori makes " + target.name + " trip and fall over.", true);
 
@@ -156,7 +168,7 @@ public class OmoriSkills : Skills
     }
     public override IEnumerator FollowUpThree()
     {
-        manager.energy -= energyCost[2];
+        yield return manager.AddEnergy(-energyCost[2]);
         for (int i = 0; i < manager.foes.Count; i++)
         {
             manager.AddText("Omori and friends come together and use their ultimate attack.", true);
