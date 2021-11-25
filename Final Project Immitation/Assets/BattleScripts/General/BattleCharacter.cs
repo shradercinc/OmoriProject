@@ -50,6 +50,7 @@ public class BattleCharacter : MonoBehaviour
     TMP_Text juiceText;
 
     public bool toast = false;
+    bool lastHit = (gameObject.name = "Omori");
     public bool friend;
     public int order;
 
@@ -298,11 +299,17 @@ public class BattleCharacter : MonoBehaviour
             if (friend)
             { 
                 yield return manager.AddEnergy(1);
-                int counter = 0;
-                while (counter < damage && currHealth > 0)
+                for (int i = 0; i<damage && currHealth > 0; i++)
                 {
                     currHealth--;
-                    counter++;
+
+                    if (currHealth == 0 && lastHit)
+                    {
+                        lastHit = false;
+                        currHealth = 1;
+                        i = damage;
+                        manager.AddText(gameObject.name + " did not succumb.");
+                    }
 
                     healthSlider.value = (float)currHealth / startingHealth;
                     healthText.text = $"{currHealth} / {startingHealth}";
@@ -325,16 +332,11 @@ public class BattleCharacter : MonoBehaviour
     {
         if (currJuice >= juice)
         {
-            int counter = 0;
-
-            while (counter < juice && currJuice > 0)
+            for (int i = 0; i<juice && currJuice > 0; i++)
             {
                 currJuice--;
-                counter++;
-
                 juiceSlider.value = (float)currJuice / startingJuice;
                 healthText.text = $"{currJuice} / {startingJuice}";
-
                 yield return new WaitForSeconds(0.01f);
             }
         }
@@ -349,18 +351,13 @@ public class BattleCharacter : MonoBehaviour
         if (health > 0)
         {
             manager.AddText(gameObject.name + " recovers " + health + " health.");
-            int counter = 0;
-
             if (friend)
             {
-                while (counter < health && currHealth < startingHealth)
+                for (int i = 0; i<health && currHealth < startingHealth; i++)
                 {
                     currHealth++;
-                    counter++;
-
                     healthSlider.value = (float)currHealth / startingHealth;
                     healthText.text = $"{currHealth} / {startingHealth}";
-
                     yield return new WaitForSeconds(0.01f);
                 }
             }
@@ -370,18 +367,13 @@ public class BattleCharacter : MonoBehaviour
         if (juice > 0)
         {
             manager.AddText(gameObject.name + " recovers " + juice + " juice.");
-            int counter = 0;
-
             if (friend)
             {
-                while (counter < juice && currJuice < startingJuice)
+                for (int i = 0; i<juice && currJuice < startingJuice; i++)
                 {
                     currJuice++;
-                    counter++;
-
                     juiceSlider.value = (float)currJuice / startingJuice;
                     juiceText.text = $"{currJuice} / {startingJuice}";
-
                     yield return new WaitForSeconds(0.01f);
                 }
             }
@@ -441,7 +433,7 @@ public class BattleCharacter : MonoBehaviour
             currHealth = 0;
 
             manager.RemoveFromList(this);
-            manager.AddText(gameObject.name + " is now toast.");
+            manager.AddText(gameObject.name + " became Toast.");
 
             emoteText.text = "TOAST";
             currEmote = Emotion.NEUTRAL;

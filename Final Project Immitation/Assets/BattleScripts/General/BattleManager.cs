@@ -11,7 +11,9 @@ public class BattleManager : MonoBehaviour
     public List<BattleCharacter> friends = new List<BattleCharacter>();
     public List<BattleCharacter> foes = new List<BattleCharacter>();
     public List<BattleCharacter> toast = new List<BattleCharacter>();
+
     List<BattleCharacter> SpeedQueue = new List<BattleCharacter>();
+    BattleCharacter omori = GameObject.Find("Omori").GetComponent<BattleCharacter>();
 
     TMP_Text battleLog;
     TMP_Text energyText;
@@ -95,7 +97,7 @@ public class BattleManager : MonoBehaviour
 
     bool BattleEnd()
     {
-        return (friends.Count > 0 && foes.Count > 0);
+        return (omori.toast && foes.Count > 0);
     }
 
     IEnumerator ReloadScene()
@@ -131,12 +133,12 @@ public class BattleManager : MonoBehaviour
             }
         }
 
+        StopAllCoroutines()
         if (BattleEnd())
         {
-            StopAllCoroutines();
-            AddText("The battle is over.", true);
+            AddText("The battle has ended.", true);
 
-            if (friends.Count == 0)
+            if (omori.toast)
             {
                 AddText("GAME OVER.");
                 AddText("Press space to retry.");
@@ -149,7 +151,6 @@ public class BattleManager : MonoBehaviour
         }
         else
         {
-            StopAllCoroutines();
             StartCoroutine(NewRound());
         }
     }
