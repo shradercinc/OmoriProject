@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System.Linq;
 using TMPro;
 
@@ -11,14 +12,16 @@ public class BattleManager : MonoBehaviour
     public List<BattleCharacter> toast = new List<BattleCharacter>();
     List<BattleCharacter> SpeedQueue = new List<BattleCharacter>();
 
-    public TMP_Text battleLog;
-    public TMP_Text energyLog;
+    TMP_Text battleLog;
+    GameObject energySlider;
 
     public int energy = 3;
     bool battleContinue = true;
 
     void Awake()
     {
+        battleLog = GameObject.Find("Battle Log").GetComponent<TextMeshProUGUI>();
+        energySlider = GameObject.Find("Energy Slider");
         StartCoroutine(NewRound());
     }
 
@@ -27,6 +30,13 @@ public class BattleManager : MonoBehaviour
         energy++;
         if (energy > 10)
             energy = 10;
+        UpdateEnergy();
+    }
+
+    public void UpdateEnergy()
+    {
+        energySlider.GetComponent<Slider>().value = (float)energy / 10;
+        energySlider.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = $"Energy: {energy}";
     }
 
     public void AddText(string x, bool reset)
@@ -48,7 +58,7 @@ public class BattleManager : MonoBehaviour
     IEnumerator NewRound()
     {
         friends = friends.OrderBy(o => o.order).ToList();
-        energyLog.text = "Energy: " + energy;
+        UpdateEnergy();
 
         for (int i = 0; i < friends.Count; i++)
         {
@@ -83,7 +93,7 @@ public class BattleManager : MonoBehaviour
                     yield return new WaitForSeconds(1.5f);
             }
 
-            energyLog.text = "Energy: " + energy;
+            UpdateEnergy();
             battleContinue = (friends.Count > 0 && foes.Count > 0);
         }
 

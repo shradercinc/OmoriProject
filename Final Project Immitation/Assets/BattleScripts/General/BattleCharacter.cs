@@ -40,6 +40,15 @@ public class BattleCharacter : MonoBehaviour
     TMP_Text uiText;
     TMP_Text emoteText;
 
+    public GameObject healthObject;
+    public GameObject juiceObject;
+
+    Slider healthSlider;
+    TMP_Text healthText;
+
+    Slider juiceSlider;
+    TMP_Text juiceText;
+
     public bool toast = false;
     public bool friend;
     public int order;
@@ -51,7 +60,6 @@ public class BattleCharacter : MonoBehaviour
     private void Awake()
     {
         manager = FindObjectOfType<BattleManager>().GetComponent<BattleManager>();
-        originalTextBox = GameObject.Find("Original Text Box").GetComponent<TextMeshProUGUI>();
         centerObject = GameObject.Find("EnemyUI");
 
         currEmote = Emotion.NEUTRAL;
@@ -61,18 +69,26 @@ public class BattleCharacter : MonoBehaviour
 
         if (!friend)
         {
+            originalTextBox = GameObject.Find("Original Text Box").GetComponent<TextMeshProUGUI>();
             emoteText = Instantiate(originalTextBox, centerObject.transform);
             gameObject.transform.SetParent(centerObject.transform);
             uiText = Instantiate(originalTextBox, centerObject.transform);
         }
         else
         {
-            GameObject placeholder = gameObject.transform.GetChild(0).gameObject;
-            emoteText = placeholder.GetComponent<TextMeshProUGUI>();
-            placeholder = gameObject.transform.GetChild(1).gameObject;
-            uiText = placeholder.GetComponent<TextMeshProUGUI>();
+            emoteText = gameObject.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
+            uiText = gameObject.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>();
+
+            healthObject = gameObject.transform.GetChild(2).gameObject;
+            healthSlider = healthObject.GetComponent<Slider>();
+            healthText = healthObject.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
+
+            juiceObject = gameObject.transform.GetChild(3).gameObject;
+            juiceSlider = juiceObject.GetComponent<Slider>();
+            juiceText = juiceObject.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
         }
 
+        uiText.text = gameObject.name;
         weapon = gameObject.GetComponent<Weapon>();
         if (weapon != null)
             weapon.AffectUser();
@@ -321,40 +337,6 @@ public class BattleCharacter : MonoBehaviour
         yield return ResetStats();
     }
 
-    public IEnumerator nowToast()
-    {
-        if (currHealth <= 0)
-        {
-            toast = true;
-            currHealth = 0;
-
-            manager.RemoveFromList(this);
-            manager.AddText(gameObject.name + " is now toast.");
-
-            emoteText.text = "TOAST";
-            currEmote = Emotion.NEUTRAL;
-
-            attackStat = 1;
-            defenseStat = 1;
-            speedStat = 1;
-            luckStat = 1;
-            accuracyStat = 1;
-
-            if (weapon != null)
-                yield return weapon.OnToast();
-
-            if (!friend)
-            {
-                yield return new WaitForSeconds(1.5f);
-                Destroy(emoteText.gameObject);
-                Destroy(uiText.gameObject);
-                Destroy(gameObject);
-            }
-        }
-        else
-            toast = false;
-    }
-
     public IEnumerator NewEmotion(Emotion newEmote)
     {
         if (newEmote == Emotion.HAPPY && (currEmote == Emotion.HAPPY || currEmote == Emotion.ECSTATIC))
@@ -399,100 +381,130 @@ public class BattleCharacter : MonoBehaviour
 
     public IEnumerator ResetStats()
     {
-        if (attackStat < 0.5f)
-            attackStat = 0.5f;
-        else if (attackStat > 1.5f)
-            attackStat = 1.5f;
-        if (defenseStat < 0.5f)
-            defenseStat = 0.5f;
-        else if (defenseStat > 1.5f)
-            defenseStat = 1.5f;
-        if (speedStat < 0.5f)
-            speedStat = 0.5f;
-        else if (speedStat > 1.5f)
-            speedStat = 1.5f;
-        if (luckStat < 0.5f)
-            luckStat = 0.5f;
-        else if (luckStat > 1.5f)
-            luckStat = 1.5f;
-        if (accuracyStat < 0.5f)
-            accuracyStat = 0.5f;
-        else if (accuracyStat > 1.5f)
-            accuracyStat = 1.5f;
-
-        currAttack = startingAttack * attackStat;
-        currDefense = startingDefense * defenseStat;
-        currSpeed = startingSpeed * speedStat;
-        currLuck = startingLuck * luckStat;
-        currAccuracy = startingAccuracy * accuracyStat;
-
-        switch (currEmote)
+        if (currHealth <= 0)
         {
-            case (Emotion.NEUTRAL):
-                emoteText.text = "NEUTRAL";
-                break;
-            case (Emotion.HAPPY):
-                currSpeed = startingSpeed * 2 * speedStat;
-                currLuck = startingLuck * 2 * luckStat;
-                currAccuracy = startingAccuracy * 0.85f * accuracyStat;
-                emoteText.text = "HAPPY";
-                break;
-            case (Emotion.ECSTATIC):
-                currSpeed = startingSpeed * 3 * speedStat;
-                currLuck = startingLuck * 3 * luckStat;
-                currAccuracy = startingAccuracy * 0.7f * accuracyStat;
-                emoteText.text = "ECSTATIC";
-                break;
-            case (Emotion.ANGRY):
-                currAttack = startingAttack * 1.25f * attackStat;
-                currDefense = startingDefense * 0.75f * defenseStat;
-                emoteText.text = "ANGRY";
-                break;
-            case (Emotion.ENRAGED):
-                currAttack = startingAttack * 1.5f * attackStat;
-                currDefense = startingDefense * 0.5f * defenseStat;
-                emoteText.text = "ENRAGED";
-                break;
-            case (Emotion.SAD):
-                currDefense = startingDefense * 1.25f * defenseStat;
-                currSpeed = startingSpeed * 0.75f * speedStat;
-                emoteText.text = "SAD";
-                break;
-            case (Emotion.DEPRESSED):
-                currDefense = startingDefense * 1.5f * defenseStat;
-                currSpeed = startingSpeed * 0.5f * speedStat;
-                emoteText.text = "DEPRESSED";
-                break;
+            toast = true;
+            currHealth = 0;
+
+            manager.RemoveFromList(this);
+            manager.AddText(gameObject.name + " is now toast.");
+
+            emoteText.text = "TOAST";
+            currEmote = Emotion.NEUTRAL;
+
+            attackStat = 1;
+            defenseStat = 1;
+            speedStat = 1;
+            luckStat = 1;
+            accuracyStat = 1;
+
+            if (weapon != null)
+                yield return weapon.OnToast();
+
+            if (!friend)
+            {
+                yield return new WaitForSeconds(1.5f);
+                Destroy(emoteText.gameObject);
+                Destroy(uiText.gameObject);
+                Destroy(healthObject.gameObject);
+                Destroy(gameObject);
+            }
         }
+    
+        else
+        {
+            toast = false;
+            if (attackStat < 0.5f)
+                attackStat = 0.5f;
+            else if (attackStat > 1.5f)
+                attackStat = 1.5f;
+            if (defenseStat < 0.5f)
+                defenseStat = 0.5f;
+            else if (defenseStat > 1.5f)
+                defenseStat = 1.5f;
+            if (speedStat < 0.5f)
+                speedStat = 0.5f;
+            else if (speedStat > 1.5f)
+                speedStat = 1.5f;
+            if (luckStat < 0.5f)
+                luckStat = 0.5f;
+            else if (luckStat > 1.5f)
+                luckStat = 1.5f;
+            if (accuracyStat < 0.5f)
+                accuracyStat = 0.5f;
+            else if (accuracyStat > 1.5f)
+                accuracyStat = 1.5f;
 
-        yield return nowToast();
+            currAttack = startingAttack * attackStat;
+            currDefense = startingDefense * defenseStat;
+            currSpeed = startingSpeed * speedStat;
+            currLuck = startingLuck * luckStat;
+            currAccuracy = startingAccuracy * accuracyStat;
 
-        if (currHealth > startingHealth)
-            currHealth = startingHealth;
-        if (currJuice < 0)
-            currJuice = 0;
-        else if (currJuice > startingJuice)
-            currJuice = startingJuice;
+            switch (currEmote)
+            {
+                case (Emotion.NEUTRAL):
+                    emoteText.text = "NEUTRAL";
+                    break;
+                case (Emotion.HAPPY):
+                    currSpeed = startingSpeed * 2 * speedStat;
+                    currLuck = startingLuck * 2 * luckStat;
+                    currAccuracy = startingAccuracy * 0.85f * accuracyStat;
+                    emoteText.text = "HAPPY";
+                    break;
+                case (Emotion.ECSTATIC):
+                    currSpeed = startingSpeed * 3 * speedStat;
+                    currLuck = startingLuck * 3 * luckStat;
+                    currAccuracy = startingAccuracy * 0.7f * accuracyStat;
+                    emoteText.text = "ECSTATIC";
+                    break;
+                case (Emotion.ANGRY):
+                    currAttack = startingAttack * 1.25f * attackStat;
+                    currDefense = startingDefense * 0.75f * defenseStat;
+                    emoteText.text = "ANGRY";
+                    break;
+                case (Emotion.ENRAGED):
+                    currAttack = startingAttack * 1.5f * attackStat;
+                    currDefense = startingDefense * 0.5f * defenseStat;
+                    emoteText.text = "ENRAGED";
+                    break;
+                case (Emotion.SAD):
+                    currDefense = startingDefense * 1.25f * defenseStat;
+                    currSpeed = startingSpeed * 0.75f * speedStat;
+                    emoteText.text = "SAD";
+                    break;
+                case (Emotion.DEPRESSED):
+                    currDefense = startingDefense * 1.5f * defenseStat;
+                    currSpeed = startingSpeed * 0.5f * speedStat;
+                    emoteText.text = "DEPRESSED";
+                    break;
+            }
 
-        if (currAttack < 0)
-            currAttack = 0;
-        if (currDefense < 0)
-            currDefense = 0;
-        if (currSpeed < 0)
-            currSpeed = 0;
-        if (currLuck < 0)
-            currLuck = 0;
-        if (currAccuracy < 0)
-            currAccuracy = 0;
+            if (currHealth > startingHealth)
+                currHealth = startingHealth;
+            if (currJuice < 0)
+                currJuice = 0;
+            else if (currJuice > startingJuice)
+                currJuice = startingJuice;
+
+            if (currAttack < 0)
+                currAttack = 0;
+            if (currDefense < 0)
+                currDefense = 0;
+            if (currSpeed < 0)
+                currSpeed = 0;
+            if (currLuck < 0)
+                currLuck = 0;
+            if (currAccuracy < 0)
+                currAccuracy = 0;
+        }
 
         if (friend)
         {
-            uiText.text = gameObject.name + "\nHealth: " + currHealth + " / " + startingHealth + "\nJuice: " + currJuice + " / " + startingJuice;
+        healthSlider.value = (float)currHealth / startingHealth;
+        healthText.text = $"{currHealth} / {startingHealth}";
+            juiceSlider.value = (float)currJuice / startingJuice;
+            juiceText.text = $"{currJuice} / {startingJuice}";
         }
-        else
-        {
-            uiText.text = gameObject.name + "\nHealth: " + currHealth;
-        }
-
     }
 }
