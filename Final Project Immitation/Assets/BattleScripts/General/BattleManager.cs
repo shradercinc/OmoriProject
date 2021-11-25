@@ -6,9 +6,6 @@ using TMPro;
 
 public class BattleManager : MonoBehaviour
 {
-    Transform friendGroup;
-    Transform foeGroup;
-
     public List<BattleCharacter> friends = new List<BattleCharacter>();
     public List<BattleCharacter> foes = new List<BattleCharacter>();
     public List<BattleCharacter> toast = new List<BattleCharacter>();
@@ -22,17 +19,6 @@ public class BattleManager : MonoBehaviour
 
     void Awake()
     {
-        friendGroup = GameObject.Find("FriendGroup").GetComponent<Transform>();
-        foeGroup = GameObject.Find("FoeGroup").GetComponent<Transform>();
-
-        foreach (Transform child in friendGroup)
-        {
-            friends.Add(child.GetComponent<BattleCharacter>());
-        }
-        foreach (Transform child in foeGroup)
-        {
-            foes.Add(child.GetComponent<BattleCharacter>());
-        }
         StartCoroutine(NewRound());
     }
 
@@ -105,6 +91,7 @@ public class BattleManager : MonoBehaviour
             StartCoroutine(NewRound());
         else
         {
+            StopAllCoroutines();
             AddText("The battle is over.", true);
         }
     }
@@ -115,25 +102,25 @@ public class BattleManager : MonoBehaviour
         bool decision = true;
         Skills userSkills = user.userSkills;
 
-        AddText("Follow up?", true);
+        AddText("Should " + user.name + " use a follow up?", true);
         AddText("1: Skip");
 
         bool skillOne = (energy >= userSkills.energyCost[0] && !userSkills.followUpRequire[0].toast);
         if (skillOne)
-            AddText("2: " + userSkills.skillNames[5]);
+            AddText("2: " + userSkills.skillNames[5] + " - " + userSkills.energyCost[0] + " energy");
         else
             AddText("Cannot " + userSkills.skillNames[5]);
 
         bool skillTwo = (energy >= userSkills.energyCost[1] && !userSkills.followUpRequire[1].toast);
         if (skillTwo)
-            AddText("3: " + userSkills.skillNames[6]);
+            AddText("3: " + userSkills.skillNames[6] + " - " + userSkills.energyCost[1] + " energy");
         else
             AddText("Cannot " + userSkills.skillNames[6]);
 
         bool skillThree = (energy >= userSkills.energyCost[2] &&
         (friends.Count == 4 || !userSkills.followUpRequire[2].toast));
         if (skillThree)
-            AddText("4: " + userSkills.skillNames[7]);
+            AddText("4: " + userSkills.skillNames[7] + " - " + userSkills.energyCost[0] + " energy");
         else
             AddText("Cannot " + userSkills.skillNames[7]);
 
@@ -167,8 +154,12 @@ public class BattleManager : MonoBehaviour
 
     public void ReturnToList(BattleCharacter target)
     {
-        friends.Add(target);
-        toast.Remove(target);
+        if (toast.Contains(target))
+            toast.Remove(target);
+        if (target.friend)
+            friends.Add(target);
+        else
+            foes.Add(target);
     }
 
     public void RemoveFromList(BattleCharacter target)

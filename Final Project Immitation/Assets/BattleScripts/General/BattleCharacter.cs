@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class BattleCharacter : MonoBehaviour
@@ -34,8 +35,10 @@ public class BattleCharacter : MonoBehaviour
     public enum Emotion { NEUTRAL, HAPPY, ECSTATIC, ANGRY, ENRAGED, SAD, DEPRESSED };
     public Emotion currEmote = Emotion.NEUTRAL;
 
-    public TMP_Text uiText;
-    public TMP_Text emoteText;
+    GameObject centerObject;
+    TMP_Text originalTextBox;
+    TMP_Text uiText;
+    TMP_Text emoteText;
 
     public bool toast = false;
     public bool friend;
@@ -48,10 +51,27 @@ public class BattleCharacter : MonoBehaviour
     private void Awake()
     {
         manager = FindObjectOfType<BattleManager>().GetComponent<BattleManager>();
+        originalTextBox = GameObject.Find("Original Text Box").GetComponent<TextMeshProUGUI>();
+        centerObject = GameObject.Find("EnemyUI");
 
         currEmote = Emotion.NEUTRAL;
         userSkills = gameObject.GetComponent<Skills>();
         userSkills.SetStartingStats();
+        manager.ReturnToList(this);
+
+        if (!friend)
+        {
+            emoteText = Instantiate(originalTextBox, centerObject.transform);
+            gameObject.transform.SetParent(centerObject.transform);
+            uiText = Instantiate(originalTextBox, centerObject.transform);
+        }
+        else
+        {
+            GameObject placeholder = gameObject.transform.GetChild(0).gameObject;
+            emoteText = placeholder.GetComponent<TextMeshProUGUI>();
+            placeholder = gameObject.transform.GetChild(1).gameObject;
+            uiText = placeholder.GetComponent<TextMeshProUGUI>();
+        }
 
         weapon = gameObject.GetComponent<Weapon>();
         if (weapon != null)
@@ -59,7 +79,7 @@ public class BattleCharacter : MonoBehaviour
 
         currHealth = startingHealth;
         currJuice = startingJuice;
-        ResetStats();
+        StartCoroutine(ResetStats());
     }
 
     public IEnumerator ChooseSkill()
@@ -264,7 +284,7 @@ public class BattleCharacter : MonoBehaviour
             if (friend)
                 manager.AddEnergy();
         }
-        else
+        else if (!toast)
         {
             manager.AddText(gameObject.name + " didn't take any damage.");
         }
@@ -286,7 +306,7 @@ public class BattleCharacter : MonoBehaviour
         }
     }
 
-    public void TakeHealing(int health, int juice)
+    public IEnumerator TakeHealing(int health, int juice)
     {
         if (health > 0)
         {
@@ -298,29 +318,44 @@ public class BattleCharacter : MonoBehaviour
             currJuice += juice;
             manager.AddText(gameObject.name + " recovers " + juice + " juice.");
         }
-        ResetStats();
+        yield return ResetStats();
     }
 
-    IEnumerator nowToast()
+    public IEnumerator nowToast()
     {
-        toast = true;
-        currHealth = 0;
-        manager.RemoveFromList(this);
-        manager.AddText(gameObject.name + " is now toast.");
-        emoteText.text = "TOAST";
+        if (currHealth <= 0)
+        {
+            toast = true;
+            currHealth = 0;
 
-        currEmote = Emotion.NEUTRAL;
-        attackStat = 1;
-        defenseStat = 1;
-        speedStat = 1;
-        luckStat = 1;
-        accuracyStat = 1;
+            manager.RemoveFromList(this);
+            manager.AddText(gameObject.name + " is now toast.");
 
-        if (weapon != null)
-            yield return weapon.OnToast();
+            emoteText.text = "TOAST";
+            currEmote = Emotion.NEUTRAL;
+
+            attackStat = 1;
+            defenseStat = 1;
+            speedStat = 1;
+            luckStat = 1;
+            accuracyStat = 1;
+
+            if (weapon != null)
+                yield return weapon.OnToast();
+
+            if (!friend)
+            {
+                yield return new WaitForSeconds(1.5f);
+                Destroy(emoteText.gameObject);
+                Destroy(uiText.gameObject);
+                Destroy(gameObject);
+            }
+        }
+        else
+            toast = false;
     }
 
-    public void NewEmotion(Emotion newEmote)
+    public IEnumerator NewEmotion(Emotion newEmote)
     {
         if (newEmote == Emotion.HAPPY && (currEmote == Emotion.HAPPY || currEmote == Emotion.ECSTATIC))
             currEmote = Emotion.ECSTATIC;
@@ -336,6 +371,9 @@ public class BattleCharacter : MonoBehaviour
 
         switch (currEmote)
         {
+            case Emotion.NEUTRAL:
+                manager.AddText(gameObject.name + " became Neutral.");
+                break;
             case Emotion.HAPPY:
                 manager.AddText(gameObject.name + " became Happy.");
                 break;
@@ -356,7 +394,7 @@ public class BattleCharacter : MonoBehaviour
                 break;
         }
 
-        ResetStats();
+        yield return ResetStats();
     }
 
     public IEnumerator ResetStats()
@@ -427,10 +465,9 @@ public class BattleCharacter : MonoBehaviour
                 break;
         }
 
-        toast = false;
-        if (currHealth <= 0)
-            yield return nowToast();
-        else if (currHealth > startingHealth)
+        yield return nowToast();
+
+        if (currHealth > startingHealth)
             currHealth = startingHealth;
         if (currJuice < 0)
             currJuice = 0;

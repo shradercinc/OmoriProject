@@ -77,7 +77,7 @@ public class KelSkills : Skills
             if (target.currEmote == BattleCharacter.Emotion.HAPPY || target.currEmote == BattleCharacter.Emotion.ECSTATIC)
             {
                 target.speedStat -= 0.15f;
-                target.ResetStats();
+                yield return target.ResetStats();
                 manager.AddText(target.name + "'s speed decreases.");
             }
             if (RollAccuracy(user.currAccuracy))
@@ -98,7 +98,7 @@ public class KelSkills : Skills
             if (user.currEmote == BattleCharacter.Emotion.ANGRY || target.currEmote == BattleCharacter.Emotion.ENRAGED)
             {
                 user.luckStat += 0.15f;
-                user.ResetStats();
+                yield return user.ResetStats();
                 manager.AddText(user.name + "'s luck increases.");
             }
             if (RollAccuracy(user.currAccuracy))
@@ -115,7 +115,7 @@ public class KelSkills : Skills
         {
             target = RedirectTarget(target, 3);
             manager.AddText("Kel annoys " + target.name + ".", true);
-            target.NewEmotion(BattleCharacter.Emotion.ANGRY);
+            yield return target.NewEmotion(BattleCharacter.Emotion.ANGRY);
         }
         yield return null;
     }
@@ -146,7 +146,7 @@ public class KelSkills : Skills
         BattleCharacter omori = followUpRequire[0];
         manager.energy -= energyCost[0];
         manager.AddText("Kel passes the ball to Omori, who then throws it.", true);
-        omori.NewEmotion(BattleCharacter.Emotion.HAPPY);
+        yield return omori.NewEmotion(BattleCharacter.Emotion.HAPPY);
 
         BattleCharacter target = manager.foes[Random.Range(0, manager.foes.Count - 1)];
         int critical = RollCritical(omori.currLuck);

@@ -6,12 +6,12 @@ public class Skills : MonoBehaviour
 {
     public BattleCharacter user;
     public BattleManager manager;
-    Weapon weapon;
 
     public List<string> skillNames = new List<string>();
     public List<int> juiceCost = new List<int>();
     public List<int> energyCost = new List<int>();
     public List<BattleCharacter> followUpRequire = new List<BattleCharacter>();
+
     public enum Target { NONE, FRIEND, FOE, ANYONE, ALLFRIENDS, ALLFOES };
     public List<Target> skillTargets = new List<Target>();
 
@@ -19,7 +19,6 @@ public class Skills : MonoBehaviour
     {
         user = gameObject.GetComponent<BattleCharacter>();
         manager = FindObjectOfType<BattleManager>().GetComponent<BattleManager>();
-        weapon = gameObject.GetComponent<Weapon>();
     }
 
     public bool RollAccuracy(float value)
@@ -43,7 +42,7 @@ public class Skills : MonoBehaviour
         return 1;
     }
 
-    public IEnumerator BasicAttack(BattleCharacter target)
+    public virtual IEnumerator BasicAttack(BattleCharacter target)
     {
         target = RedirectTarget(target, 0);
         manager.AddText(user.name + " attacks.", true);
@@ -52,9 +51,8 @@ public class Skills : MonoBehaviour
         {
             int critical = RollCritical(user.currLuck);
             int damage = (int)(critical * IsEffective(target) * (user.currAttack - target.currDefense));
-            target.TakeDamage(damage);
+            yield return target.TakeDamage(damage);
         }
-        yield return null;
     }
 
     public float IsEffective(BattleCharacter target)
@@ -187,6 +185,7 @@ public class Skills : MonoBehaviour
     {
         if (target.toast)
         {
+            Debug.Log("Redirecting attack.");
             List<BattleCharacter> possibleTargets = new List<BattleCharacter>();
 
             if (skillTargets[n] == Target.ANYONE)
@@ -211,15 +210,15 @@ public class Skills : MonoBehaviour
     }
     public virtual IEnumerator UseSkillTwo(BattleCharacter target)
     {
-        yield return null;
+        yield return UseSkillOne(target);
     }
     public virtual IEnumerator UseSkillThree(BattleCharacter target)
     {
-        yield return null;
+        yield return UseSkillOne(target);
     }
     public virtual IEnumerator UseSkillFour(BattleCharacter target)
     {
-        yield return null;
+        yield return UseSkillOne(target);
     }
     public virtual IEnumerator FollowUpOne()
     {

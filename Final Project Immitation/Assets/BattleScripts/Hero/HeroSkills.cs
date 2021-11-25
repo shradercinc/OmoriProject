@@ -10,8 +10,8 @@ public class HeroSkills : Skills
     //Skill 4: Snack Time: Restore 40% of all friends' health.
 
     //Skill 1: Call Omori: Omori restores 40% of his health, 25% of his juice, and attacks again.
-    //Skill 2: Call Aubrey: Aubreu restores 40% of his health, 25% of his juice, and attacks again.
-    //Skill 3: Call Kel: Kel restores 40% of her health, 25% of her juice, and attacks again.
+    //Skill 2: Call Aubrey: Aubreu restores 40% of his health, 25% of her juice, and attacks again.
+    //Skill 3: Call Kel: Kel restores 40% of her health, 25% of his juice, and attacks again.
 
     public override void SetStartingStats()
     {
@@ -75,7 +75,7 @@ public class HeroSkills : Skills
             manager.AddText("Hero makes some refreshments for " + target.name + ".", true);
 
             int juice = (int)(target.startingJuice / 2);
-            target.TakeHealing(0, juice);
+            yield return target.TakeHealing(0, juice);
         }
         yield return null;
     }
@@ -87,7 +87,7 @@ public class HeroSkills : Skills
             manager.AddText("Hero prepares a meal for " + target.name + ".", true);
 
             int health = (int)(target.startingHealth * 0.7);
-            target.TakeHealing(health, 0);
+            yield return target.TakeHealing(health, 0);
         }
         yield return null;
     }
@@ -101,7 +101,7 @@ public class HeroSkills : Skills
                 manager.AddText("Hero brings back " + target.name + ".", true);
 
                 target.currHealth = (int)(target.startingHealth * 0.4);
-                target.ResetStats();
+                yield return target.ResetStats();
                 manager.ReturnToList(target);
             }
         }
@@ -116,7 +116,7 @@ public class HeroSkills : Skills
             for (int i = 0; i < manager.friends.Count; i++)
             {
                 int recover = (int)(manager.friends[i].startingHealth * 0.4);
-                manager.friends[i].TakeHealing(recover, 0);
+                yield return manager.friends[i].TakeHealing(recover, 0);
             }
         }
         yield return null;
@@ -130,7 +130,7 @@ public class HeroSkills : Skills
         int healing = (int)(omori.startingHealth * 0.4f);
         int juicing = (int)(omori.startingJuice * 0.25f);
 
-        omori.TakeHealing(healing, juicing);
+        yield return omori.TakeHealing(healing, juicing);
         yield return omori.userSkills.BasicAttack(omori.nextTarget);
     }
     public override IEnumerator FollowUpTwo()
@@ -142,7 +142,7 @@ public class HeroSkills : Skills
         int healing = (int)(aubrey.startingHealth * 0.4f);
         int juicing = (int)(aubrey.startingJuice * 0.25f);
 
-        aubrey.TakeHealing(healing, juicing);
+        yield return aubrey.TakeHealing(healing, juicing);
         yield return aubrey.userSkills.BasicAttack(aubrey.nextTarget);
     }
     public override IEnumerator FollowUpThree()
@@ -154,7 +154,7 @@ public class HeroSkills : Skills
         int healing = (int)(kel.startingHealth * 0.4f);
         int juicing = (int)(kel.startingJuice * 0.25f);
 
-        kel.TakeHealing(healing, juicing);
+        yield return kel.TakeHealing(healing, juicing);
         yield return kel.userSkills.BasicAttack(kel.nextTarget);
     }
 }

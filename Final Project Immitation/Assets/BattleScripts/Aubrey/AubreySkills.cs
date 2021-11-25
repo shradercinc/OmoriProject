@@ -75,7 +75,7 @@ public class AubreySkills : Skills
             if (target.currEmote == BattleCharacter.Emotion.SAD || target.currEmote == BattleCharacter.Emotion.DEPRESSED)
             {
                 target.defenseStat -= 0.15f;
-                target.ResetStats();
+                yield return target.ResetStats();
                 manager.AddText(target.name + "'s defense decreases.");
             }
             if (RollAccuracy(user.currAccuracy))
@@ -94,7 +94,7 @@ public class AubreySkills : Skills
             if (user.currEmote == BattleCharacter.Emotion.HAPPY || target.currEmote == BattleCharacter.Emotion.ECSTATIC)
             {
                 user.accuracyStat += 0.15f;
-                user.ResetStats();
+                yield return user.ResetStats();
                 manager.AddText(user.name + "'s accuracy increases.");
             }
             if (RollAccuracy(user.currAccuracy))
@@ -110,7 +110,7 @@ public class AubreySkills : Skills
         if (user.DrainJuice(juiceCost[3]))
         {
             manager.AddText("Aubrey cheers on " + target.name + ".", true);
-            target.NewEmotion(BattleCharacter.Emotion.HAPPY);
+            yield return target.NewEmotion(BattleCharacter.Emotion.HAPPY);
         }
         yield return null;
     }
@@ -125,7 +125,7 @@ public class AubreySkills : Skills
                 int critical = RollCritical(user.currLuck);
                 int damage = (int)(critical * IsEffective(target) * (4 * user.currHealth - target.currDefense));
                 yield return target.TakeDamage(damage);
-                yield return user.TakeDamage(100);
+                yield return user.TakeDamage(200);
             }
         }
     }
@@ -147,11 +147,11 @@ public class AubreySkills : Skills
 
         user.attackStat += 0.15f;
         manager.AddText(user.name + "'s attack increases.");
-        user.NewEmotion(BattleCharacter.Emotion.ANGRY);
+        yield return user.NewEmotion(BattleCharacter.Emotion.ANGRY);
 
         kel.attackStat += 0.15f;
         manager.AddText(kel.name + "'s attack increases.");
-        kel.NewEmotion(BattleCharacter.Emotion.ANGRY);
+        yield return kel.NewEmotion(BattleCharacter.Emotion.ANGRY);
 
         yield return null;
     }
@@ -163,8 +163,8 @@ public class AubreySkills : Skills
         manager.AddText(user.name + "'s defense increases.");
 
         int healing = (int) (user.startingHealth * 0.5f);
-        user.TakeHealing(healing, 0);
-        user.NewEmotion(BattleCharacter.Emotion.HAPPY);
+        yield return user.TakeHealing(healing, 0);
+        yield return user.NewEmotion(BattleCharacter.Emotion.HAPPY);
         yield return null;
     }
 }

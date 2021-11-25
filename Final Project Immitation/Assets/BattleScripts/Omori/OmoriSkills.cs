@@ -76,7 +76,7 @@ public class OmoriSkills : Skills
             if (target.currEmote == BattleCharacter.Emotion.ANGRY || target.currEmote == BattleCharacter.Emotion.ENRAGED)
             {
                 target.attackStat -= 0.15f;
-                target.ResetStats();
+                yield return target.ResetStats();
                 manager.AddText(target.name + "'s attack decreases.");
             }
             if (RollAccuracy(user.currAccuracy))
@@ -97,7 +97,7 @@ public class OmoriSkills : Skills
             if (user.currEmote == BattleCharacter.Emotion.SAD || target.currEmote == BattleCharacter.Emotion.DEPRESSED)
             {
                 user.attackStat += 0.15f;
-                user.ResetStats();
+                yield return user.ResetStats();
                 manager.AddText(user.name + "'s attack increases.");
             }
             if (RollAccuracy(user.currAccuracy))
@@ -114,9 +114,8 @@ public class OmoriSkills : Skills
         {
             target = RedirectTarget(target, 3);
             manager.AddText("Omori reads " + target.name + " a poem.", true);
-            target.NewEmotion(BattleCharacter.Emotion.SAD);
+            yield return target.NewEmotion(BattleCharacter.Emotion.SAD);
         }
-        yield return null;
     }
     public override IEnumerator UseSkillFour(BattleCharacter target)
     {
@@ -132,9 +131,8 @@ public class OmoriSkills : Skills
             target.accuracyStat -= 0.1f;
 
             manager.AddText("All of " + target.name + "'s stats decrease.");
-            target.ResetStats();
+            yield return target.ResetStats();
         }
-        yield return null;
     }
     public override IEnumerator FollowUpOne()
     {
@@ -150,7 +148,7 @@ public class OmoriSkills : Skills
 
         target.speedStat -= 0.15f;
         manager.AddText(target.name + "'s speed decreases.");
-        target.NewEmotion(BattleCharacter.Emotion.SAD);
+        yield return target.NewEmotion(BattleCharacter.Emotion.SAD);
 
         int critical = RollCritical(user.currLuck);
         int damage = (int)(critical * IsEffective(target) * (user.currAttack + user.currLuck - target.currDefense));
@@ -159,8 +157,6 @@ public class OmoriSkills : Skills
     public override IEnumerator FollowUpThree()
     {
         manager.energy -= energyCost[2];
-        manager.AddText("Omori and friends come together and use their ultimate attack.", true);
-
         for (int i = 0; i < manager.foes.Count; i++)
         {
             manager.AddText("Omori and friends come together and use their ultimate attack.", true);
