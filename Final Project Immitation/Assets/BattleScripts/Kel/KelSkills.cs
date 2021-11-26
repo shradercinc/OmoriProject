@@ -161,7 +161,7 @@ public class KelSkills : Skills
 
         BattleCharacter target = manager.foes[Random.Range(0, manager.foes.Count - 1)];
         int critical = RollCritical(omori.currLuck);
-        int damage = (int)(critical * IsEffective(target) * (1.5 * user.currAttack + 1.5 * omori.currAttack - target.currDefense));
+        int damage = (int)(critical * IsEffective(target) * (user.currAttack + omori.currAttack - target.currDefense));
         yield return target.TakeDamage(damage);
     }
     public override IEnumerator FollowUpTwo()
@@ -187,7 +187,7 @@ public class KelSkills : Skills
             BattleCharacter target = allEnemies[i];
 
             int critical = RollCritical(hero.currLuck);
-            int damage = (int)(critical * IsEffective(target) * (user.currAttack + hero.currAttack - target.currDefense));
+            int damage = (int)(critical * IsEffective(target) * (user.currAttack));
 
             yield return target.TakeDamage(damage);
             yield return new WaitForSeconds(1);

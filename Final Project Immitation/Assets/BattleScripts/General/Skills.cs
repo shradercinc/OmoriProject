@@ -183,7 +183,7 @@ public class Skills : MonoBehaviour
 
     public BattleCharacter RedirectTarget(BattleCharacter target, int n)
     {
-        if (target.toast)
+        if (target == null || target.toast)
         {
             Debug.Log("Redirecting attack.");
             List<BattleCharacter> possibleTargets = new List<BattleCharacter>();

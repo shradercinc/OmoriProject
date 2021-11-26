@@ -9,7 +9,7 @@ public class OmoriSkills : Skills
     //Skill 3: Sad Poem: Makes anyone Sad. If they're already Sad, they become Depressed.
     //Skill 4: Glare: Reduce the stats of a foe.
 
-    //Skill 1: Chain Attack: Omori attacks 2 more times.
+    //Skill 1: Blind Rage: Omori becomes Angry and deals damage to a foe.
     //Skill 2: Trip Foe: Deal damage to a foe. Lower their speed, and they become Sad.
     //Skill 3: Release Energy: Deal a lot of damage to all enemies.
 
@@ -41,7 +41,7 @@ public class OmoriSkills : Skills
         skillTargets.Add(Target.FOE);
 
         //Follow Up 1:
-        skillNames.Add("Chain Attack");
+        skillNames.Add("Blind Rage");
         energyCost.Add(3);
         followUpRequire.Add(GameObject.Find("Omori").GetComponent<BattleCharacter>());
 
@@ -149,8 +149,13 @@ public class OmoriSkills : Skills
     public override IEnumerator FollowUpOne()
     {
         yield return manager.AddEnergy(-energyCost[0]);
-        yield return user.userSkills.BasicAttack(user.nextTarget);
-        yield return user.userSkills.BasicAttack(user.nextTarget);
+        BattleCharacter target = manager.foes[Random.Range(0, manager.foes.Count - 1)];
+        manager.AddText("Omori gets blinded by anger.", true);
+        yield return user.NewEmotion(BattleCharacter.Emotion.ANGRY);
+
+        int critical = RollCritical(user.currLuck);
+        int damage = (int)(critical * IsEffective(target) * (user.currAttack + user.currLuck - target.currDefense));
+        yield return target.TakeDamage(damage);
     }
     public override IEnumerator FollowUpTwo()
     {

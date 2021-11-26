@@ -9,7 +9,7 @@ public class AubreySkills : Skills
     //Skill 3: Cheer: Targetted Foe or Friend becomes Happy.
     //Skill 4: Sacrifice: Deal a lot of damage to a Foe. Aubrey becomes toast.
 
-    //Follow Up 1: Look at Omori: Deal a lot of damage to a foe.
+    //Follow Up 1: Look at Omori: Aubrey becomes sad, then deals a lot of damage to a foe.
     //Follow Up 2: Look at Kel: Kel and Aubrey become Angry. Raise their attacks.
     //Follow Up 3: Look at Hero: Aubrey restores 50% of her health, increases her defense, and becomes Happy.
 
@@ -145,10 +145,11 @@ public class AubreySkills : Skills
     {
         yield return manager.AddEnergy(-energyCost[0]);
         BattleCharacter target = manager.foes[Random.Range(0, manager.foes.Count - 1)];
-        manager.AddText("Omori didn't notice Aubrey, so she attacks harder.", true);
+        manager.AddText("Omori doesn't notice Aubrey, so she attacks again out of loneliness.", true);
+        yield return user.NewEmotion(BattleCharacter.Emotion.SAD);
 
         int critical = RollCritical(user.currLuck);
-        int damage = (int)(critical * IsEffective(target) * (3 * user.currAttack));
+        int damage = (int)(critical * IsEffective(target) * (user.currAttack - target.currDefense));
         yield return target.TakeDamage(damage);
     }
     public override IEnumerator FollowUpTwo()

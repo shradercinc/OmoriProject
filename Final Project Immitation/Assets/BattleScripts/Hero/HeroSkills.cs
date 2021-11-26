@@ -9,9 +9,9 @@ public class HeroSkills : Skills
     //Skill 3: Homemade Jam: Bring back a friend who's toast. Restore 40% of their health.
     //Skill 4: Snack Time: Restore 40% of all friends' health.
 
-    //Skill 1: Call Omori: Omori restores 40% of his health, 25% of his juice, and attacks again.
-    //Skill 2: Call Aubrey: Aubreu restores 40% of his health, 25% of her juice, and attacks again.
-    //Skill 3: Call Kel: Kel restores 40% of her health, 25% of his juice, and attacks again.
+    //Skill 1: Call Omori: Omori restores 40% of his health, 25% of his juice, loses their emotion, and attacks again.
+    //Skill 2: Call Aubrey: Aubreu restores 40% of his health, 25% of her juice, loses their emotion, and attacks again.
+    //Skill 3: Call Kel: Kel restores 40% of her health, 25% of his juice, loses their emotion, and attacks again.
 
     public override void SetStartingStats()
     {
@@ -138,6 +138,7 @@ public class HeroSkills : Skills
         int healing = (int)(omori.startingHealth * 0.4f);
         int juicing = (int)(omori.startingJuice * 0.25f);
 
+        yield return omori.NewEmotion(BattleCharacter.Emotion.NEUTRAL);
         yield return omori.TakeHealing(healing, juicing);
         yield return omori.userSkills.BasicAttack(omori.nextTarget);
     }
@@ -150,6 +151,7 @@ public class HeroSkills : Skills
         int healing = (int)(aubrey.startingHealth * 0.4f);
         int juicing = (int)(aubrey.startingJuice * 0.25f);
 
+        yield return aubrey.NewEmotion(BattleCharacter.Emotion.NEUTRAL);
         yield return aubrey.TakeHealing(healing, juicing);
         yield return aubrey.userSkills.BasicAttack(aubrey.nextTarget);
     }
@@ -162,6 +164,7 @@ public class HeroSkills : Skills
         int healing = (int)(kel.startingHealth * 0.4f);
         int juicing = (int)(kel.startingJuice * 0.25f);
 
+        yield return kel.NewEmotion(BattleCharacter.Emotion.NEUTRAL);
         yield return kel.TakeHealing(healing, juicing);
         yield return kel.userSkills.BasicAttack(kel.nextTarget);
     }

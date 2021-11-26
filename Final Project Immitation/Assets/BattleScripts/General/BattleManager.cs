@@ -96,23 +96,6 @@ public class BattleManager : MonoBehaviour
         StartCoroutine(PlayRound());
     }
 
-    bool BattleContinue()
-    {
-        return (!omori.toast && foes.Count > 0);
-    }
-
-    IEnumerator ReloadScene()
-    {
-        bool decision = true;
-        while (decision)
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            else
-                yield return null;
-        }
-    }
-
     IEnumerator PlayRound()
     {
         while (BattleContinue() && SpeedQueue.Count > 0)
@@ -209,6 +192,23 @@ public class BattleManager : MonoBehaviour
                 decision = false;
             }
             yield return null;
+        }
+    }
+
+    bool BattleContinue()
+    {
+        return (!omori.toast && foes.Count > 0);
+    }
+
+    IEnumerator ReloadScene()
+    {
+        bool decision = true;
+        while (decision)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            else
+                yield return null;
         }
     }
 
