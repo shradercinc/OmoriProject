@@ -34,6 +34,7 @@ public class BattleCharacter : MonoBehaviour
 
     public enum Emotion { NEUTRAL, HAPPY, ECSTATIC, ANGRY, ENRAGED, SAD, DEPRESSED };
     public Emotion currEmote = Emotion.NEUTRAL;
+    public bool paralyze = false;
 
     GameObject centerObject;
     TMP_Text originalTextBox;
@@ -50,7 +51,7 @@ public class BattleCharacter : MonoBehaviour
     TMP_Text juiceText;
 
     public bool toast = false;
-    bool lastHit = (gameObject.name = "Omori");
+    bool lastHit;
     public bool friend;
     public int order;
 
@@ -62,6 +63,7 @@ public class BattleCharacter : MonoBehaviour
     {
         manager = FindObjectOfType<BattleManager>().GetComponent<BattleManager>();
         centerObject = GameObject.Find("EnemyUI");
+        lastHit = gameObject.name == "Omori";
 
         currEmote = Emotion.NEUTRAL;
         userSkills = gameObject.GetComponent<Skills>();
@@ -252,37 +254,31 @@ public class BattleCharacter : MonoBehaviour
     {
         if (!toast)
         {
+            if (paralyze)
+            {
+                paralyze = false;
+                manager.AddText(gameObject.name + " is paralyzed and misses their turn.", true);
+                currMove = Move.NONE;
+            }
             switch (currMove)
             {
                 case Move.ATTACK:
-                {
                     yield return userSkills.BasicAttack(nextTarget);
                     break;
-                }
                 case Move.SKILL1:
-                {
                     yield return userSkills.UseSkillOne(nextTarget);
                     break;
-                }
                 case Move.SKILL2:
-                {
                     yield return userSkills.UseSkillTwo(nextTarget);
                     break;
-                }
                 case Move.SKILL3:
-                {
                     yield return userSkills.UseSkillThree(nextTarget);
                     break;
-                }
                 case Move.SKILL4:
-                {
                     yield return userSkills.UseSkillFour(nextTarget);
                     break;
-                }
                 case Move.NONE:
-                {
                     break;
-                }
             }
         }
 
@@ -292,10 +288,10 @@ public class BattleCharacter : MonoBehaviour
     public IEnumerator TakeDamage(int damage)
     {
         damage = (int)(damage * Random.Range(0.8f, 1.2f));
-        manager.AddText(gameObject.name + " takes " + damage + " damage.");
 
         if (damage > 0)
         {
+            manager.AddText(gameObject.name + " takes " + damage + " damage.");
             if (friend)
             { 
                 yield return manager.AddEnergy(1);

@@ -13,7 +13,7 @@ public class BattleManager : MonoBehaviour
     public List<BattleCharacter> toast = new List<BattleCharacter>();
 
     List<BattleCharacter> SpeedQueue = new List<BattleCharacter>();
-    BattleCharacter omori = GameObject.Find("Omori").GetComponent<BattleCharacter>();
+    BattleCharacter omori;
 
     TMP_Text battleLog;
     TMP_Text energyText;
@@ -25,6 +25,7 @@ public class BattleManager : MonoBehaviour
         battleLog = GameObject.Find("Battle Log").GetComponent<TextMeshProUGUI>();
         energySlider = GameObject.Find("Energy Slider");
         energyText = energySlider.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
+        omori = GameObject.Find("Omori").GetComponent<BattleCharacter>();
 
         energySlider.GetComponent<Slider>().value = (float)(energy / 10);
         energyText.text = $"Energy: {energy}";
@@ -95,9 +96,9 @@ public class BattleManager : MonoBehaviour
         StartCoroutine(PlayRound());
     }
 
-    bool BattleEnd()
+    bool BattleContinue()
     {
-        return (omori.toast && foes.Count > 0);
+        return (!omori.toast && foes.Count > 0);
     }
 
     IEnumerator ReloadScene()
@@ -114,7 +115,7 @@ public class BattleManager : MonoBehaviour
 
     IEnumerator PlayRound()
     {
-        while (BattleEnd() && SpeedQueue.Count > 0)
+        while (BattleContinue() && SpeedQueue.Count > 0)
         {
             SpeedQueue = SpeedQueue.OrderByDescending(o => o.currSpeed).ToList();
             BattleCharacter nextInLine = SpeedQueue[0];
@@ -126,16 +127,16 @@ public class BattleManager : MonoBehaviour
                     yield return nextInLine.weapon.StartOfTurn();
                 yield return nextInLine.UseMove();
 
-                if (BattleEnd() && energy >= 3 && nextInLine.friend && nextInLine.currMove == BattleCharacter.Move.ATTACK)
+                if (BattleContinue() && energy >= 3 && nextInLine.friend && nextInLine.currMove == BattleCharacter.Move.ATTACK)
                     yield return FollowUp(nextInLine);
                 else
                     yield return new WaitForSeconds(1.5f);
             }
         }
 
-        StopAllCoroutines()
-        if (BattleEnd())
+        if (!BattleContinue())
         {
+            StopAllCoroutines();
             AddText("The battle has ended.", true);
 
             if (omori.toast)
