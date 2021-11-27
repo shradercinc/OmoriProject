@@ -5,13 +5,13 @@ using UnityEngine;
 public class KelSkills : Skills
 {
     //SKILL 1: Snowball Fight: If the targetted Foe is Happy or Ecstatic, lower their speed. Then deal damage to them.
-    //SKILL 2: Headbutt: If Kel is Angry or Enraged, increase their luck. Then deal damage to a foe.
-    //SKILL 3: Annoy: Makes anyone Angry. If they're already Angry, they become Enraged.
+    //SKILL 2: Headbutt: If Kel is Angry or Enraged, increase their Luck. Then deal damage to a foe.
+    //SKILL 3: Annoy: Makes anyone Angry. If it's a Foe, they decrease their Accuracy.
     //SKILL 4: Rebound: Deal damage to all Foes.
 
-    //Follow Up 1: Pass to Omori: Omori becomes happy and deals damage to a foe.
-    //Follow Up 2: Pass to Aubrey: Aubrey deals extra damage to a foe.
-    //Follow Up 3: Pass to Hero: Kel deals damage to all foes.
+    //Follow Up 1: Pass to Omori: Omori becomes Happy and deals damage to a Foe.
+    //Follow Up 2: Pass to Aubrey: Aubrey deals extra damage to a Foe.
+    //Follow Up 3: Pass to Hero: Kel deals damage to all Foes.
 
     public override void SetStartingStats()
     {
@@ -124,6 +124,9 @@ public class KelSkills : Skills
         {
             target = RedirectTarget(target, 3);
             manager.AddText("Kel annoys " + target.name + ".", true);
+
+            if (!target.friend)
+                target.accuracyStat -= 0.15f;
             yield return target.NewEmotion(BattleCharacter.Emotion.ANGRY);
         }
     }
@@ -159,7 +162,7 @@ public class KelSkills : Skills
         manager.AddText("Kel passes the ball to Omori, who then throws it.", true);
         yield return omori.NewEmotion(BattleCharacter.Emotion.HAPPY);
 
-        BattleCharacter target = manager.foes[Random.Range(0, manager.foes.Count - 1)];
+        BattleCharacter target = RedirectTarget(user.nextTarget, 0);
         int critical = RollCritical(omori.currLuck);
         int damage = (int)(critical * IsEffective(target) * (user.currAttack + omori.currAttack - target.currDefense));
         yield return target.TakeDamage(damage);
@@ -167,7 +170,7 @@ public class KelSkills : Skills
     public override IEnumerator FollowUpTwo()
     {
         BattleCharacter aubrey = followUpRequire[1];
-        BattleCharacter target = manager.foes[Random.Range(0, manager.foes.Count - 1)];
+        BattleCharacter target = RedirectTarget(user.nextTarget, 0);
         yield return manager.AddEnergy(-energyCost[1]);
         manager.AddText("Kel passes the ball to Aubrey, who knocks it out of the park.", true);
 

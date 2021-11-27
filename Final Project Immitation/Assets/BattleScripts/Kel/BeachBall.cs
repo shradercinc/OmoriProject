@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class BeachBall : Weapon
 {
+    //Kel starts Happy. Increases Attack and Luck. 
+
     public override void AffectUser()
     {
         user = gameObject.GetComponent<BattleCharacter>();
-        user.startingAccuracy += 0.2f;
+        user.startingAttack += 4;
+        user.startingLuck += 0.4f;
         user.currEmote = BattleCharacter.Emotion.HAPPY;
     }
     public override IEnumerator StartOfTurn()

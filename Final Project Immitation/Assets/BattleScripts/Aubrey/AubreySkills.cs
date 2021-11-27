@@ -6,7 +6,7 @@ public class AubreySkills : Skills
 {
     //Skill 1: Positive Spirit: If the targetted Foe is Sad or Depressed, lower their defense.Then deal damage to them.
     //Skill 2: Home Run: If Aubrey is Happy or Ecstatic, raise their accuracy. Then deal damage to a foe.
-    //Skill 3: Cheer: Targetted Foe or Friend becomes Happy.
+    //Skill 3: Cheer: Makes anyone Happy. Gain 2 Energy.
     //Skill 4: Sacrifice: Deal a lot of damage to a Foe. Aubrey becomes toast.
 
     //Follow Up 1: Look at Omori: Aubrey becomes sad, then deals a lot of damage to a foe.
@@ -120,8 +120,8 @@ public class AubreySkills : Skills
         {
             manager.AddText("Aubrey cheers on " + target.name + ".", true);
             yield return target.NewEmotion(BattleCharacter.Emotion.HAPPY);
+            manager.AddEnergy(2);
         }
-        yield return null;
     }
     public override IEnumerator UseSkillFour(BattleCharacter target)
     {
@@ -144,7 +144,7 @@ public class AubreySkills : Skills
     public override IEnumerator FollowUpOne()
     {
         yield return manager.AddEnergy(-energyCost[0]);
-        BattleCharacter target = manager.foes[Random.Range(0, manager.foes.Count - 1)];
+        BattleCharacter target = RedirectTarget(user.nextTarget, 0);
         manager.AddText("Omori doesn't notice Aubrey, so she attacks again out of loneliness.", true);
         yield return user.NewEmotion(BattleCharacter.Emotion.SAD);
 

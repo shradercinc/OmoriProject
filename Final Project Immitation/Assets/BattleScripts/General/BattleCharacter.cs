@@ -131,6 +131,8 @@ public class BattleCharacter : MonoBehaviour
             else
                 manager.AddText("5: " + userSkills.skillNames[4] + " - Not enough juice");
 
+            manager.AddText("Space: Rechoose Actions");
+
             while (currMove == Move.NONE)
             {
                 if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -158,24 +160,32 @@ public class BattleCharacter : MonoBehaviour
                     currMove = Move.SKILL4;
                     n = 4;
                 }
-
+                else if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    manager.undo = true;
+                    n = -1;
+                    break;
+                }
                 yield return null;
             }
 
-            switch (userSkills.skillTargets[n])
+            if (n >= 0)
             {
-                case Skills.Target.FRIEND:
-                    yield return ChooseTarget(manager.friends);
-                    break;
-                case Skills.Target.FOE:
-                    yield return ChooseTarget(manager.foes);
-                    break;
-                case Skills.Target.ANYONE:
-                    yield return ChooseTarget(manager.GetAllTargets());
-                    break;
-                default:
-                    nextTarget = null;
-                    break;
+                switch (userSkills.skillTargets[n])
+                {
+                    case Skills.Target.FRIEND:
+                        yield return ChooseTarget(manager.friends);
+                        break;
+                    case Skills.Target.FOE:
+                        yield return ChooseTarget(manager.foes);
+                        break;
+                    case Skills.Target.ANYONE:
+                        yield return ChooseTarget(manager.GetAllTargets());
+                        break;
+                    default:
+                        nextTarget = null;
+                        break;
+                }
             }
         }
     }
@@ -187,27 +197,47 @@ public class BattleCharacter : MonoBehaviour
 
         for (int i = 0; i<possibleTargets.Count; i++)
             manager.AddText((i+1).ToString() + ": " + possibleTargets[i].name);
+        manager.AddText("Space: Rechoose Actions");
 
         while (nextTarget == null)
         {
             if (Input.GetKeyDown(KeyCode.Alpha1) && possibleTargets.Count >= 0)
+            {
                 nextTarget = possibleTargets[0];
+            }
             else if (Input.GetKeyDown(KeyCode.Alpha2) && possibleTargets.Count >= 1)
+            {
                 nextTarget = possibleTargets[1];
+            }
             else if (Input.GetKeyDown(KeyCode.Alpha3) && possibleTargets.Count >= 2)
+            {
                 nextTarget = possibleTargets[2];
+            }
             else if (Input.GetKeyDown(KeyCode.Alpha4) && possibleTargets.Count >= 3)
+            {
                 nextTarget = possibleTargets[3];
+            }
             else if (Input.GetKeyDown(KeyCode.Alpha5) && possibleTargets.Count >= 4)
+            {
                 nextTarget = possibleTargets[4];
+            }
             else if (Input.GetKeyDown(KeyCode.Alpha6) && possibleTargets.Count >= 5)
+            {
                 nextTarget = possibleTargets[5];
+            }
             else if (Input.GetKeyDown(KeyCode.Alpha7) && possibleTargets.Count >= 6)
+            {
                 nextTarget = possibleTargets[6];
+            }
             else if (Input.GetKeyDown(KeyCode.Alpha8) && possibleTargets.Count >= 7)
+            {
                 nextTarget = possibleTargets[7];
-            else if (Input.GetKeyDown(KeyCode.Alpha9) && possibleTargets.Count >= 8)
-                nextTarget = possibleTargets[8];
+            }
+            else if (Input.GetKey(KeyCode.Space))
+            {
+                manager.undo = true;
+                break;
+            }
 
             yield return null;
         }
@@ -287,6 +317,7 @@ public class BattleCharacter : MonoBehaviour
 
     public IEnumerator TakeDamage(int damage)
     {
+        yield return new WaitForSeconds(1);
         damage = (int)(damage * Random.Range(0.8f, 1.2f));
 
         if (damage > 0)
@@ -294,7 +325,6 @@ public class BattleCharacter : MonoBehaviour
             manager.AddText(gameObject.name + " takes " + damage + " damage.");
             if (friend)
             { 
-                yield return manager.AddEnergy(1);
                 for (int i = 0; i<damage && currHealth > 0; i++)
                 {
                     currHealth--;
@@ -312,6 +342,7 @@ public class BattleCharacter : MonoBehaviour
 
                     yield return new WaitForSeconds(0.01f);
                 }
+                yield return manager.AddEnergy(1);
             }
             else
                 currHealth -= damage;
@@ -346,6 +377,7 @@ public class BattleCharacter : MonoBehaviour
     {
         if (health > 0)
         {
+            yield return new WaitForSeconds(1);
             manager.AddText(gameObject.name + " recovers " + health + " health.");
             if (friend)
             {
@@ -362,6 +394,7 @@ public class BattleCharacter : MonoBehaviour
         }
         if (juice > 0)
         {
+            yield return new WaitForSeconds(1);
             manager.AddText(gameObject.name + " recovers " + juice + " juice.");
             if (friend)
             {
@@ -381,6 +414,8 @@ public class BattleCharacter : MonoBehaviour
 
     public IEnumerator NewEmotion(Emotion newEmote)
     {
+        yield return new WaitForSeconds(1);
+
         if (newEmote == Emotion.HAPPY && (currEmote == Emotion.HAPPY || currEmote == Emotion.ECSTATIC))
             currEmote = Emotion.ECSTATIC;
 
@@ -440,17 +475,17 @@ public class BattleCharacter : MonoBehaviour
             luckStat = 1;
             accuracyStat = 1;
 
-            if (weapon != null)
-                yield return weapon.OnToast();
-
             if (!friend)
             {
-                yield return new WaitForSeconds(1.5f);
+                yield return new WaitForSeconds(1);
                 Destroy(emoteText.gameObject);
                 Destroy(uiText.gameObject);
                 Destroy(healthObject.gameObject);
                 Destroy(gameObject);
             }
+
+            if (weapon != null)
+                yield return weapon.OnToast();
         }
     
         else

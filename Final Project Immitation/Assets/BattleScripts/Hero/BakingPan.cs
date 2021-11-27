@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BakingPan : Weapon
 {
+    //Hero's stats increase with extra Energy.
+
     int unalteredAttack;
     int unalteredDefense;
     int unalteredSpeed;
@@ -21,7 +23,6 @@ public class BakingPan : Weapon
         user.startingDefense = unalteredDefense + (int)(0.03f * manager.energy);
         user.startingSpeed = unalteredSpeed + (int)(0.03f * manager.energy);
 
-        user.ResetStats();
-        yield return null;
+        yield return user.ResetStats();
     }
 }

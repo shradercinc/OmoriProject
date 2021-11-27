@@ -18,7 +18,9 @@ public class BattleManager : MonoBehaviour
     TMP_Text battleLog;
     TMP_Text energyText;
     GameObject energySlider;
-    public double energy = 3;
+
+    public double energy = 0.0;
+    public bool undo = false;
 
     void Awake()
     {
@@ -27,8 +29,7 @@ public class BattleManager : MonoBehaviour
         energyText = energySlider.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
         omori = GameObject.Find("Omori").GetComponent<BattleCharacter>();
 
-        energySlider.GetComponent<Slider>().value = (float)(energy / 10);
-        energyText.text = $"Energy: {energy}";
+        StartCoroutine(AddEnergy(3));
         StartCoroutine(NewRound());
     }
 
@@ -37,6 +38,7 @@ public class BattleManager : MonoBehaviour
         double counter = 0;
         if (n > 0)
         {
+            AddText($"The team gains {n} Energy.");
             while (counter < n && energy < 10)
             {
                 energy+=0.1f;
@@ -81,19 +83,32 @@ public class BattleManager : MonoBehaviour
 
     IEnumerator NewRound()
     {
-        friends = friends.OrderBy(o => o.order).ToList();
+        yield return ChooseYourSkills();
 
-        for (int i = 0; i < friends.Count; i++)
-        {
-            SpeedQueue.Add(friends[i]);
-            yield return friends[i].ChooseSkill();
-        }
         for (int i = 0; i < foes.Count; i++)
         {
             SpeedQueue.Add(foes[i]);
             foes[i].ChooseRandomSkill();
         }
+
         StartCoroutine(PlayRound());
+    }
+
+    IEnumerator ChooseYourSkills()
+    {
+        friends = friends.OrderBy(o => o.order).ToList();
+        for (int i = 0; i < friends.Count; i++)
+        {
+            if (i == 0)
+                SpeedQueue.Clear();
+
+            undo = false;
+            SpeedQueue.Add(friends[i]);
+            yield return friends[i].ChooseSkill();
+
+            if (undo)
+                i = -1;
+        }
     }
 
     IEnumerator PlayRound()
@@ -113,7 +128,7 @@ public class BattleManager : MonoBehaviour
                 if (BattleContinue() && energy >= 3 && nextInLine.friend && nextInLine.currMove == BattleCharacter.Move.ATTACK)
                     yield return FollowUp(nextInLine);
                 else
-                    yield return new WaitForSeconds(1.5f);
+                    yield return new WaitForSeconds(1);
             }
         }
 

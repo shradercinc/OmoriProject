@@ -6,7 +6,7 @@ public class OmoriSkills : Skills
 {
     //Skill 1: Mock: If the targetted Foe is Angry or Enraged, lower their attack. Then deal damage to them..
     //Skill 2: Stab: If Omori is Sad or Depressed, raise their attack. Then deal damage to a foe.
-    //Skill 3: Sad Poem: Makes anyone Sad. If they're already Sad, they become Depressed.
+    //Skill 3: Sad Poem: Omori and another target both become Sad.
     //Skill 4: Glare: Reduce the stats of a foe.
 
     //Skill 1: Blind Rage: Omori becomes Angry and deals damage to a foe.
@@ -123,6 +123,7 @@ public class OmoriSkills : Skills
         {
             target = RedirectTarget(target, 3);
             manager.AddText("Omori reads " + target.name + " a poem.", true);
+            yield return user.NewEmotion(BattleCharacter.Emotion.SAD);
             yield return target.NewEmotion(BattleCharacter.Emotion.SAD);
         }
     }
@@ -149,7 +150,7 @@ public class OmoriSkills : Skills
     public override IEnumerator FollowUpOne()
     {
         yield return manager.AddEnergy(-energyCost[0]);
-        BattleCharacter target = manager.foes[Random.Range(0, manager.foes.Count - 1)];
+        BattleCharacter target = RedirectTarget(user.nextTarget, 0);
         manager.AddText("Omori gets blinded by anger.", true);
         yield return user.NewEmotion(BattleCharacter.Emotion.ANGRY);
 
@@ -160,7 +161,7 @@ public class OmoriSkills : Skills
     public override IEnumerator FollowUpTwo()
     {
         yield return manager.AddEnergy(-energyCost[1]);
-        BattleCharacter target = manager.foes[Random.Range(0, manager.foes.Count - 1)];
+        BattleCharacter target = RedirectTarget(user.nextTarget, 0);
         manager.AddText("Omori makes " + target.name + " trip and fall over.", true);
 
         target.speedStat -= 0.15f;

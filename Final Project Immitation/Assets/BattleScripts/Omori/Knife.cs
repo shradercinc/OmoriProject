@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Knife : Weapon
 {
+    //Greatly increases Attack and Accuracy. Each turn, Omori's Attack and Accuracy decreases.
+
     public override void AffectUser()
     {
         user = gameObject.GetComponent<BattleCharacter>();
@@ -12,10 +14,8 @@ public class Knife : Weapon
     }
     public override IEnumerator StartOfTurn()
     {
-        user.attackStat -= 0.1f;
-        user.accuracyStat -= 0.1f;
-
-        user.ResetStats();
-        yield return null;
+        user.startingAttack -= 2;
+        user.startingAccuracy -= 0.2f;
+        yield return user.ResetStats();
     }
 }
