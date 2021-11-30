@@ -9,7 +9,7 @@ public class BabySkills : Skills
     public override void SetStartingStats()
     {
         //Attack:
-        skillTargets.Add(Target.FRIEND);
+        skillTargets.Add(Target.ALLFRIENDS);
         //Skill 1:
         skillTargets.Add(Target.ALLFRIENDS);
         //Skill 2:
@@ -29,7 +29,7 @@ public class BabySkills : Skills
         user.startingAccuracy = 1;
     }
 
-    public override IEnumerator UseSkillOne(BattleCharacter target)
+    public override IEnumerator BasicAttack(BattleCharacter target)
     {
         List<BattleCharacter> allFriends = manager.friends;
 
@@ -45,5 +45,10 @@ public class BabySkills : Skills
                 yield return target.TakeDamage(damage);
             }
         }
+    }
+
+    public override IEnumerator UseSkillOne(BattleCharacter target)
+    {
+        yield return BasicAttack(target);
     }
 }

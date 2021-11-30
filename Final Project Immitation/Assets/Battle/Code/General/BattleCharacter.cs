@@ -31,6 +31,7 @@ public class BattleCharacter : MonoBehaviour
     public enum Move { NONE, ATTACK, SKILL1, SKILL2, SKILL3, SKILL4 };
     public Move currMove = Move.NONE;
     public BattleCharacter nextTarget;
+    int skillUse;
 
     public enum Emotion { NEUTRAL, HAPPY, ECSTATIC, ANGRY, ENRAGED, SAD, DEPRESSED };
     public Emotion currEmote = Emotion.NEUTRAL;
@@ -281,33 +282,24 @@ public class BattleCharacter : MonoBehaviour
         currMove = Move.NONE;
         if (!toast)
         {
-            int n = Random.Range(0, 5);
+            skillUse = Random.Range(0, 5);
 
-            if (n == 0)
-                currMove = Move.ATTACK;
-            else if (n == 1)
-                currMove = Move.SKILL1;
-            else if (n == 2)
-                currMove = Move.SKILL2;
-            else if (n == 3)
-                currMove = Move.SKILL3;
-            else if (n == 4)
-                currMove = Move.SKILL4;
-
-            switch (userSkills.skillTargets[n])
+            switch (skillUse)
             {
-                case Skills.Target.FRIEND:
-                    nextTarget = manager.friends[Random.Range(0, manager.friends.Count)];
+                case 0:
+                    currMove = Move.ATTACK;
                     break;
-                case Skills.Target.FOE:
-                    nextTarget = manager.foes[Random.Range(0, manager.foes.Count)];
+                case 1:
+                    currMove = Move.SKILL1;
                     break;
-                case Skills.Target.ANYONE:
-                    List<BattleCharacter> allTargets = manager.GetAllTargets();
-                    nextTarget = allTargets[Random.Range(0, allTargets.Count)];
+                case 2:
+                    currMove = Move.SKILL2;
                     break;
-                default:
-                    nextTarget = null;
+                case 3:
+                    currMove = Move.SKILL3;
+                    break;
+                case 4:
+                    currMove = Move.SKILL4;
                     break;
             }
         }
@@ -317,11 +309,16 @@ public class BattleCharacter : MonoBehaviour
     {
         if (!toast)
         {
+            if (!friend)
+            {
+                nextTarget = userSkills.ChooseTarget(skillUse);
+            }
             if (paralyze)
             {
                 paralyze = false;
                 manager.AddText(gameObject.name + " is paralyzed and misses their turn.", true);
                 currMove = Move.NONE;
+                nextTarget = null;
             }
             switch (currMove)
             {

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class JuiceBlobSkills : Skills
 {
@@ -34,6 +35,15 @@ public class JuiceBlobSkills : Skills
         user.startingLuck = 0.1f;
         user.startingAccuracy = 1;
     }
+
+    //targets the friend with the most health
+    public override BattleCharacter ChooseTarget(int n)
+    {
+        List<BattleCharacter> friends = manager.friends;
+        friends = friends.OrderBy(o => o.currHealth).ToList();
+        return friends[0];
+    }
+
     public override IEnumerator UseSkillOne(BattleCharacter target)
     {
         List<BattleCharacter> allFriends = manager.friends;

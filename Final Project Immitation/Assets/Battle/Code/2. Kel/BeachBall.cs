@@ -9,7 +9,7 @@ public class BeachBall : Weapon
     public override void AffectUser()
     {
         user = FindObjectOfType<KelSkills>().GetComponent<BattleCharacter>();
-        description "Kel starts Happy. Increases Attack and Luck.";
+        description = "Kel starts Happy. Increases Attack and Luck.";
         user.startingAttack += 4;
         user.startingLuck += 0.4f;
         user.currEmote = BattleCharacter.Emotion.HAPPY;

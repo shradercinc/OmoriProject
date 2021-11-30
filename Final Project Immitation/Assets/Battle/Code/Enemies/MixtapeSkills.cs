@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class MixtapeSkills : Skills
 {
@@ -28,6 +29,14 @@ public class MixtapeSkills : Skills
         user.startingSpeed = 15;
         user.startingLuck = 0.1f;
         user.startingAccuracy = 1;
+    }
+
+    //targets the fastest friend
+    public override BattleCharacter ChooseTarget(int n)
+    {
+        List<BattleCharacter> friends = manager.friends;
+        friends = friends.OrderByDescending(o => o.currSpeed).ToList();
+        return friends[0];
     }
 
     public override IEnumerator UseSkillOne(BattleCharacter target)
