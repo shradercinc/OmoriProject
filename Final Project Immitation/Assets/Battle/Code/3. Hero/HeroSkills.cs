@@ -20,13 +20,13 @@ public class HeroSkills : Skills
         skillNames.Add("Refreshments");
         juiceCost.Add(15);
         skillTargets.Add(Target.FRIEND);
-        skillDescription.Add("A Friend regains some Juice.");
+        skillDescription.Add("A Friend regains all their Juice.");
 
         //Skill 2:
         skillNames.Add("Cook");
         juiceCost.Add(10);
         skillTargets.Add(Target.FRIEND);
-        skillDescription.Add("A Friend regains some Health.");
+        skillDescription.Add("A Friend regains all their Health.");
 
         //Skill 3:
         skillNames.Add("Homemade Jam");
@@ -63,7 +63,7 @@ public class HeroSkills : Skills
         user.order = 3;
 
         user.startingHealth = 59;
-        user.startingJuice = 38;
+        user.startingJuice = 50;
         user.startingAttack = 15;
         user.startingDefense = 10;
         user.startingSpeed = 9;
@@ -81,7 +81,7 @@ public class HeroSkills : Skills
             target = RedirectTarget(target, 1);
             manager.AddText("Hero makes some refreshments for " + target.name + ".", true);
 
-            int juice = (int)(target.startingJuice * 0.75);
+            int juice = (int)(target.startingJuice);
             yield return target.TakeHealing(0, juice);
         }
     }
@@ -95,7 +95,7 @@ public class HeroSkills : Skills
             target = RedirectTarget(target, 2);
             manager.AddText("Hero prepares a meal for " + target.name + ".", true);
 
-            int health = (int)(target.startingHealth * 0.7);
+            int health = (int)(target.startingHealth);
             yield return target.TakeHealing(health, 0);
         }
     }
@@ -111,7 +111,7 @@ public class HeroSkills : Skills
                 target = manager.toast[Random.Range(0, manager.toast.Count - 1)];
                 manager.AddText("Hero brings back " + target.name + ".", true);
 
-                target.currHealth = (int)(target.startingHealth * 0.4);
+                target.currHealth = (int)(target.startingHealth * 0.5);
                 yield return target.ResetStats();
                 manager.ReturnToList(target);
             }
@@ -128,7 +128,7 @@ public class HeroSkills : Skills
 
             for (int i = 0; i < manager.friends.Count; i++)
             {
-                int recover = (int)(manager.friends[i].startingHealth * 0.4);
+                int recover = (int)(manager.friends[i].startingHealth * 0.5);
                 yield return manager.friends[i].TakeHealing(recover, 0);
             }
         }
@@ -139,7 +139,7 @@ public class HeroSkills : Skills
         BattleCharacter omori = followUpRequire[0];
         manager.AddText("Hero calls out to Omori.", true);
 
-        int healing = (int)(omori.startingHealth * 0.6f);
+        int healing = (int)(omori.startingHealth * 0.75f);
         int juicing = (int)(omori.startingJuice * 0.4f);
 
         yield return omori.NewEmotion(BattleCharacter.Emotion.NEUTRAL);
@@ -152,7 +152,7 @@ public class HeroSkills : Skills
         BattleCharacter aubrey = followUpRequire[1];
         manager.AddText("Hero calls out to Aubrey.", true);
 
-        int healing = (int)(aubrey.startingHealth * 0.6f);
+        int healing = (int)(aubrey.startingHealth * 0.75f);
         int juicing = (int)(aubrey.startingJuice * 0.4f);
 
         yield return aubrey.NewEmotion(BattleCharacter.Emotion.NEUTRAL);
@@ -165,7 +165,7 @@ public class HeroSkills : Skills
         BattleCharacter kel = followUpRequire[2];
         manager.AddText("Hero calls out to Kel.", true);
 
-        int healing = (int)(kel.startingHealth * 0.6f);
+        int healing = (int)(kel.startingHealth * 0.75f);
         int juicing = (int)(kel.startingJuice * 0.4f);
 
         yield return kel.NewEmotion(BattleCharacter.Emotion.NEUTRAL);

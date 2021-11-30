@@ -315,6 +315,7 @@ MonoBehaviour:
   healthObject: {fileID: 0}
   juiceObject: {fileID: 0}
   toast: 0
+  lastHit: 0
   friend: 0
   order: 0
   userSkills: {fileID: 0}
@@ -525,6 +526,7 @@ MonoBehaviour:
   healthObject: {fileID: 0}
   juiceObject: {fileID: 0}
   toast: 0
+  lastHit: 0
   friend: 0
   order: 0
   userSkills: {fileID: 0}
@@ -1652,6 +1654,7 @@ MonoBehaviour:
   healthObject: {fileID: 0}
   juiceObject: {fileID: 0}
   toast: 0
+  lastHit: 0
   friend: 0
   order: 0
   userSkills: {fileID: 0}
@@ -2474,6 +2477,7 @@ MonoBehaviour:
   healthObject: {fileID: 0}
   juiceObject: {fileID: 0}
   toast: 0
+  lastHit: 0
   friend: 0
   order: 0
   userSkills: {fileID: 0}

@@ -27,8 +27,8 @@ public class AubreySkills : Skills
         //Skill 3:
         skillNames.Add("Cheer");
         juiceCost.Add(5);
-        skillTargets.Add(Target.ANYONE);
-        skillDescription.Add("A Friend or Foe becomes Happy. Gain 2 Energy.");
+        skillTargets.Add(Target.FRIEND);
+        skillDescription.Add("A Friend becomes Happy. Gain 2 Energy.");
 
         //Skill 4:
         skillNames.Add("Blunt Hit");
@@ -59,7 +59,7 @@ public class AubreySkills : Skills
         user.order = 1;
 
         user.startingHealth = 70;
-        user.startingJuice = 33;
+        user.startingJuice = 50;
         user.startingAttack = 22;
         user.startingDefense = 6;
         user.startingSpeed = 11;
@@ -74,6 +74,7 @@ public class AubreySkills : Skills
 
         if (check)
         {
+            target = RedirectTarget(target, 1);
             manager.AddText("Aubrey shows off her positive spirit.", true);
             if (target.currEmote == BattleCharacter.Emotion.SAD || target.currEmote == BattleCharacter.Emotion.DEPRESSED)
             {
@@ -96,6 +97,7 @@ public class AubreySkills : Skills
 
         if (check)
         {
+            target = RedirectTarget(target, 2);
             manager.AddText("Aubrey hits a home run.", true);
             if (user.currEmote == BattleCharacter.Emotion.HAPPY || target.currEmote == BattleCharacter.Emotion.ECSTATIC)
             {
@@ -118,6 +120,7 @@ public class AubreySkills : Skills
 
         if (check)
         {
+            target = RedirectTarget(target, 3);
             manager.AddText("Aubrey cheers on " + target.name + ".", true);
             yield return target.NewEmotion(BattleCharacter.Emotion.HAPPY);
             manager.AddEnergy(2);
@@ -131,6 +134,7 @@ public class AubreySkills : Skills
         if (check)
         {
             manager.AddText("Aubrey gives it everything she's got.", true);
+            target = RedirectTarget(target, 4);
 
             if (RollAccuracy(user.currAccuracy))
             {

@@ -31,7 +31,7 @@ public class KelSkills : Skills
         skillNames.Add("Annoy");
         juiceCost.Add(5);
         skillTargets.Add(Target.ANYONE);
-        skillDescription.Add("A Friend or Foe becomes Angry. If it's a Foe, lower their Accuracy.");
+        skillDescription.Add("A Friend becomes Angry. They regain some Juice.");
 
         //Skill 4:
         skillNames.Add("Rebound");
@@ -62,7 +62,7 @@ public class KelSkills : Skills
         user.order = 2;
 
         user.startingHealth = 51;
-        user.startingJuice = 44;
+        user.startingJuice = 50;
         user.startingAttack = 20;
         user.startingDefense = 6;
         user.startingSpeed = 18;
@@ -127,9 +127,7 @@ public class KelSkills : Skills
         {
             target = RedirectTarget(target, 3);
             manager.AddText("Kel annoys " + target.name + ".", true);
-
-            if (!target.friend)
-                target.accuracyStat -= 0.15f;
+            target.TakeHealing(0, 20);
             yield return target.NewEmotion(BattleCharacter.Emotion.ANGRY);
         }
     }

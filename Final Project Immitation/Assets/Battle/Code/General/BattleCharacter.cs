@@ -52,7 +52,7 @@ public class BattleCharacter : MonoBehaviour
     TMP_Text juiceText;
 
     public bool toast = false;
-    bool lastHit;
+    public bool lastHit;
     public bool friend;
     public int order;
 

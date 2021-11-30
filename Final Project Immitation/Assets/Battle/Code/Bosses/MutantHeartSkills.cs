@@ -35,7 +35,7 @@ public class MutantHeartSkills : Skills
         user.startingAccuracy = 1;
     }
 
-    //targets a random friend who doesn't already have the required emotion
+    //targets a random friend who doesn't already have the required emotion, if there is one
     public override BattleCharacter ChooseTarget(int n)
     {
         switch (n)
@@ -47,7 +47,7 @@ public class MutantHeartSkills : Skills
             case 3:
                 return Shuffle(BattleCharacter.Emotion.ANGRY);
             default:
-                return Shuffle(BattleCharacter.Emotion.NEUTRAL);
+                return manager.friends[Random.Range(0, manager.friends.Count)];
         }
     }
 
@@ -71,7 +71,22 @@ public class MutantHeartSkills : Skills
 
     public override IEnumerator BasicAttack(BattleCharacter target)
     {
-        yield return UseSkillFour(target);
+        int n = Random.Range(0, 3);
+        switch (n)
+        {
+            case 1:
+                Shuffle(BattleCharacter.Emotion.HAPPY);
+                yield return UseSkillOne(target);
+                break;
+            case 2:
+                Shuffle(BattleCharacter.Emotion.ANGRY);
+                yield return UseSkillTwo(target);
+                break;
+            case 3:
+                Shuffle(BattleCharacter.Emotion.SAD);
+                yield return UseSkillThree(target);
+                break;
+        }
     }
 
     public override IEnumerator UseSkillOne(BattleCharacter target)
