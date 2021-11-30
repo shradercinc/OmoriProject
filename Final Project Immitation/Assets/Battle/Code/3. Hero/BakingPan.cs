@@ -13,6 +13,7 @@ public class BakingPan : Weapon
     public override void AffectUser()
     {
         user = FindObjectOfType<HeroSkills>().GetComponent<BattleCharacter>();
+        description = "Hero's stats scale with the team's Energy.";
         unalteredAttack = user.startingAttack;
         unalteredDefense = user.startingDefense;
         unalteredSpeed = user.startingSpeed;

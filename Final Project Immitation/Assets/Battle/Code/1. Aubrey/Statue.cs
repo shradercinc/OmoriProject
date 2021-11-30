@@ -9,6 +9,7 @@ public class Statue : Weapon
     public override void AffectUser()
     {
         user = FindObjectOfType<AubreySkills>().GetComponent<BattleCharacter>();
+        description = "Increase Aubrey's Attack and Defense. Each turn, there is a chance that Aubrey will miss her turn.";
         user.startingAttack += 7;
         user.startingDefense += 7;
     }

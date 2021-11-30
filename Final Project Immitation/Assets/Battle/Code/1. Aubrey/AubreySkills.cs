@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class AubreySkills : Skills
 {
-    //Follow Up 3: Look at Hero: Aubrey restores 50% of her health, increases her defense, and becomes Happy.
-
     public override void SetStartingStats()
     {
         //Attack:

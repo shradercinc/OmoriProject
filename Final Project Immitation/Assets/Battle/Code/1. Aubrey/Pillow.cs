@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class Pillow : Weapon
 {
-    //If Aubrey has more than half health, their Attack and Speed increase. Otherwise, their Attack and Speed decrease.
-
     int unalteredAttack;
     int unalteredSpeed;
 
     public override void AffectUser()
     {
         user = FindObjectOfType<AubreySkills>().GetComponent<BattleCharacter>();
+        description = "If Aubrey has more than half health, she has higher Attack and Speed. Otherwise, she has lower Attack and Speed.";
         unalteredAttack = user.startingAttack;
         unalteredSpeed = user.startingSpeed;
     }
