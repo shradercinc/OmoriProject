@@ -450,7 +450,7 @@ public class BattleCharacter : MonoBehaviour
 
     public IEnumerator NewEmotion(Emotion newEmote)
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
 
         if (newEmote == Emotion.HAPPY && (currEmote == Emotion.HAPPY || currEmote == Emotion.ECSTATIC))
             currEmote = Emotion.ECSTATIC;
@@ -488,6 +488,7 @@ public class BattleCharacter : MonoBehaviour
                 manager.AddText(gameObject.name + " became Depressed.");
                 break;
         }
+        yield return new WaitForSeconds(0.5f);
         yield return ResetStats();
     }
 
