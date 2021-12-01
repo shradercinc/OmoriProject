@@ -81,7 +81,7 @@ public class OmoriSkills : Skills
             {
                 target.attackStat -= 0.15f;
                 yield return target.ResetStats();
-                manager.AddText(target.name + "'s attack decreases.");
+                manager.AddText(target.name + "'s Attack decreases.");
             }
             if (RollAccuracy(user.currAccuracy))
             {
@@ -105,7 +105,7 @@ public class OmoriSkills : Skills
             {
                 user.attackStat += 0.15f;
                 yield return user.ResetStats();
-                manager.AddText(user.name + "'s attack increases.");
+                manager.AddText("Omori's Attack increases.");
             }
             if (RollAccuracy(user.currAccuracy))
             {
@@ -171,7 +171,7 @@ public class OmoriSkills : Skills
         manager.AddText("Omori makes " + target.name + " trip and fall over.", true);
 
         target.speedStat -= 0.15f;
-        manager.AddText(target.name + "'s speed decreases.");
+        manager.AddText(target.name + "'s Speed decreases.");
         yield return target.NewEmotion(BattleCharacter.Emotion.SAD);
 
         int critical = RollCritical(user.currLuck);
@@ -191,7 +191,7 @@ public class OmoriSkills : Skills
         }
         for (int i = 0; i < manager.foes.Count; i++)
         {
-            manager.AddText("Omori and friends use their ultimate attack.", true);
+            manager.AddText("Omori and friends then use their ultimate attack.", true);
             BattleCharacter target = manager.foes[i];
 
             int critical = RollCritical(user.currLuck);

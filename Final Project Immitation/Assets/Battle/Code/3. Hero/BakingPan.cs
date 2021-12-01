@@ -16,6 +16,7 @@ public class BakingPan : Weapon
     }
     public override IEnumerator StartOfTurn()
     {
+        manager.AddText("Hero's Defense and Speed increases.", true);
         user.startingDefense = (int)(unalteredDefense + (1.5f * manager.energy));
         user.startingSpeed = (int)(unalteredSpeed + (1.5f * manager.energy));
         yield return user.ResetStats();

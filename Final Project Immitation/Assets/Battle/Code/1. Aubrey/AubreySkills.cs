@@ -80,7 +80,7 @@ public class AubreySkills : Skills
             {
                 target.defenseStat -= 0.15f;
                 yield return target.ResetStats();
-                manager.AddText(target.name + "'s defense decreases.");
+                manager.AddText(target.name + "'s Defense decreases.");
             }
             if (RollAccuracy(user.currAccuracy))
             {
@@ -103,7 +103,7 @@ public class AubreySkills : Skills
             {
                 user.accuracyStat += 0.15f;
                 yield return user.ResetStats();
-                manager.AddText(user.name + "'s accuracy increases.");
+                manager.AddText(user.name + "'s Accuracy increases.");
             }
             if (RollAccuracy(user.currAccuracy))
             {
@@ -163,11 +163,11 @@ public class AubreySkills : Skills
         manager.AddText("Kel eggs on Aubrey.", true);
 
         user.attackStat += 0.15f;
-        manager.AddText(user.name + "'s attack increases.");
+        manager.AddText(user.name + "'s Attack increases.");
         yield return user.NewEmotion(BattleCharacter.Emotion.ANGRY);
 
         kel.attackStat += 0.15f;
-        manager.AddText(kel.name + "'s attack increases.");
+        manager.AddText(kel.name + "'s Attack increases.");
         yield return kel.NewEmotion(BattleCharacter.Emotion.ANGRY);
 
         yield return null;

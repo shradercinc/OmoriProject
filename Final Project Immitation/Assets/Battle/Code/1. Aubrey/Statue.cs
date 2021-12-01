@@ -16,7 +16,10 @@ public class Statue : Weapon
     public override IEnumerator StartOfTurn()
     {
         if ((float)(Random.Range(0.0f, 1f)) < 0.8)
+        {
+            manager.AddText("Aubrey feels weighed down by her Statue.", true);
             user.paralyze = true;
-        yield return null;
+            yield return new WaitForSeconds(0.5f);
+        }
     }
 }

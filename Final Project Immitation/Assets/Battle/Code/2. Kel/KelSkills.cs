@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class KelSkills : Skills
 {
-    //Follow Up 2: Pass to Aubrey: Aubrey deals extra damage to a Foe.
-    //Follow Up 3: Pass to Hero: Kel deals damage to all Foes.
-
     public override void SetStartingStats()
     {
         //Attack:
@@ -84,7 +81,7 @@ public class KelSkills : Skills
             {
                 target.speedStat -= 0.15f;
                 yield return target.ResetStats();
-                manager.AddText(target.name + "'s speed decreases.");
+                manager.AddText(target.name + "'s Speed decreases.");
             }
             if (RollAccuracy(user.currAccuracy))
             {
@@ -108,7 +105,7 @@ public class KelSkills : Skills
             {
                 user.luckStat += 0.15f;
                 yield return user.ResetStats();
-                manager.AddText(user.name + "'s luck increases.");
+                manager.AddText(user.name + "'s Luck increases.");
             }
             if (RollAccuracy(user.currAccuracy))
             {

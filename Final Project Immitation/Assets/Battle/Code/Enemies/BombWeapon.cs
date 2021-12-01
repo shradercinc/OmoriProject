@@ -5,7 +5,7 @@ using UnityEngine;
 public class BombWeapon : Weapon
 {
     //When this becomes Toast, deal damage to everyone else.
-    //If at the end of the turn, this is the only Foe left, it dies.
+    //If at the end of the turn, this is the only Foe left, it turns itself off.
 
     public override void AffectUser()
     {

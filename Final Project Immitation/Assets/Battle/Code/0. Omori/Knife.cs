@@ -7,12 +7,13 @@ public class Knife : Weapon
     public override void AffectUser()
     {
         user = FindObjectOfType<OmoriSkills>().GetComponent<BattleCharacter>();
-        description = "Greatly increases Attack and Accuracy. Each turn, Omori's Attack and Accuracy decreases.";
-        user.startingAttack += 12;
+        description = "Omori starts with more Attack and Accuracy. Each turn, Omori's Attack and Accuracy decreases.";
+        user.startingAttack += 10;
         user.startingAccuracy += 0.12f;
     }
     public override IEnumerator StartOfTurn()
     {
+        manager.AddText("Omori's Knife begins to rust.", true);
         user.startingAttack -= 2;
         user.startingAccuracy -= 0.2f;
         yield return user.ResetStats();

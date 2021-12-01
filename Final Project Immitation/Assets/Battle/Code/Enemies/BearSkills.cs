@@ -24,11 +24,11 @@ public class BearSkills : Skills
     public override IEnumerator UseSkillOne(BattleCharacter target)
     {
         manager.AddText("Bear lets out a huge roar.", true);
-        target.attackStat += 0.1f;
-        target.defenseStat += 0.1f;
-        target.speedStat += 0.1f;
-        target.luckStat += 0.1f;
-        target.accuracyStat += 0.1f;
+        user.attackStat += 0.1f;
+        user.defenseStat += 0.1f;
+        user.speedStat += 0.1f;
+        user.luckStat += 0.1f;
+        user.accuracyStat += 0.1f;
         yield return user.NewEmotion(BattleCharacter.Emotion.ANGRY);
         manager.AddText("All of Bear's stats increase.");
     }

@@ -166,7 +166,7 @@ public class BattleManager : MonoBehaviour
                 if (BattleContinue() && energy >= 3 && !nextInLine.toast && nextInLine.friend && nextInLine.currMove == BattleCharacter.Move.ATTACK)
                     yield return FollowUp(nextInLine);
                 else
-                    yield return new WaitForSeconds(0.5f);
+                    yield return new WaitForSeconds(0.75f);
             }
         }
 

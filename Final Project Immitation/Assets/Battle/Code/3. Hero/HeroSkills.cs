@@ -18,7 +18,7 @@ public class HeroSkills : Skills
 
         //Skill 1:
         skillNames.Add("Refreshments");
-        juiceCost.Add(15);
+        juiceCost.Add(10);
         skillTargets.Add(Target.FRIEND);
         skillDescription.Add("A Friend regains all their Juice.");
 
