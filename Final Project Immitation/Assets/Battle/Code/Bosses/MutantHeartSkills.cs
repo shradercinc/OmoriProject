@@ -13,18 +13,6 @@ public class MutantHeartSkills : Skills
         //Attack:
         skillTargets.Add(Target.FRIEND);
 
-        //Skill 1:
-        skillTargets.Add(Target.FRIEND);
-
-        //Skill 2:
-        skillTargets.Add(Target.FRIEND);
-
-        //Skill 3:
-        skillTargets.Add(Target.FRIEND);
-
-        //Skill 4:
-        skillTargets.Add(Target.FRIEND);
-
         user = gameObject.GetComponent<BattleCharacter>();
         user.friend = false;
         user.startingHealth = 400;
@@ -74,15 +62,15 @@ public class MutantHeartSkills : Skills
         int n = Random.Range(0, 3);
         switch (n)
         {
-            case 1:
+            case 0:
                 Shuffle(BattleCharacter.Emotion.HAPPY);
                 yield return UseSkillOne(target);
                 break;
-            case 2:
+            case 1:
                 Shuffle(BattleCharacter.Emotion.ANGRY);
                 yield return UseSkillTwo(target);
                 break;
-            case 3:
+            case 2:
                 Shuffle(BattleCharacter.Emotion.SAD);
                 yield return UseSkillThree(target);
                 break;
@@ -108,13 +96,6 @@ public class MutantHeartSkills : Skills
         nextTarget = RedirectTarget(target, 3);
         manager.AddText("Mutantheart wants " + nextTarget.name + " to act like her.", true);
         yield return user.NewEmotion(BattleCharacter.Emotion.ANGRY);
-        yield return new WaitForSeconds(0.5f);
-    }
-    public override IEnumerator UseSkillFour(BattleCharacter target)
-    {
-        nextTarget = RedirectTarget(target, 4);
-        manager.AddText("Mutantheart wants " + nextTarget.name + " to act like her.", true);
-        yield return user.NewEmotion(BattleCharacter.Emotion.NEUTRAL);
         yield return new WaitForSeconds(0.5f);
     }
 }

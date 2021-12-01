@@ -10,12 +10,6 @@ public class BearSkills : Skills
         skillTargets.Add(Target.FRIEND);
         //Skill 1:
         skillTargets.Add(Target.NONE);
-        //Skill 2:
-        skillTargets.Add(Target.NONE);
-        //Skill 3:
-        skillTargets.Add(Target.FRIEND);
-        //Skill 4:
-        skillTargets.Add(Target.FRIEND);
 
         user = gameObject.GetComponent<BattleCharacter>();
         user.friend = false;
@@ -29,7 +23,7 @@ public class BearSkills : Skills
 
     public override IEnumerator UseSkillOne(BattleCharacter target)
     {
-        manager.AddText("Bear lets out a huge roar.");
+        manager.AddText("Bear lets out a huge roar.", true);
         target.attackStat += 0.1f;
         target.defenseStat += 0.1f;
         target.speedStat += 0.1f;
@@ -39,12 +33,4 @@ public class BearSkills : Skills
         manager.AddText("All of Bear's stats increase.");
     }
 
-    public override IEnumerator UseSkillThree(BattleCharacter target)
-    {
-        yield return BasicAttack(target);
-    }
-    public override IEnumerator UseSkillFour(BattleCharacter target)
-    {
-        yield return BasicAttack(target);
-    }
 }

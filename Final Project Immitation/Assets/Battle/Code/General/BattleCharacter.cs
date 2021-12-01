@@ -235,37 +235,25 @@ public class BattleCharacter : MonoBehaviour
 
         while (nextTarget == null)
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1) && possibleTargets.Count >= 0)
+            if (Input.GetKeyDown(KeyCode.Alpha1) && possibleTargets.Count >= 1)
             {
                 nextTarget = possibleTargets[0];
             }
-            else if (Input.GetKeyDown(KeyCode.Alpha2) && possibleTargets.Count >= 1)
+            else if (Input.GetKeyDown(KeyCode.Alpha2) && possibleTargets.Count >= 2)
             {
                 nextTarget = possibleTargets[1];
             }
-            else if (Input.GetKeyDown(KeyCode.Alpha3) && possibleTargets.Count >= 2)
+            else if (Input.GetKeyDown(KeyCode.Alpha3) && possibleTargets.Count >= 3)
             {
                 nextTarget = possibleTargets[2];
             }
-            else if (Input.GetKeyDown(KeyCode.Alpha4) && possibleTargets.Count >= 3)
+            else if (Input.GetKeyDown(KeyCode.Alpha4) && possibleTargets.Count >= 4)
             {
                 nextTarget = possibleTargets[3];
             }
-            else if (Input.GetKeyDown(KeyCode.Alpha5) && possibleTargets.Count >= 4)
+            else if (Input.GetKeyDown(KeyCode.Alpha5) && possibleTargets.Count >= 5)
             {
                 nextTarget = possibleTargets[4];
-            }
-            else if (Input.GetKeyDown(KeyCode.Alpha6) && possibleTargets.Count >= 5)
-            {
-                nextTarget = possibleTargets[5];
-            }
-            else if (Input.GetKeyDown(KeyCode.Alpha7) && possibleTargets.Count >= 6)
-            {
-                nextTarget = possibleTargets[6];
-            }
-            else if (Input.GetKeyDown(KeyCode.Alpha8) && possibleTargets.Count >= 7)
-            {
-                nextTarget = possibleTargets[7];
             }
             else if (Input.GetKey(KeyCode.Space))
             {
@@ -282,7 +270,7 @@ public class BattleCharacter : MonoBehaviour
         currMove = Move.NONE;
         if (!toast)
         {
-            skillUse = Random.Range(0, 5);
+            skillUse = Random.Range(0, userSkills.skillTargets.Count);
 
             switch (skillUse)
             {

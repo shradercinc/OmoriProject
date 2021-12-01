@@ -17,13 +17,14 @@ public class InfoCarry : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
             manager = FindObjectOfType<BattleManager>().GetComponent<BattleManager>();
+
+            for (int i = 0; i < enemies.Count; i++)
+            {
+                manager.CreateFoe(enemies[i], enemies[i].name);
+            }
+
         }
         else if (instance != this)
             Destroy(gameObject);
-
-        for (int i = 0; i<enemies.Count; i++)
-        {
-            manager.CreateFoe(enemies[i], enemies[i].name);
-        }
     }
 }

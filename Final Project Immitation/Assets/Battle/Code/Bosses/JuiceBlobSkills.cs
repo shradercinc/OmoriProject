@@ -9,7 +9,7 @@ public class JuiceBlobSkills : Skills
     public BattleCharacter juiceBaby;
 
     //Skill 1: Vomit: Deal damage to all Friends.
-    //Skill 2: Assemble Bomb: Create a Bomb if there isn't one.
+    //Skill 2: Assemble Bomb: Create a Bomb.
     //Skill 3: Baby: If there's a Juice Baby, kill it to gain health. Otherwise, create a Juice Baby.
     //Skill 4: Hunger: Become Angry.
 
@@ -63,24 +63,7 @@ public class JuiceBlobSkills : Skills
     }
     public override IEnumerator UseSkillTwo(BattleCharacter target)
     {
-        bool BombExists = false;
-
-        for (int i = 0; i<manager.foes.Count; i++)
-        {
-            if (manager.foes.Count > 3)
-            {
-                BombExists = false;
-                break;
-            }
-
-            if (manager.foes[i].gameObject.GetComponent<BombSkills>() != null)
-            {
-                BombExists = true;
-                break;
-            }
-        }
-
-        if (BombExists)
+        if (manager.foes.Count == 5)
             yield return UseSkillOne(target);
         else
         {
@@ -114,6 +97,7 @@ public class JuiceBlobSkills : Skills
         {
             manager.AddText("Juice Blob spits out some juice that becomes sentient.", true);
             yield return new WaitForSeconds(1);
+            manager.CreateFoe(juiceBaby, "Juice Baby");
             manager.CreateFoe(juiceBaby, "Juice Baby");
         }
     }

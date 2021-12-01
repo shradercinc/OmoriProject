@@ -36,11 +36,16 @@ public class BattleManager : MonoBehaviour
         StartCoroutine(NewRound());
     }
 
-    public void CreateFoe(BattleCharacter prefab, string name)
+    public BattleCharacter CreateFoe(BattleCharacter prefab, string name)
     {
-        BattleCharacter nextFoe = Instantiate(prefab);
-        nextFoe.uiText.text = name;
-        nextFoe.name = name;
+        if (foes.Count < 5)
+        {
+            BattleCharacter nextFoe = Instantiate(prefab);
+            nextFoe.uiText.text = name;
+            nextFoe.name = name;
+            return nextFoe;
+        }
+        return null;
     }
 
     public IEnumerator AddEnergy(int n)

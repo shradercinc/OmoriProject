@@ -10,14 +10,6 @@ public class BabySkills : Skills
     {
         //Attack:
         skillTargets.Add(Target.ALLFRIENDS);
-        //Skill 1:
-        skillTargets.Add(Target.ALLFRIENDS);
-        //Skill 2:
-        skillTargets.Add(Target.ALLFRIENDS);
-        //Skill 3:
-        skillTargets.Add(Target.ALLFRIENDS);
-        //Skill 4:
-        skillTargets.Add(Target.ALLFRIENDS);
 
         user = gameObject.GetComponent<BattleCharacter>();
         user.friend = false;
@@ -45,10 +37,5 @@ public class BabySkills : Skills
                 yield return target.TakeDamage(damage);
             }
         }
-    }
-
-    public override IEnumerator UseSkillOne(BattleCharacter target)
-    {
-        yield return BasicAttack(target);
     }
 }

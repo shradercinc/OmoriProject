@@ -5,8 +5,8 @@ using System.Linq;
 
 public class MixtapeSkills : Skills
 {
-    //Skill 1&2: Entangle: Reduce a Friend's speed. Then deal a small amount of damage to them.
-    //Skill 3&4: Slap: Deal a lot of damage to a Friend.
+    //Skill 1: Entangle: Reduce a Friend's speed. Then deal a small amount of damage to them.
+    //Skill 2: Slap: Deal a lot of damage to a Friend.
 
     public override void SetStartingStats()
     {
@@ -15,10 +15,6 @@ public class MixtapeSkills : Skills
         //Skill 1:
         skillTargets.Add(Target.FRIEND);
         //Skill 2:
-        skillTargets.Add(Target.FRIEND);
-        //Skill 3:
-        skillTargets.Add(Target.FRIEND);
-        //Skill 4:
         skillTargets.Add(Target.FRIEND);
 
         user = gameObject.GetComponent<BattleCharacter>();
@@ -55,7 +51,7 @@ public class MixtapeSkills : Skills
             yield return target.TakeDamage(damage);
         }
     }
-    public override IEnumerator UseSkillThree(BattleCharacter target)
+    public override IEnumerator UseSkillTwo(BattleCharacter target)
     {
         target = RedirectTarget(target, 3);
         manager.AddText("Mixtape slaps " + target.name + ".", true);
@@ -66,9 +62,5 @@ public class MixtapeSkills : Skills
             int damage = (int)(critical * IsEffective(target) * (2 * user.currAttack - target.currDefense));
             yield return target.TakeDamage(damage);
         }
-    }
-    public override IEnumerator UseSkillFour(BattleCharacter target)
-    {
-        yield return UseSkillThree(target);
     }
 }

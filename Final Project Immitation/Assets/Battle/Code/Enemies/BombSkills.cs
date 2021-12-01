@@ -12,14 +12,6 @@ public class BombSkills : Skills
     {
         //Attack:
         skillTargets.Add(Target.NONE);
-        //Skill 1:
-        skillTargets.Add(Target.NONE);
-        //Skill 2:
-        skillTargets.Add(Target.NONE);
-        //Skill 3:
-        skillTargets.Add(Target.NONE);
-        //Skill 4:
-        skillTargets.Add(Target.NONE);
 
         user = gameObject.GetComponent<BattleCharacter>();
         user.friend = false;
@@ -42,9 +34,5 @@ public class BombSkills : Skills
             yield return new WaitForSeconds(0.5f);
             turnCount--;
         }
-    }
-    public override IEnumerator UseSkillOne(BattleCharacter target)
-    {
-        yield return BasicAttack(target);
     }
 }
