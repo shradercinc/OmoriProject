@@ -33,6 +33,7 @@ public class InsectSkills : Skills
         }
         else
         {
+            manager.AddText("The Insect buzzing attracts another Insect.");
             yield return new WaitForSeconds(1);
             manager.CreateFoe(insect, "Insect");
         }

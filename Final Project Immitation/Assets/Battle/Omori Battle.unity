@@ -2751,16 +2751,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerWeapons:
-  - {fileID: 3597852997663270283, guid: cdf15b3d6ca2e4874a0a8fe1732af6b5, type: 3}
-  - {fileID: -5571684850446878221, guid: 81f26a3325d8343a0b5a90efa7ca560a, type: 3}
-  - {fileID: -892208186319059089, guid: 77bf42c081a9847eb95bfdc2d84ed5cb, type: 3}
-  - {fileID: 3549873777639591578, guid: f8e46ce67031a485ea21c0229b9c8940, type: 3}
+  - {fileID: 4530056308746712474, guid: fa6c72d63e710424a962fac96433f034, type: 3}
+  - {fileID: -4314807765151604770, guid: 0e2e0dd1a23ec47bc8b024e398cc8de5, type: 3}
+  - {fileID: 8097099412588446907, guid: 70fff5ad7267a488f9f75048289829d5, type: 3}
+  - {fileID: 875050464010290756, guid: 0b87e8cb2cf7341e991b9553a005a32e, type: 3}
   enemies:
   - {fileID: 2973298070046295819, guid: 53ff5b0d68ba0422da90e16d889231ca, type: 3}
-  - {fileID: 5347811159250662274, guid: 7f3bd190d245b492797b4833f478ae72, type: 3}
-  - {fileID: 5010742224646075876, guid: cd3210580fe9c42de85fa569b2146f34, type: 3}
-  - {fileID: 4589652060162032227, guid: 0cd62e04ebbfb4eeb96591e26fa18a1d, type: 3}
-  - {fileID: 3417125166757499599, guid: 7ef84ac9b1de0422dac7b1a3cf082ef8, type: 3}
+  - {fileID: 2973298070046295819, guid: 53ff5b0d68ba0422da90e16d889231ca, type: 3}
+  - {fileID: 6600351668469546801, guid: 773bb4daba3b94cc2ae22a2d5e67d8e4, type: 3}
 --- !u!1 &955108189
 GameObject:
   m_ObjectHideFlags: 0
@@ -3065,7 +3063,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -89}
-  m_SizeDelta: {x: 290, y: 175}
+  m_SizeDelta: {x: 300, y: 175}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1094495169
 MonoBehaviour:
@@ -4114,7 +4112,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -87.5}
-  m_SizeDelta: {x: 300, y: 175}
+  m_SizeDelta: {x: 325, y: 175}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1395306497
 MonoBehaviour:

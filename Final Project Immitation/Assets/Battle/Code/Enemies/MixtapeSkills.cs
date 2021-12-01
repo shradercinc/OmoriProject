@@ -16,9 +16,9 @@ public class MixtapeSkills : Skills
 
         user = gameObject.GetComponent<BattleCharacter>();
         user.friend = false;
-        user.startingHealth = 75;
+        user.startingHealth = 80;
         user.startingAttack = 20;
-        user.startingDefense = 8;
+        user.startingDefense = 5;
         user.startingSpeed = 15;
         user.startingLuck = 0.1f;
         user.startingAccuracy = 1;
@@ -44,7 +44,7 @@ public class MixtapeSkills : Skills
         if (RollAccuracy(user.currAccuracy))
         {
             int critical = RollCritical(user.currLuck);
-            int damage = (int)(critical * IsEffective(target) * (0.75f * user.currAttack - target.currDefense));
+            int damage = (int)(critical * IsEffective(target) * (0.5f * user.currAttack - target.currDefense));
             yield return target.TakeDamage(damage);
         }
     }
