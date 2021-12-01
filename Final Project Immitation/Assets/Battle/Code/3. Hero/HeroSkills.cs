@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class HeroSkills : Skills
 {
-    //Skill 1: Call Omori: Omori restores 40% of his health, 25% of his juice, loses their emotion, and attacks again.
-    //Skill 2: Call Aubrey: Aubreu restores 40% of his health, 25% of her juice, loses their emotion, and attacks again.
-    //Skill 3: Call Kel: Kel restores 40% of her health, 25% of his juice, loses their emotion, and attacks again.
-
     public override void SetStartingStats()
     {
         //Attack:

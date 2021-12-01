@@ -17,9 +17,9 @@ public class Statue : Weapon
     {
         if ((float)(Random.Range(0.0f, 1f)) < 0.8)
         {
-            manager.AddText("Aubrey feels weighed down by her Statue.", true);
+            manager.AddText("Aubrey feels weighed down by the Statue.", true);
             user.paralyze = true;
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(1);
         }
     }
 }

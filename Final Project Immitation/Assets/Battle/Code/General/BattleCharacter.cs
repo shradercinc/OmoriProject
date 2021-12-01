@@ -98,8 +98,14 @@ public class BattleCharacter : MonoBehaviour
             weapon = info.playerWeapons[order].GetComponent<Weapon>();
             switch(weapon.GetType().ToString())
             {
+                case ("Heirloom"):
+                    weapon = gameObject.AddComponent<Heirloom>();
+                    break;
                 case ("Knife"):
                     weapon = gameObject.AddComponent<Knife>();
+                    break;
+                case ("PoisonIvy"):
+                    weapon = gameObject.AddComponent<PoisonIvy>();
                     break;
                 case ("Hammer"):
                     weapon = gameObject.AddComponent<Hammer>();
@@ -113,8 +119,20 @@ public class BattleCharacter : MonoBehaviour
                 case ("BeachBall"):
                     weapon = gameObject.AddComponent<BeachBall>();
                     break;
+                case ("Coconut"):
+                    weapon = gameObject.AddComponent<Coconut>();
+                    break;
+                case ("Meteor"):
+                    weapon = gameObject.AddComponent<Meteor>();
+                    break;
                 case ("BakingPan"):
                     weapon = gameObject.AddComponent<BakingPan>();
+                    break;
+                case ("JuiceBlender"):
+                    weapon = gameObject.AddComponent<JuiceBlender>();
+                    break;
+                case ("OlReliable"):
+                    weapon = gameObject.AddComponent<OlReliable>();
                     break;
                 default:
                     weapon = null;
@@ -470,7 +488,6 @@ public class BattleCharacter : MonoBehaviour
                 manager.AddText(gameObject.name + " became Depressed.");
                 break;
         }
-
         yield return ResetStats();
     }
 
@@ -608,5 +625,7 @@ public class BattleCharacter : MonoBehaviour
             juiceSlider.value = (float)currJuice / startingJuice;
             juiceText.text = $"{currJuice} / {startingJuice}";
         }
+
+        yield return new WaitForSeconds(0.25f);
     }
 }

@@ -16,6 +16,9 @@ public class Knife : Weapon
         manager.AddText("Omori's Knife begins to rust.", true);
         user.startingAttack -= 2;
         user.startingAccuracy -= 0.2f;
+
+        yield return new WaitForSeconds(1);
+        manager.AddText("Omori's Attack and Accuracy decreases.");
         yield return user.ResetStats();
     }
 }

@@ -16,7 +16,6 @@ public class JuiceBlobWeapon : Weapon
         {
             manager.AddText("Juice Blob drains all friends' juice.", true);
             BattleCharacter target = manager.friends[i];
-
             yield return target.DrainJuice(target.currJuice);
         }
     }

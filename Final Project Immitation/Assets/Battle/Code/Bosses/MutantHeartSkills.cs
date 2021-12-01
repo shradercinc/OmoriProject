@@ -82,20 +82,20 @@ public class MutantHeartSkills : Skills
         nextTarget = RedirectTarget(target, 1);
         manager.AddText("Mutantheart wants " + nextTarget.name + " to act like her.", true);
         yield return user.NewEmotion(BattleCharacter.Emotion.HAPPY);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1);
     }
     public override IEnumerator UseSkillTwo(BattleCharacter target)
     {
         nextTarget = RedirectTarget(target, 2);
         manager.AddText("Mutantheart wants " + nextTarget.name + " to act like her.", true);
         yield return user.NewEmotion(BattleCharacter.Emotion.SAD);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1);
     }
     public override IEnumerator UseSkillThree(BattleCharacter target)
     {
         nextTarget = RedirectTarget(target, 3);
         manager.AddText("Mutantheart wants " + nextTarget.name + " to act like her.", true);
         yield return user.NewEmotion(BattleCharacter.Emotion.ANGRY);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1);
     }
 }

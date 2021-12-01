@@ -5,7 +5,7 @@ using UnityEngine;
 public class InfoCarry : MonoBehaviour
 {
     public static InfoCarry instance = null;
-    public List<Weapon> playerWeapons;
+    public Weapon[] playerWeapons = new Weapon[4]; //0: Omori; 1: Aubrey; 2: Kel; 3: Hero
     public List<BattleCharacter> enemies;
     BattleManager manager;
 

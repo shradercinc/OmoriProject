@@ -34,7 +34,6 @@ public class BombWeapon : Weapon
             int critical = userSkills.RollCritical(user.currLuck);
             int damage = (int)(critical * userSkills.IsEffective(target) * (3 * user.currAttack - target.currDefense));
             yield return target.TakeDamage(damage);
-            yield return new WaitForSeconds(1);
         }
     }
 }

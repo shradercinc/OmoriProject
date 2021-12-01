@@ -18,7 +18,6 @@ public class MutantHeartWeapon : Weapon
         {
             manager.AddText(target.name + " has the wrong emotion.", true);
             yield return target.TakeDamage(200);
-            yield return new WaitForSeconds(1);
         }
     }
 }

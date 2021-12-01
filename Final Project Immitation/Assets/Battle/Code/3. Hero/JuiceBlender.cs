@@ -14,9 +14,9 @@ public class JuiceBlender : Weapon
 
     public override IEnumerator StartOfTurn()
     {
-        manager.AddText("The Juice Blender has finished blending.");
         for (int i = 0; i < manager.friends.Count; i++)
         {
+            manager.AddText("The Juice Blender has finished blending.", true);
             yield return manager.friends[i].TakeHealing(0, 10);
         }
     }

@@ -18,21 +18,21 @@ public class SlimeGirlsWeapon : Weapon
         {
             manager.AddText("The Slime Girls lose their confidence.", true);
             yield return user.NewEmotion(BattleCharacter.Emotion.DEPRESSED);
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(1);
         }
 
         else if (user.currHealth <= user.startingHealth * 0.5)
         {
             manager.AddText("The Slime Girls get frustrated.", true);
             yield return user.NewEmotion(BattleCharacter.Emotion.ENRAGED);
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(1);
         }
 
         else if (user.currHealth <= user.startingHealth * 0.75)
         {
             manager.AddText("The Slime Girls get overconfident.", true);
             yield return user.NewEmotion(BattleCharacter.Emotion.ECSTATIC);
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(1);
         }
     }
 }

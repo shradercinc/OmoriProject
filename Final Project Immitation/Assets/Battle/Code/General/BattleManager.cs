@@ -166,7 +166,7 @@ public class BattleManager : MonoBehaviour
                 if (BattleContinue() && energy >= 3 && !nextInLine.toast && nextInLine.friend && nextInLine.currMove == BattleCharacter.Move.ATTACK)
                     yield return FollowUp(nextInLine);
                 else
-                    yield return new WaitForSeconds(0.75f);
+                    yield return new WaitForSeconds(0.5f);
             }
         }
 
@@ -215,8 +215,12 @@ public class BattleManager : MonoBehaviour
         else
             AddText("Cannot " + userSkills.skillNames[6]);
 
-        bool skillThree = (energy >= userSkills.energyCost[2] &&
-        (friends.Count == 4 || !userSkills.followUpRequire[2].toast));
+        bool skillThree;
+        if (user.name == "Omori")
+            skillThree = (energy >= userSkills.energyCost[2] && friends.Count == 4);
+        else
+            skillThree = (energy >= userSkills.energyCost[2] && !userSkills.followUpRequire[2].toast);
+
         AddDescription(userSkills.skillNames[7] + ": " + userSkills.skillDescription[7]);
         if (skillThree)
             AddText("4: " + userSkills.skillNames[7] + " - " + userSkills.energyCost[0] + " energy");
@@ -277,7 +281,10 @@ public class BattleManager : MonoBehaviour
         if (toast.Contains(target))
             toast.Remove(target);
         if (target.friend)
+        {
             friends.Add(target);
+            friends = friends.OrderBy(o => o.order).ToList();
+        }
         else
             foes.Add(target);
     }
