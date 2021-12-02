@@ -13,9 +13,9 @@ public class BabySkills : Skills
 
         user = gameObject.GetComponent<BattleCharacter>();
         user.friend = false;
-        user.startingHealth = 50;
-        user.startingAttack = 20;
-        user.startingDefense = 10;
+        user.startingHealth = 100;
+        user.startingAttack = 40;
+        user.startingDefense = 20;
         user.startingSpeed = 0;
         user.startingLuck = 0.05f;
         user.startingAccuracy = 1;

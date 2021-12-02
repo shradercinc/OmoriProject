@@ -58,10 +58,10 @@ public class HeroSkills : Skills
         user.friend = true;
         user.order = 3;
 
-        user.startingHealth = 59;
+        user.startingHealth = 108;
         user.startingJuice = 50;
-        user.startingAttack = 15;
-        user.startingDefense = 10;
+        user.startingAttack = 30;
+        user.startingDefense = 20;
         user.startingSpeed = 9;
         user.startingLuck = 0.03f;
         user.startingAccuracy = 1;

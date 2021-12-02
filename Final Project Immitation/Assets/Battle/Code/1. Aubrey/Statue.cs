@@ -10,8 +10,8 @@ public class Statue : Weapon
     {
         user = FindObjectOfType<AubreySkills>().GetComponent<BattleCharacter>();
         description = "Increase Aubrey's Attack and Defense. Each turn, there is a chance that Aubrey will miss her turn.";
-        user.startingAttack += 7;
-        user.startingDefense += 7;
+        user.attackStat += 0.75f;
+        user.defenseStat += 0.75f;
     }
     public override IEnumerator StartOfTurn()
     {

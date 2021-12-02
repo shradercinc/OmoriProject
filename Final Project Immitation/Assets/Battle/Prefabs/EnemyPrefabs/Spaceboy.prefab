@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6357200007160091154
+--- !u!1 &3727035808125373648
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,53 +8,53 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6357200007160091155}
-  - component: {fileID: 6357200007160090088}
-  - component: {fileID: 6357200007160091159}
-  - component: {fileID: 6357200007160091158}
-  - component: {fileID: 6357200007160091157}
-  - component: {fileID: 6357200007160091156}
+  - component: {fileID: 3727035808125373649}
+  - component: {fileID: 3727035808125373653}
+  - component: {fileID: 3727035808125373652}
+  - component: {fileID: 3727035808125373651}
+  - component: {fileID: 7415655103904238913}
+  - component: {fileID: 6017253382959853427}
   m_Layer: 5
-  m_Name: Slime Girls
+  m_Name: Spaceboy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &6357200007160091155
+--- !u!224 &3727035808125373649
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6357200007160091154}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_GameObject: {fileID: 3727035808125373648}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.6874328, y: 0.6874328, z: 0.6874328}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -56.28354, y: -21.911896}
   m_SizeDelta: {x: 75, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &6357200007160090088
+--- !u!222 &3727035808125373653
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6357200007160091154}
+  m_GameObject: {fileID: 3727035808125373648}
   m_CullTransparentMesh: 1
---- !u!114 &6357200007160091159
+--- !u!114 &3727035808125373652
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6357200007160091154}
+  m_GameObject: {fileID: 3727035808125373648}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
@@ -78,13 +78,13 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &6357200007160091158
+--- !u!114 &3727035808125373651
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6357200007160091154}
+  m_GameObject: {fileID: 3727035808125373648}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 69574d224519d4068821b994a51d8fc4, type: 3}
@@ -113,23 +113,25 @@ MonoBehaviour:
   nextTarget: {fileID: 0}
   currEmote: 0
   paralyze: 0
+  uiText: {fileID: 0}
   healthObject: {fileID: 0}
   juiceObject: {fileID: 0}
   toast: 0
+  lastHit: 0
   friend: 0
   order: 0
   userSkills: {fileID: 0}
   weapon: {fileID: 0}
---- !u!114 &6357200007160091157
+--- !u!114 &7415655103904238913
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6357200007160091154}
+  m_GameObject: {fileID: 3727035808125373648}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d196f8a73d0a40b694c05e9ae7e6020, type: 3}
+  m_Script: {fileID: 11500000, guid: 70184503ca1004d3f9ff24d04ff6eeb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   user: {fileID: 0}
@@ -138,18 +140,20 @@ MonoBehaviour:
   juiceCost: 
   energyCost: 
   followUpRequire: []
+  skillDescription: []
   skillTargets: 
---- !u!114 &6357200007160091156
+--- !u!114 &6017253382959853427
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6357200007160091154}
+  m_GameObject: {fileID: 3727035808125373648}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 509db55abe94a4142b0b936af6bda276, type: 3}
+  m_Script: {fileID: 11500000, guid: af1dba1a099a9451babf61724124175a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   user: {fileID: 0}
   manager: {fileID: 0}
+  description: 

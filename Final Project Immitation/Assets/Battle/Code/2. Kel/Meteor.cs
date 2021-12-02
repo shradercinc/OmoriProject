@@ -7,8 +7,9 @@ public class Meteor : Weapon
     public override void AffectUser()
     {
         user = FindObjectOfType<KelSkills>().GetComponent<BattleCharacter>();
-        description = "Kel starts with less Health. When Kel becomes Toast, deal damage to all Foes.";
+        description = "Kel starts with less Health and more Attack. When Kel becomes Toast, deal damage to all Foes.";
         user.startingHealth -= 10;
+        user.attackStat += 0.4f;
     }
 
     public override IEnumerator OnToast()

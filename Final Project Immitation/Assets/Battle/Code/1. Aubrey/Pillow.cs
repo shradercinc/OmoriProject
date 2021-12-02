@@ -22,8 +22,8 @@ public class Pillow : Weapon
             yield return new WaitForSeconds(1);
             manager.AddText("Aubrey's Attack and Speed increases.");
 
-            user.startingAttack = unalteredAttack + 7;
-            user.startingSpeed = unalteredSpeed + 7;
+            user.startingAttack = unalteredAttack + 4;
+            user.startingSpeed = unalteredSpeed + 4;
             yield return user.ResetStats();
         }
         else
@@ -32,8 +32,8 @@ public class Pillow : Weapon
             yield return new WaitForSeconds(1);
             manager.AddText("Aubrey's Attack and Speed decreases.");
 
-            user.startingAttack = unalteredAttack - 7;
-            user.startingSpeed = unalteredSpeed - 7;
+            user.startingAttack = unalteredAttack - 4;
+            user.startingSpeed = unalteredSpeed - 4;
             yield return user.ResetStats();
         }
     }

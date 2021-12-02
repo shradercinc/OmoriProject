@@ -13,10 +13,10 @@ public class AubreySkills : Skills
         skillDescription.Add("");
 
         //Skill 1:
-        skillNames.Add("Positive Spirit");
+        skillNames.Add("Mood Breaker");
         juiceCost.Add(15);
         skillTargets.Add(Target.FOE);
-        skillDescription.Add("Deal damage to a Foe. If they're Sad or Depressed, lower their Defense first.");
+        skillDescription.Add("Make a Foe Sad and reduce their Defense. Then deal damage to them.");
 
         //Skill 2:
         skillNames.Add("Home Run");
@@ -58,10 +58,10 @@ public class AubreySkills : Skills
         user.friend = true;
         user.order = 1;
 
-        user.startingHealth = 70;
+        user.startingHealth = 140;
         user.startingJuice = 50;
-        user.startingAttack = 22;
-        user.startingDefense = 6;
+        user.startingAttack = 48;
+        user.startingDefense = 12;
         user.startingSpeed = 11;
         user.startingLuck = 0.03f;
         user.startingAccuracy = 1;
@@ -75,13 +75,13 @@ public class AubreySkills : Skills
         if (check)
         {
             target = RedirectTarget(target, 1);
-            manager.AddText("Aubrey shows off her positive spirit.", true);
-            if (target.currEmote == BattleCharacter.Emotion.SAD || target.currEmote == BattleCharacter.Emotion.DEPRESSED)
-            {
-                target.defenseStat -= 0.15f;
-                yield return target.ResetStats();
-                manager.AddText(target.name + "'s Defense decreases.");
-            }
+            manager.AddText("Aubrey breaks " + target.name + "'s spirit.", true);
+
+            yield return target.NewEmotion(BattleCharacter.Emotion.SAD);
+            target.defenseStat -= 0.2f;
+            yield return target.ResetStats();
+            manager.AddText(target.name + "'s Defense decreases.");
+
             if (RollAccuracy(user.currAccuracy))
             {
                 int critical = RollCritical(user.currLuck);

@@ -8,13 +8,13 @@ public class Hammer : Weapon
     {
         user = FindObjectOfType<AubreySkills>().GetComponent<BattleCharacter>();
         description = "Aubrey gets Angry every turn. Increases Attack and Accuracy.";
-        user.startingAttack += 4;
-        user.startingAccuracy += 4;
+        user.attackStat += 0.25f;
+        user.accuracyStat += 0.25f;
     }
 
     public override IEnumerator StartOfTurn()
     {
-        manager.AddText("Aubrey feels the urge to hit something.", true);
+        manager.AddText("Aubrey feels the urge to swing her Hammer.", true);
         yield return user.NewEmotion(BattleCharacter.Emotion.ANGRY);
     }
 }

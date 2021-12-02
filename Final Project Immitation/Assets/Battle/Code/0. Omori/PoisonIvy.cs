@@ -8,7 +8,7 @@ public class PoisonIvy : Weapon
     {
         user = FindObjectOfType<OmoriSkills>().GetComponent<BattleCharacter>();
         description = "Greatly increases Defense. Each turn, Omori loses 1/4 of their health.";
-        user.startingDefense += 10;
+        user.defenseStat += 0.75f;
     }
     public override IEnumerator StartOfTurn()
     {

@@ -28,10 +28,10 @@ public class JuiceBlobSkills : Skills
 
         user = gameObject.GetComponent<BattleCharacter>();
         user.friend = false;
-        user.startingHealth = 600;
-        user.startingAttack = 15;
-        user.startingDefense = 15;
-        user.startingSpeed = 500;
+        user.startingHealth = 750;
+        user.startingAttack = 50;
+        user.startingDefense = 25;
+        user.startingSpeed = 100;
         user.startingLuck = 0.1f;
         user.startingAccuracy = 1;
     }

@@ -9,6 +9,6 @@ public class OlReliable : Weapon
         user = FindObjectOfType<HeroSkills>().GetComponent<BattleCharacter>();
         description = "Hero survives his first lethal attack, but has less Defense.";
         user.lastHit = true;
-        user.startingDefense -= 4;
+        user.defenseStat -= 0.4f;
     }
 }

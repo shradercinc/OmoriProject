@@ -17,9 +17,9 @@ public class InsectSkills : Skills
 
         user = gameObject.GetComponent<BattleCharacter>();
         user.friend = false;
-        user.startingHealth = 80;
-        user.startingAttack = 20;
-        user.startingDefense = 20;
+        user.startingHealth = 150;
+        user.startingAttack = 40;
+        user.startingDefense = 15;
         user.startingSpeed = 20;
         user.startingLuck = 0;
         user.startingAccuracy = 1;

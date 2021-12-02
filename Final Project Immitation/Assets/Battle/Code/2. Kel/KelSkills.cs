@@ -16,7 +16,7 @@ public class KelSkills : Skills
         skillNames.Add("Snowball Fight");
         juiceCost.Add(15);
         skillTargets.Add(Target.FOE);
-        skillDescription.Add("Deal damage to a Foe. If they're Happy or Ecstatic, lower their Speed first.");
+        skillDescription.Add("Make a Foe Happy and reduce their Luck. Then deal damage to them.");
 
         //Skill 2:
         skillNames.Add("Headbutt");
@@ -58,10 +58,10 @@ public class KelSkills : Skills
         user.friend = true;
         user.order = 2;
 
-        user.startingHealth = 51;
+        user.startingHealth = 102;
         user.startingJuice = 50;
-        user.startingAttack = 20;
-        user.startingDefense = 6;
+        user.startingAttack = 40;
+        user.startingDefense = 12;
         user.startingSpeed = 18;
         user.startingLuck = 0.07f;
         user.startingAccuracy = 1;
@@ -77,12 +77,11 @@ public class KelSkills : Skills
             target = RedirectTarget(target, 1);
             manager.AddText("Kel starts a snowball fight against " + target.name + ".", true);
 
-            if (target.currEmote == BattleCharacter.Emotion.HAPPY || target.currEmote == BattleCharacter.Emotion.ECSTATIC)
-            {
-                target.speedStat -= 0.15f;
-                yield return target.ResetStats();
-                manager.AddText(target.name + "'s Speed decreases.");
-            }
+            yield return target.NewEmotion(BattleCharacter.Emotion.HAPPY);
+            target.luckStat -= 0.15f;
+            yield return target.ResetStats();
+            manager.AddText(target.name + "'s Luck decreases.");
+
             if (RollAccuracy(user.currAccuracy))
             {
                 int critical = RollCritical(user.currLuck);

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MutantHeartSkills : Skills
+public class SweetheartSkills : Skills
 {
     public BattleCharacter nextTarget;
 
@@ -12,12 +12,15 @@ public class MutantHeartSkills : Skills
     {
         //Attack:
         skillTargets.Add(Target.FRIEND);
+        //Skill 1:
+        skillTargets.Add(Target.FRIEND);
+        //Skill 2:
+        skillTargets.Add(Target.FRIEND);
 
         user = gameObject.GetComponent<BattleCharacter>();
         user.friend = false;
-        user.startingHealth = 400;
-        user.startingAttack = 10;
-        user.startingDefense = 3;
+        user.startingHealth = 750;
+        user.startingDefense = 25;
         user.startingSpeed = -500;
         user.startingLuck = 0.15f;
         user.startingAccuracy = 1;
@@ -28,15 +31,14 @@ public class MutantHeartSkills : Skills
     {
         switch (n)
         {
-            case 1:
+            case 0:
                 return Shuffle(BattleCharacter.Emotion.HAPPY);
-            case 2:
+            case 1:
                 return Shuffle(BattleCharacter.Emotion.SAD);
-            case 3:
+            case 2:
                 return Shuffle(BattleCharacter.Emotion.ANGRY);
-            default:
-                return manager.friends[Random.Range(0, manager.friends.Count)];
         }
+        return base.ChooseTarget(n);
     }
 
     BattleCharacter Shuffle(BattleCharacter.Emotion target)
@@ -49,7 +51,7 @@ public class MutantHeartSkills : Skills
             friends[rnd] = friends[i];
             friends[i] = temp;
         }
-        for (int i = 0; i<friends.Count; i++)
+        for (int i = 0; i < friends.Count; i++)
         {
             if (friends[i].currEmote != target)
                 return friends[i];
@@ -63,15 +65,12 @@ public class MutantHeartSkills : Skills
         switch (n)
         {
             case 0:
-                Shuffle(BattleCharacter.Emotion.HAPPY);
                 yield return UseSkillOne(target);
                 break;
             case 1:
-                Shuffle(BattleCharacter.Emotion.ANGRY);
                 yield return UseSkillTwo(target);
                 break;
             case 2:
-                Shuffle(BattleCharacter.Emotion.SAD);
                 yield return UseSkillThree(target);
                 break;
         }
@@ -80,21 +79,21 @@ public class MutantHeartSkills : Skills
     public override IEnumerator UseSkillOne(BattleCharacter target)
     {
         nextTarget = RedirectTarget(target, 1);
-        manager.AddText("Mutantheart wants " + nextTarget.name + " to act like her.", true);
+        manager.AddText("Sweetheart wants " + nextTarget.name + " to act like her.", true);
         yield return user.NewEmotion(BattleCharacter.Emotion.HAPPY);
         yield return new WaitForSeconds(1);
     }
     public override IEnumerator UseSkillTwo(BattleCharacter target)
     {
         nextTarget = RedirectTarget(target, 2);
-        manager.AddText("Mutantheart wants " + nextTarget.name + " to act like her.", true);
+        manager.AddText("Sweetheart wants " + nextTarget.name + " to act like her.", true);
         yield return user.NewEmotion(BattleCharacter.Emotion.SAD);
         yield return new WaitForSeconds(1);
     }
     public override IEnumerator UseSkillThree(BattleCharacter target)
     {
         nextTarget = RedirectTarget(target, 3);
-        manager.AddText("Mutantheart wants " + nextTarget.name + " to act like her.", true);
+        manager.AddText("Sweetheart wants " + nextTarget.name + " to act like her.", true);
         yield return user.NewEmotion(BattleCharacter.Emotion.ANGRY);
         yield return new WaitForSeconds(1);
     }

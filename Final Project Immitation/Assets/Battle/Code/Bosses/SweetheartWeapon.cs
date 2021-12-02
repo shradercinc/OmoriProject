@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MutantHeartWeapon : Weapon
+public class SweetheartWeapon : Weapon
 {
     //Each turn, if the selected Friend doesn't match MutantHeart's emotion, they become toast.
 
     public override void AffectUser()
     {
-        user = FindObjectOfType<MutantHeartSkills>().GetComponent<BattleCharacter>();
+        user = FindObjectOfType<SweetheartSkills>().GetComponent<BattleCharacter>();
     }
     public override IEnumerator StartOfTurn()
     {

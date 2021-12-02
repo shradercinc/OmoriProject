@@ -16,7 +16,7 @@ public class OmoriSkills : Skills
         skillNames.Add("Mock");
         juiceCost.Add(15);
         skillTargets.Add(Target.FOE);
-        skillDescription.Add("Deals damage to a Foe. If they're Angry or Enraged, lower their Attack first.");
+        skillDescription.Add("Make a Foe Angry and reduce their Attack. Then deal damage to them.");
 
         //Skill 2:
         skillNames.Add("Stab");
@@ -58,10 +58,10 @@ public class OmoriSkills : Skills
         user.order = 0;
 
         user = gameObject.GetComponent<BattleCharacter>();
-        user.startingHealth = 55;
+        user.startingHealth = 110;
         user.startingJuice = 50;
-        user.startingAttack = 20;
-        user.startingDefense = 10;
+        user.startingAttack = 40;
+        user.startingDefense = 16;
         user.startingSpeed = 15;
         user.startingLuck = 0.05f;
         user.startingAccuracy = 1;
@@ -77,12 +77,11 @@ public class OmoriSkills : Skills
             target = RedirectTarget(target, 1);
             manager.AddText("Omori mocks " + target.name + ".", true);
 
-            if (target.currEmote == BattleCharacter.Emotion.ANGRY || target.currEmote == BattleCharacter.Emotion.ENRAGED)
-            {
-                target.attackStat -= 0.15f;
-                yield return target.ResetStats();
-                manager.AddText(target.name + "'s Attack decreases.");
-            }
+            yield return target.NewEmotion(BattleCharacter.Emotion.ANGRY);
+            target.attackStat -= 0.2f;
+            yield return target.ResetStats();
+            manager.AddText(target.name + "'s Attack decreases.");
+            
             if (RollAccuracy(user.currAccuracy))
             {
                 int critical = RollCritical(user.currLuck);
@@ -141,11 +140,11 @@ public class OmoriSkills : Skills
                 target = allEnemies[i];
                 manager.AddText("Omori glares at " + target.name + ".", true);
 
-                target.attackStat -= 0.1f;
-                target.defenseStat -= 0.1f;
-                target.speedStat -= 0.1f;
-                target.luckStat -= 0.1f;
-                target.accuracyStat -= 0.1f;
+                target.attackStat -= 0.15f;
+                target.defenseStat -= 0.15f;
+                target.speedStat -= 0.15f;
+                target.luckStat -= 0.15f;
+                target.accuracyStat -= 0.15f;
 
                 manager.AddText("All of " + target.name + "'s stats decrease.");
                 yield return target.ResetStats();
