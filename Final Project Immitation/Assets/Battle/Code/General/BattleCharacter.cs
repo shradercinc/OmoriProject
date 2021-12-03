@@ -536,26 +536,15 @@ public class BattleCharacter : MonoBehaviour
         else
         {
             toast = false;
+
             if (attackStat < 0.5f)
                 attackStat = 0.5f;
-            else if (attackStat > 1.5f)
-                attackStat = 1.5f;
             if (defenseStat < 0.5f)
                 defenseStat = 0.5f;
-            else if (defenseStat > 1.5f)
-                defenseStat = 1.5f;
-            if (speedStat < 0.5f)
-                speedStat = 0.5f;
-            else if (speedStat > 1.5f)
-                speedStat = 1.5f;
             if (luckStat < 0.5f)
                 luckStat = 0.5f;
-            else if (luckStat > 1.5f)
-                luckStat = 1.5f;
             if (accuracyStat < 0.5f)
                 accuracyStat = 0.5f;
-            else if (accuracyStat > 1.5f)
-                accuracyStat = 1.5f;
 
             currAttack = startingAttack * attackStat;
             currDefense = startingDefense * defenseStat;
@@ -620,8 +609,6 @@ public class BattleCharacter : MonoBehaviour
                 currAttack = 0;
             if (currDefense < 0)
                 currDefense = 0;
-            if (currSpeed < 0)
-                currSpeed = 0;
             if (currLuck < 0)
                 currLuck = 0;
             if (currAccuracy < 0)
