@@ -87,6 +87,7 @@ public class ExBoyFriendSkills : Skills
             int critical = RollCritical(user.currLuck);
             int damage = (int)(critical * IsEffective(target) * (user.currAttack - target.currDefense));
             yield return target.TakeDamage(damage);
+            manager.AddText(target.name + " gets paralyzed.");
         }
     }
     public override IEnumerator UseSkillFour(BattleCharacter target)

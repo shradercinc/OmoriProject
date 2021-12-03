@@ -17,8 +17,9 @@ public class Knife : Weapon
         user.attackStat -= 0.15f;
         user.accuracyStat -= 0.05f;
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
         manager.AddText("Omori's Attack and Accuracy decreases.");
         yield return user.ResetStats();
+        yield return new WaitForSeconds(0.5f);
     }
 }

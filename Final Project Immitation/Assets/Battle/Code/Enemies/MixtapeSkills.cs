@@ -21,7 +21,7 @@ public class MixtapeSkills : Skills
         user.startingDefense = 10;
         user.startingSpeed = 15;
         user.startingLuck = 0.1f;
-        user.startingAccuracy = 1;
+        user.startingAccuracy = 0.9f;
     }
 
     //targets the fastest friend

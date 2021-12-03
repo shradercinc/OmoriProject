@@ -156,6 +156,7 @@ public class BattleCharacter : MonoBehaviour
 
         if (!toast)
         {
+            Debug.Log("What will " + gameObject.name + " do this turn?");
             manager.AddText("What will " + gameObject.name + " do this turn?", true);
             manager.AddText("1: Basic Attack");
 
@@ -244,6 +245,7 @@ public class BattleCharacter : MonoBehaviour
 
     private IEnumerator ChooseTarget(List<BattleCharacter> possibleTargets)
     {
+        Debug.Log("Who will " + gameObject.name + " target?");
         manager.AddText("Who will " + gameObject.name + " target?", true);
         nextTarget = null;
 
@@ -353,15 +355,15 @@ public class BattleCharacter : MonoBehaviour
 
     public IEnumerator TakeDamage(int damage)
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
         damage = (int)(damage * Random.Range(0.8f, 1.2f));
 
         if (damage > 0)
         {
             manager.AddText(gameObject.name + " takes " + damage + " damage.");
             if (friend)
-            { 
-                for (int i = 0; i<damage && currHealth > 0; i++)
+            {
+                for (int i = 0; i < damage && currHealth > 0; i++)
                 {
                     currHealth--;
 
@@ -378,10 +380,14 @@ public class BattleCharacter : MonoBehaviour
 
                     yield return new WaitForSeconds(0.01f);
                 }
+                yield return new WaitForSeconds(0.25f);
                 StartCoroutine(manager.AddEnergy(1));
             }
             else
+            {
+                yield return new WaitForSeconds(0.5f);
                 currHealth -= damage;
+            }
         }
         else if (!toast)
         {
@@ -413,11 +419,11 @@ public class BattleCharacter : MonoBehaviour
     {
         if (health > 0)
         {
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(0.5f);
             manager.AddText(gameObject.name + " recovers " + health + " health.");
             if (friend)
             {
-                for (int i = 0; i<health && currHealth < startingHealth; i++)
+                for (int i = 0; i < health && currHealth < startingHealth; i++)
                 {
                     currHealth++;
                     healthSlider.value = (float)currHealth / startingHealth;
@@ -427,10 +433,12 @@ public class BattleCharacter : MonoBehaviour
             }
             else
                 currHealth += health;
+            yield return new WaitForSeconds(0.5f);
+
         }
         if (juice > 0)
         {
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(0.5f);
             manager.AddText(gameObject.name + " recovers " + juice + " juice.");
             if (friend)
             {
@@ -444,6 +452,7 @@ public class BattleCharacter : MonoBehaviour
             }
             else
                 currJuice += juice;
+            yield return new WaitForSeconds(0.5f);
         }
         yield return ResetStats();
     }

@@ -10,14 +10,16 @@ public class BearSkills : Skills
         skillTargets.Add(Target.FRIEND);
         //Skill 1:
         skillTargets.Add(Target.NONE);
+        //Skill 2:
+        skillTargets.Add(Target.NONE);
 
         user = gameObject.GetComponent<BattleCharacter>();
         user.friend = false;
-        user.startingHealth = 400;
+        user.startingHealth = 350;
         user.startingAttack = 50;
         user.startingDefense = 10;
         user.startingSpeed = 10;
-        user.startingLuck = 0.0f;
+        user.startingLuck = 0.05f;
         user.startingAccuracy = 0.8f;
     }
 
@@ -32,5 +34,10 @@ public class BearSkills : Skills
         yield return user.NewEmotion(BattleCharacter.Emotion.ANGRY);
         manager.AddText("All of Bear's stats increase.");
     }
-
+    public override IEnumerator UseSkillTwo(BattleCharacter target)
+    {
+        manager.AddText("Bear eats some berries.", true);
+        yield return user.TakeHealing(user.startingHealth / 5, 0);
+        yield return user.NewEmotion(BattleCharacter.Emotion.HAPPY);
+    }
 }
