@@ -11,7 +11,7 @@ public class JuiceBlobSkills : Skills
     //Skill 1: Vomit: Deal damage to all Friends.
     //Skill 2: Assemble Bomb: Create a Bomb.
     //Skill 3: Baby: If there's a Juice Baby, kill it to gain health. Otherwise, create a Juice Baby.
-    //Skill 4: Hunger: Become Angry.
+    //Skill 4: Hunger: Become Angry and raise its attack.
 
     public override void SetStartingStats()
     {
@@ -67,8 +67,9 @@ public class JuiceBlobSkills : Skills
             yield return UseSkillOne(target);
         else
         {
-            manager.AddText("Juice Blob assembles a Bomb.", true);
+            manager.AddText("Juice Blob assembles some Bombs.", true);
             yield return new WaitForSeconds(1);
+            manager.CreateFoe(bomb, "Bomb");
             manager.CreateFoe(bomb, "Bomb");
         }
     }
@@ -105,6 +106,9 @@ public class JuiceBlobSkills : Skills
     public override IEnumerator UseSkillFour(BattleCharacter target)
     {
         manager.AddText("Juice Blob is hungry for more juice.", true);
+        user.attackStat += 0.2f;
+        yield return user.ResetStats();
+        manager.AddText("Juice Blob's Attack increases.");
         yield return user.NewEmotion(BattleCharacter.Emotion.ANGRY);
     }
 }

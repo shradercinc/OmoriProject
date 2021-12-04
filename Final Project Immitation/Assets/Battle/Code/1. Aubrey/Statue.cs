@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Statue : Weapon
 {
-    //Increase Aubrey's Attack and Defense. There is a 20% chance that Aubrey will miss her turn.
+    //Increase Aubrey's Attack and Defense. There is a chance that Aubrey will miss her turn.
 
     public override void AffectUser()
     {
@@ -15,7 +15,7 @@ public class Statue : Weapon
     }
     public override IEnumerator StartOfTurn()
     {
-        if ((float)(Random.Range(0.0f, 1f)) < 0.8)
+        if (!user.paralyze && (float)(Random.Range(0.0f, 1f)) < (0.75+user.currLuck))
         {
             manager.AddText("Aubrey feels weighed down by the Statue.", true);
             user.paralyze = true;

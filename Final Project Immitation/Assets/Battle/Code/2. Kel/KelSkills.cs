@@ -61,7 +61,7 @@ public class KelSkills : Skills
         user.startingHealth = 102;
         user.startingJuice = 50;
         user.startingAttack = 40;
-        user.startingDefense = 12;
+        user.startingDefense = 10;
         user.startingSpeed = 18;
         user.startingLuck = 0.07f;
         user.startingAccuracy = 1;

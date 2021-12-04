@@ -16,8 +16,8 @@ public class BearSkills : Skills
         user = gameObject.GetComponent<BattleCharacter>();
         user.friend = false;
         user.startingHealth = 350;
-        user.startingAttack = 50;
-        user.startingDefense = 10;
+        user.startingAttack = 55;
+        user.startingDefense = 15;
         user.startingSpeed = 10;
         user.startingLuck = 0.05f;
         user.startingAccuracy = 0.8f;

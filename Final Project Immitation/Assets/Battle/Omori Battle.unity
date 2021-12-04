@@ -2751,7 +2751,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerWeapons:
-  - {fileID: 4530056308746712474, guid: fa6c72d63e710424a962fac96433f034, type: 3}
+  - {fileID: 8562476062795410625, guid: fff0be0e800234efe876a493a7b398d9, type: 3}
   - {fileID: -4314807765151604770, guid: 0e2e0dd1a23ec47bc8b024e398cc8de5, type: 3}
   - {fileID: 8097099412588446907, guid: 70fff5ad7267a488f9f75048289829d5, type: 3}
   - {fileID: 875050464010290756, guid: 0b87e8cb2cf7341e991b9553a005a32e, type: 3}
@@ -2759,6 +2759,8 @@ MonoBehaviour:
   - {fileID: 4589652060162032227, guid: 0cd62e04ebbfb4eeb96591e26fa18a1d, type: 3}
   - {fileID: 3727035808125373651, guid: bd84a3e1da65a46028c40a89ef441da6, type: 3}
   - {fileID: 3417125166757499599, guid: 7ef84ac9b1de0422dac7b1a3cf082ef8, type: 3}
+  playerPosition: {x: 0, y: 0, z: 0}
+  omori: {fileID: 0}
 --- !u!1 &955108189
 GameObject:
   m_ObjectHideFlags: 0

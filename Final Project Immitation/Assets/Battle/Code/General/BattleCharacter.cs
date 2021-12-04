@@ -385,7 +385,6 @@ public class BattleCharacter : MonoBehaviour
             }
             else
             {
-                yield return new WaitForSeconds(0.5f);
                 currHealth -= damage;
             }
         }

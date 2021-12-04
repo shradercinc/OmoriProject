@@ -61,7 +61,7 @@ public class AubreySkills : Skills
         user.startingHealth = 140;
         user.startingJuice = 50;
         user.startingAttack = 48;
-        user.startingDefense = 12;
+        user.startingDefense = 14;
         user.startingSpeed = 11;
         user.startingLuck = 0.03f;
         user.startingAccuracy = 1;

@@ -194,11 +194,11 @@ public class BattleManager : MonoBehaviour
 
     IEnumerator FollowUp(BattleCharacter user)
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(0.5f);
         bool decision = true;
         Skills userSkills = user.userSkills;
 
-        AddText("Should " + user.name + " use a follow up?", true);
+        AddText("Should " + user.name + " use a Follow Up?", true);
         AddText("1: Skip");
 
         bool skillOne = (energy >= userSkills.energyCost[0] && !userSkills.followUpRequire[0].toast);

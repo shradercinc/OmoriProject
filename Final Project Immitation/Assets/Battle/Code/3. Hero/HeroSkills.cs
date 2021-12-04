@@ -61,7 +61,7 @@ public class HeroSkills : Skills
         user.startingHealth = 108;
         user.startingJuice = 50;
         user.startingAttack = 30;
-        user.startingDefense = 20;
+        user.startingDefense = 18;
         user.startingSpeed = 9;
         user.startingLuck = 0.03f;
         user.startingAccuracy = 1;

@@ -5,14 +5,14 @@ using UnityEngine;
 public class Pillow : Weapon
 {
     int unalteredAttack;
-    int unalteredSpeed;
+    float unalteredLuck;
 
     public override void AffectUser()
     {
         user = FindObjectOfType<AubreySkills>().GetComponent<BattleCharacter>();
-        description = "If Aubrey has more than half health, she has higher Attack and Speed. Otherwise, she has lower Attack and Speed.";
+        description = "If Aubrey has more than half health, she has higher Attack and Luck. Otherwise, she has lower Attack and Luck.";
         unalteredAttack = user.startingAttack;
-        unalteredSpeed = user.startingSpeed;
+        unalteredLuck = user.startingLuck;
     }
     public override IEnumerator StartOfTurn()
     {
@@ -23,7 +23,7 @@ public class Pillow : Weapon
             manager.AddText("Aubrey's Attack and Speed increases.");
 
             user.startingAttack = unalteredAttack + 4;
-            user.startingSpeed = unalteredSpeed + 4;
+            user.startingLuck = unalteredLuck + 0.04f;
             yield return user.ResetStats();
             yield return new WaitForSeconds(0.5f);
         }
@@ -34,7 +34,7 @@ public class Pillow : Weapon
             manager.AddText("Aubrey's Attack and Speed decreases.");
 
             user.startingAttack = unalteredAttack - 4;
-            user.startingSpeed = unalteredSpeed - 4;
+            user.startingLuck = unalteredLuck - 0.04f;
             yield return user.ResetStats();
             yield return new WaitForSeconds(0.5f);
         }

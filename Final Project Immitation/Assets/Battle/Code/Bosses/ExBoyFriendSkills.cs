@@ -64,7 +64,7 @@ public class ExBoyFriendSkills : Skills
     public override IEnumerator UseSkillTwo(BattleCharacter target)
     {
         target = RedirectTarget(target, 2);
-        manager.AddText("Spaceboy pulls out his gun.", true);
+        manager.AddText("Spaceboy shoots bullets everywhere.", true);
 
         for (int i = 0; i < 2; i++)
         {
@@ -79,7 +79,6 @@ public class ExBoyFriendSkills : Skills
     public override IEnumerator UseSkillThree(BattleCharacter target)
     {
         target = RedirectTarget(target, 3);
-        target.paralyze = true;
         manager.AddText("Spaceboy charges an electric shot.", true);
 
         if (RollAccuracy(user.currAccuracy))
@@ -87,6 +86,8 @@ public class ExBoyFriendSkills : Skills
             int critical = RollCritical(user.currLuck);
             int damage = (int)(critical * IsEffective(target) * (user.currAttack - target.currDefense));
             yield return target.TakeDamage(damage);
+
+            target.paralyze = true;
             manager.AddText(target.name + " gets paralyzed.");
         }
     }
