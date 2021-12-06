@@ -87,9 +87,10 @@ public class InsectSkills : Skills
         for (int i = 0; i<manager.friends.Count; i++)
         {
             manager.AddText("Wasp shoots out poison powder.", true);
-            target = allTargets[i];
+            target = manager.friends[i];
             target.defenseStat -= 0.15f;
             manager.AddText(target.name + "'s Defense decreases.");
+            yield return new WaitForSeconds(0.5f);
         }
     }
 }
