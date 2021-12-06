@@ -13,14 +13,14 @@ public class BeginBattle : MonoBehaviour
         info = FindObjectOfType<InfoCarry>().GetComponent<InfoCarry>();
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collision other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
             info.enemies = foes;
             info.playerPosition = gameObject.transform.position;
             info.sceneName = SceneManager.GetActiveScene().name;
-            info.deadEnemies.Add(gameObject);
+            info.delete.Add(gameObject);
             SceneManager.LoadScene("Omori Battle");
         }
     }
