@@ -12,11 +12,13 @@ public class InfoCarry : MonoBehaviour
 
     public Vector2 playerPosition;
     public GameObject omori;
-    public List<GameObject> deadEnemies;
+    public List<GameObject> delete;
 
     BattleManager manager;
     Scene scene;
     public string sceneName;
+
+    public bool[] unlockedWeapons = new bool[8];
 
     void Awake()
     {
@@ -42,8 +44,8 @@ public class InfoCarry : MonoBehaviour
         else
         {
             omori.transform.position = playerPosition;
-            for (int i = 0; i < deadEnemies.Count; i++)
-                deadEnemies[i].SetActive(false);
+            for (int i = 0; i < delete.Count; i++)
+                delete[i].SetActive(false);
         }
 
     }
