@@ -145,8 +145,6 @@ public class Selection : MonoBehaviour
                         break;
                 }
 
-
-
                 break;
 
             case 2:
@@ -264,7 +262,6 @@ public class Selection : MonoBehaviour
                         break;
                     
                 }
-                break;
                 break;
 
             case 3:
