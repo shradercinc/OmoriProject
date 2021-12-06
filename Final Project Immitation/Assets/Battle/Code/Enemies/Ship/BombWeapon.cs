@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BombWeapon : Weapon
 {
-    //When this becomes Toast, deal damage to everyone else.
+    //When this becomes Toast, deal damage to all Friends.
     //If at the end of the turn, this is the only Foe left, it turns itself off.
 
     public override void AffectUser()
@@ -18,12 +18,12 @@ public class BombWeapon : Weapon
             manager.AddText("The Bomb automatically deactivates.", true);
             manager.RemoveFromList(user);
             user.currMove = BattleCharacter.Move.NONE;
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(0.5f);
         }
     }
     public override IEnumerator OnToast()
     {
-        List<BattleCharacter> allTargets = manager.GetAllTargets();
+        List<BattleCharacter> allTargets = manager.friends;
         Skills userSkills = user.GetComponent<Skills>();
 
         for (int i = 0; i < allTargets.Count; i++)

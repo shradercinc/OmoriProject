@@ -16,12 +16,13 @@ public class BombSkills : Skills
         user = gameObject.GetComponent<BattleCharacter>();
         user.friend = false;
         user.startingHealth = 1;
-        user.startingAttack = 30;
+        user.startingAttack = 35;
         user.startingDefense = 0;
         user.startingSpeed = -500;
         user.startingLuck = 0;
         user.startingAccuracy = 1;
     }
+
     public override IEnumerator BasicAttack(BattleCharacter target)
     {
         if (turnCount == 0)

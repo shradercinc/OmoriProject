@@ -5,9 +5,11 @@ using UnityEngine;
 public class ExBoyFriendSkills : Skills
 {
     //Skill 1: Strange Bottle: All friends get affected by a random emotion.
-    //Skill 2: Gun: Deal damage to a friend 3 times.
+    //Skill 2: Bomb: Summon 2 Bombs.
     //Skill 3: Electric Ray: Paralyze a Friend. (They lose their next turn.)
     //Skill 4: Intimidate: Reduce all friends' stats.
+
+    public BattleCharacter bomb;
 
     public override void SetStartingStats()
     {
@@ -18,7 +20,7 @@ public class ExBoyFriendSkills : Skills
         skillTargets.Add(Target.ALLFRIENDS);
 
         //Skill 2:
-        skillTargets.Add(Target.FRIEND);
+        skillTargets.Add(Target.NONE);
 
         //Skill 3:
         skillTargets.Add(Target.FRIEND);
@@ -63,17 +65,16 @@ public class ExBoyFriendSkills : Skills
     }
     public override IEnumerator UseSkillTwo(BattleCharacter target)
     {
-        target = RedirectTarget(target, 2);
-        manager.AddText("Spaceboy shoots bullets everywhere.", true);
-
-        for (int i = 0; i < 2; i++)
+        if (manager.foes.Count > 3)
         {
-            if (RollAccuracy(user.currAccuracy))
-            {
-                int critical = RollCritical(user.currLuck);
-                int damage = (int)(critical * IsEffective(target) * (1.5f * user.currAttack - target.currDefense));
-                yield return target.TakeDamage(damage);
-            }
+            yield return BasicAttack(target);
+        }
+        else
+        {
+            manager.AddText("Spaceboy summons a Bomb.", true);
+            yield return new WaitForSeconds(0.5f);
+            manager.CreateFoe(bomb, "Bomb");
+            manager.CreateFoe(bomb, "Bomb");
         }
     }
     public override IEnumerator UseSkillThree(BattleCharacter target)

@@ -118,6 +118,7 @@ MonoBehaviour:
   juiceObject: {fileID: 0}
   toast: 0
   lastHit: 0
+  invisible: 0
   friend: 0
   order: 0
   userSkills: {fileID: 0}
@@ -142,6 +143,7 @@ MonoBehaviour:
   followUpRequire: []
   skillDescription: []
   skillTargets: 
+  bomb: {fileID: 5010742224646075876, guid: cd3210580fe9c42de85fa569b2146f34, type: 3}
 --- !u!114 &6017253382959853427
 MonoBehaviour:
   m_ObjectHideFlags: 0

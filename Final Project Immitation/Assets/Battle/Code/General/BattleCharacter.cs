@@ -53,6 +53,7 @@ public class BattleCharacter : MonoBehaviour
 
     public bool toast = false;
     public bool lastHit;
+    public bool invisible = false;
     public bool friend;
     public int order;
 
@@ -98,17 +99,11 @@ public class BattleCharacter : MonoBehaviour
             weapon = info.playerWeapons[order].GetComponent<Weapon>();
             switch(weapon.GetType().ToString())
             {
-                case ("Heirloom"):
-                    weapon = gameObject.AddComponent<Heirloom>();
-                    break;
                 case ("Knife"):
                     weapon = gameObject.AddComponent<Knife>();
                     break;
                 case ("PoisonIvy"):
                     weapon = gameObject.AddComponent<PoisonIvy>();
-                    break;
-                case ("Hammer"):
-                    weapon = gameObject.AddComponent<Hammer>();
                     break;
                 case ("Pillow"):
                     weapon = gameObject.AddComponent<Pillow>();
@@ -116,17 +111,11 @@ public class BattleCharacter : MonoBehaviour
                 case ("Statue"):
                     weapon = gameObject.AddComponent<Statue>();
                     break;
-                case ("BeachBall"):
-                    weapon = gameObject.AddComponent<BeachBall>();
-                    break;
                 case ("Coconut"):
                     weapon = gameObject.AddComponent<Coconut>();
                     break;
                 case ("Meteor"):
                     weapon = gameObject.AddComponent<Meteor>();
-                    break;
-                case ("BakingPan"):
-                    weapon = gameObject.AddComponent<BakingPan>();
                     break;
                 case ("JuiceBlender"):
                     weapon = gameObject.AddComponent<JuiceBlender>();
@@ -357,6 +346,9 @@ public class BattleCharacter : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         damage = (int)(damage * Random.Range(0.8f, 1.2f));
+
+        if (invisible)
+            damage = 0;
 
         if (damage > 0)
         {

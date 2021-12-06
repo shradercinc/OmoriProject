@@ -6,6 +6,7 @@ public class InsectSkills : Skills
 {
     //Skill 1: Infest: Create another Insect.
     //Skill 2: Sting: Deal damage to a Friend and paralyze them.
+    //Skill 3: Steal Juice: Drain 25% of a Friend's Juice. They become Angry.
 
     public BattleCharacter insect;
 
@@ -17,10 +18,12 @@ public class InsectSkills : Skills
         skillTargets.Add(Target.FRIEND);
         //Skill 2:
         skillTargets.Add(Target.FRIEND);
+        //Skill 3:
+        skillTargets.Add(Target.FRIEND);
 
         user = gameObject.GetComponent<BattleCharacter>();
         user.friend = false;
-        user.startingHealth = 150;
+        user.startingHealth = 80;
         user.startingAttack = 25;
         user.startingDefense = 15;
         user.startingSpeed = 20;
@@ -36,8 +39,8 @@ public class InsectSkills : Skills
         }
         else
         {
-            manager.AddText("The Insect buzzing attracts another Insect.");
-            yield return new WaitForSeconds(1);
+            manager.AddText("The Insect buzzing attracts another Insect.", true);
+            yield return new WaitForSeconds(0.5f);
             manager.CreateFoe(insect, "Insect");
         }
     }
@@ -56,5 +59,15 @@ public class InsectSkills : Skills
             target.paralyze = true;
             manager.AddText(target.name + " gets paralyzed.");
         }
+    }
+    public override IEnumerator UseSkillThree(BattleCharacter target)
+    {
+        target = RedirectTarget(target, 3);
+        manager.AddText("Insect steals some juice from " + target.name + ".", true);
+
+        int juice = target.currJuice / 4;
+        yield return target.DrainJuice(juice);
+        manager.AddText(target.name + $" loses {juice} Juice.");
+        yield return target.NewEmotion(BattleCharacter.Emotion.ANGRY);
     }
 }
