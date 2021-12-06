@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5010742224646075880
+--- !u!1 &6485936551007795831
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,26 +8,25 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5010742224646075881}
-  - component: {fileID: 5010742224646075878}
-  - component: {fileID: 5010742224646075877}
-  - component: {fileID: 5010742224646075876}
-  - component: {fileID: 5010742224646075883}
-  - component: {fileID: 5010742224646075882}
+  - component: {fileID: 6485936551007795830}
+  - component: {fileID: 6485936551007795833}
+  - component: {fileID: 6485936551007795834}
+  - component: {fileID: 6485936551007795835}
+  - component: {fileID: 850765357918489534}
   m_Layer: 5
-  m_Name: Bomb
+  m_Name: Bunny
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &5010742224646075881
+--- !u!224 &6485936551007795830
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5010742224646075880}
+  m_GameObject: {fileID: 6485936551007795831}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -40,21 +39,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 75, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &5010742224646075878
+--- !u!222 &6485936551007795833
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5010742224646075880}
+  m_GameObject: {fileID: 6485936551007795831}
   m_CullTransparentMesh: 1
---- !u!114 &5010742224646075877
+--- !u!114 &6485936551007795834
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5010742224646075880}
+  m_GameObject: {fileID: 6485936551007795831}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
@@ -78,13 +77,13 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &5010742224646075876
+--- !u!114 &6485936551007795835
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5010742224646075880}
+  m_GameObject: {fileID: 6485936551007795831}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 69574d224519d4068821b994a51d8fc4, type: 3}
@@ -113,23 +112,26 @@ MonoBehaviour:
   nextTarget: {fileID: 0}
   currEmote: 0
   paralyze: 0
+  uiText: {fileID: 0}
   healthObject: {fileID: 0}
   juiceObject: {fileID: 0}
   toast: 0
+  lastHit: 0
+  invisible: 0
   friend: 0
   order: 0
   userSkills: {fileID: 0}
   weapon: {fileID: 0}
---- !u!114 &5010742224646075883
+--- !u!114 &850765357918489534
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5010742224646075880}
+  m_GameObject: {fileID: 6485936551007795831}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78b34bdc3136e426f9e363d5604d0a20, type: 3}
+  m_Script: {fileID: 11500000, guid: 20987e050236f4015b7fee1b98032f81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   user: {fileID: 0}
@@ -138,18 +140,5 @@ MonoBehaviour:
   juiceCost: 
   energyCost: 
   followUpRequire: []
+  skillDescription: []
   skillTargets: 
---- !u!114 &5010742224646075882
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5010742224646075880}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 901c7e9bc10774533b2347a5b266f275, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  user: {fileID: 0}
-  manager: {fileID: 0}

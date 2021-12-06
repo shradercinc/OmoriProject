@@ -60,7 +60,7 @@ public class ExBoyFriendSkills : Skills
                     yield return target.NewEmotion(BattleCharacter.Emotion.SAD);
                     break;
             }
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(0.5f);
         }
     }
     public override IEnumerator UseSkillTwo(BattleCharacter target)
@@ -100,11 +100,11 @@ public class ExBoyFriendSkills : Skills
             target = allFriends[i];
             manager.AddText("Spaceboy give an intimidating glare.", true);
 
-            target.attackStat -= 0.1f;
-            target.defenseStat -= 0.1f;
-            target.speedStat -= 0.1f;
-            target.luckStat -= 0.1f;
-            target.accuracyStat -= 0.1f;
+            target.attackStat -= 0.2f;
+            target.defenseStat -= 0.2f;
+            target.speedStat -= 0.2f;
+            target.luckStat -= 0.2f;
+            target.accuracyStat -= 0.2f;
 
             manager.AddText("All of " + target.name + "'s stats decrease.");
             yield return target.ResetStats();

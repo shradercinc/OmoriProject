@@ -20,8 +20,8 @@ public class MixtapeSkills : Skills
         skillTargets.Add(Target.ANYONE);
         //Skill 3:
         skillTargets.Add(Target.ALLFRIENDS);
-        //Skill 3:
-        skillTargets.Add(Target.NONE);
+        //Skill 4:
+        skillTargets.Add(Target.ANYONE);
 
         user = gameObject.GetComponent<BattleCharacter>();
         user.friend = false;
@@ -73,7 +73,6 @@ public class MixtapeSkills : Skills
     public override IEnumerator UseSkillThree(BattleCharacter target)
     {
         List<BattleCharacter> allFriends = manager.friends;
-
         for (int i = 0; i < allFriends.Count; i++)
         {
             target = allFriends[i];
