@@ -25,7 +25,7 @@ public class MixtapeSkills : Skills
 
         user = gameObject.GetComponent<BattleCharacter>();
         user.friend = false;
-        user.startingHealth = 150;
+        user.startingHealth = 100;
         user.startingAttack = 30;
         user.startingDefense = 10;
         user.startingSpeed = 15;

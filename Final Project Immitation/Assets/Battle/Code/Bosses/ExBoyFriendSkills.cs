@@ -5,7 +5,7 @@ using UnityEngine;
 public class ExBoyFriendSkills : Skills
 {
     //Skill 1: Strange Bottle: All friends get affected by a random emotion.
-    //Skill 2: Bomb: Summon 2 Bombs.
+    //Skill 2: Bomb: Summon a Bomb.
     //Skill 3: Electric Ray: Paralyze a Friend. (They lose their next turn.)
     //Skill 4: Intimidate: Reduce all friends' stats.
 
@@ -65,7 +65,7 @@ public class ExBoyFriendSkills : Skills
     }
     public override IEnumerator UseSkillTwo(BattleCharacter target)
     {
-        if (manager.foes.Count > 3)
+        if (manager.foes.Count > 5)
         {
             yield return BasicAttack(target);
         }
@@ -73,7 +73,6 @@ public class ExBoyFriendSkills : Skills
         {
             manager.AddText("Spaceboy summons a Bomb.", true);
             yield return new WaitForSeconds(0.5f);
-            manager.CreateFoe(bomb, "Bomb");
             manager.CreateFoe(bomb, "Bomb");
         }
     }

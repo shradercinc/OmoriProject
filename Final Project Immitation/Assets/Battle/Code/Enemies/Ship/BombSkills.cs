@@ -11,12 +11,12 @@ public class BombSkills : Skills
     public override void SetStartingStats()
     {
         //Attack:
-        skillTargets.Add(Target.NONE);
+        skillTargets.Add(Target.ALLFRIENDS);
 
         user = gameObject.GetComponent<BattleCharacter>();
         user.friend = false;
-        user.startingHealth = 1;
-        user.startingAttack = 35;
+        user.startingHealth = 200;
+        user.startingAttack = 20;
         user.startingDefense = 0;
         user.startingSpeed = -500;
         user.startingLuck = 0;
@@ -27,7 +27,16 @@ public class BombSkills : Skills
     {
         if (turnCount == 0)
         {
-            yield return user.TakeDamage(1);
+            yield return user.TakeDamage(user.startingHealth);
+            for (int i = 0; i < allTargets.Count; i++)
+            {
+                manager.AddText("The Bomb explodes.", true);
+                BattleCharacter target = allTargets[i];
+
+                int critical = userSkills.RollCritical(user.currLuck);
+                int damage = (int)(critical * userSkills.IsEffective(target) * (2 * user.currAttack - target.currDefense));
+                yield return target.TakeDamage(damage);
+            }
         }
         else
         {

@@ -424,7 +424,7 @@ public class BattleCharacter : MonoBehaviour
             }
             else
                 currHealth += health;
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.25f);
 
         }
         if (juice > 0)
@@ -443,7 +443,7 @@ public class BattleCharacter : MonoBehaviour
             }
             else
                 currJuice += juice;
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.25f);
         }
         yield return ResetStats();
     }
@@ -488,7 +488,7 @@ public class BattleCharacter : MonoBehaviour
                 manager.AddText(gameObject.name + " became Depressed.");
                 break;
         }
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.25f);
         yield return ResetStats();
     }
 

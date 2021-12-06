@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RatSkills : Skills
 {
-    //Skill 1: Invisibility Cloak: Become Invisible. (It takes no damage until its next turn.)
+    //Skill 1: Invisibility Potion: Become Invisible. (It takes no damage until its next turn.)
     //Skill 2: Failed Invention: Deal damage to all Friends. Become Sad.
 
     public override void SetStartingStats()
@@ -18,7 +18,7 @@ public class RatSkills : Skills
 
         user = gameObject.GetComponent<BattleCharacter>();
         user.friend = false;
-        user.startingHealth = 400;
+        user.startingHealth = 350;
         user.startingAttack = 30;
         user.startingDefense = 10;
         user.startingSpeed = 5;
@@ -28,7 +28,7 @@ public class RatSkills : Skills
 
     public override IEnumerator UseSkillOne(BattleCharacter target)
     {
-        manager.AddText("Lab Rat becomes invisible.", true);
+        manager.AddText("Lab Rat drinks a potion of invisibility.", true);
         user.invisible = true;
         yield return new WaitForSeconds(0.5f);
     }
@@ -48,6 +48,5 @@ public class RatSkills : Skills
             int damage = (int)(critical * IsEffective(target) * (1.5 * user.currAttack - target.currDefense));
             yield return target.TakeDamage(damage);
         }
-
     }
 }

@@ -20,10 +20,8 @@ public class SweetheartSkills : Skills
         user = gameObject.GetComponent<BattleCharacter>();
         user.friend = false;
         user.startingHealth = 750;
-        user.startingDefense = 25;
+        user.startingDefense = 30;
         user.startingSpeed = -500;
-        user.startingLuck = 0.15f;
-        user.startingAccuracy = 1;
     }
 
     //targets a random friend who doesn't already have the required emotion, if there is one

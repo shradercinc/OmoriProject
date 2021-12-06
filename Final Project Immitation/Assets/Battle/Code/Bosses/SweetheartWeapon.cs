@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SweetheartWeapon : Weapon
 {
-    //Each turn, if the selected Friend doesn't match MutantHeart's emotion, they become toast.
+    //Each turn, if the selected Friend doesn't match Sweetheart's emotion, they become toast.
 
     public override void AffectUser()
     {

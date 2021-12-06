@@ -17,5 +17,12 @@ public class RatWeapon : Weapon
             manager.AddText("Lab Rat's invisibility wears off.", true);
             yield return new WaitForSeconds(0.5f);
         }
+
+        for (int i = 0; i<manager.friends.Count; i++)
+        {
+            manager.AddText("Lab Rat collects some juice.", true);
+            BattleCharacter target = manager.friends[i];
+            yield return target.DrainJuice(target.currJuice / 6);
+        }
     }
 }
