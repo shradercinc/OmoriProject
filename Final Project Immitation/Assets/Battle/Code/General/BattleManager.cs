@@ -15,6 +15,9 @@ public class BattleManager : MonoBehaviour
     List<BattleCharacter> SpeedQueue = new List<BattleCharacter>();
     BattleCharacter omori;
 
+    InfoCarry info;
+    string loadScene;
+
     TMP_Text battleLog;
     TMP_Text descriptionLog;
     TMP_Text energyText;
@@ -27,6 +30,7 @@ public class BattleManager : MonoBehaviour
     {
         battleLog = GameObject.Find("Battle Log").GetComponent<TextMeshProUGUI>();
         descriptionLog = GameObject.Find("Description Log").GetComponent<TextMeshProUGUI>();
+        info = FindObjectOfType<InfoCarry>().GetComponent<InfoCarry>();
 
         energySlider = GameObject.Find("Energy Slider");
         energyText = energySlider.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
@@ -173,18 +177,23 @@ public class BattleManager : MonoBehaviour
         if (!BattleContinue())
         {
             StopAllCoroutines();
+            AddDescription("", false, true);
             AddText("The battle has ended.", true);
 
             if (omori.toast)
             {
                 AddText("GAME OVER.");
                 AddText("Press space to retry.");
-                yield return ReloadScene();
+                loadScene = "Omori Battle";
             }
-            if (foes.Count == 0)
+            else if (foes.Count == 0)
             {
-                AddText("Omori and friends celebrate their victory!");
+                AddText("VICTORY!");
+                AddText("Press space to continue.");
+                loadScene = info.sceneName;
             }
+
+            yield return LoadScene(loadScene);
         }
         else
         {
@@ -264,13 +273,13 @@ public class BattleManager : MonoBehaviour
         return (!omori.toast && foes.Count > 0);
     }
 
-    IEnumerator ReloadScene()
+    IEnumerator LoadScene(string x)
     {
         bool decision = true;
         while (decision)
         {
             if (Input.GetKeyDown(KeyCode.Space))
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                SceneManager.LoadScene(x);
             else
                 yield return null;
         }
