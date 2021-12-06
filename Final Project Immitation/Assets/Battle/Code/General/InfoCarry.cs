@@ -10,11 +10,13 @@ public class InfoCarry : MonoBehaviour
     public Weapon[] playerWeapons = new Weapon[4]; //0: Omori; 1: Aubrey; 2: Kel; 3: Hero
     public List<BattleCharacter> enemies;
 
-    public Vector3 playerPosition;
+    public Vector2 playerPosition;
     public GameObject omori;
+    public List<GameObject> deadEnemies;
 
     BattleManager manager;
-    Scene scene; 
+    Scene scene;
+    public string sceneName;
 
     void Awake()
     {
@@ -40,8 +42,9 @@ public class InfoCarry : MonoBehaviour
         else
         {
             omori.transform.position = playerPosition;
+            for (int i = 0; i < deadEnemies.Count; i++)
+                deadEnemies[i].SetActive(false);
         }
 
     }
-
 }
