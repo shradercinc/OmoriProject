@@ -62,7 +62,7 @@ public class Skills : MonoBehaviour
     public virtual IEnumerator BasicAttack(BattleCharacter target)
     {
         target = RedirectTarget(target, 0);
-        manager.AddText(user.name + " attacks.", true);
+        manager.AddText(user.name + " attacks " + target.name + ".", true);
 
         if (RollAccuracy(user.currAccuracy))
         {
