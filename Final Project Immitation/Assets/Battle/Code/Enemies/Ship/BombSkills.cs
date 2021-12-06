@@ -27,14 +27,15 @@ public class BombSkills : Skills
     {
         if (turnCount == 0)
         {
+            List<BattleCharacter> allTargets = manager.friends;
             yield return user.TakeDamage(user.startingHealth);
             for (int i = 0; i < allTargets.Count; i++)
             {
                 manager.AddText("The Bomb explodes.", true);
-                BattleCharacter target = allTargets[i];
+                target = allTargets[i];
 
-                int critical = userSkills.RollCritical(user.currLuck);
-                int damage = (int)(critical * userSkills.IsEffective(target) * (2 * user.currAttack - target.currDefense));
+                int critical = RollCritical(user.currLuck);
+                int damage = (int)(critical * IsEffective(target) * (2 * user.currAttack - target.currDefense));
                 yield return target.TakeDamage(damage);
             }
         }
