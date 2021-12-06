@@ -27,7 +27,7 @@ public class CamCode : MonoBehaviour
         transform.position = new Vector3(x1, y1, -10);
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         px = playerPosition.transform.position.x;
         py = playerPosition.transform.position.y;
@@ -40,7 +40,7 @@ public class CamCode : MonoBehaviour
         if ((px < xMax && px > xMin) && (py < yMax && py > yMin)) //within all limits
         {
             transform.position = Vector3.Lerp(new Vector3(x1, y1, -10), new Vector3(px, py, -10), camSp);
-            Debug.Log("within all limits");
+            //Debug.Log("within all limits");
         }
 
         if (px > xMax && py < yMax && py > yMin)
@@ -74,6 +74,11 @@ public class CamCode : MonoBehaviour
             transform.position = Vector3.Lerp(new Vector3(x1, y1, -10), new Vector3(xMin, yMax, -10), camSp);
             Debug.Log("exceeding y limit, bellow x limit");
         }
+    }
+
+    private void Update()
+    {
+
 
 
 

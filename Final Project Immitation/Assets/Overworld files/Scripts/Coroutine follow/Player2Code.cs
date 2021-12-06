@@ -22,6 +22,8 @@ public class Player2Code : MonoBehaviour
     public Sprite right2;
     public Sprite right3;
 
+
+
     private float animWalkT = 0;
     public float animWalkTM = 0.5f;
     private Transform pos;
@@ -131,5 +133,6 @@ public class Player2Code : MonoBehaviour
                 }
             }
         }
+        //pos.transform.position = new Vector3(pos.transform.position.x, pos.transform.position.y, pos.transform.position.y);
     }
 }
