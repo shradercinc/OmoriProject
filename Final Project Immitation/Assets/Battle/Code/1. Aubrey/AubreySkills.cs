@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class AubreySkills : Skills
 {
-    //Follow Up 3: Look at Hero: Aubrey restores 50% of her health, increases her defense, and becomes Happy.
-
     public override void SetStartingStats()
     {
         //Attack:
@@ -15,10 +13,10 @@ public class AubreySkills : Skills
         skillDescription.Add("");
 
         //Skill 1:
-        skillNames.Add("Positive Spirit");
+        skillNames.Add("Mood Breaker");
         juiceCost.Add(15);
         skillTargets.Add(Target.FOE);
-        skillDescription.Add("Deal damage to a Foe. If they're Sad or Depressed, lower their Defense first.");
+        skillDescription.Add("Make a Foe Sad and reduce their Defense. Then deal damage to them.");
 
         //Skill 2:
         skillNames.Add("Home Run");
@@ -29,8 +27,8 @@ public class AubreySkills : Skills
         //Skill 3:
         skillNames.Add("Cheer");
         juiceCost.Add(5);
-        skillTargets.Add(Target.ANYONE);
-        skillDescription.Add("A Friend or Foe becomes Happy. Gain 2 Energy.");
+        skillTargets.Add(Target.FRIEND);
+        skillDescription.Add("A Friend becomes Happy. Gain 2 Energy.");
 
         //Skill 4:
         skillNames.Add("Blunt Hit");
@@ -60,10 +58,10 @@ public class AubreySkills : Skills
         user.friend = true;
         user.order = 1;
 
-        user.startingHealth = 70;
-        user.startingJuice = 33;
-        user.startingAttack = 22;
-        user.startingDefense = 6;
+        user.startingHealth = 140;
+        user.startingJuice = 50;
+        user.startingAttack = 48;
+        user.startingDefense = 14;
         user.startingSpeed = 11;
         user.startingLuck = 0.03f;
         user.startingAccuracy = 1;
@@ -76,13 +74,14 @@ public class AubreySkills : Skills
 
         if (check)
         {
-            manager.AddText("Aubrey shows off her positive spirit.", true);
-            if (target.currEmote == BattleCharacter.Emotion.SAD || target.currEmote == BattleCharacter.Emotion.DEPRESSED)
-            {
-                target.defenseStat -= 0.15f;
-                yield return target.ResetStats();
-                manager.AddText(target.name + "'s defense decreases.");
-            }
+            target = RedirectTarget(target, 1);
+            manager.AddText("Aubrey breaks " + target.name + "'s spirit.", true);
+
+            yield return target.NewEmotion(BattleCharacter.Emotion.SAD);
+            target.defenseStat -= 0.2f;
+            yield return target.ResetStats();
+            manager.AddText(target.name + "'s Defense decreases.");
+
             if (RollAccuracy(user.currAccuracy))
             {
                 int critical = RollCritical(user.currLuck);
@@ -98,12 +97,13 @@ public class AubreySkills : Skills
 
         if (check)
         {
+            target = RedirectTarget(target, 2);
             manager.AddText("Aubrey hits a home run.", true);
             if (user.currEmote == BattleCharacter.Emotion.HAPPY || target.currEmote == BattleCharacter.Emotion.ECSTATIC)
             {
                 user.accuracyStat += 0.15f;
                 yield return user.ResetStats();
-                manager.AddText(user.name + "'s accuracy increases.");
+                manager.AddText(user.name + "'s Accuracy increases.");
             }
             if (RollAccuracy(user.currAccuracy))
             {
@@ -120,6 +120,7 @@ public class AubreySkills : Skills
 
         if (check)
         {
+            target = RedirectTarget(target, 3);
             manager.AddText("Aubrey cheers on " + target.name + ".", true);
             yield return target.NewEmotion(BattleCharacter.Emotion.HAPPY);
             manager.AddEnergy(2);
@@ -133,6 +134,7 @@ public class AubreySkills : Skills
         if (check)
         {
             manager.AddText("Aubrey gives it everything she's got.", true);
+            target = RedirectTarget(target, 4);
 
             if (RollAccuracy(user.currAccuracy))
             {
@@ -161,11 +163,11 @@ public class AubreySkills : Skills
         manager.AddText("Kel eggs on Aubrey.", true);
 
         user.attackStat += 0.15f;
-        manager.AddText(user.name + "'s attack increases.");
+        manager.AddText(user.name + "'s Attack increases.");
         yield return user.NewEmotion(BattleCharacter.Emotion.ANGRY);
 
         kel.attackStat += 0.15f;
-        manager.AddText(kel.name + "'s attack increases.");
+        manager.AddText(kel.name + "'s Attack increases.");
         yield return kel.NewEmotion(BattleCharacter.Emotion.ANGRY);
 
         yield return null;

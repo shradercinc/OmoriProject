@@ -6,7 +6,7 @@ public class Weapon : MonoBehaviour
 {
     public BattleCharacter user;
     public BattleManager manager;
-    string description;
+    public string description;
 
     private void Awake()
     {

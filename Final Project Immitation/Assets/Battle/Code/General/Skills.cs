@@ -21,6 +21,23 @@ public class Skills : MonoBehaviour
         manager = FindObjectOfType<BattleManager>().GetComponent<BattleManager>();
     }
 
+    private BattleCharacter RandomTarget(int n)
+    {
+        switch (skillTargets[n])
+        {
+            case Target.FRIEND:
+                return manager.friends[Random.Range(0, manager.friends.Count)];
+            case Target.FOE:
+                return manager.foes[Random.Range(0, manager.foes.Count)];
+            case Target.ANYONE:
+                List<BattleCharacter> allTargets = manager.GetAllTargets();
+                return allTargets[Random.Range(0, allTargets.Count)];
+            default:
+                return null;
+        }
+
+    }
+
     public bool RollAccuracy(float value)
     {
         float n = (Random.Range(0.0f, 1f));
@@ -231,5 +248,9 @@ public class Skills : MonoBehaviour
     public virtual IEnumerator FollowUpThree()
     {
         yield return null;
+    }
+    public virtual BattleCharacter ChooseTarget(int n)
+    {
+        return RandomTarget(n);
     }
 }

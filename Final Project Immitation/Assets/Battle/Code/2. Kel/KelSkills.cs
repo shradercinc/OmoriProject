@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class KelSkills : Skills
 {
-    //Follow Up 2: Pass to Aubrey: Aubrey deals extra damage to a Foe.
-    //Follow Up 3: Pass to Hero: Kel deals damage to all Foes.
-
     public override void SetStartingStats()
     {
         //Attack:
@@ -19,7 +16,7 @@ public class KelSkills : Skills
         skillNames.Add("Snowball Fight");
         juiceCost.Add(15);
         skillTargets.Add(Target.FOE);
-        skillDescription.Add("Deal damage to a Foe. If they're Happy or Ecstatic, lower their Speed first.");
+        skillDescription.Add("Make a Foe Happy and reduce their Luck. Then deal damage to them.");
 
         //Skill 2:
         skillNames.Add("Headbutt");
@@ -31,7 +28,7 @@ public class KelSkills : Skills
         skillNames.Add("Annoy");
         juiceCost.Add(5);
         skillTargets.Add(Target.ANYONE);
-        skillDescription.Add("A Friend or Foe becomes Angry. If it's a Foe, lower their Accuracy.");
+        skillDescription.Add("A Friend becomes Angry. They regain some Juice.");
 
         //Skill 4:
         skillNames.Add("Rebound");
@@ -61,10 +58,10 @@ public class KelSkills : Skills
         user.friend = true;
         user.order = 2;
 
-        user.startingHealth = 51;
-        user.startingJuice = 44;
-        user.startingAttack = 20;
-        user.startingDefense = 6;
+        user.startingHealth = 102;
+        user.startingJuice = 50;
+        user.startingAttack = 40;
+        user.startingDefense = 10;
         user.startingSpeed = 18;
         user.startingLuck = 0.07f;
         user.startingAccuracy = 1;
@@ -80,12 +77,11 @@ public class KelSkills : Skills
             target = RedirectTarget(target, 1);
             manager.AddText("Kel starts a snowball fight against " + target.name + ".", true);
 
-            if (target.currEmote == BattleCharacter.Emotion.HAPPY || target.currEmote == BattleCharacter.Emotion.ECSTATIC)
-            {
-                target.speedStat -= 0.15f;
-                yield return target.ResetStats();
-                manager.AddText(target.name + "'s speed decreases.");
-            }
+            yield return target.NewEmotion(BattleCharacter.Emotion.HAPPY);
+            target.luckStat -= 0.15f;
+            yield return target.ResetStats();
+            manager.AddText(target.name + "'s Luck decreases.");
+
             if (RollAccuracy(user.currAccuracy))
             {
                 int critical = RollCritical(user.currLuck);
@@ -108,7 +104,7 @@ public class KelSkills : Skills
             {
                 user.luckStat += 0.15f;
                 yield return user.ResetStats();
-                manager.AddText(user.name + "'s luck increases.");
+                manager.AddText(user.name + "'s Luck increases.");
             }
             if (RollAccuracy(user.currAccuracy))
             {
@@ -127,9 +123,7 @@ public class KelSkills : Skills
         {
             target = RedirectTarget(target, 3);
             manager.AddText("Kel annoys " + target.name + ".", true);
-
-            if (!target.friend)
-                target.accuracyStat -= 0.15f;
+            target.TakeHealing(0, 20);
             yield return target.NewEmotion(BattleCharacter.Emotion.ANGRY);
         }
     }

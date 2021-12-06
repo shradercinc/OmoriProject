@@ -31,6 +31,7 @@ public class BattleCharacter : MonoBehaviour
     public enum Move { NONE, ATTACK, SKILL1, SKILL2, SKILL3, SKILL4 };
     public Move currMove = Move.NONE;
     public BattleCharacter nextTarget;
+    int skillUse;
 
     public enum Emotion { NEUTRAL, HAPPY, ECSTATIC, ANGRY, ENRAGED, SAD, DEPRESSED };
     public Emotion currEmote = Emotion.NEUTRAL;
@@ -51,7 +52,8 @@ public class BattleCharacter : MonoBehaviour
     TMP_Text juiceText;
 
     public bool toast = false;
-    bool lastHit;
+    public bool lastHit;
+    public bool invisible = false;
     public bool friend;
     public int order;
 
@@ -100,8 +102,8 @@ public class BattleCharacter : MonoBehaviour
                 case ("Knife"):
                     weapon = gameObject.AddComponent<Knife>();
                     break;
-                case ("Hammer"):
-                    weapon = gameObject.AddComponent<Hammer>();
+                case ("PoisonIvy"):
+                    weapon = gameObject.AddComponent<PoisonIvy>();
                     break;
                 case ("Pillow"):
                     weapon = gameObject.AddComponent<Pillow>();
@@ -109,11 +111,17 @@ public class BattleCharacter : MonoBehaviour
                 case ("Statue"):
                     weapon = gameObject.AddComponent<Statue>();
                     break;
-                case ("BeachBall"):
-                    weapon = gameObject.AddComponent<BeachBall>();
+                case ("Coconut"):
+                    weapon = gameObject.AddComponent<Coconut>();
                     break;
-                case ("BakingPan"):
-                    weapon = gameObject.AddComponent<BakingPan>();
+                case ("Meteor"):
+                    weapon = gameObject.AddComponent<Meteor>();
+                    break;
+                case ("JuiceBlender"):
+                    weapon = gameObject.AddComponent<JuiceBlender>();
+                    break;
+                case ("OlReliable"):
+                    weapon = gameObject.AddComponent<OlReliable>();
                     break;
                 default:
                     weapon = null;
@@ -137,6 +145,7 @@ public class BattleCharacter : MonoBehaviour
 
         if (!toast)
         {
+            Debug.Log("What will " + gameObject.name + " do this turn?");
             manager.AddText("What will " + gameObject.name + " do this turn?", true);
             manager.AddText("1: Basic Attack");
 
@@ -225,6 +234,7 @@ public class BattleCharacter : MonoBehaviour
 
     private IEnumerator ChooseTarget(List<BattleCharacter> possibleTargets)
     {
+        Debug.Log("Who will " + gameObject.name + " target?");
         manager.AddText("Who will " + gameObject.name + " target?", true);
         nextTarget = null;
 
@@ -234,37 +244,25 @@ public class BattleCharacter : MonoBehaviour
 
         while (nextTarget == null)
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1) && possibleTargets.Count >= 0)
+            if (Input.GetKeyDown(KeyCode.Alpha1) && possibleTargets.Count >= 1)
             {
                 nextTarget = possibleTargets[0];
             }
-            else if (Input.GetKeyDown(KeyCode.Alpha2) && possibleTargets.Count >= 1)
+            else if (Input.GetKeyDown(KeyCode.Alpha2) && possibleTargets.Count >= 2)
             {
                 nextTarget = possibleTargets[1];
             }
-            else if (Input.GetKeyDown(KeyCode.Alpha3) && possibleTargets.Count >= 2)
+            else if (Input.GetKeyDown(KeyCode.Alpha3) && possibleTargets.Count >= 3)
             {
                 nextTarget = possibleTargets[2];
             }
-            else if (Input.GetKeyDown(KeyCode.Alpha4) && possibleTargets.Count >= 3)
+            else if (Input.GetKeyDown(KeyCode.Alpha4) && possibleTargets.Count >= 4)
             {
                 nextTarget = possibleTargets[3];
             }
-            else if (Input.GetKeyDown(KeyCode.Alpha5) && possibleTargets.Count >= 4)
+            else if (Input.GetKeyDown(KeyCode.Alpha5) && possibleTargets.Count >= 5)
             {
                 nextTarget = possibleTargets[4];
-            }
-            else if (Input.GetKeyDown(KeyCode.Alpha6) && possibleTargets.Count >= 5)
-            {
-                nextTarget = possibleTargets[5];
-            }
-            else if (Input.GetKeyDown(KeyCode.Alpha7) && possibleTargets.Count >= 6)
-            {
-                nextTarget = possibleTargets[6];
-            }
-            else if (Input.GetKeyDown(KeyCode.Alpha8) && possibleTargets.Count >= 7)
-            {
-                nextTarget = possibleTargets[7];
             }
             else if (Input.GetKey(KeyCode.Space))
             {
@@ -281,33 +279,24 @@ public class BattleCharacter : MonoBehaviour
         currMove = Move.NONE;
         if (!toast)
         {
-            int n = Random.Range(0, 5);
+            skillUse = Random.Range(0, userSkills.skillTargets.Count);
 
-            if (n == 0)
-                currMove = Move.ATTACK;
-            else if (n == 1)
-                currMove = Move.SKILL1;
-            else if (n == 2)
-                currMove = Move.SKILL2;
-            else if (n == 3)
-                currMove = Move.SKILL3;
-            else if (n == 4)
-                currMove = Move.SKILL4;
-
-            switch (userSkills.skillTargets[n])
+            switch (skillUse)
             {
-                case Skills.Target.FRIEND:
-                    nextTarget = manager.friends[Random.Range(0, manager.friends.Count)];
+                case 0:
+                    currMove = Move.ATTACK;
                     break;
-                case Skills.Target.FOE:
-                    nextTarget = manager.foes[Random.Range(0, manager.foes.Count)];
+                case 1:
+                    currMove = Move.SKILL1;
                     break;
-                case Skills.Target.ANYONE:
-                    List<BattleCharacter> allTargets = manager.GetAllTargets();
-                    nextTarget = allTargets[Random.Range(0, allTargets.Count)];
+                case 2:
+                    currMove = Move.SKILL2;
                     break;
-                default:
-                    nextTarget = null;
+                case 3:
+                    currMove = Move.SKILL3;
+                    break;
+                case 4:
+                    currMove = Move.SKILL4;
                     break;
             }
         }
@@ -317,11 +306,16 @@ public class BattleCharacter : MonoBehaviour
     {
         if (!toast)
         {
+            if (!friend)
+            {
+                nextTarget = userSkills.ChooseTarget(skillUse);
+            }
             if (paralyze)
             {
                 paralyze = false;
                 manager.AddText(gameObject.name + " is paralyzed and misses their turn.", true);
                 currMove = Move.NONE;
+                nextTarget = null;
             }
             switch (currMove)
             {
@@ -350,15 +344,18 @@ public class BattleCharacter : MonoBehaviour
 
     public IEnumerator TakeDamage(int damage)
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
         damage = (int)(damage * Random.Range(0.8f, 1.2f));
+
+        if (invisible)
+            damage = 0;
 
         if (damage > 0)
         {
             manager.AddText(gameObject.name + " takes " + damage + " damage.");
             if (friend)
-            { 
-                for (int i = 0; i<damage && currHealth > 0; i++)
+            {
+                for (int i = 0; i < damage && currHealth > 0; i++)
                 {
                     currHealth--;
 
@@ -375,10 +372,13 @@ public class BattleCharacter : MonoBehaviour
 
                     yield return new WaitForSeconds(0.01f);
                 }
+                yield return new WaitForSeconds(0.25f);
                 StartCoroutine(manager.AddEnergy(1));
             }
             else
+            {
                 currHealth -= damage;
+            }
         }
         else if (!toast)
         {
@@ -410,11 +410,11 @@ public class BattleCharacter : MonoBehaviour
     {
         if (health > 0)
         {
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(0.5f);
             manager.AddText(gameObject.name + " recovers " + health + " health.");
             if (friend)
             {
-                for (int i = 0; i<health && currHealth < startingHealth; i++)
+                for (int i = 0; i < health && currHealth < startingHealth; i++)
                 {
                     currHealth++;
                     healthSlider.value = (float)currHealth / startingHealth;
@@ -424,10 +424,12 @@ public class BattleCharacter : MonoBehaviour
             }
             else
                 currHealth += health;
+            yield return new WaitForSeconds(0.25f);
+
         }
         if (juice > 0)
         {
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(0.5f);
             manager.AddText(gameObject.name + " recovers " + juice + " juice.");
             if (friend)
             {
@@ -441,13 +443,14 @@ public class BattleCharacter : MonoBehaviour
             }
             else
                 currJuice += juice;
+            yield return new WaitForSeconds(0.25f);
         }
         yield return ResetStats();
     }
 
     public IEnumerator NewEmotion(Emotion newEmote)
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
 
         if (newEmote == Emotion.HAPPY && (currEmote == Emotion.HAPPY || currEmote == Emotion.ECSTATIC))
             currEmote = Emotion.ECSTATIC;
@@ -485,7 +488,7 @@ public class BattleCharacter : MonoBehaviour
                 manager.AddText(gameObject.name + " became Depressed.");
                 break;
         }
-
+        yield return new WaitForSeconds(0.25f);
         yield return ResetStats();
     }
 
@@ -524,26 +527,15 @@ public class BattleCharacter : MonoBehaviour
         else
         {
             toast = false;
+
             if (attackStat < 0.5f)
                 attackStat = 0.5f;
-            else if (attackStat > 1.5f)
-                attackStat = 1.5f;
             if (defenseStat < 0.5f)
                 defenseStat = 0.5f;
-            else if (defenseStat > 1.5f)
-                defenseStat = 1.5f;
-            if (speedStat < 0.5f)
-                speedStat = 0.5f;
-            else if (speedStat > 1.5f)
-                speedStat = 1.5f;
             if (luckStat < 0.5f)
                 luckStat = 0.5f;
-            else if (luckStat > 1.5f)
-                luckStat = 1.5f;
             if (accuracyStat < 0.5f)
                 accuracyStat = 0.5f;
-            else if (accuracyStat > 1.5f)
-                accuracyStat = 1.5f;
 
             currAttack = startingAttack * attackStat;
             currDefense = startingDefense * defenseStat;
@@ -608,8 +600,6 @@ public class BattleCharacter : MonoBehaviour
                 currAttack = 0;
             if (currDefense < 0)
                 currDefense = 0;
-            if (currSpeed < 0)
-                currSpeed = 0;
             if (currLuck < 0)
                 currLuck = 0;
             if (currAccuracy < 0)
@@ -623,5 +613,7 @@ public class BattleCharacter : MonoBehaviour
             juiceSlider.value = (float)currJuice / startingJuice;
             juiceText.text = $"{currJuice} / {startingJuice}";
         }
+
+        yield return new WaitForSeconds(0.25f);
     }
 }

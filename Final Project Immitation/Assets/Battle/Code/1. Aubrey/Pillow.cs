@@ -4,30 +4,39 @@ using UnityEngine;
 
 public class Pillow : Weapon
 {
-    //If Aubrey has more than half health, their Attack and Speed increase. Otherwise, their Attack and Speed decrease.
-
     int unalteredAttack;
-    int unalteredSpeed;
+    float unalteredLuck;
 
     public override void AffectUser()
     {
         user = FindObjectOfType<AubreySkills>().GetComponent<BattleCharacter>();
+        description = "If Aubrey has more than half health, she has higher Attack and Luck. Otherwise, she has lower Attack and Luck.";
         unalteredAttack = user.startingAttack;
-        unalteredSpeed = user.startingSpeed;
+        unalteredLuck = user.startingLuck;
     }
     public override IEnumerator StartOfTurn()
     {
         if ((float)user.currHealth / user.startingHealth > 0.5f)
         {
-            user.startingAttack = unalteredAttack + 7;
-            user.startingSpeed = unalteredSpeed + 7;
+            manager.AddText("Aubrey is too energetic to sleep.", true);
+            yield return new WaitForSeconds(0.5f);
+            manager.AddText("Aubrey's Attack and Speed increases.");
+
+            user.startingAttack = unalteredAttack + 4;
+            user.startingLuck = unalteredLuck + 0.04f;
             yield return user.ResetStats();
+            yield return new WaitForSeconds(0.5f);
         }
         else
         {
-            user.startingAttack = unalteredAttack - 7;
-            user.startingSpeed = unalteredSpeed - 7;
+            manager.AddText("Aubrey is exhausted and feels like sleeping.", true);
+            yield return new WaitForSeconds(0.5f);
+            manager.AddText("Aubrey's Attack and Speed decreases.");
+
+            user.startingAttack = unalteredAttack - 4;
+            user.startingLuck = unalteredLuck - 0.04f;
             yield return user.ResetStats();
+            yield return new WaitForSeconds(0.5f);
         }
     }
 }

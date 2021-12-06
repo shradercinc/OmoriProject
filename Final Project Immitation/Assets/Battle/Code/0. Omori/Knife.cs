@@ -4,18 +4,22 @@ using UnityEngine;
 
 public class Knife : Weapon
 {
-    //Greatly increases Attack and Accuracy. Each turn, Omori's Attack and Accuracy decreases.
-
     public override void AffectUser()
     {
         user = FindObjectOfType<OmoriSkills>().GetComponent<BattleCharacter>();
-        user.startingAttack += 12;
-        user.startingAccuracy += 0.12f;
+        description = "Omori starts with more Attack and Accuracy. Each turn, Omori's Attack and Accuracy decreases.";
+        user.attackStat += 0.6f;
+        user.accuracyStat += 0.2f;
     }
     public override IEnumerator StartOfTurn()
     {
-        user.startingAttack -= 2;
-        user.startingAccuracy -= 0.2f;
+        manager.AddText("Omori's Knife begins to rust.", true);
+        user.attackStat -= 0.15f;
+        user.accuracyStat -= 0.05f;
+
+        yield return new WaitForSeconds(0.5f);
+        manager.AddText("Omori's Attack and Accuracy decreases.");
         yield return user.ResetStats();
+        yield return new WaitForSeconds(0.5f);
     }
 }

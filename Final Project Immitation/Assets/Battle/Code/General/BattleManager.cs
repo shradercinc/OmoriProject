@@ -36,11 +36,16 @@ public class BattleManager : MonoBehaviour
         StartCoroutine(NewRound());
     }
 
-    public void CreateFoe(BattleCharacter prefab, string name)
+    public BattleCharacter CreateFoe(BattleCharacter prefab, string name)
     {
-        BattleCharacter nextFoe = Instantiate(prefab);
-        nextFoe.uiText.text = name;
-        nextFoe.name = name;
+        if (foes.Count < 5)
+        {
+            BattleCharacter nextFoe = Instantiate(prefab);
+            nextFoe.uiText.text = name;
+            nextFoe.name = name;
+            return nextFoe;
+        }
+        return null;
     }
 
     public IEnumerator AddEnergy(int n)
@@ -189,11 +194,11 @@ public class BattleManager : MonoBehaviour
 
     IEnumerator FollowUp(BattleCharacter user)
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(0.5f);
         bool decision = true;
         Skills userSkills = user.userSkills;
 
-        AddText("Should " + user.name + " use a follow up?", true);
+        AddText("Should " + user.name + " use a Follow Up?", true);
         AddText("1: Skip");
 
         bool skillOne = (energy >= userSkills.energyCost[0] && !userSkills.followUpRequire[0].toast);
@@ -210,8 +215,12 @@ public class BattleManager : MonoBehaviour
         else
             AddText("Cannot " + userSkills.skillNames[6]);
 
-        bool skillThree = (energy >= userSkills.energyCost[2] &&
-        (friends.Count == 4 || !userSkills.followUpRequire[2].toast));
+        bool skillThree;
+        if (user.name == "Omori")
+            skillThree = (energy >= userSkills.energyCost[2] && friends.Count == 4);
+        else
+            skillThree = (energy >= userSkills.energyCost[2] && !userSkills.followUpRequire[2].toast);
+
         AddDescription(userSkills.skillNames[7] + ": " + userSkills.skillDescription[7]);
         if (skillThree)
             AddText("4: " + userSkills.skillNames[7] + " - " + userSkills.energyCost[0] + " energy");
@@ -272,7 +281,10 @@ public class BattleManager : MonoBehaviour
         if (toast.Contains(target))
             toast.Remove(target);
         if (target.friend)
+        {
             friends.Add(target);
+            friends = friends.OrderBy(o => o.order).ToList();
+        }
         else
             foes.Add(target);
     }

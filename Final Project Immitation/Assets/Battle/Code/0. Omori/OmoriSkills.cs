@@ -16,7 +16,7 @@ public class OmoriSkills : Skills
         skillNames.Add("Mock");
         juiceCost.Add(15);
         skillTargets.Add(Target.FOE);
-        skillDescription.Add("Deals damage to a Foe. If they're Angry or Enraged, lower their Attack first.");
+        skillDescription.Add("Make a Foe Angry and reduce their Attack. Then deal damage to them.");
 
         //Skill 2:
         skillNames.Add("Stab");
@@ -27,14 +27,14 @@ public class OmoriSkills : Skills
         //Skill 3:
         skillNames.Add("Sad Poem");
         juiceCost.Add(5);
-        skillTargets.Add(Target.ANYONE);
-        skillDescription.Add("Both Omori and another Friend or Foe become Sad.");
+        skillTargets.Add(Target.FRIEND);
+        skillDescription.Add("Both Omori and another Friend become Sad.");
 
         //Skill 4:
         skillNames.Add("Stare");
         juiceCost.Add(25);
-        skillTargets.Add(Target.FOE);
-        skillDescription.Add("Reduce all the stats of a Foe.");
+        skillTargets.Add(Target.ALLFOES);
+        skillDescription.Add("Reduce the stats of all Foes.");
 
         //Follow Up 1:
         skillNames.Add("Blind Rage");
@@ -51,17 +51,17 @@ public class OmoriSkills : Skills
         //Follow Up 3:
         skillNames.Add("Release Energy");
         energyCost.Add(10);
-        skillDescription.Add("Deals a lot of damage to all Foes.");
+        skillDescription.Add("Deals a lot of damage to all Foes. All Friends regain their Juice.");
 
         user = gameObject.GetComponent<BattleCharacter>();
         user.friend = true;
         user.order = 0;
 
         user = gameObject.GetComponent<BattleCharacter>();
-        user.startingHealth = 55;
-        user.startingJuice = 38;
-        user.startingAttack = 20;
-        user.startingDefense = 10;
+        user.startingHealth = 110;
+        user.startingJuice = 50;
+        user.startingAttack = 40;
+        user.startingDefense = 16;
         user.startingSpeed = 15;
         user.startingLuck = 0.05f;
         user.startingAccuracy = 1;
@@ -77,12 +77,11 @@ public class OmoriSkills : Skills
             target = RedirectTarget(target, 1);
             manager.AddText("Omori mocks " + target.name + ".", true);
 
-            if (target.currEmote == BattleCharacter.Emotion.ANGRY || target.currEmote == BattleCharacter.Emotion.ENRAGED)
-            {
-                target.attackStat -= 0.15f;
-                yield return target.ResetStats();
-                manager.AddText(target.name + "'s attack decreases.");
-            }
+            yield return target.NewEmotion(BattleCharacter.Emotion.ANGRY);
+            target.attackStat -= 0.2f;
+            yield return target.ResetStats();
+            manager.AddText(target.name + "'s Attack decreases.");
+            
             if (RollAccuracy(user.currAccuracy))
             {
                 int critical = RollCritical(user.currLuck);
@@ -105,7 +104,7 @@ public class OmoriSkills : Skills
             {
                 user.attackStat += 0.15f;
                 yield return user.ResetStats();
-                manager.AddText(user.name + "'s attack increases.");
+                manager.AddText("Omori's Attack increases.");
             }
             if (RollAccuracy(user.currAccuracy))
             {
@@ -135,17 +134,22 @@ public class OmoriSkills : Skills
 
         if (check)
         {
-            target = RedirectTarget(target, 4);
-            manager.AddText("Omori glares at " + target.name + ".", true);
+            List<BattleCharacter> allEnemies = manager.foes;
+            for (int i = 0; i < allEnemies.Count; i++)
+            {
+                target = allEnemies[i];
+                manager.AddText("Omori glares at " + target.name + ".", true);
 
-            target.attackStat -= 0.1f;
-            target.defenseStat -= 0.1f;
-            target.speedStat -= 0.1f;
-            target.luckStat -= 0.1f;
-            target.accuracyStat -= 0.1f;
+                target.attackStat -= 0.15f;
+                target.defenseStat -= 0.15f;
+                target.speedStat -= 0.15f;
+                target.luckStat -= 0.15f;
+                target.accuracyStat -= 0.15f;
 
-            manager.AddText("All of " + target.name + "'s stats decrease.");
-            yield return target.ResetStats();
+                manager.AddText("All of " + target.name + "'s stats decrease.");
+                yield return target.ResetStats();
+                yield return new WaitForSeconds(1);
+            }
         }
     }
     public override IEnumerator FollowUpOne()
@@ -166,7 +170,7 @@ public class OmoriSkills : Skills
         manager.AddText("Omori makes " + target.name + " trip and fall over.", true);
 
         target.speedStat -= 0.15f;
-        manager.AddText(target.name + "'s speed decreases.");
+        manager.AddText(target.name + "'s Speed decreases.");
         yield return target.NewEmotion(BattleCharacter.Emotion.SAD);
 
         int critical = RollCritical(user.currLuck);
@@ -176,9 +180,17 @@ public class OmoriSkills : Skills
     public override IEnumerator FollowUpThree()
     {
         yield return manager.AddEnergy(-energyCost[2]);
+        for (int i = 0; i < manager.friends.Count; i++)
+        {
+            manager.AddText("Omori and friends regain their Juice.", true);
+            BattleCharacter target = manager.friends[i];
+
+            yield return target.TakeHealing(0, target.startingJuice);
+            yield return new WaitForSeconds(1);
+        }
         for (int i = 0; i < manager.foes.Count; i++)
         {
-            manager.AddText("Omori and friends come together and use their ultimate attack.", true);
+            manager.AddText("Omori and friends then use their ultimate attack.", true);
             BattleCharacter target = manager.foes[i];
 
             int critical = RollCritical(user.currLuck);
