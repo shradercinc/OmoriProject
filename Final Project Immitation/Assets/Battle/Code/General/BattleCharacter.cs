@@ -146,13 +146,12 @@ public class BattleCharacter : MonoBehaviour
 
         if (paralyze)
         {
-            manager.AddText(gameObject.name + " can't do anything this turn.", true);
+            manager.AddText(gameObject.name + " will not do anything this turn.", true);
             yield return new WaitForSeconds(1f);
         }
 
         else if (!toast)
         {
-            manager.SpeedQueue.Add(this);
             manager.AddText("What will " + gameObject.name + " do this turn?", true);
             manager.AddText("1: Basic Attack");
 
@@ -511,6 +510,8 @@ public class BattleCharacter : MonoBehaviour
             emoteText.text = "TOAST";
             emoteText.color = Color.white;
             currEmote = Emotion.NEUTRAL;
+            paralyze = false;
+            invisible = false;
 
             attackStat = 1;
             defenseStat = 1;

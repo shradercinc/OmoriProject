@@ -22,9 +22,11 @@ public class InfoCarry : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
+        /*
         else if (instance != this)
         {
             Destroy(gameObject);
         }
+        */
     }
 }

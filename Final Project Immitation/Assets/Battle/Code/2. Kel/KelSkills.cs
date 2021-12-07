@@ -85,7 +85,7 @@ public class KelSkills : Skills
             if (RollAccuracy(user.currAccuracy))
             {
                 int critical = RollCritical(user.currLuck);
-                int damage = (int)(critical * IsEffective(target) * (2 * user.currAttack - target.currDefense));
+                int damage = (int)(critical * IsEffective(target) * (1.5 * user.currAttack - target.currDefense));
                 yield return target.TakeDamage(damage);
             }
         }
@@ -109,7 +109,7 @@ public class KelSkills : Skills
             if (RollAccuracy(user.currAccuracy))
             {
                 int critical = RollCritical(user.currLuck);
-                int damage = (int)(critical * IsEffective(target) * (2 * user.currAttack - target.currDefense));
+                int damage = (int)(critical * IsEffective(target) * (1.5 * user.currAttack - target.currDefense));
                 yield return target.TakeDamage(damage);
             }
         }
@@ -144,7 +144,7 @@ public class KelSkills : Skills
                 if (RollAccuracy(user.currAccuracy))
                 {
                     int critical = RollCritical(user.currLuck);
-                    int damage = (int)(critical * IsEffective(target) * (1.5 * user.currSpeed - target.currDefense));
+                    int damage = (int)(critical * IsEffective(target) * (user.currAttack - target.currDefense));
                     yield return target.TakeDamage(damage);
                 }
                 yield return new WaitForSeconds(1);

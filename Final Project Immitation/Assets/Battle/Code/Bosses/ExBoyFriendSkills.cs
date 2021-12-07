@@ -41,12 +41,12 @@ public class ExBoyFriendSkills : Skills
     public override IEnumerator UseSkillOne(BattleCharacter target)
     {
         List<BattleCharacter> allFriends = manager.friends;
-        manager.AddText("Spaceboy throws a bottle that releases a strange gas.", true);
 
         for (int i = 0; i < allFriends.Count; i++)
         {
             int k = Random.Range(0, 3);
             target = allFriends[i];
+            manager.AddText("Spaceboy throws a bottle that releases a strange gas.", true);
 
             switch (k)
             {
@@ -60,7 +60,6 @@ public class ExBoyFriendSkills : Skills
                     yield return target.NewEmotion(BattleCharacter.Emotion.SAD);
                     break;
             }
-            yield return new WaitForSeconds(0.5f);
         }
     }
     public override IEnumerator UseSkillTwo(BattleCharacter target)

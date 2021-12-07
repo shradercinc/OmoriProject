@@ -6,7 +6,6 @@ public class RatWeapon : Weapon
 {
     public override void AffectUser()
     {
-        user = FindObjectOfType<BombSkills>().GetComponent<BattleCharacter>();
     }
 
     public override IEnumerator StartOfTurn()

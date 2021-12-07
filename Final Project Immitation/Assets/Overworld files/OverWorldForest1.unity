@@ -592,9 +592,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerWeapons:
-  - {fileID: 8562476062795410625, guid: fff0be0e800234efe876a493a7b398d9, type: 3}
-  - {fileID: -4314807765151604770, guid: 0e2e0dd1a23ec47bc8b024e398cc8de5, type: 3}
-  - {fileID: 8097099412588446907, guid: 70fff5ad7267a488f9f75048289829d5, type: 3}
+  - {fileID: 5152752127928521228, guid: 75a3ca21888c9443dbda608b3fb4ba46, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   unlockedWeapons: 0000000000000000
   enemies: []
@@ -5029,7 +5029,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   foes:
-  - {fileID: 6485936551007795835, guid: 91bbff1d9b6024d4da44ef7430f16e48, type: 3}
+  - {fileID: 3417125166757499599, guid: 7ef84ac9b1de0422dac7b1a3cf082ef8, type: 3}
 --- !u!212 &1605305868
 SpriteRenderer:
   m_ObjectHideFlags: 0

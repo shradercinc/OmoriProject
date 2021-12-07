@@ -118,6 +118,7 @@ MonoBehaviour:
   juiceObject: {fileID: 0}
   toast: 0
   lastHit: 0
+  invisible: 0
   friend: 0
   order: 0
   userSkills: {fileID: 0}
@@ -155,6 +156,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac4d51daff21c4758b4964b10a8df0a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  user: {fileID: 0}
+  user: {fileID: 8498079452114451704}
   manager: {fileID: 0}
   description: 

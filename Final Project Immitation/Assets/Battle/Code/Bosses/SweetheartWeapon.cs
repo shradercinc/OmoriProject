@@ -8,7 +8,6 @@ public class SweetheartWeapon : Weapon
 
     public override void AffectUser()
     {
-        user = FindObjectOfType<SweetheartSkills>().GetComponent<BattleCharacter>();
     }
     public override IEnumerator StartOfTurn()
     {

@@ -149,6 +149,7 @@ public class BattleManager : MonoBehaviour
 
             undo = false;
             yield return friends[i].ChooseSkill();
+            SpeedQueue.Add(friends[i]);
 
             if (undo)
                 i = -1;
@@ -157,6 +158,15 @@ public class BattleManager : MonoBehaviour
 
     IEnumerator PlayRound()
     {
+        List<BattleCharacter> allTargets = GetAllTargets();
+        for (int i = 0; i < allTargets.Count; i++)
+        {
+            if (allTargets[i].weapon != null)
+            {
+                yield return allTargets[i].weapon.StartOfTurn();
+                yield return new WaitForSeconds(0.25f);
+            }
+        }
         while (BattleContinue() && SpeedQueue.Count > 0)
         {
             AddDescription("", false, true);
@@ -166,8 +176,6 @@ public class BattleManager : MonoBehaviour
 
             if (!nextInLine.toast)
             {
-                if (nextInLine.weapon != null)
-                    yield return nextInLine.weapon.StartOfTurn();
                 yield return nextInLine.UseMove();
 
                 if (BattleContinue() && energy >= 3 && !nextInLine.toast && nextInLine.friend && nextInLine.currMove == BattleCharacter.Move.ATTACK)
@@ -179,21 +187,20 @@ public class BattleManager : MonoBehaviour
 
         if (!BattleContinue())
         {
-            StopAllCoroutines();
             AddDescription("", false, true);
             AddText("The battle has ended.", true);
 
             if (omori.toast)
             {
                 AddText("GAME OVER.");
-                Debug.Log("You lost. Restarting battle...");
-                yield return new WaitForSeconds(2f);
+                Debug.Log("Restarting battle...");
+                yield return new WaitForSeconds(2);
                 SceneManager.LoadScene("Omori Battle");
             }
             else if (foes.Count == 0)
             {
                 AddText("VICTORY!");
-                yield return new WaitForSeconds(2f);
+                yield return new WaitForSeconds(2);
                 SceneManager.LoadScene(info.sceneName);
             }
         }
@@ -310,6 +317,7 @@ public class BattleManager : MonoBehaviour
         for (int i = 0; i < foes.Count; i++)
             allTargets.Add(foes[i]);
 
+        allTargets = allTargets.OrderByDescending(o => o.currSpeed).ToList();
         return allTargets;
     }
 }

@@ -12,7 +12,6 @@ public class Weapon : MonoBehaviour
     {
         manager = FindObjectOfType<BattleManager>().GetComponent<BattleManager>();
     }
-
     public virtual void AffectUser()
     {
     }

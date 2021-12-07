@@ -85,7 +85,7 @@ public class AubreySkills : Skills
             if (RollAccuracy(user.currAccuracy))
             {
                 int critical = RollCritical(user.currLuck);
-                int damage = (int)(critical * IsEffective(target) * (2 * user.currAttack - target.currDefense));
+                int damage = (int)(critical * IsEffective(target) * (1.5 * user.currAttack - target.currDefense));
                 yield return target.TakeDamage(damage);
             }
         }
@@ -108,7 +108,7 @@ public class AubreySkills : Skills
             if (RollAccuracy(user.currAccuracy))
             {
                 int critical = RollCritical(user.currLuck);
-                int damage = (int)(critical * IsEffective(target) * (2 * user.currAttack - target.currDefense));
+                int damage = (int)(critical * IsEffective(target) * (1.5 * user.currAttack - target.currDefense));
                 yield return target.TakeDamage(damage);
             }
         }
@@ -139,7 +139,7 @@ public class AubreySkills : Skills
             if (RollAccuracy(user.currAccuracy))
             {
                 int critical = RollCritical(user.currLuck);
-                int damage = (int)(critical * IsEffective(target) * (3 * user.currHealth - target.currDefense));
+                int damage = (int)(critical * IsEffective(target) * (2.5 * user.currHealth - target.currDefense));
                 yield return target.TakeDamage(damage);
                 yield return user.TakeDamage(user.startingHealth);
             }
@@ -169,8 +169,6 @@ public class AubreySkills : Skills
         kel.attackStat += 0.15f;
         manager.AddText(kel.name + "'s Attack increases.");
         yield return kel.NewEmotion(BattleCharacter.Emotion.ANGRY);
-
-        yield return null;
     }
     public override IEnumerator FollowUpThree()
     {
@@ -182,6 +180,5 @@ public class AubreySkills : Skills
         int healing = (int) (user.startingHealth * 0.5f);
         yield return user.TakeHealing(healing, 0);
         yield return user.NewEmotion(BattleCharacter.Emotion.HAPPY);
-        yield return null;
     }
 }

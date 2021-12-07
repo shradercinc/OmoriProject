@@ -85,7 +85,7 @@ public class OmoriSkills : Skills
             if (RollAccuracy(user.currAccuracy))
             {
                 int critical = RollCritical(user.currLuck);
-                int damage = (int)(critical * IsEffective(target) * (2 * user.currAttack - target.currDefense));
+                int damage = (int)(critical * IsEffective(target) * (1.5 * user.currAttack - target.currDefense));
                 yield return target.TakeDamage(damage);
             }
         }
@@ -109,7 +109,7 @@ public class OmoriSkills : Skills
             if (RollAccuracy(user.currAccuracy))
             {
                 int critical = RollCritical(user.currLuck);
-                int damage = (int)(critical * IsEffective(target) * (2 * user.currAttack - target.currDefense));
+                int damage = (int)(critical * IsEffective(target) * (1.5 * user.currAttack - target.currDefense));
                 yield return target.TakeDamage(damage);
             }
         }
@@ -194,7 +194,7 @@ public class OmoriSkills : Skills
             BattleCharacter target = manager.foes[i];
 
             int critical = RollCritical(user.currLuck);
-            int damage = (int)(critical * IsEffective(target) * (4 * user.currAttack));
+            int damage = (int)(critical * IsEffective(target) * (3.5 * user.currAttack));
             yield return target.TakeDamage(damage);
             yield return new WaitForSeconds(1);
         }
