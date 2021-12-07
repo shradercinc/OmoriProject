@@ -11,10 +11,9 @@ public class BattleManager : MonoBehaviour
     public List<BattleCharacter> friends = new List<BattleCharacter>();
     public List<BattleCharacter> foes = new List<BattleCharacter>();
     public List<BattleCharacter> toast = new List<BattleCharacter>();
+    public List<BattleCharacter> SpeedQueue = new List<BattleCharacter>();
 
-    List<BattleCharacter> SpeedQueue = new List<BattleCharacter>();
     BattleCharacter omori;
-
     InfoCarry info;
     string loadScene;
 
@@ -35,6 +34,11 @@ public class BattleManager : MonoBehaviour
         energySlider = GameObject.Find("Energy Slider");
         energyText = energySlider.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
         omori = GameObject.Find("Omori").GetComponent<BattleCharacter>();
+
+        for (int i = 0; i < info.enemies.Count; i++)
+        {
+            CreateFoe(info.enemies[i], info.enemies[i].name);
+        }
 
         StartCoroutine(AddEnergy(3));
         StartCoroutine(NewRound());
@@ -144,7 +148,6 @@ public class BattleManager : MonoBehaviour
                 SpeedQueue.Clear();
 
             undo = false;
-            SpeedQueue.Add(friends[i]);
             yield return friends[i].ChooseSkill();
 
             if (undo)
@@ -183,17 +186,16 @@ public class BattleManager : MonoBehaviour
             if (omori.toast)
             {
                 AddText("GAME OVER.");
-                AddText("Press space to retry.");
-                loadScene = "Omori Battle";
+                Debug.Log("You lost. Restarting battle...");
+                yield return new WaitForSeconds(2f);
+                SceneManager.LoadScene("Omori Battle");
             }
             else if (foes.Count == 0)
             {
                 AddText("VICTORY!");
-                AddText("Press space to continue.");
-                loadScene = info.sceneName;
+                yield return new WaitForSeconds(2f);
+                SceneManager.LoadScene(info.sceneName);
             }
-
-            yield return LoadScene(loadScene);
         }
         else
         {
@@ -243,21 +245,21 @@ public class BattleManager : MonoBehaviour
                 AddDescription("", false, true);
                 yield return user.userSkills.FollowUpOne();
                 decision = false;
-                yield return new WaitForSeconds(1f);
+                yield return new WaitForSeconds(0.5f);
             }
             else if (Input.GetKeyDown(KeyCode.Alpha3) && skillTwo)
             {
                 AddDescription("", false, true);
                 yield return user.userSkills.FollowUpTwo();
                 decision = false;
-                yield return new WaitForSeconds(1f);
+                yield return new WaitForSeconds(0.5f);
             }
             else if (Input.GetKeyDown(KeyCode.Alpha4) && skillThree)
             {
                 AddDescription("", false, true);
                 yield return user.userSkills.FollowUpThree();
                 decision = false;
-                yield return new WaitForSeconds(1f);
+                yield return new WaitForSeconds(0.5f);
             }
             else if (Input.GetKeyDown(KeyCode.Alpha1))
             {
@@ -271,18 +273,6 @@ public class BattleManager : MonoBehaviour
     bool BattleContinue()
     {
         return (!omori.toast && foes.Count > 0);
-    }
-
-    IEnumerator LoadScene(string x)
-    {
-        bool decision = true;
-        while (decision)
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-                SceneManager.LoadScene(x);
-            else
-                yield return null;
-        }
     }
 
     public void ReturnToList(BattleCharacter target)

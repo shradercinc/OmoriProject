@@ -35,8 +35,6 @@ public class Follower : MonoBehaviour
     public Transform P3pos;
     public Transform P4pos;
 
-
-
     private void Awake()
     {
         pos = GetComponent<Transform>();

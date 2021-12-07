@@ -194,7 +194,7 @@ public class OmoriSkills : Skills
             BattleCharacter target = manager.foes[i];
 
             int critical = RollCritical(user.currLuck);
-            int damage = (int)(critical * IsEffective(target) * (4.5 * user.currAttack));
+            int damage = (int)(critical * IsEffective(target) * (4 * user.currAttack));
             yield return target.TakeDamage(damage);
             yield return new WaitForSeconds(1);
         }

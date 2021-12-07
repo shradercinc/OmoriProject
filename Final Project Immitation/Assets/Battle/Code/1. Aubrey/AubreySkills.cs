@@ -34,7 +34,7 @@ public class AubreySkills : Skills
         skillNames.Add("Blunt Hit");
         juiceCost.Add(25);
         skillTargets.Add(Target.FOE);
-        skillDescription.Add("Deal a lot of damage to a Foe. Aubrey takes damage as well.");
+        skillDescription.Add("Deal a lot of damage to a Foe. Aubrey becomes Toast.");
 
         //Follow Up 1:
         skillNames.Add("Look at Omori");
@@ -139,9 +139,9 @@ public class AubreySkills : Skills
             if (RollAccuracy(user.currAccuracy))
             {
                 int critical = RollCritical(user.currLuck);
-                int damage = (int)(critical * IsEffective(target) * (4 * user.currHealth - target.currDefense));
+                int damage = (int)(critical * IsEffective(target) * (3 * user.currHealth - target.currDefense));
                 yield return target.TakeDamage(damage);
-                yield return user.TakeDamage(damage/3);
+                yield return user.TakeDamage(user.startingHealth);
             }
         }
     }

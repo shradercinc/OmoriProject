@@ -5,7 +5,7 @@ using UnityEngine;
 public class LeadMovement : MonoBehaviour
 {
     public static float speed = 5.0f;
-
+    InfoCarry info;
 
     public Sprite down1;
     public Sprite down2;
@@ -45,15 +45,15 @@ public class LeadMovement : MonoBehaviour
     float movex = 1.0f;
     float movey = 1.0f;
 
-
-
     public void Awake()
     {
         pos = GetComponent<Transform>();
         ren = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
 
-        pos.transform.position = new Vector3(spawnx, spawny, spawny);
+        info = FindObjectOfType<InfoCarry>().GetComponent<InfoCarry>();
+        pos.transform.position = info.playerPosition;
+
         while(listPos < ListLen)
         {
             PrevPos.Add(new Vector2(spawnx, spawny));
@@ -61,7 +61,11 @@ public class LeadMovement : MonoBehaviour
         }
         for (int i = 0; i < PrevPos.Count; i++)
         {
-            Debug.Log($"number {i} contains: {PrevPos[i]}");
+            //Debug.Log($"number {i} contains: {PrevPos[i]}");
+        }
+        for (int i = 0; i < info.delete.Count; i++)
+        {
+            info.delete[i].SetActive(false);
         }
     }
 
@@ -175,7 +179,7 @@ public class LeadMovement : MonoBehaviour
                 PrevPos[i] = new Vector2(pos.transform.position.x, pos.transform.position.y);
             }
         }
-        Debug.Log($"position 0: {PrevPos[0]}");
+        //Debug.Log($"position 0: {PrevPos[0]}");
 
 
     }
@@ -218,7 +222,7 @@ public class LeadMovement : MonoBehaviour
         }
 
 
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.W) )
         {
             direct = 1;
 

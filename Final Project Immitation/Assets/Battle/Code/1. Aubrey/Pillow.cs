@@ -4,39 +4,27 @@ using UnityEngine;
 
 public class Pillow : Weapon
 {
-    int unalteredAttack;
-    float unalteredLuck;
+    int turnCount = 0;
 
     public override void AffectUser()
     {
         user = FindObjectOfType<AubreySkills>().GetComponent<BattleCharacter>();
-        description = "If Aubrey has more than half health, she has higher Attack and Luck. Otherwise, she has lower Attack and Luck.";
-        unalteredAttack = user.startingAttack;
-        unalteredLuck = user.startingLuck;
+        description = "Aubrey starts with more Attack and Luck, but can't do anything for 3 turns.";
+        user.attackStat += 0.4f;
+        user.luckStat += 0.4f;
+        user.paralyze = true;
     }
     public override IEnumerator StartOfTurn()
     {
-        if ((float)user.currHealth / user.startingHealth > 0.5f)
+        if (turnCount > 2)
         {
-            manager.AddText("Aubrey is too energetic to sleep.", true);
-            yield return new WaitForSeconds(0.5f);
-            manager.AddText("Aubrey's Attack and Speed increases.");
-
-            user.startingAttack = unalteredAttack + 4;
-            user.startingLuck = unalteredLuck + 0.04f;
-            yield return user.ResetStats();
+            manager.AddText("Aubrey finally wakes up.", true);
             yield return new WaitForSeconds(0.5f);
         }
         else
         {
-            manager.AddText("Aubrey is exhausted and feels like sleeping.", true);
-            yield return new WaitForSeconds(0.5f);
-            manager.AddText("Aubrey's Attack and Speed decreases.");
-
-            user.startingAttack = unalteredAttack - 4;
-            user.startingLuck = unalteredLuck - 0.04f;
-            yield return user.ResetStats();
-            yield return new WaitForSeconds(0.5f);
+            turnCount++;
+            user.paralyze = true;
         }
     }
 }

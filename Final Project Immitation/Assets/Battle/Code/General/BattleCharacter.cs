@@ -96,41 +96,42 @@ public class BattleCharacter : MonoBehaviour
             juiceSlider = juiceObject.GetComponent<Slider>();
             juiceText = juiceObject.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
 
-            weapon = info.playerWeapons[order].GetComponent<Weapon>();
-            switch(weapon.GetType().ToString())
+            if (info.playerWeapons[order] != null)
             {
-                case ("Knife"):
-                    weapon = gameObject.AddComponent<Knife>();
-                    break;
-                case ("PoisonIvy"):
-                    weapon = gameObject.AddComponent<PoisonIvy>();
-                    break;
-                case ("Pillow"):
-                    weapon = gameObject.AddComponent<Pillow>();
-                    break;
-                case ("Statue"):
-                    weapon = gameObject.AddComponent<Statue>();
-                    break;
-                case ("Coconut"):
-                    weapon = gameObject.AddComponent<Coconut>();
-                    break;
-                case ("Meteor"):
-                    weapon = gameObject.AddComponent<Meteor>();
-                    break;
-                case ("JuiceBlender"):
-                    weapon = gameObject.AddComponent<JuiceBlender>();
-                    break;
-                case ("OlReliable"):
-                    weapon = gameObject.AddComponent<OlReliable>();
-                    break;
-                default:
-                    weapon = null;
-                    break;
+                weapon = info.playerWeapons[order].GetComponent<Weapon>();
+                switch (weapon.GetType().ToString())
+                {
+                    case ("Knife"):
+                        weapon = gameObject.AddComponent<Knife>();
+                        break;
+                    case ("PoisonIvy"):
+                        weapon = gameObject.AddComponent<PoisonIvy>();
+                        break;
+                    case ("Pillow"):
+                        weapon = gameObject.AddComponent<Pillow>();
+                        break;
+                    case ("Statue"):
+                        weapon = gameObject.AddComponent<Statue>();
+                        break;
+                    case ("BeachBall"):
+                        weapon = gameObject.AddComponent<BeachBall>();
+                        break;
+                    case ("Meteor"):
+                        weapon = gameObject.AddComponent<Meteor>();
+                        break;
+                    case ("JuiceBlender"):
+                        weapon = gameObject.AddComponent<JuiceBlender>();
+                        break;
+                    case ("OlReliable"):
+                        weapon = gameObject.AddComponent<OlReliable>();
+                        break;
+                    default:
+                        weapon = null;
+                        break;
+                }
+                weapon.AffectUser();
             }
         }
-
-        if (weapon != null)
-            weapon.AffectUser();
 
         gameObject.transform.localScale = new Vector3(1, 1, 1);
         currHealth = startingHealth;
@@ -143,9 +144,15 @@ public class BattleCharacter : MonoBehaviour
         currMove = Move.NONE;
         int n = 0;
 
-        if (!toast)
+        if (paralyze)
         {
-            Debug.Log("What will " + gameObject.name + " do this turn?");
+            manager.AddText(gameObject.name + " can't do anything this turn.", true);
+            yield return new WaitForSeconds(1f);
+        }
+
+        else if (!toast)
+        {
+            manager.SpeedQueue.Add(this);
             manager.AddText("What will " + gameObject.name + " do this turn?", true);
             manager.AddText("1: Basic Attack");
 
@@ -234,7 +241,6 @@ public class BattleCharacter : MonoBehaviour
 
     private IEnumerator ChooseTarget(List<BattleCharacter> possibleTargets)
     {
-        Debug.Log("Who will " + gameObject.name + " target?");
         manager.AddText("Who will " + gameObject.name + " target?", true);
         nextTarget = null;
 
@@ -313,7 +319,7 @@ public class BattleCharacter : MonoBehaviour
             if (paralyze)
             {
                 paralyze = false;
-                manager.AddText(gameObject.name + " is paralyzed and misses their turn.", true);
+                manager.AddText(gameObject.name + " misses their turn.", true);
                 currMove = Move.NONE;
                 nextTarget = null;
             }
@@ -503,6 +509,7 @@ public class BattleCharacter : MonoBehaviour
             manager.AddText(gameObject.name + " became Toast.");
 
             emoteText.text = "TOAST";
+            emoteText.color = Color.white;
             currEmote = Emotion.NEUTRAL;
 
             attackStat = 1;
