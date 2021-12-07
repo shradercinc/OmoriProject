@@ -13,7 +13,7 @@ public class BeginBattle : MonoBehaviour
         info = FindObjectOfType<InfoCarry>().GetComponent<InfoCarry>();
     }
 
-    private void OnTriggerEnter2D(Collision other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
