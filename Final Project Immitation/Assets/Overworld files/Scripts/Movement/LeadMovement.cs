@@ -188,30 +188,6 @@ public class LeadMovement : MonoBehaviour
         movex = Input.GetAxis("Horizontal");
         movey = Input.GetAxis("Vertical");
 
-        /*
-        if (pos.transform.position.y < P1pos.transform.position.y)
-        {
-            layerOrder += 1;
-        }
-        if (pos.transform.position.y < P2pos.transform.position.y)
-        {
-            layerOrder += 1;
-        }
-        if (pos.transform.position.y < P3pos.transform.position.y)
-        {
-            layerOrder += 1;
-        }
-        if (pos.transform.position.y < P4pos.transform.position.y)
-        {
-            layerOrder += 1;
-        }
-        ren.sortingOrder = layerOrder;
-        layerOrder = 0;
-        */
-
-
-
-
         if (Input.GetKeyDown(KeyCode.Space))
         {
             for (int i = 0; i < PrevPos.Count; i++)
@@ -241,85 +217,5 @@ public class LeadMovement : MonoBehaviour
             direct = 4;
 
         }
-        /*
-        if (direct == 1)
-        {
-
-            if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D))
-            {
-                ren.sprite = up1;
-            }
-            else
-            {
-                transform.Translate(Vector2.up * Time.deltaTime * speed);
-                if (animWalkT < (animWalkTM / 2) * 50)
-                {
-                    ren.sprite = up2;
-                }
-                else
-                {
-                    ren.sprite = up3;
-                }
-            }
-        }
-        if (direct == 2)
-        {
-
-            if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D))
-            {
-                ren.sprite = left1;
-            }
-            else
-            {
-                transform.Translate(Vector2.left * Time.deltaTime * speed);
-                if (animWalkT < (animWalkTM / 2) * 50)
-                {
-                    ren.sprite = left2;
-                }
-                else
-                {
-                    ren.sprite = left3;
-                }
-            }
-        }
-        if (direct == 3)
-        {
-            if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D))
-            {
-                ren.sprite = down1;
-            }
-            else
-            {
-                transform.Translate(Vector2.down * Time.deltaTime * speed);
-                if (animWalkT < (animWalkTM / 2) * 50)
-                {
-                    ren.sprite = down2;
-                }
-                else
-                {
-                    ren.sprite = down3;
-                }
-            }
-        }
-        if (direct == 4)
-        {
-            if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D))
-            {
-                ren.sprite = right1;
-            }
-            else
-            {
-                transform.Translate(Vector2.right * Time.deltaTime * speed);
-                if (animWalkT < (animWalkTM / 2) * 50)
-                {
-                    ren.sprite = right2;
-                }
-                else
-                {
-                    ren.sprite = right3;
-                }
-            }
-        }
-        */
     }
 }
