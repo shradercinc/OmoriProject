@@ -17,7 +17,7 @@ public class WeaponItem : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             info.unlockedWeapons[itemNumber] = true;
-            info.delete.Add(gameObject);
+            info.delete.Add(gameObject.name);
             gameObject.SetActive(false);
         }
     }

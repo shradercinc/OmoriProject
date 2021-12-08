@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class LeadMovement : MonoBehaviour
 {
-    public static float speed = 5.0f;
-    InfoCarry info;
+    public static float speed = 7.5f;
 
     public Sprite down1;
     public Sprite down2;
@@ -51,7 +50,7 @@ public class LeadMovement : MonoBehaviour
         ren = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
 
-        info = FindObjectOfType<InfoCarry>().GetComponent<InfoCarry>();
+        InfoCarry info = FindObjectOfType<InfoCarry>().GetComponent<InfoCarry>();
         pos.transform.position = info.playerPosition;
 
         while(listPos < ListLen)
@@ -65,13 +64,13 @@ public class LeadMovement : MonoBehaviour
         }
         for (int i = 0; i < info.delete.Count; i++)
         {
-            info.delete[i].SetActive(false);
+            GameObject nextDelete = GameObject.Find(info.delete[i]);
+            nextDelete.SetActive(false);
         }
     }
 
     private void FixedUpdate()
     {
-
         animWalkT++;
         if (animWalkT > animWalkTM * 50)
         {

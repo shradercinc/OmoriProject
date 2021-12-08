@@ -28,7 +28,6 @@ public class Follower : MonoBehaviour
     public float animWalkT = 0.0f;
     public float animWalkTM = 0.5f;
 
-    private int layerOrder = 0;
     public int myPosition = 1;
     public Transform P1pos;
     public Transform P2pos;
@@ -45,11 +44,11 @@ public class Follower : MonoBehaviour
     {
         pos.transform.position = new Vector3(LeadMovement.PrevPos[Distance].x, LeadMovement.PrevPos[Distance].y, LeadMovement.PrevPos[Distance].y);
         animWalkT++;
+
         if (animWalkT > animWalkTM * 50)
         {
             animWalkT = 0.0f;
         }
-
 
         if (direct == 1)
         {
@@ -73,7 +72,6 @@ public class Follower : MonoBehaviour
         }
         if (direct == 2)
         {
-
             if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D))
             {
                 ren.sprite = left1;
@@ -176,8 +174,5 @@ public class Follower : MonoBehaviour
         {
             direct = 1;
         }
-
-
-
     }
 }

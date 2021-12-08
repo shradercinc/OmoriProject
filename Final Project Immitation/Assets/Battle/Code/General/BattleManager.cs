@@ -194,13 +194,13 @@ public class BattleManager : MonoBehaviour
             {
                 AddText("GAME OVER.");
                 Debug.Log("Restarting battle...");
-                yield return new WaitForSeconds(2);
+                yield return new WaitForSeconds(1.5f);
                 SceneManager.LoadScene("Omori Battle");
             }
             else if (foes.Count == 0)
             {
                 AddText("VICTORY!");
-                yield return new WaitForSeconds(2);
+                yield return new WaitForSeconds(1.5f);
                 SceneManager.LoadScene(info.sceneName);
             }
         }

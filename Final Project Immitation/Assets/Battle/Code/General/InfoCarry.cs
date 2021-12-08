@@ -12,7 +12,7 @@ public class InfoCarry : MonoBehaviour
 
     public List<BattleCharacter> enemies;
     public Vector2 playerPosition;
-    public List<GameObject> delete;
+    public List<string> delete;
     public string sceneName;
 
     void Awake()
@@ -22,11 +22,10 @@ public class InfoCarry : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
-        /*
         else if (instance != this)
         {
             Destroy(gameObject);
         }
-        */
     }
+
 }

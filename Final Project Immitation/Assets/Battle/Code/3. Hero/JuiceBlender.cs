@@ -7,7 +7,7 @@ public class JuiceBlender : Weapon
     public override void AffectUser()
     {
         user = FindObjectOfType<HeroSkills>().GetComponent<BattleCharacter>();
-        description = "Hero starts with much less Health and Juice, but everyone regains 10 Juice each turn.";
+        description = "Hero starts with less Health and Juice. Everyone regains 10 Juice each turn.";
         user.startingHealth -= 20;
         user.startingJuice -= 30;
     }
