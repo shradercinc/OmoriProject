@@ -254,8 +254,6 @@ public class Selection : MonoBehaviour
                         break;
                 }
 
-
-
                 break;
 
             case 2:
@@ -313,7 +311,7 @@ public class Selection : MonoBehaviour
                                 pocketSnack.SetActive(false);
                                 pockeSquare.SetActive(false);
                                 pocketDescription.SetActive(false);
-                                pockeSquare.GetComponent<PocketSelection>().chooseItem = 0;
+                                //pockeSquare.GetComponent<PocketSelection>().chooseItem = 0;
                             }
                         }
                        
@@ -342,7 +340,7 @@ public class Selection : MonoBehaviour
                                 pocketToy.SetActive(false);
                                 pockeSquare.SetActive(false);
                                 pocketDescription.SetActive(false);
-                                pockeSquare.GetComponent<PocketSelection>().chooseItem = 0;
+                                //pockeSquare.GetComponent<PocketSelection>().chooseItem = 0;
                             }
                         }
                         break;
@@ -372,13 +370,12 @@ public class Selection : MonoBehaviour
                                 pocketImportant.SetActive(false);
                                 pockeSquare.SetActive(false);
                                 pocketDescription.SetActive(false);
-                                pockeSquare.GetComponent<PocketSelection>().chooseItem = 0;
+                                //pockeSquare.GetComponent<PocketSelection>().chooseItem = 0;
                             }
                         }
                         break;
                     
                 }
-                break;
                 break;
 
             case 3:
