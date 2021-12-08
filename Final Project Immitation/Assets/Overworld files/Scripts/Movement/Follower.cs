@@ -38,7 +38,9 @@ public class Follower : MonoBehaviour
     {
         pos = GetComponent<Transform>();
         ren = GetComponent<SpriteRenderer>();
-        pos.transform.position = new Vector3(WASDmove.leadx, WASDmove.leady, -1);
+
+        InfoCarry info = FindObjectOfType<InfoCarry>().GetComponent<InfoCarry>();
+        pos.transform.position = info.playerPosition;
     }
     private void FixedUpdate()
     {
@@ -52,7 +54,6 @@ public class Follower : MonoBehaviour
 
         if (direct == 1)
         {
-
             if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D))
             {
                 ren.sprite = up1;
@@ -130,34 +131,8 @@ public class Follower : MonoBehaviour
 
     }
 
-
     private void Update()
     {
-        /*
-        if (pos.transform.position.y < P1pos.transform.position.y)
-        {
-            layerOrder += 1;
-        }
-        if (pos.transform.position.y < P2pos.transform.position.y)
-        {
-            layerOrder += 1;
-        }
-        if (pos.transform.position.y < P3pos.transform.position.y)
-        {
-            layerOrder += 1;
-        }
-        if (pos.transform.position.y < P4pos.transform.position.y)
-        {
-            layerOrder += 1;
-        }
-        ren.sortingOrder = layerOrder;
-        layerOrder = 0;
-        */
-
-
-        //pos.transform.position = new Vector3(LeadMovement.PrevPos[Distance].x, LeadMovement.PrevPos[Distance].y, -1);
-        //Debug.Log($"follower {Distance}, current x position {LeadMovement.PrevPos[Distance].x}, next position {LeadMovement.PrevPos[Distance].x}");
-
         if (LeadMovement.PrevPos[Distance].x - (LeadMovement.PrevPos[Distance - 1].x) > 0)
         {
             direct = 2;
