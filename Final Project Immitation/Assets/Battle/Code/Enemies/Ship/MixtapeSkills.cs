@@ -6,9 +6,9 @@ using System.Linq;
 public class MixtapeSkills : Skills
 {
     //Skill 1: Entangle: Reduce a Friend's speed. Then deal a small amount of damage to them.
-    //Skill 2: Sad Tune: Someone becomes Sad. If it's a Foe, raise their defense.
+    //Skill 2: Sad Tune: Deal damage to a Friend. They become Sad.
     //Skill 3: Up to 11: Deal damage to all Friends.
-    //Skill 4: Energetic Tune: Someone becomes Sad. If it's a Foe, heal them.
+    //Skill 4: Energetic Tune: Heal a Foe. They become Happy.
 
     public override void SetStartingStats()
     {
@@ -17,11 +17,11 @@ public class MixtapeSkills : Skills
         //Skill 1:
         skillTargets.Add(Target.FRIEND);
         //Skill 2:
-        skillTargets.Add(Target.ANYONE);
+        skillTargets.Add(Target.FRIEND);
         //Skill 3:
         skillTargets.Add(Target.ALLFRIENDS);
         //Skill 4:
-        skillTargets.Add(Target.ANYONE);
+        skillTargets.Add(Target.FOE);
 
         user = gameObject.GetComponent<BattleCharacter>();
         user.friend = false;
@@ -62,12 +62,12 @@ public class MixtapeSkills : Skills
         target = RedirectTarget(target, 2);
         manager.AddText("Mixtape plays a sad tune.", true);
         yield return target.NewEmotion(BattleCharacter.Emotion.SAD);
-
-        if (!target.friend)
+        
+        if (RollAccuracy(user.currAccuracy))
         {
-            target.defenseStat += 0.2f;
-            yield return target.ResetStats();
-            manager.AddText(target.name + "'s Defense increases.");
+            int critical = RollCritical(user.currLuck);
+            int damage = (int)(critical * IsEffective(target) * (user.currAttack - target.currDefense));
+            yield return target.TakeDamage(damage);
         }
     }
     public override IEnumerator UseSkillThree(BattleCharacter target)
@@ -91,10 +91,6 @@ public class MixtapeSkills : Skills
         target = RedirectTarget(target, 4);
         manager.AddText("Mixtape plays an energetic tune.", true);
         yield return target.NewEmotion(BattleCharacter.Emotion.HAPPY);
-
-        if (!target.friend)
-        {
-            yield return target.TakeHealing(75, 0);
-        }
+        yield return target.TakeHealing(75, 0);
     }
 }
