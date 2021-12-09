@@ -14,12 +14,15 @@ public class Switch : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
+        Debug.Log("Inside of " + gameObject.name + " 's hitbox.");
         if (collision.gameObject.CompareTag("Player") && Input.GetKeyDown(KeyCode.Z))
         {
-            wall.SetActive(false);
             gameObject.SetActive(false);
             info.delete.Add(wall.name);
-            info.delete.Add(gameObject.name);
+
+            GameObject parent = gameObject.transform.parent.gameObject;
+            info.delete.Add(parent.name);
+            parent.SetActive(false);
         }
     }
 }

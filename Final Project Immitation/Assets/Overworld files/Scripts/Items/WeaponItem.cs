@@ -6,19 +6,32 @@ public class WeaponItem : MonoBehaviour
 {
     public int itemNumber;
     InfoCarry info;
+    Dialogue dialogue;
+    GameObject parent;
 
     private void Awake()
     {
         info = FindObjectOfType<InfoCarry>().GetComponent<InfoCarry>();
+        dialogue = gameObject.GetComponent<Dialogue>();
+        parent = gameObject.transform.parent.gameObject;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        Debug.Log("Inside of " + gameObject.name + " 's hitbox.");
+        if (collision.gameObject.CompareTag("Player") && Input.GetKeyDown(KeyCode.Z))
         {
             info.unlockedWeapons[itemNumber] = true;
-            info.delete.Add(gameObject.name);
-            gameObject.SetActive(false);
+            GameObject parent = gameObject.transform.parent.gameObject;
+            info.delete.Add(parent.name);
+
+            StartCoroutine(deleteMe());
         }
+    }
+
+    IEnumerator deleteMe()
+    {
+        yield return dialogue.DisplayDialogue();
+        parent.SetActive(false);
     }
 }

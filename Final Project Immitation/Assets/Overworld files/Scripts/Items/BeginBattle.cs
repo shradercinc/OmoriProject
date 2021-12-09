@@ -15,12 +15,15 @@ public class BeginBattle : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
+        Debug.Log("Inside of " + gameObject.name + " 's hitbox.");
         if (collision.gameObject.CompareTag("Player") && Input.GetKeyDown(KeyCode.Z))
         {
             info.enemies = foes;
             info.playerPosition = gameObject.transform.position;
             info.sceneName = SceneManager.GetActiveScene().name;
-            info.delete.Add(gameObject.name);
+
+            GameObject parent = gameObject.transform.parent.gameObject;
+            info.delete.Add(parent.name);
             SceneManager.LoadScene("Omori Battle");
         }
     }

@@ -5,7 +5,7 @@ using TMPro;
 
 public class Dialogue : MonoBehaviour
 {
-    TMP_Text dialogueBox;
+    public TMP_Text dialogueBox;
     public List<string> dialogue;
     bool dialogueEnable = true;
     LeadMovement omori;
@@ -13,14 +13,19 @@ public class Dialogue : MonoBehaviour
     private void Awake()
     {
         omori = GameObject.Find("PartyLead").GetComponent<LeadMovement>();
-        dialogueBox = GameObject.Find("Dialogue Text").GetComponent<TextMeshProUGUI>();
-        dialogueBox.gameObject.SetActive(false);
+        dialogueBox.gameObject.transform.parent.gameObject.SetActive(false);
     }
 
     IEnumerator AddDescription(string x)
     {
-        dialogueBox.text = x;
+        dialogueBox.text = "";
         bool next = true;
+
+        for (int i = 0; i<x.Length; i++)
+        {
+            dialogueBox.text += x[i];
+            yield return new WaitForSeconds(0.01f);
+        }
         while (next)
         {
             if (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.X))
@@ -32,20 +37,22 @@ public class Dialogue : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
+        Debug.Log("Inside of " + gameObject.name + " 's hitbox.");
+
         if (collision.gameObject.CompareTag("Player") && Input.GetKeyDown(KeyCode.Z) && dialogueEnable)
         {
             StartCoroutine(DisplayDialogue());
         }
     }
 
-    IEnumerator DisplayDialogue()
+    public IEnumerator DisplayDialogue()
     {
         dialogueEnable = false;
+        dialogueBox.gameObject.transform.parent.gameObject.SetActive(true);
         //omori. = false;
 
         for (int i = 0; i<dialogue.Count; i++)
         {
-            dialogueBox.gameObject.transform.parent.gameObject.SetActive(true);
             yield return AddDescription(dialogue[i]);
         }
 
