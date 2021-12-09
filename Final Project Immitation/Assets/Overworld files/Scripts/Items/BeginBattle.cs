@@ -7,21 +7,15 @@ public class BeginBattle : MonoBehaviour
 {
     public List<BattleCharacter> foes;
     InfoCarry info;
-    float timer = 0.0f;
 
     private void Awake()
     {
         info = FindObjectOfType<InfoCarry>().GetComponent<InfoCarry>();
     }
 
-    private void Update()
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        timer += Time.deltaTime;
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Player") && timer >= 1.0f)
+        if (collision.gameObject.CompareTag("Player") && Input.GetKeyDown(KeyCode.Z))
         {
             info.enemies = foes;
             info.playerPosition = gameObject.transform.position;
@@ -30,4 +24,5 @@ public class BeginBattle : MonoBehaviour
             SceneManager.LoadScene("Omori Battle");
         }
     }
+
 }

@@ -15,7 +15,6 @@ public class BattleManager : MonoBehaviour
 
     BattleCharacter omori;
     InfoCarry info;
-    string loadScene;
 
     TMP_Text battleLog;
     TMP_Text descriptionLog;

@@ -12,9 +12,9 @@ public class Switch : MonoBehaviour
         info = FindObjectOfType<InfoCarry>().GetComponent<InfoCarry>();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && Input.GetKeyDown(KeyCode.Z))
         {
             wall.SetActive(false);
             gameObject.SetActive(false);
