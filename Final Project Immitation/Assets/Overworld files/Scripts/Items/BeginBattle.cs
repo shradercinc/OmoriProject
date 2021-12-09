@@ -15,7 +15,7 @@ public class BeginBattle : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        Debug.Log("Inside of " + gameObject.name + " 's hitbox.");
+        Debug.Log("Inside of " + gameObject.transform.parent.name + " 's hitbox.");
         if (collision.gameObject.CompareTag("Player") && Input.GetKeyDown(KeyCode.Z))
         {
             info.enemies = foes;

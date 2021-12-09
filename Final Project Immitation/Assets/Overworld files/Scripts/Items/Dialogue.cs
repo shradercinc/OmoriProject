@@ -9,11 +9,13 @@ public class Dialogue : MonoBehaviour
     public List<string> dialogue;
     bool dialogueEnable = true;
     LeadMovement omori;
+    GameObject parent;
 
     private void Awake()
     {
         omori = GameObject.Find("PartyLead").GetComponent<LeadMovement>();
-        dialogueBox.gameObject.transform.parent.gameObject.SetActive(false);
+        parent = gameObject.transform.parent.gameObject;
+        parent.gameObject.SetActive(false);
     }
 
     IEnumerator AddDescription(string x)
@@ -37,8 +39,7 @@ public class Dialogue : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        Debug.Log("Inside of " + gameObject.name + " 's hitbox.");
-
+        Debug.Log("Inside of " + parent.name + " 's hitbox.");
         if (collision.gameObject.CompareTag("Player") && Input.GetKeyDown(KeyCode.Z) && dialogueEnable)
         {
             StartCoroutine(DisplayDialogue());
