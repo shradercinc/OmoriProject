@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class InfoCarry : MonoBehaviour
 {
     public static InfoCarry instance = null;
+    public bool boss;
 
     public Weapon[] playerWeapons = new Weapon[4]; //0: Omori; 1: Aubrey; 2: Kel; 3: Hero
     public bool[] unlockedWeapons = new bool[8];
@@ -22,6 +23,7 @@ public class InfoCarry : MonoBehaviour
     public List<BattleCharacter> enemies;
     public Vector2 playerPosition;
     public List<string> delete;
+    public List<string> disable;
     public string sceneName;
 
     void Awake()
