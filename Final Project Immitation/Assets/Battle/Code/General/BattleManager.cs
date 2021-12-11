@@ -11,7 +11,7 @@ public class BattleManager : MonoBehaviour
     public List<BattleCharacter> friends = new List<BattleCharacter>();
     public List<BattleCharacter> foes = new List<BattleCharacter>();
     public List<BattleCharacter> toast = new List<BattleCharacter>();
-    List<BattleCharacter> SpeedQueue = new List<BattleCharacter>();
+    public List<BattleCharacter> SpeedQueue = new List<BattleCharacter>();
 
     BattleCharacter omori;
     InfoCarry info;
@@ -24,31 +24,20 @@ public class BattleManager : MonoBehaviour
     public double energy = 0.0;
     public bool undo = false;
 
-    public AudioSource audioSource;
-    public AudioClip forestBattle;
-    public AudioClip shipBattle;
-    public AudioClip bossBattle;
-
     void Awake()
     {
         battleLog = GameObject.Find("Battle Log").GetComponent<TextMeshProUGUI>();
         descriptionLog = GameObject.Find("Description Log").GetComponent<TextMeshProUGUI>();
         info = FindObjectOfType<InfoCarry>().GetComponent<InfoCarry>();
-        audioSource = gameObject.GetComponent<AudioSource>();
 
         energySlider = GameObject.Find("Energy Slider");
         energyText = energySlider.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
         omori = GameObject.Find("Omori").GetComponent<BattleCharacter>();
 
         for (int i = 0; i < info.enemies.Count; i++)
+        {
             CreateFoe(info.enemies[i], info.enemies[i].name);
-
-        if (info.boss)
-            audioSource.Play(bossBattle);
-        else if (info.sceneName == "Forest")
-            audioSource.Play(forestBattle);
-        else if (info.sceneName == "Ship")
-            audioSource.Play(shipBattle);
+        }
 
         StartCoroutine(AddEnergy(3));
         StartCoroutine(NewRound());

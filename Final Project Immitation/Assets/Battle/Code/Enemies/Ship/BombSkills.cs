@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BombSkills : Skills
 {
-    //This does nothing until 3 turns pass, and then it deals damage to all Friends.
+    //This does nothing until it dies, or until 3 turns pass.
 
     int turnCount = 3;
 

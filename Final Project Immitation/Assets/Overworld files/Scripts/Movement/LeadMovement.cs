@@ -65,8 +65,7 @@ public class LeadMovement : MonoBehaviour
         for (int i = 0; i < info.delete.Count; i++)
         {
             GameObject nextDelete = GameObject.Find(info.delete[i]);
-            if (nextDelete != null)
-                nextDelete.SetActive(false);
+            nextDelete.SetActive(false);
         }
     }
 

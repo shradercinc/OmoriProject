@@ -23,14 +23,6 @@ public class BearSkills : Skills
         user.startingAccuracy = 0.8f;
     }
 
-    //targets the friend with the least helath
-    public override BattleCharacter ChooseTarget(int n)
-    {
-        List<BattleCharacter> friends = manager.friends;
-        friends = friends.OrderBy(o => o.currHealth).ToList();
-        return friends[0];
-    }
-
     public override IEnumerator UseSkillOne(BattleCharacter target)
     {
         manager.AddText("Bear lets out a huge roar.", true);

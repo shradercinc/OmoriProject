@@ -36,6 +36,7 @@ public class RatSkills : Skills
     {
         manager.AddText("Lab Rat's invention falls apart and explodes.", true);
         yield return user.NewEmotion(BattleCharacter.Emotion.SAD);
+
         List<BattleCharacter> allTargets = manager.friends;
 
         for (int i = 0; i < allTargets.Count; i++)
