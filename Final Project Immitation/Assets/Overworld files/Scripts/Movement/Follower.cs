@@ -41,6 +41,7 @@ public class Follower : MonoBehaviour
 
         InfoCarry info = FindObjectOfType<InfoCarry>().GetComponent<InfoCarry>();
         pos.transform.position = info.playerPosition;
+        pos.transform.position = new Vector3(P1pos.transform.position.x, P1pos.transform.position.y, P1pos.transform.position.z);
     }
     private void FixedUpdate()
     {
