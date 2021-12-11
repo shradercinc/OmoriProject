@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class WeaponItem : MonoBehaviour
 {
-    public int itemNumber;
     InfoCarry info;
     Dialogue dialogue;
     GameObject parent;
@@ -21,7 +20,7 @@ public class WeaponItem : MonoBehaviour
         Debug.Log("Inside of " + parent.name + " 's hitbox.");
         if (collision.gameObject.CompareTag("Player") && Input.GetKeyDown(KeyCode.Z))
         {
-            info.unlockedWeapons[itemNumber] = true;
+            info.UnlockWeapon(gameObject.name);
             GameObject parent = gameObject.transform.parent.gameObject;
             info.delete.Add(parent.name);
             StartCoroutine(deleteMe());

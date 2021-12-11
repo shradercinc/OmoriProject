@@ -26,6 +26,37 @@ public class InfoCarry : MonoBehaviour
     public List<string> disable;
     public string sceneName;
 
+    public void UnlockEnemy(string x)
+    {
+        switch (x)
+        {
+            case ("Knife"):
+                unlockedWeapons[0] = true;
+                break;
+            case ("Poison Ivy"):
+                unlockedWeapons[1] = true;
+                break;
+            case ("Pillow"):
+                unlockedWeapons[2] = true;
+                break;
+            case ("Statue"):
+                unlockedWeapons[3] = true;
+                break;
+            case ("Beach Ball"):
+                unlockedWeapons[4] = true;
+                break;
+            case ("Meteor"):
+                unlockedWeapons[5] = true;
+                break;
+            case ("Juice Blender"):
+                unlockedWeapons[6] = true;
+                break;
+            case ("Ol' Reliable"):
+                unlockedWeapons[7] = true;
+                break;
+        }
+    }
+
     void Awake()
     {
         if (instance == null)
