@@ -3,18 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class Dialogue : MonoBehaviour
+public class WalkingDialogue : MonoBehaviour
 {
     public TMP_Text dialogueBox;
     public List<string> dialogue;
     bool dialogueEnable = true;
     LeadMovement omori;
     GameObject parent;
+    InfoCarry info;
 
     private void Awake()
     {
         omori = GameObject.Find("PartyLead").GetComponent<LeadMovement>();
         parent = gameObject.transform.parent.gameObject;
+        info = FindObjectOfType<InfoCarry>().GetComponent<InfoCarry>();
         parent.gameObject.SetActive(false);
     }
 
@@ -23,7 +25,7 @@ public class Dialogue : MonoBehaviour
         dialogueBox.text = "";
         bool next = true;
 
-        for (int i = 0; i<x.Length; i++)
+        for (int i = 0; i < x.Length; i++)
         {
             dialogueBox.text += x[i];
             yield return new WaitForSeconds(0.01f);
@@ -37,7 +39,7 @@ public class Dialogue : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("Inside of " + parent.name + " 's hitbox.");
         if (collision.gameObject.CompareTag("Player") && Input.GetKeyDown(KeyCode.Z) && dialogueEnable)
@@ -52,7 +54,7 @@ public class Dialogue : MonoBehaviour
         dialogueBox.gameObject.transform.parent.gameObject.SetActive(true);
         omori.inOverWorld = false;
 
-        for (int i = 0; i<dialogue.Count; i++)
+        for (int i = 0; i < dialogue.Count; i++)
         {
             yield return AddDescription(dialogue[i]);
         }
@@ -60,6 +62,9 @@ public class Dialogue : MonoBehaviour
         dialogueEnable = true;
         dialogueBox.gameObject.transform.parent.gameObject.SetActive(false);
         omori.inOverWorld = true;
+
+        GameObject parent = gameObject.transform.parent.gameObject;
+        info.delete.Add(parent.name);
     }
 
 }

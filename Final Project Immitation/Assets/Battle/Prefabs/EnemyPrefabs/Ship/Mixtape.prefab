@@ -67,7 +67,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 271815955728274541, guid: 89db77ba800402a499dfca7c53d33c4a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -112,9 +112,12 @@ MonoBehaviour:
   nextTarget: {fileID: 0}
   currEmote: 0
   paralyze: 0
+  uiText: {fileID: 0}
   healthObject: {fileID: 0}
   juiceObject: {fileID: 0}
   toast: 0
+  lastHit: 0
+  invisible: 0
   friend: 0
   order: 0
   userSkills: {fileID: 0}
@@ -137,4 +140,5 @@ MonoBehaviour:
   juiceCost: 
   energyCost: 
   followUpRequire: []
+  skillDescription: []
   skillTargets: 
