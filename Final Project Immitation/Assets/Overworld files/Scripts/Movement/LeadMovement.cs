@@ -199,15 +199,6 @@ public class LeadMovement : MonoBehaviour
         movex = Input.GetAxis("Horizontal");
         movey = Input.GetAxis("Vertical");
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            for (int i = 0; i < PrevPos.Count; i++)
-            {
-                Debug.Log($"position {i} has value {PrevPos[i]}");
-            }
-        }
-
-
         if (Input.GetKeyDown(KeyCode.W) )
         {
             direct = 1;
@@ -226,7 +217,6 @@ public class LeadMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.D))
         {
             direct = 4;
-
         }
     }
 }

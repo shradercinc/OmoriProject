@@ -111,6 +111,11 @@ public class HeroSkills : Skills
                 yield return target.ResetStats();
                 manager.ReturnToList(target);
             }
+            else
+            {
+                manager.AddText("No one is Toast.", true);
+                yield return new WaitForSeconds(0.5f);
+            }
         }
     }
     public override IEnumerator UseSkillFour(BattleCharacter target)

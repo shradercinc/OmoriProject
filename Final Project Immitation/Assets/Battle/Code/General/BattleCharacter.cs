@@ -343,8 +343,6 @@ public class BattleCharacter : MonoBehaviour
                     break;
             }
         }
-
-        yield return ResetStats();
     }
 
     public IEnumerator TakeDamage(int damage)

@@ -7,17 +7,14 @@ public class WalkingDialogue : MonoBehaviour
 {
     public TMP_Text dialogueBox;
     public List<string> dialogue;
-    bool dialogueEnable = true;
     LeadMovement omori;
-    GameObject parent;
     InfoCarry info;
 
     private void Awake()
     {
-        omori = GameObject.Find("PartyLead").GetComponent<LeadMovement>();
-        parent = gameObject.transform.parent.gameObject;
+        omori = GameObject.Find("Lead").GetComponent<LeadMovement>();
         info = FindObjectOfType<InfoCarry>().GetComponent<InfoCarry>();
-        parent.gameObject.SetActive(false);
+        dialogueBox.gameObject.transform.parent.gameObject.SetActive(false);
     }
 
     IEnumerator AddDescription(string x)
@@ -41,8 +38,7 @@ public class WalkingDialogue : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Inside of " + parent.name + " 's hitbox.");
-        if (collision.gameObject.CompareTag("Player") && Input.GetKeyDown(KeyCode.Z) && dialogueEnable)
+        if (collision.gameObject.CompareTag("Player"))
         {
             StartCoroutine(DisplayDialogue());
         }
@@ -50,7 +46,6 @@ public class WalkingDialogue : MonoBehaviour
 
     public IEnumerator DisplayDialogue()
     {
-        dialogueEnable = false;
         dialogueBox.gameObject.transform.parent.gameObject.SetActive(true);
         omori.inOverWorld = false;
 
@@ -59,12 +54,9 @@ public class WalkingDialogue : MonoBehaviour
             yield return AddDescription(dialogue[i]);
         }
 
-        dialogueEnable = true;
         dialogueBox.gameObject.transform.parent.gameObject.SetActive(false);
         omori.inOverWorld = true;
-
-        GameObject parent = gameObject.transform.parent.gameObject;
-        info.delete.Add(parent.name);
+        info.delete.Add(gameObject.name);
     }
 
 }
