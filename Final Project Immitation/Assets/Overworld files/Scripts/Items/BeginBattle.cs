@@ -7,6 +7,7 @@ public class BeginBattle : MonoBehaviour
 {
     public List<BattleCharacter> foes;
     InfoCarry info;
+    public bool boss = false;
 
     private void Awake()
     {
@@ -21,6 +22,7 @@ public class BeginBattle : MonoBehaviour
             info.enemies = foes;
             info.playerPosition = gameObject.transform.position;
             info.sceneName = SceneManager.GetActiveScene().name;
+            info.boss = boss;
 
             GameObject parent = gameObject.transform.parent.gameObject;
             info.delete.Add(parent.name);
