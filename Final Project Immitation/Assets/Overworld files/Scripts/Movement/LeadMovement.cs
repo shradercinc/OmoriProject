@@ -40,6 +40,7 @@ public class LeadMovement : MonoBehaviour
     public float spawnx = 0;
     public float spawny = 0;
     private Rigidbody2D rb;
+    public static bool inOverWorld = true;
 
     float movex = 1.0f;
     float movey = 1.0f;
@@ -76,92 +77,95 @@ public class LeadMovement : MonoBehaviour
         {
             animWalkT = 0.0f;
         }
-        if (direct == 1)
+        if (inOverWorld == true)
         {
+            if (direct == 1)
+            {
 
-            if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D))
-            {
-                ren.sprite = up1;
-                rb.velocity = new Vector2(0, 0);
-            }
-            else
-            {
-                rb.velocity = new Vector2(0, speed);
-                if (animWalkT < (animWalkTM / 2) * 50)
+                if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D))
                 {
-                    ren.sprite = up2;
+                    ren.sprite = up1;
+                    rb.velocity = new Vector2(0, 0);
                 }
                 else
                 {
-                    ren.sprite = up3;
+                    rb.velocity = new Vector2(0, speed);
+                    if (animWalkT < (animWalkTM / 2) * 50)
+                    {
+                        ren.sprite = up2;
+                    }
+                    else
+                    {
+                        ren.sprite = up3;
+                    }
                 }
             }
-        }
-        if (direct == 2)
-        {
+            if (direct == 2)
+            {
 
-            if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D))
-            {
-                ren.sprite = left1;
-                rb.velocity = new Vector2(0, 0);
-            }
-            else
-            {
-                rb.velocity = new Vector2(-speed, 0);
-                if (animWalkT < (animWalkTM / 2) * 50)
+                if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D))
                 {
-                    ren.sprite = left2;
+                    ren.sprite = left1;
+                    rb.velocity = new Vector2(0, 0);
                 }
                 else
                 {
-                    ren.sprite = left3;
+                    rb.velocity = new Vector2(-speed, 0);
+                    if (animWalkT < (animWalkTM / 2) * 50)
+                    {
+                        ren.sprite = left2;
+                    }
+                    else
+                    {
+                        ren.sprite = left3;
+                    }
                 }
             }
-        }
-        if (direct == 3)
-        {
-            if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D))
+            if (direct == 3)
             {
-                ren.sprite = down1;
-                rb.velocity = new Vector2(0, 0);
-            }
-            else
-            {
-                rb.velocity = new Vector2(0, -speed);
-                if (animWalkT < (animWalkTM / 2) * 50)
+                if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D))
                 {
-                    ren.sprite = down2;
+                    ren.sprite = down1;
+                    rb.velocity = new Vector2(0, 0);
                 }
                 else
                 {
-                    ren.sprite = down3;
+                    rb.velocity = new Vector2(0, -speed);
+                    if (animWalkT < (animWalkTM / 2) * 50)
+                    {
+                        ren.sprite = down2;
+                    }
+                    else
+                    {
+                        ren.sprite = down3;
+                    }
                 }
             }
-        }
-        if (direct == 4)
-        {
-            if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D))
+            if (direct == 4)
             {
-                ren.sprite = right1;
-                rb.velocity = new Vector2(0, 0);
-            }
-            else
-            {
-                rb.velocity = new Vector2(speed, 0);
-                if (animWalkT < (animWalkTM / 2) * 50)
+                if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D))
                 {
-                    ren.sprite = right2;
+                    ren.sprite = right1;
+                    rb.velocity = new Vector2(0, 0);
                 }
                 else
                 {
-                    ren.sprite = right3;
+                    rb.velocity = new Vector2(speed, 0);
+                    if (animWalkT < (animWalkTM / 2) * 50)
+                    {
+                        ren.sprite = right2;
+                    }
+                    else
+                    {
+                        ren.sprite = right3;
+                    }
                 }
             }
-        }
-        pos.transform.position = new Vector3(pos.transform.position.x, pos.transform.position.y, pos.transform.position.y);
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
-        {
-            updateList();
+            pos.transform.position = new Vector3(pos.transform.position.x, pos.transform.position.y, pos.transform.position.y);
+            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
+            {
+                updateList();
+            }
         }
     }
 
