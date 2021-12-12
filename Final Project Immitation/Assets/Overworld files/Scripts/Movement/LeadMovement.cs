@@ -40,7 +40,7 @@ public class LeadMovement : MonoBehaviour
     public float spawnx = 0;
     public float spawny = 0;
     private Rigidbody2D rb;
-    public static bool inOverWorld = true;
+    public bool inOverWorld = true;
 
     float movex = 1.0f;
     float movey = 1.0f;
