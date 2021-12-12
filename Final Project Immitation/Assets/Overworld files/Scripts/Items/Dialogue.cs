@@ -59,7 +59,7 @@ public class Dialogue : MonoBehaviour
 
         dialogueEnable = true;
         dialogueBox.gameObject.transform.parent.gameObject.SetActive(false);
-        omori.inOverWorld = true;
+        omori.inOverWorld = false;
     }
 
 }
