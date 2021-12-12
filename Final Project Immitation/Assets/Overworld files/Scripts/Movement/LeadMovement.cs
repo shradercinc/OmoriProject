@@ -71,8 +71,8 @@ public class LeadMovement : MonoBehaviour
         for (int i = 0; i<info.disable.Count; i++)
         {
             GameObject nextDisable = GameObject.Find(info.disable[i]);
-            if (disable != null)
-                disable.GetComponent<Switch>().DisableSpikes();
+            if (nextDisable != null)
+                nextDisable.GetComponent<Switch>().DisableSpikes();
         }
     }
 

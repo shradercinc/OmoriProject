@@ -26,7 +26,7 @@ public class InfoCarry : MonoBehaviour
     public List<string> disable;
     public string sceneName;
 
-    public void UnlockEnemy(string x)
+    public void UnlockWeapon(string x)
     {
         switch (x)
         {
