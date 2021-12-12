@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EquipSelection : MonoBehaviour
+public class EquiptSelectKei : MonoBehaviour
 {
-    private Transform weaponTrans;
+   private Transform weaponTrans;
     public GameObject weaponDes;
     public GameObject thisSquare;
     public GameObject gameSquare;
@@ -48,15 +48,15 @@ public class EquipSelection : MonoBehaviour
                 weapon3 = 0;
                 weaponTrans.position = new Vector3 (-7.73f, -3.19f);
                 weaponDes.SetActive(true);
-                WeaponOneName = weapons[0].name;
-                WeaponTwoName = weapons[1].name;
-                WeaponDescription = weapons[0].description;
+                WeaponOneName = weapons[4].name;
+                WeaponTwoName = weapons[5].name;
+                WeaponDescription = weapons[4].description;
                 weaponOne.text = WeaponOneName;
                 weaponTwo.text = WeaponTwoName;
-                weaponThree.text = " ------";
+                weaponThree.text = "------";
                 weaponDesciption.text = WeaponDescription;
                 if(Input.GetKeyDown(KeyCode.Space) && weapon1 == 1){
-                    info.playerWeapons[0] = weapons[0];
+                    info.playerWeapons[2] = weapons[4];
                 }
                 if(Input.GetKeyDown(KeyCode.X) && weapon1 == 1) {
                     thisSquare.SetActive(false);
@@ -70,15 +70,15 @@ public class EquipSelection : MonoBehaviour
                 weapon2 = 1;
                 weapon3 = 0;
                 weaponTrans.position = new Vector3 (-7.73f, -3.84f);
-                WeaponOneName = weapons[0].name;
-                WeaponTwoName = weapons[1].name;
-                WeaponDescription = weapons[1].description;
+                WeaponOneName = weapons[4].name;
+                WeaponTwoName = weapons[5].name;
+                WeaponDescription = weapons[5].description;
                 weaponOne.text = WeaponOneName;
                 weaponTwo.text = WeaponTwoName;
-                weaponThree.text = " ------";
+                weaponThree.text = "------";
                 weaponDesciption.text = WeaponDescription;
                 if(Input.GetKeyDown(KeyCode.Space) && weapon2 == 1){
-                    info.playerWeapons[0] = weapons[1];
+                    info.playerWeapons[2] = weapons[5];
                 }
                 if(Input.GetKeyDown(KeyCode.X) && weapon2 == 1) {
                     thisSquare.SetActive(false);
@@ -92,14 +92,12 @@ public class EquipSelection : MonoBehaviour
                 weapon2 = 0;
                 weapon3 = 1;
                 weaponTrans.position = new Vector3 (-7.73f, -4.56f);
-                WeaponOneName = weapons[0].name;
-                WeaponTwoName = weapons[1].name;
                 weaponOne.text = WeaponOneName;
                 weaponTwo.text = WeaponTwoName;
-                weaponThree.text = " ------";
-                weaponDesciption.text = " ------";
+                weaponThree.text = "------";
+                weaponDesciption.text = "------";
                 if(Input.GetKeyDown(KeyCode.Space) && weapon3 == 1){
-                    info.playerWeapons[0] = null;
+                    info.playerWeapons[2] = null;
                 }
                 if(Input.GetKeyDown(KeyCode.X) && weapon3 == 1) {
                     thisSquare.SetActive(false);

@@ -50,6 +50,7 @@ public class Selection : MonoBehaviour
     public bool Move = true;
     public bool inPocket = false;
     public static bool inAction = false;
+    public static bool Canexit = true;
 
 
     void Awake(){
@@ -72,6 +73,7 @@ public class Selection : MonoBehaviour
     void Actions (){
         switch(chooseStage){
             case 0:
+                Canexit = true;
                 if(Input.GetKeyDown(KeyCode.Space) && first == 0){
                     tagg = 1;
                     first = 1;
@@ -101,6 +103,7 @@ public class Selection : MonoBehaviour
                 
                 switch(first){
                     case 1:
+                        Canexit = false;
                         trans.position = new Vector3(-6.53f, -0.51f);
                         break;
 
@@ -119,6 +122,7 @@ public class Selection : MonoBehaviour
                 break;
 
             case 1:
+                Canexit = true;
                 if(Input.GetKeyDown(KeyCode.Space) && second == 0){
                     equip = 1;
                     second = 1;
@@ -152,6 +156,7 @@ public class Selection : MonoBehaviour
                 
                 switch(second){
                     case 1:
+                        Canexit = false;
                         trans.position = new Vector3(-6.53f, -0.51f);
                         characterTwo = 0;
                         characterThree = 0;
@@ -257,6 +262,7 @@ public class Selection : MonoBehaviour
                 break;
 
             case 2:
+                Canexit = true;
                  if(Input.GetKeyDown(KeyCode.Space) && third == 0){
                     pokect = 1;
                     third = 1;
@@ -288,6 +294,7 @@ public class Selection : MonoBehaviour
                 
                 switch(third){
                     case 1:
+                        Canexit = false;
                         //inPocket = true;
                         if(snack == 0){
                             trans.position = new Vector3(-8.37f, 2.22f);
@@ -379,6 +386,7 @@ public class Selection : MonoBehaviour
                 break;
 
             case 3:
+                Canexit = true;
                  if(Input.GetKeyDown(KeyCode.Space) && forth == 0){
                     skill = 1;
                     forth = 1;
@@ -407,6 +415,7 @@ public class Selection : MonoBehaviour
                 
                 switch(forth){
                     case 1:
+                        Canexit = false;
                         trans.position = new Vector3(-6.53f, -0.51f);
                         break;
 
