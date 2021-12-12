@@ -50,7 +50,7 @@ public class Dialogue : MonoBehaviour
     {
         dialogueEnable = false;
         dialogueBox.gameObject.transform.parent.gameObject.SetActive(true);
-        //omori. = false;
+        omori.inOverWorld = false;
 
         for (int i = 0; i<dialogue.Count; i++)
         {
@@ -59,7 +59,7 @@ public class Dialogue : MonoBehaviour
 
         dialogueEnable = true;
         dialogueBox.gameObject.transform.parent.gameObject.SetActive(false);
-        //omori. = true;
+        omori.inOverWorld = true;
     }
 
 }
