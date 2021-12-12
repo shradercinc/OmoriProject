@@ -50,6 +50,48 @@ ScriptedImporter:
   - first:
       213: 3221786824619005730
     second: OmoriForestEnemies_15
+  - first:
+      213: -5755222519872779793
+    second: OmoriForestEnemies_0
+  - first:
+      213: -6013249837618947106
+    second: OmoriForestEnemies_1
+  - first:
+      213: 8530463739922545513
+    second: OmoriForestEnemies_2
+  - first:
+      213: -3572263758680960912
+    second: OmoriForestEnemies_3
+  - first:
+      213: -5812244598666623621
+    second: OmoriForestEnemies_4
+  - first:
+      213: -74600925524133778
+    second: OmoriForestEnemies_5
+  - first:
+      213: -4407341187332407095
+    second: OmoriForestEnemies_6
+  - first:
+      213: 2690724513895897033
+    second: OmoriForestEnemies_7
+  - first:
+      213: -5027260430588642882
+    second: OmoriForestEnemies_8
+  - first:
+      213: 7596532552004304407
+    second: OmoriForestEnemies_9
+  - first:
+      213: -1254668170135048644
+    second: OmoriForestEnemies_10
+  - first:
+      213: 6963120327310098062
+    second: OmoriForestEnemies_11
+  - first:
+      213: -1074115794098282664
+    second: OmoriForestEnemies_12
+  - first:
+      213: 1304458188053742577
+    second: OmoriForestEnemies_13
   externalObjects: {}
   serializedVersion: 2
   userData: 
@@ -141,7 +183,7 @@ ScriptedImporter:
   rigSpriteImportData:
   - name: OmoriForestEnemies_0
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0, y: 0}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -163,7 +205,7 @@ ScriptedImporter:
     uvTransform: {x: 50, y: 95}
   - name: OmoriForestEnemies_1
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0, y: 0}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -185,7 +227,7 @@ ScriptedImporter:
     uvTransform: {x: 97, y: 95}
   - name: OmoriForestEnemies_2
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0, y: 0}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -207,7 +249,7 @@ ScriptedImporter:
     uvTransform: {x: 176, y: 85}
   - name: OmoriForestEnemies_3
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0, y: 0}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -229,15 +271,15 @@ ScriptedImporter:
     uvTransform: {x: 216, y: 85}
   - name: OmoriForestEnemies_4
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0, y: 0}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 15
+      x: 109
       y: 50
-      width: 20
-      height: 30
+      width: 22
+      height: 36
     spriteID: b750bc40552c65fa0800000000000000
     internalID: 0
     spriteBone: []
@@ -248,18 +290,18 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 15, y: 50}
+    uvTransform: {x: 109, y: 50}
   - name: OmoriForestEnemies_5
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0, y: 0}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 45
+      x: 137
       y: 50
-      width: 32
-      height: 30
+      width: 25
+      height: 37
     spriteID: e68f73e7ad6f6fef0800000000000000
     internalID: 0
     spriteBone: []
@@ -270,18 +312,18 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 45, y: 50}
+    uvTransform: {x: 137, y: 50}
   - name: OmoriForestEnemies_6
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0, y: 0}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 109
+      x: 178
       y: 50
-      width: 22
-      height: 36
+      width: 28
+      height: 27
     spriteID: 9c08a1d8a8af5d2c0800000000000000
     internalID: 0
     spriteBone: []
@@ -292,18 +334,18 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 109, y: 50}
+    uvTransform: {x: 178, y: 50}
   - name: OmoriForestEnemies_7
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0, y: 0}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 137
+      x: 206
       y: 50
-      width: 25
-      height: 37
+      width: 27
+      height: 27
     spriteID: 9c7533770bf575520800000000000000
     internalID: 0
     spriteBone: []
@@ -314,18 +356,18 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 137, y: 50}
+    uvTransform: {x: 206, y: 50}
   - name: OmoriForestEnemies_8
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0, y: 0}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 178
+      x: 241
       y: 50
-      width: 28
-      height: 27
+      width: 34
+      height: 25
     spriteID: eb9f26126459b3ab0800000000000000
     internalID: 0
     spriteBone: []
@@ -336,18 +378,18 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 178, y: 50}
+    uvTransform: {x: 241, y: 50}
   - name: OmoriForestEnemies_9
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0, y: 0}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 206
+      x: 279
       y: 50
-      width: 27
-      height: 27
+      width: 36
+      height: 25
     spriteID: 71e78ee9b1e4c6960800000000000000
     internalID: 0
     spriteBone: []
@@ -358,18 +400,18 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 206, y: 50}
+    uvTransform: {x: 279, y: 50}
   - name: OmoriForestEnemies_10
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0, y: 0}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 241
-      y: 50
-      width: 34
-      height: 25
+      x: 4
+      y: 8
+      width: 31
+      height: 34
     spriteID: c3e6c1062f5869ee0800000000000000
     internalID: 0
     spriteBone: []
@@ -380,18 +422,18 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 241, y: 50}
+    uvTransform: {x: 4, y: 8}
   - name: OmoriForestEnemies_11
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0, y: 0}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 274
-      y: 50
-      width: 36
-      height: 25
+      x: 37
+      y: 8
+      width: 26
+      height: 31
     spriteID: e8ebe95ab09f1a060800000000000000
     internalID: 0
     spriteBone: []
@@ -402,18 +444,18 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 274, y: 50}
+    uvTransform: {x: 37, y: 8}
   - name: OmoriForestEnemies_12
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0, y: 0}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 4
-      y: 8
-      width: 31
-      height: 34
+      x: 69
+      y: 5
+      width: 24
+      height: 35
     spriteID: 85f922d4069f711f0800000000000000
     internalID: 0
     spriteBone: []
@@ -424,54 +466,10 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 4, y: 8}
+    uvTransform: {x: 69, y: 5}
   - name: OmoriForestEnemies_13
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 37
-      y: 8
-      width: 26
-      height: 31
-    spriteID: 1f30b4b8fcd5a1210800000000000000
-    internalID: 0
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    parentGroupIndex: -1
-    uvTransform: {x: 37, y: 8}
-  - name: OmoriForestEnemies_14
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 69
-      y: 5
-      width: 24
-      height: 35
-    spriteID: bdad9cf6db566ee60800000000000000
-    internalID: 0
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    parentGroupIndex: -1
-    uvTransform: {x: 69, y: 5}
-  - name: OmoriForestEnemies_15
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0, y: 0}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -480,7 +478,7 @@ ScriptedImporter:
       y: 4
       width: 26
       height: 35
-    spriteID: 22713771c0616bc20800000000000000
+    spriteID: 1f30b4b8fcd5a1210800000000000000
     internalID: 0
     spriteBone: []
     spriteOutline: []

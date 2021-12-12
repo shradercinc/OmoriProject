@@ -53,6 +53,45 @@ ScriptedImporter:
   - first:
       213: -4810834222289430504
     second: Omori Tileset_16
+  - first:
+      213: -5121366700671878482
+    second: Omori Tileset_0
+  - first:
+      213: -8510680647895752958
+    second: Omori Tileset_1
+  - first:
+      213: -7252307480608005135
+    second: Omori Tileset_2
+  - first:
+      213: -3519689132040017254
+    second: Omori Tileset_3
+  - first:
+      213: -8227361887119767935
+    second: Omori Tileset_4
+  - first:
+      213: -5598523445204421955
+    second: Omori Tileset_5
+  - first:
+      213: 3780368268274150640
+    second: Omori Tileset_6
+  - first:
+      213: 4760591071454850224
+    second: Omori Tileset_7
+  - first:
+      213: 6468168455002700387
+    second: Omori Tileset_8
+  - first:
+      213: -3843477378778593075
+    second: Omori Tileset_9
+  - first:
+      213: -6328687302796592226
+    second: Omori Tileset_10
+  - first:
+      213: 3431024200525427059
+    second: Omori Tileset_11
+  - first:
+      213: -470652045409250041
+    second: Omori Tileset_12
   externalObjects: {}
   serializedVersion: 2
   userData: 
@@ -144,7 +183,7 @@ ScriptedImporter:
   rigSpriteImportData:
   - name: Omori Tileset_0
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0, y: 0}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -166,15 +205,15 @@ ScriptedImporter:
     uvTransform: {x: 4, y: 87}
   - name: Omori Tileset_1
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0, y: 0}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 32
-      y: 85
-      width: 27
-      height: 31
+      x: 75
+      y: 86
+      width: 23
+      height: 15
     spriteID: 20fd161da0df3e980800000000000000
     internalID: 0
     spriteBone: []
@@ -185,18 +224,18 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 32, y: 85}
+    uvTransform: {x: 75, y: 86}
   - name: Omori Tileset_2
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0, y: 0}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 140
-      y: 112
-      width: 12
-      height: 10
+      x: 105
+      y: 89
+      width: 23
+      height: 18
     spriteID: 1f3a37055c0aa5b90800000000000000
     internalID: 0
     spriteBone: []
@@ -207,18 +246,18 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 140, y: 112}
+    uvTransform: {x: 105, y: 89}
   - name: Omori Tileset_3
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0, y: 0}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 75
-      y: 86
-      width: 23
-      height: 15
+      x: 4
+      y: 49
+      width: 22
+      height: 34
     spriteID: a9aa3fce16d872fc0800000000000000
     internalID: 0
     spriteBone: []
@@ -229,18 +268,18 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 75, y: 86}
+    uvTransform: {x: 4, y: 49}
   - name: Omori Tileset_4
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0, y: 0}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 105
-      y: 69
-      width: 23
-      height: 39
+      x: 77
+      y: 63
+      width: 21
+      height: 15
     spriteID: 18683af34f982dd80800000000000000
     internalID: 0
     spriteBone: []
@@ -251,17 +290,17 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 105, y: 69}
+    uvTransform: {x: 77, y: 63}
   - name: Omori Tileset_5
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0, y: 0}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 138
+      x: 105
       y: 69
-      width: 50
+      width: 23
       height: 19
     spriteID: db2f4edb69c0e42b0800000000000000
     internalID: 0
@@ -273,18 +312,18 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 138, y: 69}
+    uvTransform: {x: 105, y: 69}
   - name: Omori Tileset_6
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0, y: 0}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 4
-      y: 49
-      width: 22
-      height: 34
+      x: 138
+      y: 69
+      width: 23
+      height: 19
     spriteID: 0fca3a629e0967430800000000000000
     internalID: 0
     spriteBone: []
@@ -295,17 +334,17 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 4, y: 49}
+    uvTransform: {x: 138, y: 69}
   - name: Omori Tileset_7
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0, y: 0}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 33
-      y: 49
-      width: 27
+      x: 7
+      y: 4
+      width: 14
       height: 35
     spriteID: 0bc66f65b54011240800000000000000
     internalID: 0
@@ -317,18 +356,18 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 33, y: 49}
+    uvTransform: {x: 7, y: 4}
   - name: Omori Tileset_8
     originalName: 
-    pivot: {x: 0.45281982, y: 0.5}
-    alignment: 9
+    pivot: {x: 0, y: 0}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 64
-      y: 76
-      width: 4
-      height: 8
+      x: 29
+      y: 4
+      width: 14
+      height: 35
     spriteID: 36ab2d3a0fc83c950800000000000000
     internalID: 0
     spriteBone: []
@@ -339,18 +378,18 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 64, y: 76}
+    uvTransform: {x: 29, y: 4}
   - name: Omori Tileset_9
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0, y: 0}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 100
-      y: 80
-      width: 4
-      height: 4
+      x: 51
+      y: 4
+      width: 14
+      height: 35
     spriteID: dc807a700b939aac0800000000000000
     internalID: 0
     spriteBone: []
@@ -361,18 +400,18 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 100, y: 80}
+    uvTransform: {x: 51, y: 4}
   - name: Omori Tileset_10
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0, y: 0}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 77
-      y: 63
-      width: 21
-      height: 15
+      x: 72
+      y: 4
+      width: 25
+      height: 34
     spriteID: e9bb84ecd6cfb28a0800000000000000
     internalID: 0
     spriteBone: []
@@ -383,18 +422,18 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 77, y: 63}
+    uvTransform: {x: 72, y: 4}
   - name: Omori Tileset_11
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0, y: 0}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 7
-      y: 4
-      width: 14
-      height: 35
+      x: 105
+      y: 8
+      width: 25
+      height: 34
     spriteID: 371361005527d9f20800000000000000
     internalID: 0
     spriteBone: []
@@ -405,18 +444,18 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 7, y: 4}
+    uvTransform: {x: 105, y: 8}
   - name: Omori Tileset_12
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0, y: 0}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 29
+      x: 141
       y: 4
-      width: 14
-      height: 35
+      width: 27
+      height: 44
     spriteID: 70512945578e779f0800000000000000
     internalID: 0
     spriteBone: []
@@ -427,117 +466,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 29, y: 4}
-  - name: Omori Tileset_13
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 51
-      y: 4
-      width: 14
-      height: 35
-    spriteID: 74fda7f34cb12f500800000000000000
-    internalID: 0
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    parentGroupIndex: -1
-    uvTransform: {x: 51, y: 4}
-  - name: Omori Tileset_14
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 72
-      y: 4
-      width: 25
-      height: 34
-    spriteID: 650290e1343b536c0800000000000000
-    internalID: 0
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    parentGroupIndex: -1
-    uvTransform: {x: 72, y: 4}
-  - name: Omori Tileset_15
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 105
-      y: 8
-      width: 25
-      height: 34
-    spriteID: 6047fa4dc5dc07370800000000000000
-    internalID: 0
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    parentGroupIndex: -1
-    uvTransform: {x: 105, y: 8}
-  - name: Omori Tileset_16
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 141
-      y: 4
-      width: 27
-      height: 44
-    spriteID: 818552383cb7c3db0800000000000000
-    internalID: 0
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 141, y: 4}
-  - name: Layer 5
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 176
-      y: 4
-      width: 31
-      height: 38
-    spriteID: bfa8b1a092d15dd469e7e9058e018f12
-    internalID: 0
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    parentGroupIndex: -1
-    uvTransform: {x: -9, y: -146}
   characterData:
     bones: []
     parts: []
