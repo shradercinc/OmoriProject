@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class Warp : MonoBehaviour
 {
-    public Warp otherWarp;
+    public Transform otherWarp;
+    public Transform Player;
     InfoCarry info;
     float timer = 0.0f;
 
@@ -24,7 +25,8 @@ public class Warp : MonoBehaviour
         if (collision.gameObject.CompareTag("Player") && timer >= 1.0f)
         {
             info.playerPosition = otherWarp.transform.position;
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            Player.transform.position = otherWarp.transform.position;
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 

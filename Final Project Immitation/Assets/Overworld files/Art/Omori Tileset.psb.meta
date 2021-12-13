@@ -467,6 +467,28 @@ ScriptedImporter:
     tessellationDetail: 0
     parentGroupIndex: -1
     uvTransform: {x: 141, y: 4}
+  - name: Layer 6
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 220
+      y: 4
+      width: 24
+      height: 39
+    spriteID: 089c955f81d4343449f581cbfe4e9fe4
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 32, y: -150}
   characterData:
     bones: []
     parts: []
@@ -588,6 +610,13 @@ ScriptedImporter:
   resliceFromLayer: 0
   mosaicPSDLayers: []
   rigPSDLayers:
+  - name: Layer 6
+    spriteName: Layer 6
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 089c955f81d4343449f581cbfe4e9fe4
+    layerID: 37
+    mosaicPosition: {x: 220, y: 4}
   - name: Layer 5
     spriteName: Layer 5
     isGroup: 0
@@ -595,13 +624,6 @@ ScriptedImporter:
     spriteID: bfa8b1a092d15dd469e7e9058e018f12
     layerID: 26
     mosaicPosition: {x: 176, y: 4}
-  - name: Layer 4
-    spriteName: Layer 4
-    isGroup: 0
-    parentIndex: -1
-    spriteID: 93d96d0a53e6de247a46508f1fde7a85
-    layerID: 14
-    mosaicPosition: {x: 4, y: 4}
   sharedRigPSDLayers: []
   generateGOHierarchy: 0
   textureAssetName: Omori Tileset Texture
