@@ -135,6 +135,7 @@ public class AubreySkills : Skills
         {
             if (RollAccuracy(user.currAccuracy))
             {
+                target = RedirectTarget(target, 4);
                 manager.AddText("Aubrey swings as hard as she can.", true);
                 int critical = RollCritical(user.currLuck);
                 int damage = (int)(critical * IsEffective(target) * (1.75 * user.currAttack - target.currDefense));

@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Switch : MonoBehaviour
 {
+    private AudioSource aud;
+    public AudioClip sound;
+
     public List<GameObject> walls;
     bool on = true;
     InfoCarry info;
@@ -17,6 +20,7 @@ public class Switch : MonoBehaviour
 
     private void Awake()
     {
+        aud = GetComponent<AudioSource>();
         info = FindObjectOfType<InfoCarry>().GetComponent<InfoCarry>();
         parent = gameObject.transform.parent.gameObject;
         spr = GetComponent<SpriteRenderer>();
@@ -68,6 +72,7 @@ public class Switch : MonoBehaviour
     {
         for (int i = 0; i < walls.Count; i++)
         {
+            aud.PlayOneShot(sound);
             if (walls[i].GetComponent<BoxCollider2D>().enabled == false)
             {
                 Debug.Log("enabling walls");
@@ -87,6 +92,7 @@ public class Switch : MonoBehaviour
     {
         for (int i = 0; i<walls.Count; i++)
         {
+            aud.PlayOneShot(sound);
             if (walls[i].GetComponent<BoxCollider2D>().enabled == false)
             {
                 Debug.Log("enabling walls");

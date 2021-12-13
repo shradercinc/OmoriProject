@@ -57,6 +57,7 @@ public class WalkingDialogue : MonoBehaviour
         dialogueBox.gameObject.transform.parent.gameObject.SetActive(false);
         omori.inOverWorld = true;
         info.delete.Add(gameObject.name);
+        gameObject.SetActive(false);
     }
 
 }
