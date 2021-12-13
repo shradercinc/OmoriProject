@@ -18,7 +18,7 @@ public class RatSkills : Skills
 
         user = gameObject.GetComponent<BattleCharacter>();
         user.friend = false;
-        user.startingHealth = 350;
+        user.startingHealth = 300;
         user.startingAttack = 30;
         user.startingDefense = 10;
         user.startingSpeed = 5;

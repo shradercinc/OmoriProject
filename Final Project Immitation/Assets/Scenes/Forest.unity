@@ -5450,7 +5450,7 @@ Transform:
   m_Children:
   - {fileID: 1568187641}
   m_Father: {fileID: 1860468123}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &357240893
 BoxCollider2D:
@@ -5727,7 +5727,7 @@ Transform:
   m_Children:
   - {fileID: 1095536698}
   m_Father: {fileID: 1860468123}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &365188797
 BoxCollider2D:
@@ -7630,6 +7630,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   foes:
+  - {fileID: 4589652060162032227, guid: 0cd62e04ebbfb4eeb96591e26fa18a1d, type: 3}
   - {fileID: 4589652060162032227, guid: 0cd62e04ebbfb4eeb96591e26fa18a1d, type: 3}
   - {fileID: 4589652060162032227, guid: 0cd62e04ebbfb4eeb96591e26fa18a1d, type: 3}
   boss: 0
@@ -14959,6 +14960,7 @@ MonoBehaviour:
   foes:
   - {fileID: 4589652060162032227, guid: 0cd62e04ebbfb4eeb96591e26fa18a1d, type: 3}
   - {fileID: 4589652060162032227, guid: 0cd62e04ebbfb4eeb96591e26fa18a1d, type: 3}
+  - {fileID: 4589652060162032227, guid: 0cd62e04ebbfb4eeb96591e26fa18a1d, type: 3}
   boss: 0
 --- !u!61 &942725487
 BoxCollider2D:
@@ -15031,6 +15033,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   foes:
+  - {fileID: 4589652060162032227, guid: 0cd62e04ebbfb4eeb96591e26fa18a1d, type: 3}
   - {fileID: 4589652060162032227, guid: 0cd62e04ebbfb4eeb96591e26fa18a1d, type: 3}
   - {fileID: 4589652060162032227, guid: 0cd62e04ebbfb4eeb96591e26fa18a1d, type: 3}
   boss: 0
@@ -17707,6 +17710,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   foes:
+  - {fileID: 4589652060162032227, guid: 0cd62e04ebbfb4eeb96591e26fa18a1d, type: 3}
   - {fileID: 4589652060162032227, guid: 0cd62e04ebbfb4eeb96591e26fa18a1d, type: 3}
   - {fileID: 4589652060162032227, guid: 0cd62e04ebbfb4eeb96591e26fa18a1d, type: 3}
   boss: 0
@@ -23885,6 +23889,7 @@ MonoBehaviour:
   foes:
   - {fileID: 4589652060162032227, guid: 0cd62e04ebbfb4eeb96591e26fa18a1d, type: 3}
   - {fileID: 4589652060162032227, guid: 0cd62e04ebbfb4eeb96591e26fa18a1d, type: 3}
+  - {fileID: 4589652060162032227, guid: 0cd62e04ebbfb4eeb96591e26fa18a1d, type: 3}
   boss: 0
 --- !u!61 &1464952216
 BoxCollider2D:
@@ -25286,6 +25291,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   foes:
   - {fileID: 8498079452114451704, guid: e2ab534bda6c44c418526560de0e0a7c, type: 3}
+  - {fileID: 4589652060162032227, guid: 0cd62e04ebbfb4eeb96591e26fa18a1d, type: 3}
   - {fileID: 4589652060162032227, guid: 0cd62e04ebbfb4eeb96591e26fa18a1d, type: 3}
   boss: 1
 --- !u!61 &1568187643
@@ -28803,8 +28809,8 @@ Transform:
   - {fileID: 564314884}
   - {fileID: 537813325}
   - {fileID: 1106894670}
-  - {fileID: 365188796}
   - {fileID: 357240892}
+  - {fileID: 365188796}
   - {fileID: 693264388}
   - {fileID: 1133575861}
   - {fileID: 749622922}

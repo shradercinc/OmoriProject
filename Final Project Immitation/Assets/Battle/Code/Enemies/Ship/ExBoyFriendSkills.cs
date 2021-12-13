@@ -97,7 +97,7 @@ public class ExBoyFriendSkills : Skills
         for (int i = 0; i < allFriends.Count; i++)
         {
             target = allFriends[i];
-            manager.AddText("Spaceboy give an intimidating glare.", true);
+            manager.AddText("Spaceboy gives an intimidating glare.", true);
 
             target.attackStat -= 0.2f;
             target.defenseStat -= 0.2f;

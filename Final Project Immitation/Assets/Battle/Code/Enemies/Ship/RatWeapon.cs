@@ -19,9 +19,14 @@ public class RatWeapon : Weapon
 
         for (int i = 0; i<manager.friends.Count; i++)
         {
-            manager.AddText("Lab Rat collects some juice.", true);
+            manager.AddText("Lab Rat collects some Juice for their next invention.", true);
             BattleCharacter target = manager.friends[i];
+            int juice = target.currJuice / 6;
+
+            yield return new WaitForSeconds(0.5f);
+            manager.AddText(target.name + $" loses {juice} juice.");
             yield return target.DrainJuice(target.currJuice / 6);
+            yield return new WaitForSeconds(0.5f);
         }
     }
 }

@@ -257,7 +257,7 @@ public class BattleManager : MonoBehaviour
 
         AddDescription(userSkills.skillNames[7] + ": " + userSkills.skillDescription[7]);
         if (skillThree)
-            AddText("4: " + userSkills.skillNames[7] + " - " + userSkills.energyCost[0] + " energy");
+            AddText("4: " + userSkills.skillNames[7] + " - " + userSkills.energyCost[2] + " energy");
         else
             AddText("Cannot " + userSkills.skillNames[7]);
 

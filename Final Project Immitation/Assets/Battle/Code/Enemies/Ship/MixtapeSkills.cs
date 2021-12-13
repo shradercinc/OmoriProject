@@ -5,10 +5,10 @@ using System.Linq;
 
 public class MixtapeSkills : Skills
 {
-    //Skill 1: Entangle: Reduce a Friend's speed. Then deal a small amount of damage to them.
+    //Skill 1: Entangle: Reduce a Friend's speed. Then deal damage to them.
     //Skill 2: Sad Tune: Deal damage to a Friend. They become Sad.
     //Skill 3: Up to 11: Deal damage to all Friends.
-    //Skill 4: Energetic Tune: Heal a Foe. They become Happy.
+    //Skill 4: Energetic Tune: Heal itself. They become Happy.
 
     public override void SetStartingStats()
     {
@@ -21,7 +21,7 @@ public class MixtapeSkills : Skills
         //Skill 3:
         skillTargets.Add(Target.ALLFRIENDS);
         //Skill 4:
-        skillTargets.Add(Target.FOE);
+        skillTargets.Add(Target.NONE);
 
         user = gameObject.GetComponent<BattleCharacter>();
         user.friend = false;
@@ -53,7 +53,7 @@ public class MixtapeSkills : Skills
         if (RollAccuracy(user.currAccuracy))
         {
             int critical = RollCritical(user.currLuck);
-            int damage = (int)(critical * IsEffective(target) * (0.5f * user.currAttack - target.currDefense));
+            int damage = (int)(critical * IsEffective(target) * (1 * user.currAttack - target.currDefense));
             yield return target.TakeDamage(damage);
         }
     }
@@ -88,9 +88,8 @@ public class MixtapeSkills : Skills
     }
     public override IEnumerator UseSkillFour(BattleCharacter target)
     {
-        target = RedirectTarget(target, 4);
         manager.AddText("Mixtape plays an energetic tune.", true);
-        yield return target.NewEmotion(BattleCharacter.Emotion.HAPPY);
-        yield return target.TakeHealing(75, 0);
+        yield return user.NewEmotion(BattleCharacter.Emotion.HAPPY);
+        yield return user.TakeHealing(100, 0);
     }
 }

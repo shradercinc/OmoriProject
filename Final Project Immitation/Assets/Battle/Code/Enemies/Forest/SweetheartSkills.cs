@@ -45,21 +45,21 @@ public class SweetheartSkills : Skills
 
     public override IEnumerator UseSkillOne(BattleCharacter target)
     {
-        nextTarget = RedirectTarget(target, 1);
+        nextTarget = RedirectTarget(target, 0);
         manager.AddText("Sweetheart wants " + nextTarget.name + " to act like her.", true);
         yield return user.NewEmotion(BattleCharacter.Emotion.HAPPY);
         yield return new WaitForSeconds(1);
     }
     public override IEnumerator UseSkillTwo(BattleCharacter target)
     {
-        nextTarget = RedirectTarget(target, 2);
+        nextTarget = RedirectTarget(target, 0);
         manager.AddText("Sweetheart wants " + nextTarget.name + " to act like her.", true);
         yield return user.NewEmotion(BattleCharacter.Emotion.SAD);
         yield return new WaitForSeconds(1);
     }
     public override IEnumerator UseSkillThree(BattleCharacter target)
     {
-        nextTarget = RedirectTarget(target, 3);
+        nextTarget = RedirectTarget(target, 0);
         manager.AddText("Sweetheart wants " + nextTarget.name + " to act like her.", true);
         yield return user.NewEmotion(BattleCharacter.Emotion.ANGRY);
         yield return new WaitForSeconds(1);
