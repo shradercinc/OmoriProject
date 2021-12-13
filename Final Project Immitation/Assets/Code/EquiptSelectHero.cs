@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class EquiptSelectHero : MonoBehaviour
 {
+    /*
     private Transform weaponTrans;
     public GameObject weaponDes;
     public GameObject thisSquare;
@@ -129,4 +130,5 @@ public class EquiptSelectHero : MonoBehaviour
         
         
     }
+    */
 }

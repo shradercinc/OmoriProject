@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class EquiptSelectAubery : MonoBehaviour
 {
+    /*
      private Transform weaponTrans;
     public GameObject weaponDes;
     public GameObject thisSquare;
@@ -131,5 +132,6 @@ public class EquiptSelectAubery : MonoBehaviour
         
         
     }
+    */
 }
 

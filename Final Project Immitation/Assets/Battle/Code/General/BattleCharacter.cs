@@ -98,13 +98,12 @@ public class BattleCharacter : MonoBehaviour
 
             if (info.playerWeapons[order] != null)
             {
-                weapon = info.playerWeapons[order].GetComponent<Weapon>();
-                switch (weapon.GetType().ToString())
+                switch (info.playerWeapons[order])
                 {
                     case ("Knife"):
                         weapon = gameObject.AddComponent<Knife>();
                         break;
-                    case ("PoisonIvy"):
+                    case ("Poison Ivy"):
                         weapon = gameObject.AddComponent<PoisonIvy>();
                         break;
                     case ("Pillow"):
@@ -113,7 +112,7 @@ public class BattleCharacter : MonoBehaviour
                     case ("Statue"):
                         weapon = gameObject.AddComponent<Statue>();
                         break;
-                    case ("BeachBall"):
+                    case ("Beach Ball"):
                         weapon = gameObject.AddComponent<BeachBall>();
                         break;
                     case ("Meteor"):
@@ -122,7 +121,7 @@ public class BattleCharacter : MonoBehaviour
                     case ("JuiceBlender"):
                         weapon = gameObject.AddComponent<JuiceBlender>();
                         break;
-                    case ("OlReliable"):
+                    case ("Ol' Reliable"):
                         weapon = gameObject.AddComponent<OlReliable>();
                         break;
                     default:

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ActiveMenu : MonoBehaviour
 {
+
+    /*
     public GameObject Choosesquare;
     public GameObject Canva;
     public Transform Squareposition;
@@ -39,4 +41,5 @@ public class ActiveMenu : MonoBehaviour
 
 
         }
+    */
 }

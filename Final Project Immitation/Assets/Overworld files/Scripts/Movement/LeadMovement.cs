@@ -1,10 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class LeadMovement : MonoBehaviour
 {
     public static float speed = 7.5f;
+    public TMP_Text menu;
+    public List<string> gameWeapons;
+    InfoCarry info;
 
     public Sprite down1;
     public Sprite down2;
@@ -51,7 +56,7 @@ public class LeadMovement : MonoBehaviour
         ren = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
 
-        InfoCarry info = FindObjectOfType<InfoCarry>().GetComponent<InfoCarry>();
+        info = FindObjectOfType<InfoCarry>().GetComponent<InfoCarry>();
         pos.transform.position = info.playerPosition;
 
         while(listPos < ListLen)
@@ -194,10 +199,146 @@ public class LeadMovement : MonoBehaviour
 
     }
 
+    IEnumerator Menu()
+    {
+        inOverWorld = false;
+        menu.gameObject.transform.parent.gameObject.SetActive(false);
+
+        yield return ChoosePlayer();
+        menu.gameObject.transform.parent.gameObject.SetActive(true);
+        inOverWorld = true;
+    }
+
+    IEnumerator ChoosePlayer()
+    {
+        bool waiting = true;
+        bool undo = true;
+
+        while (waiting)
+        {
+            if (undo)
+            {
+                undo = false;
+                menu.text = "";
+                menu.text += "Change your weapons.";
+                menu.text += "\n1: Omori";
+                menu.text += "\n2: Aubrey";
+                menu.text += "\n3: Kel";
+                menu.text += "\n4: Hero";
+                menu.text += "\nSpace: Exit";
+            }
+
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                yield return ChooseWeapon(0);
+                undo = true;
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                yield return ChooseWeapon(1);
+                undo = true;
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                yield return ChooseWeapon(2);
+                undo = true;
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha4))
+            {
+                yield return ChooseWeapon(3);
+                undo = true;
+            }
+            else if (Input.GetKeyDown(KeyCode.Space))
+                waiting = false;
+            else
+                yield return null;
+        }
+    }
+
+    IEnumerator ChooseWeapon(int n)
+    {
+        bool waiting = true;
+        bool undo = true;
+
+        while (waiting)
+        {
+            if (undo)
+            {
+                undo = false;
+                menu.text = "";
+
+                switch (n)
+                {
+                    case (0):
+                        menu.text += "Omori's Weapon: ";
+                        break;
+                    case (1):
+                        menu.text += "Aubrey's Weapon: ";
+                        break;
+                    case (2):
+                        menu.text += "Kel's Weapon: ";
+                        break;
+                    case (3):
+                        menu.text += "Hero's Weapon: ";
+                        break;
+                }
+                if (info.playerWeapons[n] == null)
+                    menu.text += "None";
+                else
+                    menu.text += info.playerWeapons[n];
+
+                menu.text += "\n1: Bring Nothing";
+
+                if (info.unlockedWeapons[n*2])
+                    menu.text += "\n2: " + gameWeapons[n*2];
+                else
+                    menu.text += "\n???";
+
+                if (info.unlockedWeapons[n * 2])
+                    menu.text += "\n3: " + gameWeapons[n * 2 + 1];
+                else
+                    menu.text += "\n???";
+
+                menu.text += "\nSpace: Eit";
+            }
+
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                undo = true;
+                info.playerWeapons[n] = null;
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                if (info.unlockedWeapons[n * 2])
+                {
+                    undo = true;
+                    info.playerWeapons[n] = gameWeapons[n * 2];
+                }
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                if (info.unlockedWeapons[n * 2 + 1])
+                {
+                    undo = true;
+                    info.playerWeapons[n] = gameWeapons[n * 2 + 1];
+                }
+            }
+            else if (Input.GetKeyDown(KeyCode.Space))
+                waiting = false;
+            else
+                yield return null;
+        }
+    }
+
     void Update()
     {
         movex = Input.GetAxis("Horizontal");
         movey = Input.GetAxis("Vertical");
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            StartCoroutine(Menu());
+        }
 
         if (Input.GetKeyDown(KeyCode.W) )
         {

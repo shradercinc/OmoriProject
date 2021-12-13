@@ -8,9 +8,9 @@ public class InfoCarry : MonoBehaviour
     public static InfoCarry instance = null;
     public bool boss;
 
-    public Weapon[] playerWeapons = new Weapon[4]; //0: Omori; 1: Aubrey; 2: Kel; 3: Hero
+    public string[] playerWeapons = new string[4]; //0: Omori; 1: Aubrey; 2: Kel; 3: Hero
     public bool[] unlockedWeapons = new bool[8];
-    
+
     //0: Knife
     //1: Poison Ivy
     //2: Pillow

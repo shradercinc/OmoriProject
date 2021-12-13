@@ -31,10 +31,10 @@ public class AubreySkills : Skills
         skillDescription.Add("A Friend becomes Happy. Gain 2 Energy.");
 
         //Skill 4:
-        skillNames.Add("Blunt Hit");
+        skillNames.Add("Big Swing");
         juiceCost.Add(25);
-        skillTargets.Add(Target.FOE);
-        skillDescription.Add("Deal a lot of damage to a Foe. Aubrey becomes Toast.");
+        skillTargets.Add(Target.ALLFOES);
+        skillDescription.Add("Deal a lot of damage to all Foe. Aubrey takes recoil damage for each Foe.");
 
         //Follow Up 1:
         skillNames.Add("Look at Omori");
@@ -85,7 +85,7 @@ public class AubreySkills : Skills
             if (RollAccuracy(user.currAccuracy))
             {
                 int critical = RollCritical(user.currLuck);
-                int damage = (int)(critical * IsEffective(target) * (1.5 * user.currAttack - target.currDefense));
+                int damage = (int)(critical * IsEffective(target) * (1.25 * user.currAttack - target.currDefense));
                 yield return target.TakeDamage(damage);
             }
         }
@@ -108,7 +108,7 @@ public class AubreySkills : Skills
             if (RollAccuracy(user.currAccuracy))
             {
                 int critical = RollCritical(user.currLuck);
-                int damage = (int)(critical * IsEffective(target) * (1.5 * user.currAttack - target.currDefense));
+                int damage = (int)(critical * IsEffective(target) * (1.25 * user.currAttack - target.currDefense));
                 yield return target.TakeDamage(damage);
             }
         }
@@ -134,14 +134,17 @@ public class AubreySkills : Skills
         if (check)
         {
             manager.AddText("Aubrey gives it everything she's got.", true);
-            target = RedirectTarget(target, 4);
+            List<BattleCharacter> allEnemies = manager.foes;
 
-            if (RollAccuracy(user.currAccuracy))
+            for (int i = 0; i < allEnemies.Count; i++)
             {
-                int critical = RollCritical(user.currLuck);
-                int damage = (int)(critical * IsEffective(target) * (2.5 * user.currHealth - target.currDefense));
-                yield return target.TakeDamage(damage);
-                yield return user.TakeDamage(user.startingHealth);
+                if (RollAccuracy(user.currAccuracy))
+                {
+                    int critical = RollCritical(user.currLuck);
+                    int damage = (int)(critical * IsEffective(target) * (1.75 * user.currHealth - target.currDefense));
+                    yield return target.TakeDamage(damage);
+                    yield return user.TakeDamage(damage / 4);
+                }
             }
         }
     }
