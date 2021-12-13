@@ -11,7 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Battle/Omori Battle.unity
     guid: a84582bb2631e324686ddceb5b006774
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Overworld files/OverWorldForest1.unity
-    guid: 03f0604df32aeeb4db1f7a773def1adf
+    path: Assets/Overworld files/Forest.unity
+    guid: a399714f16b655341a1ade067e2f7d9b
   m_configObjects: {}

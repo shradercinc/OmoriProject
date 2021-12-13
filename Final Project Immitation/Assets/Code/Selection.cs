@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Selection : MonoBehaviour
 {
+    /*
     private Transform trans;
     private Color mycolor;
     public GameObject choiceSquare;
@@ -455,4 +456,5 @@ public class Selection : MonoBehaviour
        Actions();
         
     }
+    */
 }

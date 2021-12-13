@@ -42,15 +42,21 @@ public class BattleManager : MonoBehaviour
             CreateFoe(info.enemies[i], info.enemies[i].name);
         }
 
-        if (info.boss)
-            audioSource.PlayOneShot(audioClips[0]);
-        else if (info.sceneName == "Forest")
-            audioSource.PlayOneShot(audioClips[1]);
-        else if (info.sceneName == "Ship")
-            audioSource.PlayOneShot(audioClips[2]);
-
         StartCoroutine(AddEnergy(3));
         StartCoroutine(NewRound());
+    }
+
+    private void Update()
+    {
+        if(!audioSource.isPlaying)
+        {
+            if (info.boss)
+                audioSource.PlayOneShot(audioClips[0]);
+            else if (info.sceneName == "Forest")
+                audioSource.PlayOneShot(audioClips[1]);
+            else if (info.sceneName == "Ship")
+                audioSource.PlayOneShot(audioClips[2]);
+        }
     }
 
     public BattleCharacter CreateFoe(BattleCharacter prefab, string name)
@@ -159,6 +165,7 @@ public class BattleManager : MonoBehaviour
             undo = false;
             yield return friends[i].ChooseSkill();
             SpeedQueue.Add(friends[i]);
+            yield return new WaitForSeconds(0.01f);
 
             if (undo)
                 i = -1;

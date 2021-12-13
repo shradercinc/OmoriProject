@@ -7,6 +7,7 @@ public class BeginBattle : MonoBehaviour
 {
     public List<BattleCharacter> foes;
     InfoCarry info;
+    bool pressedZ = false;
     public bool boss = false;
 
     private void Awake()
@@ -14,10 +15,15 @@ public class BeginBattle : MonoBehaviour
         info = FindObjectOfType<InfoCarry>().GetComponent<InfoCarry>();
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    public void Update()
+    {
+        pressedZ = Input.GetKeyDown(KeyCode.Z);
+    }
+
+    public void OnTriggerStay2D(Collider2D collision)
     {
         Debug.Log("Inside of " + gameObject.transform.parent.name + " 's hitbox.");
-        if (collision.gameObject.CompareTag("Player") && Input.GetKeyDown(KeyCode.Z))
+        if (collision.gameObject.CompareTag("Player") && pressedZ)
         {
             info.enemies = foes;
             info.playerPosition = gameObject.transform.position;

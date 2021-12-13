@@ -58,13 +58,13 @@ public class OmoriSkills : Skills
         user.order = 0;
 
         user = gameObject.GetComponent<BattleCharacter>();
-        user.startingHealth = 110;
-        user.startingJuice = 50;
-        user.startingAttack = 40;
-        user.startingDefense = 16;
-        user.startingSpeed = 15;
-        user.startingLuck = 0.05f;
-        user.startingAccuracy = 1;
+        user.startingHealth = 100;
+        user.startingJuice = 40;
+        user.startingAttack = 30;
+        user.startingDefense = 12;
+        user.startingSpeed = 12;
+        user.startingLuck = 0.04f;
+        user.startingAccuracy = 0.95f;
     }
 
     public override IEnumerator UseSkillOne(BattleCharacter target)
@@ -85,7 +85,7 @@ public class OmoriSkills : Skills
             if (RollAccuracy(user.currAccuracy))
             {
                 int critical = RollCritical(user.currLuck);
-                int damage = (int)(critical * IsEffective(target) * (1.5 * user.currAttack - target.currDefense));
+                int damage = (int)(critical * IsEffective(target) * (1.25 * user.currAttack - target.currDefense));
                 yield return target.TakeDamage(damage);
             }
         }
@@ -109,7 +109,7 @@ public class OmoriSkills : Skills
             if (RollAccuracy(user.currAccuracy))
             {
                 int critical = RollCritical(user.currLuck);
-                int damage = (int)(critical * IsEffective(target) * (1.5 * user.currAttack - target.currDefense));
+                int damage = (int)(critical * IsEffective(target) * (1.25 * user.currAttack - target.currDefense));
                 yield return target.TakeDamage(damage);
             }
         }
@@ -160,7 +160,7 @@ public class OmoriSkills : Skills
         yield return user.NewEmotion(BattleCharacter.Emotion.ANGRY);
 
         int critical = RollCritical(user.currLuck);
-        int damage = (int)(critical * IsEffective(target) * (user.currAttack + user.currLuck - target.currDefense));
+        int damage = (int)(critical * IsEffective(target) * (1.25 * user.currAttack + user.currLuck - target.currDefense));
         yield return target.TakeDamage(damage);
     }
     public override IEnumerator FollowUpTwo()
@@ -174,7 +174,7 @@ public class OmoriSkills : Skills
         yield return target.NewEmotion(BattleCharacter.Emotion.SAD);
 
         int critical = RollCritical(user.currLuck);
-        int damage = (int)(critical * IsEffective(target) * (user.currAttack + user.currLuck - target.currDefense));
+        int damage = (int)(critical * IsEffective(target) * 1.25f * (user.currAttack + user.currLuck - target.currDefense));
         yield return target.TakeDamage(damage);
     }
     public override IEnumerator FollowUpThree()
@@ -194,7 +194,7 @@ public class OmoriSkills : Skills
             BattleCharacter target = manager.foes[i];
 
             int critical = RollCritical(user.currLuck);
-            int damage = (int)(critical * IsEffective(target) * (3.5 * user.currAttack));
+            int damage = (int)(critical * IsEffective(target) * (3 * user.currAttack));
             yield return target.TakeDamage(damage);
             yield return new WaitForSeconds(1);
         }

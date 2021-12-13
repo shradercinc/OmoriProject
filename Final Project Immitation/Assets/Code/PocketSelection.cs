@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class PocketSelection : MonoBehaviour
 {
+    /*
     private Transform trans2;
     public GameObject Item1Name;
     public GameObject Item2Name;
@@ -132,4 +133,5 @@ public class PocketSelection : MonoBehaviour
         
         
     }
+    */
 }

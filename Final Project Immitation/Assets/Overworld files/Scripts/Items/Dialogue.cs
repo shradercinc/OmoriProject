@@ -13,9 +13,9 @@ public class Dialogue : MonoBehaviour
 
     private void Awake()
     {
-        omori = GameObject.Find("PartyLead").GetComponent<LeadMovement>();
+        omori = GameObject.Find("Lead").GetComponent<LeadMovement>();
         parent = gameObject.transform.parent.gameObject;
-        parent.gameObject.SetActive(false);
+        dialogueBox.gameObject.transform.parent.gameObject.SetActive(false);
     }
 
     IEnumerator AddDescription(string x)
@@ -37,7 +37,7 @@ public class Dialogue : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    public void OnTriggerStay2D(Collider2D collision)
     {
         Debug.Log("Inside of " + parent.name + " 's hitbox.");
         if (collision.gameObject.CompareTag("Player") && Input.GetKeyDown(KeyCode.Z) && dialogueEnable)
