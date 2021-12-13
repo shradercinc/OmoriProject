@@ -12,10 +12,11 @@ public class BattleManager : MonoBehaviour
     public List<BattleCharacter> foes = new List<BattleCharacter>();
     public List<BattleCharacter> toast = new List<BattleCharacter>();
     public List<BattleCharacter> SpeedQueue = new List<BattleCharacter>();
+    public AudioClip[] audioClips = new AudioClip[3];
 
     BattleCharacter omori;
     InfoCarry info;
-    string loadScene;
+    AudioSource audioSource;
 
     TMP_Text battleLog;
     TMP_Text descriptionLog;
@@ -30,6 +31,7 @@ public class BattleManager : MonoBehaviour
         battleLog = GameObject.Find("Battle Log").GetComponent<TextMeshProUGUI>();
         descriptionLog = GameObject.Find("Description Log").GetComponent<TextMeshProUGUI>();
         info = FindObjectOfType<InfoCarry>().GetComponent<InfoCarry>();
+        audioSource = gameObject.GetComponent<AudioSource>();
 
         energySlider = GameObject.Find("Energy Slider");
         energyText = energySlider.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
@@ -39,6 +41,13 @@ public class BattleManager : MonoBehaviour
         {
             CreateFoe(info.enemies[i], info.enemies[i].name);
         }
+
+        if (info.boss)
+            audioSource.PlayOneShot(audioClips[0]);
+        else if (info.sceneName == "Forest")
+            audioSource.PlayOneShot(audioClips[1]);
+        else if (info.sceneName == "Ship")
+            audioSource.PlayOneShot(audioClips[2]);
 
         StartCoroutine(AddEnergy(3));
         StartCoroutine(NewRound());
