@@ -69,6 +69,7 @@ public class BattleCharacter : MonoBehaviour
 
         userSkills = gameObject.GetComponent<Skills>();
         userSkills.SetStartingStats();
+
         manager.ReturnToList(this);
         lastHit = (gameObject.name == "Omori");
 
@@ -96,40 +97,44 @@ public class BattleCharacter : MonoBehaviour
             juiceSlider = juiceObject.GetComponent<Slider>();
             juiceText = juiceObject.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
 
-            if (info.playerWeapons[order] != null)
-            {
                 switch (info.playerWeapons[order])
                 {
                     case ("Knife"):
                         weapon = gameObject.AddComponent<Knife>();
+                        weapon.AffectUser();
                         break;
                     case ("Poison Ivy"):
                         weapon = gameObject.AddComponent<PoisonIvy>();
+                        weapon.AffectUser();
                         break;
                     case ("Pillow"):
                         weapon = gameObject.AddComponent<Pillow>();
+                        weapon.AffectUser();
                         break;
                     case ("Statue"):
                         weapon = gameObject.AddComponent<Statue>();
+                        weapon.AffectUser();
                         break;
                     case ("Beach Ball"):
                         weapon = gameObject.AddComponent<BeachBall>();
+                        weapon.AffectUser();
                         break;
                     case ("Meteor"):
                         weapon = gameObject.AddComponent<Meteor>();
+                        weapon.AffectUser();
                         break;
                     case ("JuiceBlender"):
                         weapon = gameObject.AddComponent<JuiceBlender>();
+                        weapon.AffectUser();
                         break;
                     case ("Ol' Reliable"):
                         weapon = gameObject.AddComponent<OlReliable>();
+                        weapon.AffectUser();
                         break;
                     default:
                         weapon = null;
                         break;
-                }
-                weapon.AffectUser();
-            }
+                }            
         }
 
         gameObject.transform.localScale = new Vector3(1, 1, 1);

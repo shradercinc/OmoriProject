@@ -165,6 +165,7 @@ public class BattleManager : MonoBehaviour
             undo = false;
             yield return friends[i].ChooseSkill();
             SpeedQueue.Add(friends[i]);
+            yield return new WaitForSeconds(0.01f);
 
             if (undo)
                 i = -1;

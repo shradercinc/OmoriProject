@@ -58,13 +58,13 @@ public class HeroSkills : Skills
         user.friend = true;
         user.order = 3;
 
-        user.startingHealth = 108;
-        user.startingJuice = 50;
-        user.startingAttack = 30;
-        user.startingDefense = 18;
-        user.startingSpeed = 9;
-        user.startingLuck = 0.03f;
-        user.startingAccuracy = 1;
+        user.startingHealth = 100;
+        user.startingJuice = 40;
+        user.startingAttack = 25;
+        user.startingDefense = 15;
+        user.startingSpeed = 6;
+        user.startingLuck = 0.01f;
+        user.startingAccuracy = 0.95f;
     }
 
     public override IEnumerator UseSkillOne(BattleCharacter target)

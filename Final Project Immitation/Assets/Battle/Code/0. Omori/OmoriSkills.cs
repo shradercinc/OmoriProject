@@ -58,13 +58,13 @@ public class OmoriSkills : Skills
         user.order = 0;
 
         user = gameObject.GetComponent<BattleCharacter>();
-        user.startingHealth = 110;
-        user.startingJuice = 50;
-        user.startingAttack = 40;
-        user.startingDefense = 16;
-        user.startingSpeed = 15;
-        user.startingLuck = 0.05f;
-        user.startingAccuracy = 1;
+        user.startingHealth = 100;
+        user.startingJuice = 40;
+        user.startingAttack = 30;
+        user.startingDefense = 12;
+        user.startingSpeed = 12;
+        user.startingLuck = 0.04f;
+        user.startingAccuracy = 0.95f;
     }
 
     public override IEnumerator UseSkillOne(BattleCharacter target)

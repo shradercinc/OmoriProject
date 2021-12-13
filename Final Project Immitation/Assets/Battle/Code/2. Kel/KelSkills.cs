@@ -58,13 +58,13 @@ public class KelSkills : Skills
         user.friend = true;
         user.order = 2;
 
-        user.startingHealth = 102;
-        user.startingJuice = 50;
-        user.startingAttack = 40;
-        user.startingDefense = 10;
-        user.startingSpeed = 18;
-        user.startingLuck = 0.07f;
-        user.startingAccuracy = 1;
+        user.startingHealth = 90;
+        user.startingJuice = 40;
+        user.startingAttack = 30;
+        user.startingDefense = 8;
+        user.startingSpeed = 16;
+        user.startingLuck = 0.05f;
+        user.startingAccuracy = 0.95f;
     }
 
     public override IEnumerator UseSkillOne(BattleCharacter target)

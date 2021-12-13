@@ -58,13 +58,13 @@ public class AubreySkills : Skills
         user.friend = true;
         user.order = 1;
 
-        user.startingHealth = 140;
-        user.startingJuice = 50;
-        user.startingAttack = 48;
-        user.startingDefense = 14;
-        user.startingSpeed = 11;
+        user.startingHealth = 120;
+        user.startingJuice = 40;
+        user.startingAttack = 40;
+        user.startingDefense = 10;
+        user.startingSpeed = 8;
         user.startingLuck = 0.03f;
-        user.startingAccuracy = 1;
+        user.startingAccuracy = 0.95f;
     }
 
     public override IEnumerator UseSkillOne(BattleCharacter target)
