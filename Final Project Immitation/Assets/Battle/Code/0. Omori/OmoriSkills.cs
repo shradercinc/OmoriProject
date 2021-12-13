@@ -146,9 +146,9 @@ public class OmoriSkills : Skills
                 target.luckStat -= 0.15f;
                 target.accuracyStat -= 0.15f;
 
+                yield return new WaitForSeconds(0.5f);
                 manager.AddText("All of " + target.name + "'s stats decrease.");
                 yield return target.ResetStats();
-                yield return new WaitForSeconds(1);
             }
         }
     }
@@ -196,7 +196,7 @@ public class OmoriSkills : Skills
             int critical = RollCritical(user.currLuck);
             int damage = (int)(critical * IsEffective(target) * (3 * user.currAttack));
             yield return target.TakeDamage(damage);
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(0.5f);
         }
     }
 }

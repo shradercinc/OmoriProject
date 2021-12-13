@@ -147,7 +147,7 @@ public class KelSkills : Skills
                     int damage = (int)(critical * IsEffective(target) * (user.currAttack - target.currDefense));
                     yield return target.TakeDamage(damage);
                 }
-                yield return new WaitForSeconds(1);
+                yield return new WaitForSeconds(0.5f);
             }
         }
     }
@@ -172,7 +172,7 @@ public class KelSkills : Skills
         manager.AddText("Kel passes the ball to Aubrey, who knocks it out of the park.", true);
 
         int critical = RollCritical(aubrey.currLuck);
-        int damage = (int)(critical * aubrey.userSkills.IsEffective(target) * (1.75 * user.currAttack + 2 * aubrey.currAttack - target.currDefense));
+        int damage = (int)(critical * aubrey.userSkills.IsEffective(target) * (1.5f * user.currAttack + 1.5f * aubrey.currAttack - target.currDefense));
         yield return target.TakeDamage(damage);
     }
     public override IEnumerator FollowUpThree()
