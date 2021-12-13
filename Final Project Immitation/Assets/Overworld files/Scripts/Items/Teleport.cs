@@ -27,6 +27,10 @@ public class Teleport : MonoBehaviour
             info.playerPosition = startingPosition;
             info.sceneName = nextScene;
             SceneManager.LoadScene(nextScene);
+            for (int i = 0; i < LeadMovement.PrevPos.Count; i++)
+            {
+                LeadMovement.PrevPos[i] = startingPosition;
+            }
         }
     }
 }

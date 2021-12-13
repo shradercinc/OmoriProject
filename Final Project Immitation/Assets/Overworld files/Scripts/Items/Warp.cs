@@ -7,6 +7,7 @@ public class Warp : MonoBehaviour
 {
     public Transform otherWarp;
     public Transform Player;
+    public Transform Camera;
     InfoCarry info;
     float timer = 0.0f;
 
@@ -26,6 +27,7 @@ public class Warp : MonoBehaviour
         {
             info.playerPosition = otherWarp.transform.position;
             Player.transform.position = otherWarp.transform.position;
+            Camera.transform.position = otherWarp.transform.position;
             //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }

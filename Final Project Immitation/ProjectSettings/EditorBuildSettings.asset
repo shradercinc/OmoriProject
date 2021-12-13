@@ -8,13 +8,19 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 1
-    path: Assets/Battle/Omori Battle.unity
-    guid: a84582bb2631e324686ddceb5b006774
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
   - enabled: 1
+    path: Assets/Overworld files/HubSceneFromTutorial.unity
+    guid: 6302b2cc00552d147842247019acf9fe
+  - enabled: 1
     path: Assets/Overworld files/Forest.unity
     guid: a399714f16b655341a1ade067e2f7d9b
+  - enabled: 1
+    path: Assets/Battle/Omori Battle.unity
+    guid: a84582bb2631e324686ddceb5b006774
+  - enabled: 1
+    path: Assets/Overworld files/Ship.unity
+    guid: d21985b1c8beee945a1b09ac090a38a8
   m_configObjects: {}
