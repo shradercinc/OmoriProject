@@ -91,11 +91,14 @@ public class LeadMovement : MonoBehaviour
         {
             animWalkT = 0.0f;
         }
-        if (inOverWorld == true)
+
+        if (!inOverWorld)
+            rb.velocity = new Vector2(0, 0);
+
+        else
         {
             if (direct == 1)
             {
-
                 if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D))
                 {
                     ren.sprite = up1;
@@ -116,7 +119,6 @@ public class LeadMovement : MonoBehaviour
             }
             if (direct == 2)
             {
-
                 if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D))
                 {
                     ren.sprite = left1;
@@ -203,11 +205,14 @@ public class LeadMovement : MonoBehaviour
 
     IEnumerator Menu()
     {
-        inOverWorld = false;
-        yield return ChoosePlayer();
-        menu.gameObject.transform.parent.gameObject.SetActive(false);
-        descriptions.gameObject.transform.parent.gameObject.SetActive(false);
-        inOverWorld = true;
+        if (inOverWorld)
+        {
+            inOverWorld = false;
+            yield return ChoosePlayer();
+            menu.gameObject.transform.parent.gameObject.SetActive(false);
+            descriptions.gameObject.transform.parent.gameObject.SetActive(false);
+            inOverWorld = true;
+        }
     }
 
     IEnumerator ChoosePlayer()

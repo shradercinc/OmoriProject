@@ -1,41 +1,83 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class WeaponItem : MonoBehaviour
 {
+    public TMP_Text dialogueBox;
+    public List<string> dialogue;
     InfoCarry info;
-    Dialogue dialogue;
     GameObject parent;
     bool pressedZ;
+    LeadMovement omori;
+    bool dialogueEnable = true;
 
     private void Awake()
     {
+        omori = GameObject.Find("Lead").GetComponent<LeadMovement>();
         info = FindObjectOfType<InfoCarry>().GetComponent<InfoCarry>();
-        dialogue = gameObject.GetComponent<Dialogue>();
+        dialogueBox.gameObject.transform.parent.gameObject.SetActive(false);
         parent = gameObject.transform.parent.gameObject;
     }
 
     public void Update()
     {
-        pressedZ = (Input.GetKeyDown(KeyCode.Z));
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            pressedZ = true;
+        }
+        if (Input.GetKeyUp(KeyCode.Z))
+        {
+            pressedZ = false;
+        }
+    }
+
+    IEnumerator AddDescription(string x)
+    {
+        dialogueBox.text = "";
+        bool next = true;
+
+        for (int i = 0; i < x.Length; i++)
+        {
+            dialogueBox.text += x[i];
+            yield return new WaitForSeconds(0.01f);
+        }
+        while (next)
+        {
+            if (Input.GetKeyDown(KeyCode.Z))
+                next = false;
+            else
+                yield return null;
+        }
     }
 
     public void OnTriggerStay2D(Collider2D collision)
     {
         Debug.Log("Inside of " + gameObject.transform.parent.name + " 's hitbox.");
-        if (collision.gameObject.CompareTag("Player") && pressedZ)
+        if (collision.gameObject.CompareTag("Player") && pressedZ && dialogueEnable)
         {
             info.UnlockWeapon(gameObject.name);
             GameObject parent = gameObject.transform.parent.gameObject;
             info.delete.Add(parent.name);
-            StartCoroutine(DeleteMe());
+
+            StartCoroutine(DisplayDialogue());
         }
     }
 
-    IEnumerator DeleteMe()
+    public IEnumerator DisplayDialogue()
     {
-        yield return dialogue.DisplayDialogue();
-        parent.SetActive(false);
+        dialogueEnable = false;
+        dialogueBox.gameObject.transform.parent.gameObject.SetActive(true);
+        omori.inOverWorld = false;
+
+        for (int i = 0; i < dialogue.Count; i++)
+        {
+            yield return AddDescription(dialogue[i]);
+        }
+
+        parent.gameObject.SetActive(false);
+        dialogueBox.gameObject.transform.parent.gameObject.SetActive(false);
+        omori.inOverWorld = true;
     }
 }

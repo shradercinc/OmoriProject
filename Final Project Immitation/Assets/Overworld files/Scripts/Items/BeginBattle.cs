@@ -17,7 +17,14 @@ public class BeginBattle : MonoBehaviour
 
     public void Update()
     {
-        pressedZ = Input.GetKeyDown(KeyCode.Z);
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            pressedZ = true;
+        }
+        if (Input.GetKeyUp(KeyCode.Z))
+        {
+            pressedZ = false;
+        }
     }
 
     public void OnTriggerStay2D(Collider2D collision)

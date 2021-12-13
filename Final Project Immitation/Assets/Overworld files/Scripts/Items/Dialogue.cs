@@ -10,6 +10,7 @@ public class Dialogue : MonoBehaviour
     bool dialogueEnable = true;
     LeadMovement omori;
     GameObject parent;
+    bool pressedZ;
 
     private void Awake()
     {
@@ -30,17 +31,29 @@ public class Dialogue : MonoBehaviour
         }
         while (next)
         {
-            if (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.X))
+            if (Input.GetKeyDown(KeyCode.Z))
                 next = false;
             else
                 yield return null;
         }
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            pressedZ = true;
+        }
+        if (Input.GetKeyUp(KeyCode.Z))
+        {
+            pressedZ = false;
+        }
+    }
+
     public void OnTriggerStay2D(Collider2D collision)
     {
         Debug.Log("Inside of " + parent.name + " 's hitbox.");
-        if (collision.gameObject.CompareTag("Player") && Input.GetKeyDown(KeyCode.Z) && dialogueEnable)
+        if (collision.gameObject.CompareTag("Player") && pressedZ && dialogueEnable)
         {
             StartCoroutine(DisplayDialogue());
         }

@@ -33,8 +33,8 @@ public class AubreySkills : Skills
         //Skill 4:
         skillNames.Add("Big Swing");
         juiceCost.Add(25);
-        skillTargets.Add(Target.ALLFOES);
-        skillDescription.Add("Deal a lot of damage to all Foe. Aubrey takes recoil damage for each Foe.");
+        skillTargets.Add(Target.FOE);
+        skillDescription.Add("Deal a lot of damage to a Foe. Aubrey takes recoil damage.");
 
         //Follow Up 1:
         skillNames.Add("Look at Omori");
@@ -123,7 +123,7 @@ public class AubreySkills : Skills
             target = RedirectTarget(target, 3);
             manager.AddText("Aubrey cheers on " + target.name + ".", true);
             yield return target.NewEmotion(BattleCharacter.Emotion.HAPPY);
-            manager.AddEnergy(2);
+            yield return manager.AddEnergy(2);
         }
     }
     public override IEnumerator UseSkillFour(BattleCharacter target)
@@ -133,18 +133,13 @@ public class AubreySkills : Skills
 
         if (check)
         {
-            manager.AddText("Aubrey gives it everything she's got.", true);
-            List<BattleCharacter> allEnemies = manager.foes;
-
-            for (int i = 0; i < allEnemies.Count; i++)
+            if (RollAccuracy(user.currAccuracy))
             {
-                if (RollAccuracy(user.currAccuracy))
-                {
-                    int critical = RollCritical(user.currLuck);
-                    int damage = (int)(critical * IsEffective(target) * (1.75 * user.currHealth - target.currDefense));
-                    yield return target.TakeDamage(damage);
-                    yield return user.TakeDamage(damage / 4);
-                }
+                manager.AddText("Aubrey swings as hard as she can.", true);
+                int critical = RollCritical(user.currLuck);
+                int damage = (int)(critical * IsEffective(target) * (1.75 * user.currAttack - target.currDefense));
+                yield return target.TakeDamage(damage);
+                yield return user.TakeDamage(damage/3);
             }
         }
     }

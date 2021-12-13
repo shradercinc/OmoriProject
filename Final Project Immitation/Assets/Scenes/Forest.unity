@@ -314,7 +314,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 33470646}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 20.58, y: 30.97, z: 2.6736617}
+  m_LocalPosition: {x: 20.58, y: 30.97, z: 12.67}
   m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 948069749}
@@ -1334,7 +1334,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -2459,7 +2459,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 161876754}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.53, y: 37.15, z: 2.6736617}
+  m_LocalPosition: {x: 2.28, y: 36.46, z: 2.6736617}
   m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 948069749}
@@ -4553,7 +4553,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 296761048}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.4, y: 33.52, z: 74.95}
+  m_LocalPosition: {x: 2.53, y: 33.923, z: 74.95}
   m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 948069749}
@@ -5112,7 +5112,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 332324870}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.38, y: 33.59, z: 70.62}
+  m_LocalPosition: {x: 0.66, y: 33.95, z: 70.62}
   m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 948069749}
@@ -5528,7 +5528,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 357240891}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 25.42, y: 46.16, z: -95.9}
+  m_LocalPosition: {x: 25.42, y: 46.16, z: 0}
   m_LocalScale: {x: 6, y: 6, z: 1}
   m_Children:
   - {fileID: 1568187641}
@@ -5805,7 +5805,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 365188795}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 18.66, y: 30.5, z: -10.37}
+  m_LocalPosition: {x: 18.66, y: 30.5, z: 0}
   m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children:
   - {fileID: 1095536698}
@@ -6382,6 +6382,7 @@ Transform:
   - {fileID: 93828769}
   - {fileID: 1184663086}
   - {fileID: 1872881663}
+  - {fileID: 1580906094}
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8020,7 +8021,6 @@ GameObject:
   m_Component:
   - component: {fileID: 525958436}
   - component: {fileID: 525958439}
-  - component: {fileID: 525958438}
   - component: {fileID: 525958437}
   m_Layer: 0
   m_Name: GameObject
@@ -8055,21 +8055,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4ed5c92dbe8943af9c0a069716e888e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &525958438
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 525958435}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3989a26628da41a78cc5b440b09655d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   dialogueBox: {fileID: 1443180171}
   dialogue:
-  - You unlocked Omori's Poison Ivy!
+  - You unlocked Aubrey's Statue!
 --- !u!61 &525958439
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8205,7 +8193,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 537813324}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.84, y: 30.78, z: -10.37}
+  m_LocalPosition: {x: 10.84, y: 30.78, z: 0}
   m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children:
   - {fileID: 549935272}
@@ -10683,7 +10671,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 693264387}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 20.7, y: 30.5, z: -10.37}
+  m_LocalPosition: {x: 20.7, y: 30.5, z: 0}
   m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children:
   - {fileID: 1464952214}
@@ -11227,7 +11215,6 @@ GameObject:
   m_Component:
   - component: {fileID: 709606848}
   - component: {fileID: 709606851}
-  - component: {fileID: 709606850}
   - component: {fileID: 709606849}
   m_Layer: 0
   m_Name: GameObject
@@ -11262,21 +11249,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4ed5c92dbe8943af9c0a069716e888e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &709606850
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 709606847}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3989a26628da41a78cc5b440b09655d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   dialogueBox: {fileID: 1443180171}
   dialogue:
-  - You unlocked Omori's Poison Ivy!
+  - You unlocked Kel's Beach Ball!
 --- !u!61 &709606851
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11988,7 +11963,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 749622921}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 25.27, y: 30.5, z: -10.37}
+  m_LocalPosition: {x: 25.27, y: 30.5, z: 0}
   m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children:
   - {fileID: 942725485}
@@ -12264,7 +12239,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 775948998}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.36, y: 33.65, z: 57.16}
+  m_LocalPosition: {x: 4.36, y: 34.006, z: 57.16}
   m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 948069749}
@@ -14390,7 +14365,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 905719472}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 15.44, y: 30.9, z: 0.27}
+  m_LocalPosition: {x: 15.44, y: 30.9, z: 6.18}
   m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 948069749}
@@ -14473,7 +14448,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 911050402}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 23.77, y: 30.75, z: 2.6736617}
+  m_LocalPosition: {x: 23.77, y: 30.75, z: 7.05}
   m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 948069749}
@@ -14962,7 +14937,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 941043925}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 9.5, y: 34.38, z: 74.95}
+  m_LocalPosition: {x: 9.5, y: 34.31, z: 74.95}
   m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 948069749}
@@ -17309,7 +17284,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1064079393}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.14, y: 33.69, z: 74.95}
+  m_LocalPosition: {x: -1.14, y: 33.94, z: 74.95}
   m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 948069749}
@@ -17951,7 +17926,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1106894669}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 20, y: 38.32, z: -95.9}
+  m_LocalPosition: {x: 20, y: 38.32, z: 0}
   m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children:
   - {fileID: 967656761}
@@ -18472,7 +18447,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1133575860}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 23.08, y: 30.5, z: -10.37}
+  m_LocalPosition: {x: 23.08, y: 30.5, z: 0}
   m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children:
   - {fileID: 945944714}
@@ -18905,7 +18880,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1163651754}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.69, y: 37.25, z: 2.6736617}
+  m_LocalPosition: {x: 4.21, y: 36.53, z: 2.6736617}
   m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 948069749}
@@ -19222,7 +19197,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1181008539}
   - component: {fileID: 1181008542}
-  - component: {fileID: 1181008541}
   - component: {fileID: 1181008540}
   m_Layer: 0
   m_Name: GameObject
@@ -19257,21 +19231,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4ed5c92dbe8943af9c0a069716e888e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1181008541
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1181008538}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3989a26628da41a78cc5b440b09655d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   dialogueBox: {fileID: 1443180171}
   dialogue:
-  - You unlocked Omori's Poison Ivy!
+  - You unlocked Hero's Ol' Reliable!
 --- !u!61 &1181008542
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -19431,7 +19393,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -20972,7 +20934,7 @@ MonoBehaviour:
   - {fileID: 2973298070046295819, guid: 53ff5b0d68ba0422da90e16d889231ca, type: 3}
   - {fileID: 6485936551007795835, guid: 91bbff1d9b6024d4da44ef7430f16e48, type: 3}
   - {fileID: 6485936551007795835, guid: 91bbff1d9b6024d4da44ef7430f16e48, type: 3}
-  - {fileID: 2973298070046295819, guid: 53ff5b0d68ba0422da90e16d889231ca, type: 3}
+  - {fileID: 6485936551007795835, guid: 91bbff1d9b6024d4da44ef7430f16e48, type: 3}
   boss: 0
 --- !u!61 &1263280594
 BoxCollider2D:
@@ -22502,7 +22464,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1388615860}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.52, y: 35.94, z: 2.6736617}
+  m_LocalPosition: {x: 6.04, y: 36.51, z: 69.07}
   m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 948069749}
@@ -24822,7 +24784,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1529513314}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 27.88, y: 30.5, z: -10.37}
+  m_LocalPosition: {x: 27.88, y: 30.5, z: 0}
   m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children:
   - {fileID: 495967819}
@@ -25256,7 +25218,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -3430982870709255218, guid: cd0a79f63cfd9c04f94e19a9be87989a, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -25264,7 +25226,7 @@ SpriteRenderer:
   m_Size: {x: 0.27, y: 0.27}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1549670501
@@ -25409,10 +25371,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   foes:
+  - {fileID: 8498079452114451704, guid: e2ab534bda6c44c418526560de0e0a7c, type: 3}
   - {fileID: 4589652060162032227, guid: 0cd62e04ebbfb4eeb96591e26fa18a1d, type: 3}
-  - {fileID: 6485936551007795835, guid: 91bbff1d9b6024d4da44ef7430f16e48, type: 3}
-  - {fileID: 2973298070046295819, guid: 53ff5b0d68ba0422da90e16d889231ca, type: 3}
-  boss: 0
+  boss: 1
 --- !u!61 &1568187643
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -25716,6 +25677,83 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1580906093
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1580906094}
+  - component: {fileID: 1580906096}
+  - component: {fileID: 1580906095}
+  m_Layer: 0
+  m_Name: Trees
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1580906094
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1580906093}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -453.46, y: -499.17, z: -2.3968432}
+  m_LocalScale: {x: 0.6625, y: 3.3375, z: 1}
+  m_Children: []
+  m_Father: {fileID: 417645110}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1580906095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1580906093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 745dcc61918364e7d9fbef83dc5cdd06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueBox: {fileID: 1443180171}
+  dialogue:
+  - 'KEL: Huh? A dead end?'
+  - 'KEL: Well nothing to see here.'
+  - 'AUBREY: If there''s anything I''ve learned, it''s to never trust Kel.'
+  - 'HERO: I think I can see something though.'
+  - 'KEL: Yeah, trees. You wouldn''t see them anywhere else.'
+--- !u!61 &1580906096
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1580906093}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 5.58, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &1584070010
 GameObject:
   m_ObjectHideFlags: 0
@@ -25741,7 +25779,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1584070010}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.15, y: 34.54, z: 74.95}
+  m_LocalPosition: {x: 6.15, y: 34.102, z: 57.21}
   m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 948069749}
@@ -26605,7 +26643,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1632327279}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.65, y: 35.36, z: 2.6736617}
+  m_LocalPosition: {x: -1.12, y: 36.4, z: 2.6736617}
   m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 948069749}
@@ -28675,7 +28713,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1851732212}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.97, y: 35.53, z: 74.95}
+  m_LocalPosition: {x: -2.97, y: 36.45, z: 74.95}
   m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 948069749}
@@ -29217,7 +29255,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1870337728}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.8, y: 34.38, z: 74.95}
+  m_LocalPosition: {x: 7.8, y: 34.216, z: 74.95}
   m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 948069749}
@@ -29394,8 +29432,7 @@ MonoBehaviour:
   - 'KEL: Bring it on!'
   - 'AUBREY: Kel we should be careful! What''s even the point of fighting them?'
   - 'KEL: Video games taught me that there has to be something after these enemies!'
-  - 'AUBREY: Omori are you sure you want to do this? These bears are tough, and there
-    are a lot of them.'
+  - 'AUBREY: Omori are you sure you want to do this? These bears aren''t easy.'
 --- !u!61 &1872881662
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -29406,7 +29443,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -30042,7 +30079,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1943975787}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 11.23, y: 34.38, z: 74.95}
+  m_LocalPosition: {x: 11.23, y: 34.29, z: 74.95}
   m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 948069749}
@@ -30208,7 +30245,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1947976907}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.71, y: 36.74, z: 82.7}
+  m_LocalPosition: {x: 0.49, y: 36.56, z: 82.7}
   m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 948069749}
@@ -30278,7 +30315,7 @@ GameObject:
   - component: {fileID: 1950555488}
   - component: {fileID: 1950555487}
   m_Layer: 0
-  m_Name: Spatula
+  m_Name: Ol' Reliable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30402,7 +30439,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1954818965}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 15.18, y: 38.92, z: 2.6736617}
+  m_LocalPosition: {x: 15.18, y: 38.92, z: 15.12}
   m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 948069749}
@@ -32338,7 +32375,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2113885074}
   - component: {fileID: 2113885077}
-  - component: {fileID: 2113885076}
   - component: {fileID: 2113885075}
   m_Layer: 0
   m_Name: GameObject
@@ -32371,18 +32407,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4ed5c92dbe8943af9c0a069716e888e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2113885076
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2113885073}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3989a26628da41a78cc5b440b09655d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueBox: {fileID: 1443180171}
