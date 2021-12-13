@@ -48,6 +48,7 @@ public class EquiptSelectHero : MonoBehaviour
                 weapon3 = 0;
                 weaponTrans.position = new Vector3 (-7.73f, -3.19f);
                 weaponDes.SetActive(true);
+                unlock = info.unlockedWeapons [6];
                 WeaponOneName = weapons[6].name;
                 WeaponTwoName = weapons[7].name;
                 WeaponDescription = weapons[6].description;
@@ -70,6 +71,7 @@ public class EquiptSelectHero : MonoBehaviour
                 weapon2 = 1;
                 weapon3 = 0;
                 weaponTrans.position = new Vector3 (-7.73f, -3.84f);
+                unlock = info.unlockedWeapons [7];
                 WeaponOneName = weapons[6].name;
                 WeaponTwoName = weapons[7].name;
                 WeaponDescription = weapons[7].description;

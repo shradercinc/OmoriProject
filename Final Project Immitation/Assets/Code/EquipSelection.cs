@@ -48,6 +48,7 @@ public class EquipSelection : MonoBehaviour
                 weapon3 = 0;
                 weaponTrans.position = new Vector3 (-7.73f, -3.19f);
                 weaponDes.SetActive(true);
+                unlock =info.unlockedWeapons [0];
                 WeaponOneName = weapons[0].name;
                 WeaponTwoName = weapons[1].name;
                 WeaponDescription = weapons[0].description;
@@ -70,6 +71,7 @@ public class EquipSelection : MonoBehaviour
                 weapon2 = 1;
                 weapon3 = 0;
                 weaponTrans.position = new Vector3 (-7.73f, -3.84f);
+                unlock = info.unlockedWeapons [1];
                 WeaponOneName = weapons[0].name;
                 WeaponTwoName = weapons[1].name;
                 WeaponDescription = weapons[1].description;

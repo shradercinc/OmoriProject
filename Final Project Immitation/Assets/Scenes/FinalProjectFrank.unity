@@ -533,7 +533,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -374, y: 199.48}
+  m_AnchoredPosition: {x: -374.00003, y: 199.48}
   m_SizeDelta: {x: -766.09, y: -797.35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &201143361
@@ -712,6 +712,7 @@ MonoBehaviour:
   WeaponOneName: 
   WeaponTwoName: 
   WeaponDescription: 
+  info: {fileID: 0}
 --- !u!212 &232724483
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1044,7 +1045,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -643.1299, y: -131.66}
+  m_AnchoredPosition: {x: -643.1299, y: -131.65999}
   m_SizeDelta: {x: -1313.07, y: -777.54}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &246819652
@@ -1355,7 +1356,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1484.2, y: -205}
+  m_AnchoredPosition: {x: 1484.2, y: -204.99998}
   m_SizeDelta: {x: 228.04, y: 93.78}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &298225172
@@ -2024,6 +2025,10 @@ MonoBehaviour:
   - {fileID: 1988191627050366036, guid: be98abdfdfa1348ae8f79879472cde98, type: 3}
   - {fileID: 3983746628998892147, guid: 57234540c9b1d4fd99045bdb96fd0416, type: 3}
   - {fileID: 2579658317184558155, guid: 00061d66632ee4a219cb8900822c1d8e, type: 3}
+  WeaponOneName: 
+  WeaponTwoName: 
+  WeaponDescription: 
+  info: {fileID: 0}
 --- !u!212 &508144964
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3350,7 +3355,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.7058824}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3543,7 +3548,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &880402753
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3683,6 +3688,10 @@ MonoBehaviour:
   - {fileID: 1988191627050366036, guid: be98abdfdfa1348ae8f79879472cde98, type: 3}
   - {fileID: 3983746628998892147, guid: 57234540c9b1d4fd99045bdb96fd0416, type: 3}
   - {fileID: 2579658317184558155, guid: 00061d66632ee4a219cb8900822c1d8e, type: 3}
+  WeaponOneName: 
+  WeaponTwoName: 
+  WeaponDescription: 
+  info: {fileID: 0}
 --- !u!212 &900409795
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4104,7 +4113,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -371.81995, y: 38}
+  m_AnchoredPosition: {x: -371.81998, y: 38}
   m_SizeDelta: {x: -770.45, y: -700.57}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &974091362
@@ -5637,6 +5646,10 @@ MonoBehaviour:
   - {fileID: 1988191627050366036, guid: be98abdfdfa1348ae8f79879472cde98, type: 3}
   - {fileID: 3983746628998892147, guid: 57234540c9b1d4fd99045bdb96fd0416, type: 3}
   - {fileID: 2579658317184558155, guid: 00061d66632ee4a219cb8900822c1d8e, type: 3}
+  WeaponOneName: 
+  WeaponTwoName: 
+  WeaponDescription: 
+  info: {fileID: 0}
 --- !u!212 &1418210960
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5720,7 +5733,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &1440510936
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6308,7 +6321,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 33, y: -210.12997}
+  m_AnchoredPosition: {x: 33, y: -210.12996}
   m_SizeDelta: {x: -585.85, y: -658.32}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1544862907

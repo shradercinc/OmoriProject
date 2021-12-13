@@ -48,6 +48,7 @@ public class EquiptSelectKei : MonoBehaviour
                 weapon3 = 0;
                 weaponTrans.position = new Vector3 (-7.73f, -3.19f);
                 weaponDes.SetActive(true);
+                unlock = info.unlockedWeapons [4];
                 WeaponOneName = weapons[4].name;
                 WeaponTwoName = weapons[5].name;
                 WeaponDescription = weapons[4].description;
@@ -70,6 +71,7 @@ public class EquiptSelectKei : MonoBehaviour
                 weapon2 = 1;
                 weapon3 = 0;
                 weaponTrans.position = new Vector3 (-7.73f, -3.84f);
+                unlock = info.unlockedWeapons [5];
                 WeaponOneName = weapons[4].name;
                 WeaponTwoName = weapons[5].name;
                 WeaponDescription = weapons[5].description;

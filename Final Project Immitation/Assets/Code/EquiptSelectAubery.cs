@@ -48,6 +48,7 @@ public class EquiptSelectAubery : MonoBehaviour
                 weapon3 = 0;
                 weaponTrans.position = new Vector3 (-7.73f, -3.19f);
                 weaponDes.SetActive(true);
+                unlock = info.unlockedWeapons [2];
                 WeaponOneName = weapons[2].name;
                 WeaponTwoName = weapons[3].name;
                 WeaponDescription = weapons[2].description;
@@ -70,6 +71,7 @@ public class EquiptSelectAubery : MonoBehaviour
                 weapon2 = 1;
                 weapon3 = 0;
                 weaponTrans.position = new Vector3 (-7.73f, -3.84f);
+                unlock = info.unlockedWeapons [3];
                 WeaponOneName = weapons[2].name;
                 WeaponTwoName = weapons[3].name;
                 WeaponDescription = weapons[3].description;
