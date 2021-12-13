@@ -8,9 +8,9 @@ public class WeaponItem : MonoBehaviour
     public TMP_Text dialogueBox;
     public List<string> dialogue;
     InfoCarry info;
-    GameObject parent;
     bool pressedZ;
     LeadMovement omori;
+    GameObject parent;
     bool dialogueEnable = true;
 
     private void Awake()
@@ -57,10 +57,8 @@ public class WeaponItem : MonoBehaviour
         Debug.Log("Inside of " + gameObject.transform.parent.name + " 's hitbox.");
         if (collision.gameObject.CompareTag("Player") && pressedZ && dialogueEnable)
         {
-            info.UnlockWeapon(gameObject.name);
-            GameObject parent = gameObject.transform.parent.gameObject;
+            info.UnlockWeapon(parent.name);
             info.delete.Add(parent.name);
-
             StartCoroutine(DisplayDialogue());
         }
     }

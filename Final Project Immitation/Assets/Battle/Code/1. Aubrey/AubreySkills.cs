@@ -59,7 +59,7 @@ public class AubreySkills : Skills
         user.order = 1;
 
         user.startingHealth = 120;
-        user.startingJuice = 40;
+        user.startingJuice = 60;
         user.startingAttack = 40;
         user.startingDefense = 10;
         user.startingSpeed = 8;

@@ -12,53 +12,22 @@ public class SweetheartSkills : Skills
     {
         //Attack:
         skillTargets.Add(Target.FRIEND);
-        //Skill 1:
-        skillTargets.Add(Target.FRIEND);
-        //Skill 2:
-        skillTargets.Add(Target.FRIEND);
 
         user = gameObject.GetComponent<BattleCharacter>();
         user.friend = false;
         user.startingHealth = 750;
-        user.startingDefense = 30;
+        user.startingDefense = 25;
         user.startingSpeed = -500;
-    }
-
-    //targets a random friend who doesn't already have the required emotion, if there is one
-    public override BattleCharacter ChooseTarget(int n)
-    {
-        switch (n)
-        {
-            case 0:
-                return Shuffle(BattleCharacter.Emotion.HAPPY);
-            case 1:
-                return Shuffle(BattleCharacter.Emotion.SAD);
-            case 2:
-                return Shuffle(BattleCharacter.Emotion.ANGRY);
-        }
-        return base.ChooseTarget(n);
-    }
-
-    BattleCharacter Shuffle(BattleCharacter.Emotion target)
-    {
-        List<BattleCharacter> friends = manager.friends;
-        for (int i = 0; i < friends.Count - 1; i++)
-        {
-            int rnd = Random.Range(i, friends.Count);
-            BattleCharacter temp = friends[rnd];
-            friends[rnd] = friends[i];
-            friends[i] = temp;
-        }
-        for (int i = 0; i < friends.Count; i++)
-        {
-            if (friends[i].currEmote != target)
-                return friends[i];
-        }
-        return friends[Random.Range(0, friends.Count)];
     }
 
     public override IEnumerator BasicAttack(BattleCharacter target)
     {
+        if (nextTarget != null && !nextTarget.toast && nextTarget.currEmote != user.currEmote)
+        {
+            manager.AddText(target.name + " has the wrong emotion.", true);
+            yield return target.TakeDamage(200);
+        }
+
         int n = Random.Range(0, 3);
         switch (n)
         {

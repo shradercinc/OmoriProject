@@ -59,7 +59,7 @@ public class OmoriSkills : Skills
 
         user = gameObject.GetComponent<BattleCharacter>();
         user.startingHealth = 100;
-        user.startingJuice = 40;
+        user.startingJuice = 60;
         user.startingAttack = 30;
         user.startingDefense = 12;
         user.startingSpeed = 12;
@@ -139,6 +139,7 @@ public class OmoriSkills : Skills
             {
                 target = allEnemies[i];
                 manager.AddText("Omori glares at " + target.name + ".", true);
+                yield return new WaitForSeconds(0.5f);
 
                 target.attackStat -= 0.15f;
                 target.defenseStat -= 0.15f;
@@ -146,8 +147,8 @@ public class OmoriSkills : Skills
                 target.luckStat -= 0.15f;
                 target.accuracyStat -= 0.15f;
 
-                yield return new WaitForSeconds(0.5f);
                 manager.AddText("All of " + target.name + "'s stats decrease.");
+                yield return new WaitForSeconds(0.5f);
                 yield return target.ResetStats();
             }
         }
@@ -186,7 +187,7 @@ public class OmoriSkills : Skills
             BattleCharacter target = manager.friends[i];
 
             yield return target.TakeHealing(0, target.startingJuice);
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(0.5f);
         }
         for (int i = 0; i < manager.foes.Count; i++)
         {

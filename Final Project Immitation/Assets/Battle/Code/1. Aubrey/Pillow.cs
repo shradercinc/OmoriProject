@@ -16,10 +16,11 @@ public class Pillow : Weapon
     }
     public override IEnumerator StartOfTurn()
     {
-        if (turnCount > 2)
+        if (turnCount == 2)
         {
             manager.AddText("Aubrey finally wakes up.", true);
             yield return new WaitForSeconds(0.5f);
+            turnCount++;
         }
         else
         {

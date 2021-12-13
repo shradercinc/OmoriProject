@@ -27,7 +27,7 @@ public class KelSkills : Skills
         //Skill 3:
         skillNames.Add("Annoy");
         juiceCost.Add(5);
-        skillTargets.Add(Target.ANYONE);
+        skillTargets.Add(Target.FRIEND);
         skillDescription.Add("A Friend becomes Angry. They regain some Juice.");
 
         //Skill 4:
@@ -59,7 +59,7 @@ public class KelSkills : Skills
         user.order = 2;
 
         user.startingHealth = 90;
-        user.startingJuice = 40;
+        user.startingJuice = 60;
         user.startingAttack = 30;
         user.startingDefense = 8;
         user.startingSpeed = 16;

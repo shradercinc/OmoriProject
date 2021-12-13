@@ -308,7 +308,7 @@ public class LeadMovement : MonoBehaviour
                 else
                     menu.text += "\n???";
 
-                if (info.unlockedWeapons[n * 2])
+                if (info.unlockedWeapons[n * 2 + 1])
                 {
                     menu.text += "\n3: " + gameWeapons[n * 2 + 1];
                     descriptions.gameObject.transform.parent.gameObject.SetActive(true);

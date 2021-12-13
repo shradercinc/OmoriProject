@@ -23,7 +23,7 @@ public class Meteor : Weapon
             BattleCharacter target = allTargets[i];
 
             int critical = userSkills.RollCritical(user.currLuck);
-            int damage = (int)(critical * userSkills.IsEffective(target) * (3 * user.currAttack - target.currDefense));
+            int damage = (int)(critical * userSkills.IsEffective(target) * (2 * user.currAttack - target.currDefense));
             yield return target.TakeDamage(damage);
             yield return new WaitForSeconds(1);
         }

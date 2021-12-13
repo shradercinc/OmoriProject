@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 8498079452114451711}
   - component: {fileID: 8498079452114451704}
   - component: {fileID: 7642324176139953897}
-  - component: {fileID: 6557242423763934955}
   m_Layer: 5
   m_Name: Sweetheart
   m_TagString: Untagged
@@ -144,18 +143,3 @@ MonoBehaviour:
   skillDescription: []
   skillTargets: 
   nextTarget: {fileID: 0}
---- !u!114 &6557242423763934955
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8498079452114451707}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac4d51daff21c4758b4964b10a8df0a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  user: {fileID: 8498079452114451704}
-  manager: {fileID: 0}
-  description: 

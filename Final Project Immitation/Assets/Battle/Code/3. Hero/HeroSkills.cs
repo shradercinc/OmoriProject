@@ -59,7 +59,7 @@ public class HeroSkills : Skills
         user.order = 3;
 
         user.startingHealth = 100;
-        user.startingJuice = 40;
+        user.startingJuice = 60;
         user.startingAttack = 25;
         user.startingDefense = 15;
         user.startingSpeed = 6;
@@ -129,7 +129,7 @@ public class HeroSkills : Skills
 
             for (int i = 0; i < manager.friends.Count; i++)
             {
-                int recover = (int)(manager.friends[i].startingHealth * 0.5);
+                int recover = (int)(manager.friends[i].startingHealth * 0.4);
                 yield return manager.friends[i].TakeHealing(recover, 0);
             }
         }
