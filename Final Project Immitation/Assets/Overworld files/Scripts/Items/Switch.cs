@@ -42,15 +42,8 @@ public class Switch : MonoBehaviour
                 //Debug.Log("Switch is On");
                 if (input == true)
                 {
-                    spr.sprite = SwitchOffSprite;
-                    //Debug.Log($"switching off spikes");
-                    input = false;
-                    on = false;
-                    GameObject parent = gameObject.transform.parent.gameObject;
-                    if (info.disable.Contains(gameObject.name))
-                    {
-                        info.disable.Remove(gameObject.name);
-                    }
+                    aud.PlayOneShot(sound);
+                    info.disable.Add(gameObject.name);
                     DisableSpikes();
                 }
 
@@ -58,27 +51,27 @@ public class Switch : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Player") && on == false && input == true)
         {
-            spr.sprite = SwitchOnSprite;
-            input = false;
-            //Debug.Log($"switching on spikes");
-            on = true;
-            GameObject parent = gameObject.transform.parent.gameObject;
-            info.disable.Add(parent.name);
+            aud.PlayOneShot(sound);
             EnableSpikes();
+            info.disable.Remove(gameObject.name);
         }
     }
 
     public void EnableSpikes()
     {
+        spr.sprite = SwitchOnSprite;
+        input = false;
+        on = true;
+
         for (int i = 0; i < walls.Count; i++)
         {
-            aud.PlayOneShot(sound);
             if (walls[i].GetComponent<BoxCollider2D>().enabled == false)
             {
                 Debug.Log("enabling walls");
                 walls[i].GetComponent<BoxCollider2D>().enabled = true;
                 walls[i].GetComponent<SpriteRenderer>().sprite = OnSprite;
-            }else if (walls[i].GetComponent<BoxCollider2D>().enabled == true)
+            }
+            else if (walls[i].GetComponent<BoxCollider2D>().enabled == true)
             {
                 Debug.Log("disabling walls");
                 walls[i].GetComponent<BoxCollider2D>().enabled = false;
@@ -90,9 +83,12 @@ public class Switch : MonoBehaviour
     }
     public void DisableSpikes()
     {
+        spr.sprite = SwitchOffSprite;
+        input = false;
+        on = false;
+        
         for (int i = 0; i<walls.Count; i++)
         {
-            aud.PlayOneShot(sound);
             if (walls[i].GetComponent<BoxCollider2D>().enabled == false)
             {
                 Debug.Log("enabling walls");
