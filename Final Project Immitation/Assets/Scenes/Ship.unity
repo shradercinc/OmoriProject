@@ -2452,7 +2452,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5122995626631166373, guid: e28f9c0a511235f438883abfc60ca7de, type: 3}
       propertyPath: m_Name
-      value: Switch (1)
+      value: Switch 1B
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e28f9c0a511235f438883abfc60ca7de, type: 3}
@@ -5861,7 +5861,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2775005621102239575, guid: 63de3ba6011ecea42a97b772cb3bef3b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 21.5374
+      value: 21.62
       objectReference: {fileID: 0}
     - target: {fileID: 2775005621102239575, guid: 63de3ba6011ecea42a97b772cb3bef3b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6630,6 +6630,38 @@ Transform:
   - {fileID: 1971053068}
   m_Father: {fileID: 320798729}
   m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &471446413
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 471446414}
+  m_Layer: 0
+  m_Name: Dialogues
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &471446414
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 471446413}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 8.189848, y: 5.604296, z: -188.24805}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1009160288}
+  - {fileID: 1024398428}
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &478437678
 GameObject:
@@ -7874,7 +7906,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5122995626631166373, guid: e28f9c0a511235f438883abfc60ca7de, type: 3}
       propertyPath: m_Name
-      value: Switch
+      value: Switch R
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e28f9c0a511235f438883abfc60ca7de, type: 3}
@@ -9323,7 +9355,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3287088534827129219, guid: 991ab3b2bbb534242a2489e82a8aab4c, type: 3}
       propertyPath: m_Name
-      value: Spikes (14)
+      value: Spikes (13)
       objectReference: {fileID: 0}
     - target: {fileID: 8684273056543452886, guid: 991ab3b2bbb534242a2489e82a8aab4c, type: 3}
       propertyPath: m_RootOrder
@@ -10120,7 +10152,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5122995626631166373, guid: e28f9c0a511235f438883abfc60ca7de, type: 3}
       propertyPath: m_Name
-      value: Switch (3)
+      value: Switch 2D
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e28f9c0a511235f438883abfc60ca7de, type: 3}
@@ -11162,7 +11194,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5122995626631166373, guid: e28f9c0a511235f438883abfc60ca7de, type: 3}
       propertyPath: m_Name
-      value: Switch (1)
+      value: Switch 2A
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e28f9c0a511235f438883abfc60ca7de, type: 3}
@@ -11387,7 +11419,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5122995626631166373, guid: e28f9c0a511235f438883abfc60ca7de, type: 3}
       propertyPath: m_Name
-      value: Switch
+      value: Switch 2B
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e28f9c0a511235f438883abfc60ca7de, type: 3}
@@ -14236,11 +14268,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1009160285}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.08, y: 17.43, z: -2.3968432}
+  m_LocalPosition: {x: -8.109848, y: 11.825705, z: 185.8512}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_Father: {fileID: 471446414}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1009340422 stripped
 Transform:
@@ -14425,11 +14457,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1024398425}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -19.6, y: 63.3, z: -2.3968432}
+  m_LocalPosition: {x: -27.789848, y: 57.6957, z: 185.8512}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_Father: {fileID: 471446414}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1029497914 stripped
 Transform:
@@ -14596,7 +14628,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5122995626631166373, guid: e28f9c0a511235f438883abfc60ca7de, type: 3}
       propertyPath: m_Name
-      value: Switch
+      value: Switch 1A
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e28f9c0a511235f438883abfc60ca7de, type: 3}
@@ -22162,7 +22194,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5122995626631166373, guid: e28f9c0a511235f438883abfc60ca7de, type: 3}
       propertyPath: m_Name
-      value: Switch (1)
+      value: Switch L
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e28f9c0a511235f438883abfc60ca7de, type: 3}
@@ -23280,7 +23312,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5122995626631166373, guid: e28f9c0a511235f438883abfc60ca7de, type: 3}
       propertyPath: m_Name
-      value: Switch (2)
+      value: Switch 1C
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e28f9c0a511235f438883abfc60ca7de, type: 3}
@@ -27535,7 +27567,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5122995626631166373, guid: e28f9c0a511235f438883abfc60ca7de, type: 3}
       propertyPath: m_Name
-      value: Switch (2)
+      value: Switch 2C
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e28f9c0a511235f438883abfc60ca7de, type: 3}
