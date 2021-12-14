@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2973298070046295820}
   - component: {fileID: 2973298070046295819}
   - component: {fileID: 2478566076824448789}
+  - component: {fileID: 8767329115632727685}
   m_Layer: 5
   m_Name: Wasp
   m_TagString: Untagged
@@ -143,3 +144,17 @@ MonoBehaviour:
   skillDescription: []
   skillTargets: 
   insect: {fileID: 2973298070046295819}
+--- !u!114 &8767329115632727685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2973298070046295816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25c0521fdb78dc4478b088864fd81cc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  F1: {fileID: -3835559589209043853, guid: 89db77ba800402a499dfca7c53d33c4a, type: 3}
+  F2: {fileID: -3076311164162548968, guid: 89db77ba800402a499dfca7c53d33c4a, type: 3}

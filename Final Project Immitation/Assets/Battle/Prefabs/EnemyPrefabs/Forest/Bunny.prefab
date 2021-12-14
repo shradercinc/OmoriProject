@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6485936551007795834}
   - component: {fileID: 6485936551007795835}
   - component: {fileID: 850765357918489534}
+  - component: {fileID: 4841299892425382960}
   m_Layer: 5
   m_Name: Bunny
   m_TagString: Untagged
@@ -142,3 +143,17 @@ MonoBehaviour:
   followUpRequire: []
   skillDescription: []
   skillTargets: 
+--- !u!114 &4841299892425382960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6485936551007795831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25c0521fdb78dc4478b088864fd81cc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  F1: {fileID: 7651699989602995832, guid: 89db77ba800402a499dfca7c53d33c4a, type: 3}
+  F2: {fileID: 3539948401024283345, guid: 89db77ba800402a499dfca7c53d33c4a, type: 3}

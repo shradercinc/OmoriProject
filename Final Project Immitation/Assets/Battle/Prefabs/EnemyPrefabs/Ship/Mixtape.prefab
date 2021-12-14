@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3417125166757499592}
   - component: {fileID: 3417125166757499599}
   - component: {fileID: 3417125166757499598}
+  - component: {fileID: -2364928419841218775}
   m_Layer: 5
   m_Name: Mixtape
   m_TagString: Untagged
@@ -142,3 +143,17 @@ MonoBehaviour:
   followUpRequire: []
   skillDescription: []
   skillTargets: 
+--- !u!114 &-2364928419841218775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3417125166757499596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25c0521fdb78dc4478b088864fd81cc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  F1: {fileID: 271815955728274541, guid: 89db77ba800402a499dfca7c53d33c4a, type: 3}
+  F2: {fileID: -1102043909549372744, guid: 89db77ba800402a499dfca7c53d33c4a, type: 3}

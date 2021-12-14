@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4589652060162032226}
   - component: {fileID: 4589652060162032227}
   - component: {fileID: 5023664186281027868}
+  - component: {fileID: -2859988585443709552}
   m_Layer: 5
   m_Name: Bear
   m_TagString: Untagged
@@ -142,3 +143,17 @@ MonoBehaviour:
   followUpRequire: []
   skillDescription: []
   skillTargets: 
+--- !u!114 &-2859988585443709552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4589652060162032239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25c0521fdb78dc4478b088864fd81cc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  F1: {fileID: 4490713455103450229, guid: 89db77ba800402a499dfca7c53d33c4a, type: 3}
+  F2: {fileID: 4968611537423532820, guid: 89db77ba800402a499dfca7c53d33c4a, type: 3}

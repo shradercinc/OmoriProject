@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5010742224646075877}
   - component: {fileID: 5010742224646075876}
   - component: {fileID: 5010742224646075883}
+  - component: {fileID: -8279562494927434617}
   m_Layer: 5
   m_Name: Bomb
   m_TagString: Untagged
@@ -142,3 +143,17 @@ MonoBehaviour:
   followUpRequire: []
   skillDescription: []
   skillTargets: 
+--- !u!114 &-8279562494927434617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5010742224646075880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25c0521fdb78dc4478b088864fd81cc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  F1: {fileID: 7799966757852561488, guid: 89db77ba800402a499dfca7c53d33c4a, type: 3}
+  F2: {fileID: -2654525592932764556, guid: 89db77ba800402a499dfca7c53d33c4a, type: 3}

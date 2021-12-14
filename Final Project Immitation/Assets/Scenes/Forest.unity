@@ -729,7 +729,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 70189759}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.56, y: 6.77, z: 2.6736617}
+  m_LocalPosition: {x: 3.56, y: 7.66, z: 2.6736617}
   m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 948069749}
@@ -4710,6 +4710,8 @@ GameObject:
   - component: {fileID: 322995599}
   - component: {fileID: 322995601}
   - component: {fileID: 322995600}
+  - component: {fileID: 322995602}
+  - component: {fileID: 322995603}
   m_Layer: 0
   m_Name: Wasp 3
   m_TagString: Untagged
@@ -4730,7 +4732,7 @@ Transform:
   m_Children:
   - {fileID: 2015658516}
   m_Father: {fileID: 1860468123}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &322995600
 BoxCollider2D:
@@ -4810,6 +4812,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &322995602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 322995598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7a5b8e7a8364574b81666cf44a41615, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  F1: {fileID: -3835559589209043853, guid: 89db77ba800402a499dfca7c53d33c4a, type: 3}
+  F2: {fileID: -3076311164162548968, guid: 89db77ba800402a499dfca7c53d33c4a, type: 3}
+--- !u!114 &322995603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 322995598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac67e00cccd300b4f99de5d1241e39f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &325821415
 GameObject:
   m_ObjectHideFlags: 0
@@ -5430,6 +5458,7 @@ GameObject:
   - component: {fileID: 357240892}
   - component: {fileID: 357240894}
   - component: {fileID: 357240893}
+  - component: {fileID: 357240895}
   m_Layer: 0
   m_Name: Sweetheart
   m_TagString: Untagged
@@ -5445,12 +5474,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 357240891}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 25.42, y: 46.16, z: 0}
+  m_LocalPosition: {x: 25.420002, y: 46.16, z: 0}
   m_LocalScale: {x: 6, y: 6, z: 1}
   m_Children:
   - {fileID: 1568187641}
   m_Father: {fileID: 1860468123}
-  m_RootOrder: 8
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &357240893
 BoxCollider2D:
@@ -5530,6 +5559,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &357240895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 357240891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac67e00cccd300b4f99de5d1241e39f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &357627883
 GameObject:
   m_ObjectHideFlags: 0
@@ -5707,6 +5748,8 @@ GameObject:
   - component: {fileID: 365188796}
   - component: {fileID: 365188798}
   - component: {fileID: 365188797}
+  - component: {fileID: 365188799}
+  - component: {fileID: 365188800}
   m_Layer: 0
   m_Name: Bear 3
   m_TagString: Untagged
@@ -5727,7 +5770,7 @@ Transform:
   m_Children:
   - {fileID: 1095536698}
   m_Father: {fileID: 1860468123}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &365188797
 BoxCollider2D:
@@ -5807,6 +5850,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &365188799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 365188795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7a5b8e7a8364574b81666cf44a41615, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  F1: {fileID: 4490713455103450229, guid: 89db77ba800402a499dfca7c53d33c4a, type: 3}
+  F2: {fileID: 4968611537423532820, guid: 89db77ba800402a499dfca7c53d33c4a, type: 3}
+--- !u!114 &365188800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 365188795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac67e00cccd300b4f99de5d1241e39f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &369369109
 GameObject:
   m_ObjectHideFlags: 0
@@ -5818,6 +5887,8 @@ GameObject:
   - component: {fileID: 369369110}
   - component: {fileID: 369369112}
   - component: {fileID: 369369111}
+  - component: {fileID: 369369113}
+  - component: {fileID: 369369114}
   m_Layer: 0
   m_Name: Bunny 2
   m_TagString: Untagged
@@ -5838,7 +5909,7 @@ Transform:
   m_Children:
   - {fileID: 1993550618}
   m_Father: {fileID: 1860468123}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &369369111
 BoxCollider2D:
@@ -5918,6 +5989,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &369369113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 369369109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7a5b8e7a8364574b81666cf44a41615, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  F1: {fileID: 7651699989602995832, guid: 89db77ba800402a499dfca7c53d33c4a, type: 3}
+  F2: {fileID: 3539948401024283345, guid: 89db77ba800402a499dfca7c53d33c4a, type: 3}
+--- !u!114 &369369114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 369369109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac67e00cccd300b4f99de5d1241e39f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &385137120
 GameObject:
   m_ObjectHideFlags: 0
@@ -5929,6 +6026,8 @@ GameObject:
   - component: {fileID: 385137121}
   - component: {fileID: 385137123}
   - component: {fileID: 385137122}
+  - component: {fileID: 385137124}
+  - component: {fileID: 385137125}
   m_Layer: 0
   m_Name: Wasp 2
   m_TagString: Untagged
@@ -6029,6 +6128,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &385137124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 385137120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7a5b8e7a8364574b81666cf44a41615, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  F1: {fileID: -3835559589209043853, guid: 89db77ba800402a499dfca7c53d33c4a, type: 3}
+  F2: {fileID: -3076311164162548968, guid: 89db77ba800402a499dfca7c53d33c4a, type: 3}
+--- !u!114 &385137125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 385137120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac67e00cccd300b4f99de5d1241e39f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &390337688
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8096,6 +8221,8 @@ GameObject:
   - component: {fileID: 537813325}
   - component: {fileID: 537813327}
   - component: {fileID: 537813326}
+  - component: {fileID: 537813328}
+  - component: {fileID: 537813329}
   m_Layer: 0
   m_Name: Bear 1
   m_TagString: Untagged
@@ -8196,6 +8323,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &537813328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 537813324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7a5b8e7a8364574b81666cf44a41615, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  F1: {fileID: 4490713455103450229, guid: 89db77ba800402a499dfca7c53d33c4a, type: 3}
+  F2: {fileID: 4968611537423532820, guid: 89db77ba800402a499dfca7c53d33c4a, type: 3}
+--- !u!114 &537813329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 537813324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac67e00cccd300b4f99de5d1241e39f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &549935271
 GameObject:
   m_ObjectHideFlags: 0
@@ -8529,6 +8682,8 @@ GameObject:
   - component: {fileID: 564314884}
   - component: {fileID: 564314886}
   - component: {fileID: 564314885}
+  - component: {fileID: 564314887}
+  - component: {fileID: 564314888}
   m_Layer: 0
   m_Name: Wasp 4
   m_TagString: Untagged
@@ -8549,7 +8704,7 @@ Transform:
   m_Children:
   - {fileID: 1263280592}
   m_Father: {fileID: 1860468123}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &564314885
 BoxCollider2D:
@@ -8629,6 +8784,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &564314887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 564314883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7a5b8e7a8364574b81666cf44a41615, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  F1: {fileID: -3835559589209043853, guid: 89db77ba800402a499dfca7c53d33c4a, type: 3}
+  F2: {fileID: -3076311164162548968, guid: 89db77ba800402a499dfca7c53d33c4a, type: 3}
+--- !u!114 &564314888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 564314883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac67e00cccd300b4f99de5d1241e39f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &578910451
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10574,6 +10755,8 @@ GameObject:
   - component: {fileID: 693264388}
   - component: {fileID: 693264390}
   - component: {fileID: 693264389}
+  - component: {fileID: 693264391}
+  - component: {fileID: 693264392}
   m_Layer: 0
   m_Name: Bear 3 (1)
   m_TagString: Untagged
@@ -10594,7 +10777,7 @@ Transform:
   m_Children:
   - {fileID: 1464952214}
   m_Father: {fileID: 1860468123}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &693264389
 BoxCollider2D:
@@ -10674,6 +10857,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &693264391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 693264387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7a5b8e7a8364574b81666cf44a41615, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  F1: {fileID: 4490713455103450229, guid: 89db77ba800402a499dfca7c53d33c4a, type: 3}
+  F2: {fileID: 4968611537423532820, guid: 89db77ba800402a499dfca7c53d33c4a, type: 3}
+--- !u!114 &693264392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 693264387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac67e00cccd300b4f99de5d1241e39f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &696612433
 GameObject:
   m_ObjectHideFlags: 0
@@ -11866,6 +12075,8 @@ GameObject:
   - component: {fileID: 749622922}
   - component: {fileID: 749622924}
   - component: {fileID: 749622923}
+  - component: {fileID: 749622925}
+  - component: {fileID: 749622926}
   m_Layer: 0
   m_Name: Bear 3 (3)
   m_TagString: Untagged
@@ -11886,7 +12097,7 @@ Transform:
   m_Children:
   - {fileID: 942725485}
   m_Father: {fileID: 1860468123}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &749622923
 BoxCollider2D:
@@ -11966,6 +12177,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &749622925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 749622921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7a5b8e7a8364574b81666cf44a41615, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  F1: {fileID: 4490713455103450229, guid: 89db77ba800402a499dfca7c53d33c4a, type: 3}
+  F2: {fileID: 4968611537423532820, guid: 89db77ba800402a499dfca7c53d33c4a, type: 3}
+--- !u!114 &749622926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 749622921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac67e00cccd300b4f99de5d1241e39f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &751541837
 GameObject:
   m_ObjectHideFlags: 0
@@ -12856,6 +13093,8 @@ GameObject:
   - component: {fileID: 814569185}
   - component: {fileID: 814569187}
   - component: {fileID: 814569186}
+  - component: {fileID: 814569188}
+  - component: {fileID: 814569189}
   m_Layer: 0
   m_Name: Bunny 1
   m_TagString: Untagged
@@ -12876,7 +13115,7 @@ Transform:
   m_Children:
   - {fileID: 1204103122}
   m_Father: {fileID: 1860468123}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &814569186
 BoxCollider2D:
@@ -12956,6 +13195,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &814569188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 814569184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7a5b8e7a8364574b81666cf44a41615, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  F1: {fileID: 7651699989602995832, guid: 89db77ba800402a499dfca7c53d33c4a, type: 3}
+  F2: {fileID: 3539948401024283345, guid: 89db77ba800402a499dfca7c53d33c4a, type: 3}
+--- !u!114 &814569189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 814569184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac67e00cccd300b4f99de5d1241e39f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &815462516
 GameObject:
   m_ObjectHideFlags: 0
@@ -17829,6 +18094,8 @@ GameObject:
   - component: {fileID: 1106894670}
   - component: {fileID: 1106894672}
   - component: {fileID: 1106894671}
+  - component: {fileID: 1106894673}
+  - component: {fileID: 1106894674}
   m_Layer: 0
   m_Name: Bear 2
   m_TagString: Untagged
@@ -17929,6 +18196,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1106894673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1106894669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7a5b8e7a8364574b81666cf44a41615, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  F1: {fileID: 4490713455103450229, guid: 89db77ba800402a499dfca7c53d33c4a, type: 3}
+  F2: {fileID: 4968611537423532820, guid: 89db77ba800402a499dfca7c53d33c4a, type: 3}
+--- !u!114 &1106894674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1106894669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac67e00cccd300b4f99de5d1241e39f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1108487394
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18350,6 +18643,8 @@ GameObject:
   - component: {fileID: 1133575861}
   - component: {fileID: 1133575863}
   - component: {fileID: 1133575862}
+  - component: {fileID: 1133575864}
+  - component: {fileID: 1133575865}
   m_Layer: 0
   m_Name: Bear 3 (2)
   m_TagString: Untagged
@@ -18370,7 +18665,7 @@ Transform:
   m_Children:
   - {fileID: 945944714}
   m_Father: {fileID: 1860468123}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1133575862
 BoxCollider2D:
@@ -18450,6 +18745,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1133575864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1133575860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7a5b8e7a8364574b81666cf44a41615, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  F1: {fileID: 4490713455103450229, guid: 89db77ba800402a499dfca7c53d33c4a, type: 3}
+  F2: {fileID: 4968611537423532820, guid: 89db77ba800402a499dfca7c53d33c4a, type: 3}
+--- !u!114 &1133575865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1133575860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac67e00cccd300b4f99de5d1241e39f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1139818236
 GameObject:
   m_ObjectHideFlags: 0
@@ -23659,6 +23980,8 @@ GameObject:
   - component: {fileID: 1462851165}
   - component: {fileID: 1462851167}
   - component: {fileID: 1462851166}
+  - component: {fileID: 1462851168}
+  - component: {fileID: 1462851169}
   m_Layer: 0
   m_Name: Wasp 1
   m_TagString: Untagged
@@ -23759,6 +24082,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1462851168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1462851164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7a5b8e7a8364574b81666cf44a41615, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  F1: {fileID: -3835559589209043853, guid: 89db77ba800402a499dfca7c53d33c4a, type: 3}
+  F2: {fileID: -3076311164162548968, guid: 89db77ba800402a499dfca7c53d33c4a, type: 3}
+--- !u!114 &1462851169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1462851164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac67e00cccd300b4f99de5d1241e39f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1464112815
 GameObject:
   m_ObjectHideFlags: 0
@@ -24688,6 +25037,8 @@ GameObject:
   - component: {fileID: 1529513315}
   - component: {fileID: 1529513317}
   - component: {fileID: 1529513316}
+  - component: {fileID: 1529513318}
+  - component: {fileID: 1529513319}
   m_Layer: 0
   m_Name: Bear 3 (4)
   m_TagString: Untagged
@@ -24708,7 +25059,7 @@ Transform:
   m_Children:
   - {fileID: 495967819}
   m_Father: {fileID: 1860468123}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1529513316
 BoxCollider2D:
@@ -24788,6 +25139,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1529513318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1529513314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7a5b8e7a8364574b81666cf44a41615, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  F1: {fileID: 4490713455103450229, guid: 89db77ba800402a499dfca7c53d33c4a, type: 3}
+  F2: {fileID: 4968611537423532820, guid: 89db77ba800402a499dfca7c53d33c4a, type: 3}
+--- !u!114 &1529513319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1529513314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac67e00cccd300b4f99de5d1241e39f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1529923821
 GameObject:
   m_ObjectHideFlags: 0
@@ -28803,18 +29180,18 @@ Transform:
   m_Children:
   - {fileID: 1462851165}
   - {fileID: 385137121}
-  - {fileID: 814569185}
-  - {fileID: 369369110}
   - {fileID: 322995599}
   - {fileID: 564314884}
+  - {fileID: 814569185}
+  - {fileID: 369369110}
   - {fileID: 537813325}
   - {fileID: 1106894670}
-  - {fileID: 357240892}
   - {fileID: 365188796}
   - {fileID: 693264388}
   - {fileID: 1133575861}
   - {fileID: 749622922}
   - {fileID: 1529513315}
+  - {fileID: 357240892}
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
